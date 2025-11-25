@@ -46,13 +46,7 @@ export default function HomeScreen() {
 
   // Callback: Product press with navigation
   const handleProductPress = useCallback((productId: string) => {
-    navigation.navigate('HomeTab', {
-      screen: 'HomeStack',
-      params: {
-        screen: 'ProductDetail',
-        params: { productId }
-      }
-    } as any);
+    navigation.navigate('ProductDetail', { productId });
   }, [navigation]);
 
   // Callback: Wishlist toggle with storage sync
@@ -81,13 +75,14 @@ export default function HomeScreen() {
 
   // Callback: Category navigation
   const handleCategoryPress = useCallback((categoryId: string, categoryName: string) => {
-    navigation.navigate('HomeTab', {
-      screen: 'CategoriesTab',
-      params: {
+    // Navigate to Categories tab and then to CategoryListing
+    const parentNav = navigation.getParent();
+    if (parentNav) {
+      parentNav.navigate('CategoriesTab' as any, {
         screen: 'CategoryListing',
         params: { categoryId, categoryName },
-      },
-    } as any);
+      });
+    }
   }, [navigation]);
 
   // Callback: Search navigation

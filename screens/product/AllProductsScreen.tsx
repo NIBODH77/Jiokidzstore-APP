@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { View, StyleSheet, Pressable, FlatList, Dimensions } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { ScreenFlatList } from '@/components/ScreenFlatList';
 import { ProductCard } from '@/components/ProductCard';
@@ -8,6 +8,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { Colors, Spacing } from '@/constants/theme';
 import { PRODUCTS } from '@/data/mockData';
 import { wishlistStorage } from '@/utils/storage';
+import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 
 const PRICE_RANGES = [
   { id: '0-500', label: '₹0 - ₹500' },
@@ -22,7 +23,7 @@ const RATINGS = [
 ];
 
 export default function AllProductsScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
   const [products, setProducts] = useState(PRODUCTS);
   const [showFilters, setShowFilters] = useState(false);
   const [selectedPriceRange, setSelectedPriceRange] = useState<string | null>(null);
@@ -62,13 +63,7 @@ export default function AllProductsScreen() {
   }, [products, selectedPriceRange, selectedRating, sortBy]);
 
   const handleProductPress = useCallback((productId: string) => {
-    navigation.navigate('HomeTab' as any, {
-      screen: 'HomeStack',
-      params: {
-        screen: 'ProductDetail',
-        params: { productId }
-      }
-    } as any);
+    navigation.navigate('ProductDetail', { productId });
   }, [navigation]);
 
   const handleWishlistToggle = useCallback(async (productId: string) => {
@@ -190,7 +185,7 @@ export default function AllProductsScreen() {
   // Empty state component
   const renderEmpty = () => (
     <View style={styles.emptyState}>
-      <Feather name="inbox" size={48} color={Colors.light.textSecondary} />
+      <Feather name="inbox" size={48} color={Colors.light.textGray} />
       <ThemedText style={styles.emptyStateText}>No products found</ThemedText>
       <Pressable style={styles.resetButton} onPress={clearFilters}>
         <ThemedText style={styles.resetButtonText}>Reset Filters</ThemedText>
@@ -337,7 +332,7 @@ const styles = StyleSheet.create({
   emptyStateText: {
     fontSize: 16,
     fontWeight: '600',
-    color: Colors.light.textSecondary,
+    color: Colors.light.textGray,
     marginTop: Spacing.md,
   },
   resetButton: {

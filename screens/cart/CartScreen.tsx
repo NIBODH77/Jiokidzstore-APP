@@ -76,7 +76,7 @@ export default function CartScreen() {
         <Feather name="shopping-cart" size={80} color={Colors.light.textGray} />
         <ThemedText type="h2" style={styles.emptyTitle}>Your cart is empty</ThemedText>
         <ThemedText style={styles.emptySubtitle}>Add items to get started</ThemedText>
-        <Button onPress={() => navigation.navigate('Home')} style={styles.shopButton}>
+        <Button onPress={() => navigation.navigate('Home')}>
           Start Shopping
         </Button>
       </View>

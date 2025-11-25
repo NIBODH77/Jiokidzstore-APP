@@ -42,10 +42,7 @@ export default function DealsScreen() {
   const [products, setProducts] = useState(PRODUCTS);
 
   const handleProductPress = (productId: string) => {
-    navigation.navigate('DealsTab', {
-      screen: 'DealDetail',
-      params: { productId }
-    } as any);
+    navigation.navigate('DealDetail', { productId });
   };
 
   const handleWishlistToggle = async (productId: string) => {

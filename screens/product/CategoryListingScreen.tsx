@@ -1,24 +1,19 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { ScreenFlatList } from '@/components/ScreenFlatList';
 import { ProductCard } from '@/components/ProductCard';
 import { Colors, Spacing } from '@/constants/theme';
 import { PRODUCTS } from '@/data/mockData';
 import { wishlistStorage } from '@/utils/storage';
+import type { CategoriesStackParamList } from '@/navigation/CategoriesStackNavigator';
 
 export default function CategoryListingScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<CategoriesStackParamList>>();
   const [products, setProducts] = useState(PRODUCTS);
 
   const handleProductPress = (productId: string) => {
-    navigation.navigate('HomeTab' as any, {
-      screen: 'HomeStack',
-      params: {
-        screen: 'ProductDetail',
-        params: { productId }
-      }
-    } as any);
+    navigation.navigate('ProductDetail', { productId });
   };
 
   const handleWishlistToggle = async (productId: string) => {
