@@ -45,10 +45,7 @@ export default function WishlistScreen() {
   };
 
   const handleProductPress = (productId: string) => {
-    navigation.navigate('HomeTab' as any, {
-      screen: 'ProductDetail',
-      params: { productId },
-    });
+    navigation.navigate('ProductDetail' as any, { productId });
   };
 
   const handleRemoveFromWishlist = async (productId: string) => {
@@ -57,7 +54,10 @@ export default function WishlistScreen() {
   };
 
   const handleShopNow = () => {
-    navigation.navigate('HomeTab' as any);
+    const parentNav = navigation.getParent();
+    if (parentNav) {
+      parentNav.navigate('HomeTab' as any);
+    }
   };
 
   const handleClearAll = () => {

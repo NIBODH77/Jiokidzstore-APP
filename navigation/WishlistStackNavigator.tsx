@@ -25,8 +25,7 @@ export default function WishlistStackNavigator() {
         name="Wishlist"
         component={WishlistScreen}
         options={{ 
-          headerTitle: "My Wishlist",
-          tabBarStyle: { display: 'none' },
+          headerShown: false,
         }}
       />
       <Stack.Screen
