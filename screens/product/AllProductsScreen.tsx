@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { View, StyleSheet, Pressable, FlatList, Dimensions } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { ScreenFlatList } from '@/components/ScreenFlatList';
 import { ProductCard } from '@/components/ProductCard';
@@ -24,6 +25,7 @@ const RATINGS = [
 
 export default function AllProductsScreen() {
   const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
+  const insets = useSafeAreaInsets();
   const [products, setProducts] = useState(PRODUCTS);
   const [showFilters, setShowFilters] = useState(false);
   const [selectedPriceRange, setSelectedPriceRange] = useState<string | null>(null);
@@ -96,7 +98,7 @@ export default function AllProductsScreen() {
   const renderHeader = () => (
     <>
       {/* Filter Header */}
-      <View style={styles.header}>
+      <View style={[styles.header, { marginTop: Spacing.lg }]}>
         <ThemedText style={styles.headerTitle}>All Products</ThemedText>
         <Pressable
           style={styles.sortButton}

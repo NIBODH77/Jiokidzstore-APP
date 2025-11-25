@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -11,6 +12,7 @@ import type { CategoriesStackParamList } from '@/navigation/CategoriesStackNavig
 
 export default function CategoriesScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<CategoriesStackParamList>>();
+  const insets = useSafeAreaInsets();
 
   const handleCategoryPress = (categoryId: string, categoryName: string) => {
     navigation.navigate('CategoryListing', { categoryId, categoryName });
@@ -18,7 +20,7 @@ export default function CategoriesScreen() {
 
   return (
     <ScreenScrollView>
-      <View style={styles.container}>
+      <View style={[styles.container, { paddingTop: Spacing.lg }]}>
         {CATEGORIES.map(category => (
           <Pressable
             key={category.id}

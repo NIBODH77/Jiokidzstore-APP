@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScreenFlatList } from '@/components/ScreenFlatList';
 import { ThemedText } from '@/components/ThemedText';
 import { ProductCard } from '@/components/ProductCard';
@@ -11,6 +12,7 @@ import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 
 export default function FlashSaleScreen() {
   const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
+  const insets = useSafeAreaInsets();
   const [products, setProducts] = useState(PRODUCTS);
 
   const handleProductPress = (productId: string) => {
@@ -37,7 +39,7 @@ export default function FlashSaleScreen() {
   return (
     <ScreenFlatList
       ListHeaderComponent={
-        <View style={styles.header}>
+        <View style={[styles.header, { marginTop: Spacing.lg }]}>
           <ThemedText type="h2" style={styles.title}>Flash Sale</ThemedText>
           <ThemedText style={styles.subtitle}>Up to 60% OFF - Limited Time!</ThemedText>
         </View>
@@ -45,7 +47,7 @@ export default function FlashSaleScreen() {
       data={products}
       numColumns={2}
       keyExtractor={(item) => item.id}
-      contentContainerStyle={styles.grid}
+      contentContainerStyle={[styles.grid, { paddingTop: Spacing.sm }]}
       renderItem={({ item }) => (
         <View style={styles.productItem}>
           <ProductCard 

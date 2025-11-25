@@ -38,7 +38,7 @@ export default function CategoryListingScreen() {
       data={products}
       numColumns={2}
       keyExtractor={(item) => item.id}
-      contentContainerStyle={styles.grid}
+      contentContainerStyle={[styles.grid, { paddingTop: Spacing.lg }]}
       renderItem={({ item }) => (
         <View style={styles.productItem}>
           <ProductCard
