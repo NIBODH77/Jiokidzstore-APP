@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -11,6 +12,7 @@ import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 
 export default function CheckoutPaymentScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
+  const insets = useSafeAreaInsets();
   const [selectedMethod, setSelectedMethod] = useState('upi');
   const methods = [
     { id: 'upi', name: 'UPI Payment', icon: 'smartphone' },
@@ -25,7 +27,7 @@ export default function CheckoutPaymentScreen() {
 
   return (
     <ScreenScrollView>
-      <View style={styles.container}>
+      <View style={[styles.container, { marginTop: Spacing.lg }]}>
         <ThemedText type="h3" style={styles.title}>Select Payment Method</ThemedText>
         {methods.map((method) => (
           <Pressable
@@ -42,9 +44,11 @@ export default function CheckoutPaymentScreen() {
             </View>
           </Pressable>
         ))}
-        <Button onPress={handleContinue} style={styles.button}>
-          Proceed to Order Summary
-        </Button>
+        <View style={styles.button}>
+          <Button onPress={handleContinue}>
+            Proceed to Order Summary
+          </Button>
+        </View>
       </View>
     </ScreenScrollView>
   );

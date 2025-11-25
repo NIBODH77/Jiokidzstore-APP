@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { Button } from '@/components/Button';
@@ -10,6 +11,7 @@ import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 
 export default function OrderSummaryScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
+  const insets = useSafeAreaInsets();
 
   const handlePlaceOrder = () => {
     const orderId = Math.floor(10000 + Math.random() * 90000).toString();
@@ -19,7 +21,7 @@ export default function OrderSummaryScreen() {
   return (
     <View style={styles.container}>
       <ScreenScrollView>
-        <View style={styles.content}>
+        <View style={[styles.content, { marginTop: Spacing.lg }]}>
           <ThemedText type="h2" style={styles.title}>Order Summary</ThemedText>
 
           <View style={styles.section}>

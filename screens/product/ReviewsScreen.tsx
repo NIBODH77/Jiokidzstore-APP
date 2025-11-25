@@ -8,7 +8,7 @@ import { Colors, Spacing, BorderRadius, Shadows } from '@/constants/theme';
 export default function ReviewsScreen() {
   return (
     <ScreenScrollView>
-      <View style={styles.container}>
+      <View style={[styles.container, { marginTop: Spacing.lg }]}>
         <View style={styles.reviewCard}>
           <View style={styles.reviewHeader}>
             <ThemedText style={styles.userName}>John Doe</ThemedText>

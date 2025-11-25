@@ -102,7 +102,7 @@ export default function ProductDetailScreen() {
       <ScrollView 
         style={styles.scrollView} 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollViewContent}
+        contentContainerStyle={[styles.scrollViewContent, { paddingTop: insets.top }]}
       >
         {/* Product Image */}
         <View style={styles.imageSection}>

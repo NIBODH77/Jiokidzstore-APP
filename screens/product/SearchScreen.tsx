@@ -10,7 +10,7 @@ export default function SearchScreen() {
   
   return (
     <ScreenScrollView>
-      <View style={styles.searchContainer}>
+      <View style={[styles.searchContainer, { marginTop: Spacing.lg }]}>
         <Feather name="search" size={20} color={Colors.light.textGray} />
         <TextInput
           style={styles.searchInput}

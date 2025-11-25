@@ -115,7 +115,7 @@ export function Button({
               style={[
                 styles.text,
                 { color: getTextColor(), fontSize: fontSize.md },
-                icon && styles.textWithIcon,
+                ...(icon ? [styles.textWithIcon] : []),
               ]}
             >
               {title}

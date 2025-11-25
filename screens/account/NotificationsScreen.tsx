@@ -72,7 +72,7 @@ export default function NotificationsScreen() {
   };
 
   return (
-    <ScreenScrollView contentContainerStyle={{ paddingBottom: Spacing.xl }}>
+    <ScreenScrollView contentContainerStyle={{ paddingTop: Spacing.lg, paddingBottom: Spacing.xl }}>
       <View style={styles.container}>
         <ThemedText type="h3" style={styles.header}>Notifications</ThemedText>
         {notifications.map((notif) => (

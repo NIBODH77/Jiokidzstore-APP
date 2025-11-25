@@ -4,7 +4,7 @@ import { ThemedText } from "@/components/ThemedText";
 
 export default function DetailScreen() {
   return (
-    <ScreenScrollView contentContainerStyle={styles.scrollContent}>
+    <ScreenScrollView contentContainerStyle={[styles.scrollContent, { paddingTop: 40 }]}>
       <ThemedText type="body">Your detail screen</ThemedText>
     </ScreenScrollView>
   );

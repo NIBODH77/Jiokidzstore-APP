@@ -69,7 +69,7 @@ export default function ProfileScreen() {
     <ScreenScrollView 
       contentContainerStyle={[
         styles.contentContainer,
-        { paddingTop: Spacing.md, paddingHorizontal: 0 }
+        { paddingTop: Spacing.lg, paddingHorizontal: 0 }
       ]}
     >
       <View style={[styles.header, { paddingVertical: headerPadding }]}>

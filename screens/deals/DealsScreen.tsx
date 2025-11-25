@@ -67,7 +67,7 @@ export default function DealsScreen() {
   return (
     <ScreenScrollView>
       {/* Deals Header */}
-      <View style={styles.header}>
+      <View style={[styles.header, { marginTop: Spacing.lg }]}>
         <ThemedText style={styles.headerTitle}>Special Deals</ThemedText>
         <ThemedText style={styles.headerSubtitle}>Limited time offers just for you</ThemedText>
       </View>

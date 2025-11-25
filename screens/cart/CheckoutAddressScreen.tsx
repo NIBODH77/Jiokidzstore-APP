@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -11,6 +12,7 @@ import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 
 export default function CheckoutAddressScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
+  const insets = useSafeAreaInsets();
 
   const handleDeliverHere = () => {
     navigation.navigate('CheckoutPayment');
@@ -18,7 +20,7 @@ export default function CheckoutAddressScreen() {
 
   return (
     <ScreenScrollView>
-      <View style={styles.container}>
+      <View style={[styles.container, { marginTop: Spacing.lg }]}>
         <Pressable style={styles.addCard}>
           <Feather name="plus-circle" size={24} color={Colors.light.primary} />
           <ThemedText style={styles.addText}>Add New Address</ThemedText>
@@ -32,9 +34,11 @@ export default function CheckoutAddressScreen() {
           <ThemedText type="caption">Phone: +91 9876543210</ThemedText>
         </View>
         
-        <Button onPress={handleDeliverHere} style={styles.button}>
-          Deliver Here
-        </Button>
+        <View style={styles.button}>
+          <Button onPress={handleDeliverHere}>
+            Deliver Here
+          </Button>
+        </View>
       </View>
     </ScreenScrollView>
   );
