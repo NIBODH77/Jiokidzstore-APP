@@ -11,7 +11,7 @@ export default function SavedAddressesScreen() {
     <ScreenScrollView contentContainerStyle={{ paddingTop: Spacing.lg, paddingBottom: Spacing.xl }}>
       <View style={[styles.container, { paddingTop: Spacing.lg }]}>
         <View style={styles.addButton}>
-          <Button onPress={() => {}}>
+          <Button onPress={() => { /* Navigate to add address */ }}>
             <Feather name="plus" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
             Add New Address
           </Button>

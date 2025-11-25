@@ -352,7 +352,7 @@ export default function SplashScreen() {
   const navigation = useNavigation<any>();
   const scrollViewRef = useRef<ScrollView>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const autoScrollTimer = useRef<NodeJS.Timeout>();
+  const autoScrollTimer = useRef<NodeJS.Timeout | null>(null);
 
   const slides: SlideProps[] = [
     {

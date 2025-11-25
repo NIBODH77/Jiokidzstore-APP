@@ -47,9 +47,18 @@ export function BestSellersCarousel({ onProductPress }: BestSellersCarouselProps
   const handleAddToCart = async (itemId: string) => {
     try {
       const product = PRODUCTS.find(p => p.id === itemId);
-      if (product) {
-        await cartStorage.addToCart(product, 1);
+      if (product && product.name && product.price) {
+        const cartItem = {
+          id: itemId,
+          product,
+          quantity: 1,
+          selectedSize: 'M',
+          selectedColor: '#FF6B9D'
+        };
+        await cartStorage.addToCart(cartItem);
         Alert.alert('Success', `${product.name} added to cart!`);
+      } else {
+        Alert.alert('Error', 'Product information incomplete');
       }
     } catch (error) {
       Alert.alert('Error', 'Failed to add item to cart');

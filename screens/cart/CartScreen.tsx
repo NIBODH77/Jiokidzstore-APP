@@ -66,7 +66,7 @@ export default function CartScreen() {
     ]);
   };
 
-  const total = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const total = cartItems.reduce((sum, item) => sum + (item?.product?.price || 0) * item.quantity, 0);
   const deliveryFee = total > 499 ? 0 : 40;
   const finalTotal = total + deliveryFee;
 

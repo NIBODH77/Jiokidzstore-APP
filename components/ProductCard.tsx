@@ -47,7 +47,7 @@ export function ProductCard({
   const cardWidth = width / 2;
   const imageHeight = cardWidth;
 
-  const discount = product.originalPrice ? Math.round(
+  const discount = (product?.originalPrice && product?.price) ? Math.round(
     ((product.originalPrice - product.price) / product.originalPrice) * 100
   ) : 0;
 
