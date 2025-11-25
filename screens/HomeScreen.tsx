@@ -105,7 +105,7 @@ export default function HomeScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <ThemedText style={styles.sectionTitle}>Shop by Category</ThemedText>
-            <Pressable onPress={() => navigation.navigate('DealsTab' as any)}>
+            <Pressable onPress={() => navigation.navigate('AllProducts')}>
               <ThemedText style={styles.seeAllText}>View All</ThemedText>
             </Pressable>
           </View>
@@ -150,7 +150,7 @@ export default function HomeScreen() {
         <BestSellersCarousel onProductPress={handleProductPress} />
 
         {/* Personalized Section */}
-        <PersonalizedSection onItemPress={() => navigation.navigate('DealsTab' as any)} />
+        <PersonalizedSection onItemPress={() => navigation.navigate('AllProducts')} />
 
         {/* Trending Products - 2x2 Grid */}
         <View style={styles.section}>
