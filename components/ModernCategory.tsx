@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Pressable, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ThemedText } from './ThemedText';
@@ -8,7 +8,7 @@ import { Category } from '@/data/types';
 
 interface ModernCategoryProps {
   category: Category;
-  onPress: () => void;
+  onPress: (categoryId: string, categoryName: string) => void;
 }
 
 export function ModernCategory({ category, onPress }: ModernCategoryProps) {
@@ -40,7 +40,7 @@ export function ModernCategory({ category, onPress }: ModernCategoryProps) {
   return (
     <View style={styles.container}>
       <Pressable
-        onPress={onPress}
+        onPress={() => onPress(category.id, category.name)}
         style={({ pressed }) => [pressed && styles.pressed]}
       >
         <LinearGradient

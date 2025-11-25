@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Pressable, Dimensions } from 'react-native';
+import { View, StyleSheet, FlatList, Pressable, Dimensions, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { ThemedText } from './ThemedText';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
+import { cartStorage } from '@/utils/storage';
+import { PRODUCTS } from '@/data/mockData';
 
 const { width } = Dimensions.get('window');
 
@@ -42,6 +44,18 @@ interface BestSellersCarouselProps {
 }
 
 export function BestSellersCarousel({ onProductPress }: BestSellersCarouselProps) {
+  const handleAddToCart = async (itemId: string) => {
+    try {
+      const product = PRODUCTS.find(p => p.id === itemId);
+      if (product) {
+        await cartStorage.addToCart(product, 1);
+        Alert.alert('Success', `${product.name} added to cart!`);
+      }
+    } catch (error) {
+      Alert.alert('Error', 'Failed to add item to cart');
+    }
+  };
+
   const renderCard = ({ item }: any) => (
     <Pressable
       style={styles.card}
@@ -79,7 +93,7 @@ export function BestSellersCarousel({ onProductPress }: BestSellersCarouselProps
             <ThemedText style={styles.reviews}>({item.reviews})</ThemedText>
           </View>
 
-          <Pressable style={styles.addButton}>
+          <Pressable style={styles.addButton} onPress={() => handleAddToCart(item.id)}>
             <LinearGradient
               colors={['#FF6B9D', '#FFA8C5']}
               start={{ x: 0, y: 0 }}

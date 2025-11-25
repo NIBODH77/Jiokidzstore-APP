@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { View, StyleSheet, Pressable, Image, Dimensions, FlatList, Platform, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -24,6 +24,16 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const [products, setProducts] = useState(PRODUCTS);
   const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
+
+  // Load wishlist on mount
+  useEffect(() => {
+    const loadWishlist = async () => {
+      const wishlist = await wishlistStorage.getWishlist();
+      const wishlistIds = new Set(wishlist.map(item => item.id));
+      setWishlistedItems(wishlistIds);
+    };
+    loadWishlist();
+  }, []);
 
   // Memoized product list with wishlist status
   const updatedProducts = useMemo(() => 
@@ -114,7 +124,7 @@ export default function HomeScreen() {
             renderItem={({ item }) => (
               <ModernCategory
                 category={item}
-                onPress={() => handleCategoryPress(item.id, item.name)}
+                onPress={handleCategoryPress}
               />
             )}
             keyExtractor={(item) => item.id}
@@ -167,6 +177,7 @@ export default function HomeScreen() {
                   product={product}
                   onPress={() => handleProductPress(product.id)}
                   onWishlistPress={() => handleWishlistToggle(product.id)}
+                  isWishlisted={product.isWishlisted}
                 />
               </View>
             ))}
@@ -188,6 +199,7 @@ export default function HomeScreen() {
                   product={product}
                   onPress={() => handleProductPress(product.id)}
                   onWishlistPress={() => handleWishlistToggle(product.id)}
+                  isWishlisted={product.isWishlisted}
                 />
               </View>
             ))}
@@ -209,6 +221,7 @@ export default function HomeScreen() {
                   product={product}
                   onPress={() => handleProductPress(product.id)}
                   onWishlistPress={() => handleWishlistToggle(product.id)}
+                  isWishlisted={product.isWishlisted}
                 />
               </View>
             ))}
