@@ -47,9 +47,9 @@ export function ProductCard({
   const cardWidth = width / 2;
   const imageHeight = cardWidth;
 
-  const discount = Math.round(
+  const discount = product.originalPrice ? Math.round(
     ((product.originalPrice - product.price) / product.originalPrice) * 100
-  );
+  ) : 0;
 
   return (
     <Animated.View style={[animatedStyle, { width: cardWidth }]}>
@@ -102,13 +102,13 @@ export function ProductCard({
 
           <View style={styles.priceRow}>
             <ThemedText style={styles.priceText}>₹{product.price}</ThemedText>
-            {product.originalPrice > product.price && (
+            {product.originalPrice && product.originalPrice > product.price && (
               <ThemedText style={styles.originalPriceText}>
                 ₹{product.originalPrice}
               </ThemedText>
             )}
           </View>
-          {product.originalPrice > product.price && (
+          {product.originalPrice && product.originalPrice > product.price && (
             <ThemedText style={styles.savingsText}>
               Save ₹{product.originalPrice - product.price}
             </ThemedText>

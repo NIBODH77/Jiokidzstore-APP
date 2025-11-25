@@ -38,7 +38,6 @@ export default function CategoriesStackNavigator() {
         component={ProductDetailScreen}
         options={{ 
           headerShown: false,
-          tabBarStyle: { display: 'none' },
         }}
       />
     </Stack.Navigator>

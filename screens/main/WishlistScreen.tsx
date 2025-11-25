@@ -45,7 +45,7 @@ export default function WishlistScreen() {
   };
 
   const handleProductPress = (productId: string) => {
-    navigation.navigate('ProductDetail' as any, { productId });
+    (navigation as any).navigate('ProductDetail', { productId });
   };
 
   const handleRemoveFromWishlist = async (productId: string) => {
@@ -54,16 +54,25 @@ export default function WishlistScreen() {
   };
 
   const handleShopNow = () => {
-    const parentNav = navigation.getParent();
+    const parentNav = navigation.getParent() as any;
     if (parentNav) {
-      parentNav.navigate('HomeTab' as any);
+      parentNav.navigate('HomeTab');
     }
   };
 
-  const handleClearAll = () => {
-    wishlist.forEach(async (item) => {
+  const handleContinueShopping = () => {
+    const parentNav = navigation.getParent();
+    if (parentNav) {
+      (parentNav as any).navigate('HomeTab');
+    } else {
+      (navigation as any).navigate('Home');
+    }
+  };
+
+  const handleClearAll = async () => {
+    for (const item of wishlist) {
       await wishlistStorage.removeFromWishlist(item.id);
-    });
+    }
     setWishlist([]);
   };
 
@@ -304,7 +313,7 @@ export default function WishlistScreen() {
               </LinearGradient>
             </View>
             
-            <Pressable onPress={handleShopNow} style={styles.continueButton}>
+            <Pressable onPress={handleContinueShopping} style={styles.continueButton}>
               <LinearGradient
                 colors={['#FF6B9D', '#FF8FB3']}
                 style={styles.continueGradient}

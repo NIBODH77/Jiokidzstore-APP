@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, ScrollView, Pressable, Dimensions, Image, Platform } from 'react-native';
+import { View, StyleSheet, ScrollView, Pressable, Dimensions, Image, Platform, Alert } from 'react-native';
 import { useNavigation, useRoute, RouteProp, useIsFocused } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -21,18 +21,26 @@ export default function ProductDetailScreen() {
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
-  const product = PRODUCTS.find(p => p.id === route.params.productId);
+  const product = PRODUCTS.find(p => p.id === route.params?.productId);
 
   if (!product) {
     return (
       <View style={styles.errorContainer}>
         <ThemedText>Product not found</ThemedText>
+        <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
+          <ThemedText style={styles.backButtonText}>Go Back</ThemedText>
+        </Pressable>
       </View>
     );
   }
 
   const handleAddToCart = async () => {
     try {
+      if (!product?.id) {
+        console.error('Add to cart failed: Product ID is undefined');
+        return;
+      }
+      
       await cartStorage.addToCart({
         id: Date.now().toString(),
         product,
@@ -40,7 +48,13 @@ export default function ProductDetailScreen() {
         selectedSize: selectedSize || undefined,
         selectedColor: selectedColor || undefined,
       });
-      navigation.navigate('Cart');
+      
+      const parentNav = navigation.getParent();
+      if (parentNav) {
+        (parentNav as any).navigate('HomeTab', { screen: 'Cart' });
+      } else {
+        (navigation as any).navigate('Cart');
+      }
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
@@ -81,7 +95,7 @@ export default function ProductDetailScreen() {
     setIsWishlisted(!isWishlisted);
   };
 
-  const discountPercentage = Math.round(((product.mrp - product.price) / product.mrp) * 100);
+  const discountPercentage = product.mrp ? Math.round(((product.mrp - product.price) / product.mrp) * 100) : 0;
 
   return (
     <View style={styles.container}>
@@ -134,7 +148,7 @@ export default function ProductDetailScreen() {
           {/* Price Section */}
           <View style={styles.priceSection}>
             <ThemedText style={styles.salePrice}>₹{product.price}</ThemedText>
-            <ThemedText style={styles.originalPrice}>₹{product.mrp}</ThemedText>
+            {product.mrp && <ThemedText style={styles.originalPrice}>₹{product.mrp}</ThemedText>}
             <LinearGradient
               colors={['#28A745', '#20C997']}
               style={styles.discountBadge}
@@ -483,6 +497,23 @@ const styles = StyleSheet.create({
     color: '#666666',
     lineHeight: 20,
   },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  backButton: {
+    marginTop: 20,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    backgroundColor: '#FF6B9D',
+    borderRadius: 8,
+  },
+  backButtonText: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+  },
   footer: {
     flexDirection: 'row',
     gap: 12,
@@ -518,10 +549,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '800',
     color: '#FFFFFF',
-  },
-  errorContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
