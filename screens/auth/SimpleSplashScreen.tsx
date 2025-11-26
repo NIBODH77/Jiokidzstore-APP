@@ -8,13 +8,11 @@ import Animated, {
   withTiming,
   Easing,
 } from 'react-native-reanimated';
-import { useAuth } from '@/hooks/useAuth';
 
 const { width, height } = Dimensions.get('window');
 
 export default function SimpleSplashScreen() {
   const navigation = useNavigation<any>();
-  const { hasSeenOnboarding } = useAuth();
   const rotateValue = useSharedValue(0);
 
   useEffect(() => {
@@ -26,19 +24,13 @@ export default function SimpleSplashScreen() {
       -1,
       false
     );
-  }, []);
 
-  useEffect(() => {
     const timer = setTimeout(() => {
-      if (hasSeenOnboarding) {
-        navigation.replace('Login');
-      } else {
-        navigation.replace('Onboarding');
-      }
+      navigation.navigate('Login');
     }, 2500);
 
     return () => clearTimeout(timer);
-  }, [hasSeenOnboarding]);
+  }, []);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotateValue.value}deg` }],

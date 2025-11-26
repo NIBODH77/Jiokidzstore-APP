@@ -37,17 +37,6 @@ const AuthStack = () => {
 export default function RootNavigator() {
   const { user, isLoading, hasSeenOnboarding } = useAuth();
 
-  if (isLoading) {
-    return (
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Splash" component={SimpleSplashScreen} />
-        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="OTP" component={OTPScreen} />
-      </Stack.Navigator>
-    );
-  }
-
   if (user) {
     // If user is authenticated, show Main app
     return (
@@ -57,7 +46,16 @@ export default function RootNavigator() {
     );
   }
 
-  // If not loading and no user, show the full AuthStack (including OTP)
-  // The initialRouteName will handle whether to go to Onboarding or Login
-  return <AuthStack />;
+  // Always show splash screen first, regardless of loading state
+  return (
+    <Stack.Navigator 
+      screenOptions={{ headerShown: false }}
+      initialRouteName="Splash"
+    >
+      <Stack.Screen name="Splash" component={SimpleSplashScreen} />
+      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="OTP" component={OTPScreen} />
+    </Stack.Navigator>
+  );
 }
