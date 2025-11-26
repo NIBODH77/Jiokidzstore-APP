@@ -82,7 +82,7 @@ export default function SimpleSplashScreen() {
 
     const timer = setTimeout(() => {
       navigation.replace('AppIntro');
-    }, 2500);
+    }, 5500);
 
     return () => clearTimeout(timer);
   }, []);
