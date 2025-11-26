@@ -8,6 +8,8 @@ import Animated, {
   withTiming,
   Easing,
 } from 'react-native-reanimated';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Colors } from '@/constants/theme';
 
 const { width, height } = Dimensions.get('window');
 
@@ -26,7 +28,7 @@ export default function SimpleSplashScreen() {
     );
 
     const timer = setTimeout(() => {
-      navigation.navigate('Login');
+      navigation.replace('AppIntro');
     }, 2500);
 
     return () => clearTimeout(timer);
@@ -37,7 +39,12 @@ export default function SimpleSplashScreen() {
   }));
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={[Colors.light.primary, '#FFB6D9']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={styles.container}
+    >
       <Animated.View style={[styles.logoContainer, animatedStyle]}>
         <Image
           source={require('@/attached_assets/JioKidslogo_1763923777175.png')}
@@ -45,7 +52,7 @@ export default function SimpleSplashScreen() {
           resizeMode="contain"
         />
       </Animated.View>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -54,7 +61,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
   },
   logoContainer: {
     width: 200,
