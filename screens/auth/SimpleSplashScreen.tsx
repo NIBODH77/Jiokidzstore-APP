@@ -59,6 +59,7 @@ export default function SimpleSplashScreen() {
   const rotateValue = useSharedValue(0);
   const scaleValue = useSharedValue(0.8);
   const opacityValue = useSharedValue(0);
+  const jumpValue = useSharedValue(0);
 
   useEffect(() => {
     rotateValue.value = withRepeat(
@@ -80,6 +81,16 @@ export default function SimpleSplashScreen() {
       easing: Easing.ease,
     });
 
+    // Jump animation
+    jumpValue.value = withRepeat(
+      withTiming(1, {
+        duration: 1200,
+        easing: Easing.bezier(0.34, 1.56, 0.64, 1),
+      }),
+      -1,
+      true
+    );
+
     const timer = setTimeout(() => {
       navigation.replace('AppIntro');
     }, 5500);
@@ -91,6 +102,7 @@ export default function SimpleSplashScreen() {
     transform: [
       { rotate: `${rotateValue.value}deg` },
       { scale: scaleValue.value },
+      { translateY: interpolate(jumpValue.value, [0, 1], [0, -40]) },
     ],
     opacity: opacityValue.value,
   }));
