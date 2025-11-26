@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { View, StyleSheet, Dimensions, FlatList, Pressable, Image } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { replace } from '@/navigation/navigationRef';
 import { ThemedText } from '@/components/ThemedText';
 import { Button } from '@/components/Button';
