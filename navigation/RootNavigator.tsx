@@ -37,19 +37,6 @@ const AuthStack = () => {
 export default function RootNavigator() {
   const { user, isLoading, hasSeenOnboarding } = useAuth(); // Keep hasSeenOnboarding for initial render logic if needed
 
-  if (isLoading) {
-    // If loading, render SplashScreen and allow navigation to Login/Onboarding
-    return (
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Splash" component={SplashScreen} />
-        {/* Register Auth screens here temporarily if SplashScreen navigates to them */}
-        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="OTP" component={OTPScreen} />
-      </Stack.Navigator>
-    );
-  }
-
   if (user) {
     // If user is authenticated, show Main app
     return (
