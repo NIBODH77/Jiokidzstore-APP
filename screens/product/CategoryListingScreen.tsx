@@ -57,3 +57,4 @@ const styles = StyleSheet.create({
   grid: { padding: Spacing.sm },
   productItem: { width: '50%' },
 });
+

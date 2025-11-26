@@ -2,7 +2,6 @@ import React from 'react';
 import { View, StyleSheet, Pressable, Image, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -54,7 +53,6 @@ export default function ProfileScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<ProfileStackParamList>>();
   const { user, signOut } = useAuth();
   const { theme } = useTheme();
-  const insets = useSafeAreaInsets();
   
   // Responsive sizing based on screen height
   const isSmallDevice = screenHeight < 700;

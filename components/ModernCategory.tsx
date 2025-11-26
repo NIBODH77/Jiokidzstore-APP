@@ -8,7 +8,7 @@ import { Category } from '@/data/types';
 
 interface ModernCategoryProps {
   category: Category;
-  onPress: (categoryId: string, categoryName: string) => void;
+  onPress: () => void;
 }
 
 export function ModernCategory({ category, onPress }: ModernCategoryProps) {
@@ -40,7 +40,7 @@ export function ModernCategory({ category, onPress }: ModernCategoryProps) {
   return (
     <View style={styles.container}>
       <Pressable
-        onPress={() => onPress(category.id, category.name)}
+        onPress={onPress}
         style={({ pressed }) => [pressed && styles.pressed]}
       >
         <LinearGradient

@@ -5,6 +5,8 @@ import ProductDetailScreen from '@/screens/product/ProductDetailScreen';
 import { useTheme } from '@/hooks/useTheme';
 import { getCommonScreenOptions } from '@/navigation/screenOptions';
 
+import { HeaderTitle } from '@/components/HeaderTitle';
+
 export type DealsStackParamList = {
   Deals: undefined;
   DealDetail: { productId: string };
@@ -24,7 +26,7 @@ export default function DealsStackNavigator() {
       <Stack.Screen
         name="Deals"
         component={DealsScreen}
-        options={{ title: 'Deals & Offers' }}
+        options={{ headerTitle: () => <HeaderTitle title="Deals & Offers" /> }}
       />
       <Stack.Screen
         name="DealDetail"

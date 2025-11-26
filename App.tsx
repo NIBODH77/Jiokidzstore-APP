@@ -1,32 +1,25 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native"; // Removed Button, View
 import { NavigationContainer } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context"; // Removed useSafeAreaInsets
 import { StatusBar } from "expo-status-bar";
+// Removed import AsyncStorage
 
+import { navigationRef } from "@/navigation/navigationRef";
 import RootNavigator from "@/navigation/RootNavigator";
-import { AuthProvider } from "@/hooks/useAuth";
+import { AuthProvider } from "@/hooks/useAuth"; // Removed useAuth
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 export default function App() {
-  const [isNavigationReady, setIsNavigationReady] = useState(false);
-
   return (
   <ErrorBoundary>
     <SafeAreaProvider>
         <GestureHandlerRootView style={styles.root}>
           <KeyboardProvider>
             <AuthProvider>
-              <NavigationContainer
-                onReady={() => setIsNavigationReady(true)}
-                onStateChange={() => {
-                  if (!isNavigationReady) {
-                    setIsNavigationReady(true);
-                  }
-                }}
-              >
+              <NavigationContainer ref={navigationRef}>
                 <RootNavigator />
               </NavigationContainer>
             </AuthProvider>

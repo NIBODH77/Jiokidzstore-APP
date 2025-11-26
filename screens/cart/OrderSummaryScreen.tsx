@@ -59,9 +59,7 @@ export default function OrderSummaryScreen() {
         </View>
       </ScreenScrollView>
       <View style={styles.footer}>
-        <Button onPress={handlePlaceOrder}>
-          Place Order & Pay ₹2,999
-        </Button>
+        <Button title="Place Order & Pay ₹2,999" onPress={handlePlaceOrder} />
       </View>
     </View>
   );

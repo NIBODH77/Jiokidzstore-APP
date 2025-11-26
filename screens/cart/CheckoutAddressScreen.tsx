@@ -35,9 +35,7 @@ export default function CheckoutAddressScreen() {
         </View>
         
         <View style={styles.button}>
-          <Button onPress={handleDeliverHere}>
-            Deliver Here
-          </Button>
+          <Button title="Deliver Here" onPress={handleDeliverHere} />
         </View>
       </View>
     </ScreenScrollView>

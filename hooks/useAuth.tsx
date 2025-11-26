@@ -46,16 +46,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (onboardingData) {
         setHasSeenOnboarding(true);
       }
-
-      // Keep splash screen visible for full animation duration (~12 seconds)
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 12000);
+      setIsLoading(false); // Set isLoading to false after data is loaded
     } catch (error) {
       console.error('Failed to load user data:', error);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 12000);
+      setIsLoading(false); // Also set to false on error
     }
   };
 

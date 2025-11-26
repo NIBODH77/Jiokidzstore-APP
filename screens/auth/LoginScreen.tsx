@@ -7,20 +7,27 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ThemedText } from '@/components/ThemedText';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useHeaderHeight } from '@react-navigation/elements';
 import type { RootStackParamList } from '@/navigation/RootNavigator';
 
 export default function LoginScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const insets = useSafeAreaInsets();
+  const headerHeight = useHeaderHeight();
   const [isLogin, setIsLogin] = useState(true);
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
 
   const handleSendOTP = () => {
+    console.log('Attempting to send OTP...');
     if (isLogin && phone.length === 10) {
+      console.log('Login mode: Navigating to OTP with:', { phone: `+91${phone}`, name: 'User' });
       navigation.navigate('OTP', { phone: `+91${phone}`, name: 'User' });
     } else if (!isLogin && phone.length === 10 && name.length > 0) {
+      console.log('Register mode: Navigating to OTP with:', { phone: `+91${phone}`, name });
       navigation.navigate('OTP', { phone: `+91${phone}`, name });
+    } else {
+      console.log('Form is invalid, not navigating. isLogin:', isLogin, 'phone.length:', phone.length, 'name.length:', name.length);
     }
   };
 
@@ -33,7 +40,7 @@ export default function LoginScreen() {
       {/* Top Pink Section - Logo & Tabs */}
       <LinearGradient
         colors={['#FFD4E5', '#FFE5EE']}
-        style={[styles.pinkSection, { paddingTop: insets.top }]}
+        style={[styles.pinkSection, { paddingTop: insets.top + headerHeight }]}
       >
         <View style={styles.logoSection}>
           <Image

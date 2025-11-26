@@ -74,15 +74,8 @@ export default function HomeScreen() {
   }, [wishlistedItems, products]);
 
   // Callback: Category navigation
-  const handleCategoryPress = useCallback((categoryId: string, categoryName: string) => {
-    // Navigate to Categories tab and then to CategoryListing
-    const parentNav = navigation.getParent();
-    if (parentNav) {
-      parentNav.navigate('CategoriesTab' as any, {
-        screen: 'CategoryListing',
-        params: { categoryId, categoryName },
-      });
-    }
+  const handleCategoryPress = useCallback(() => {
+    navigation.navigate('CategoryAggregator');
   }, [navigation]);
 
   // Callback: Search navigation
@@ -254,7 +247,6 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     paddingBottom: Spacing.xl,
-    paddingTop: 0,
   },
   section: {
     marginBottom: 24,

@@ -14,6 +14,8 @@ import CrashScreen from "@/screens/CrashScreen";
 import { useTheme } from "@/hooks/useTheme";
 import { getCommonScreenOptions } from "@/navigation/screenOptions";
 
+import { HeaderTitle } from "@/components/HeaderTitle";
+
 export type ProfileStackParamList = {
   Profile: undefined;
   EditProfile: undefined;
@@ -37,13 +39,13 @@ export default function ProfileStackNavigator() {
       <Stack.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{ title: "My Profile" }}
+        options={{ headerTitle: () => <HeaderTitle title="My Profile" /> }}
       />
       <Stack.Screen
         name="EditProfile"
         component={EditProfileScreen}
         options={{ 
-          title: "Edit Profile",
+          headerTitle: () => <HeaderTitle title="Edit Profile" />,
           tabBarStyle: { display: 'none' },
         }}
       />
@@ -51,7 +53,7 @@ export default function ProfileStackNavigator() {
         name="OrderHistory"
         component={OrderHistoryScreen}
         options={{ 
-          title: "My Orders",
+          headerTitle: () => <HeaderTitle title="My Orders" />,
           tabBarStyle: { display: 'none' },
         }}
       />
@@ -59,7 +61,7 @@ export default function ProfileStackNavigator() {
         name="OrderTracking"
         component={OrderTrackingScreen}
         options={{ 
-          title: "Track Order",
+          headerTitle: () => <HeaderTitle title="Track Order" />,
           tabBarStyle: { display: 'none' },
         }}
       />
@@ -67,7 +69,7 @@ export default function ProfileStackNavigator() {
         name="Notifications"
         component={NotificationsScreen}
         options={{ 
-          title: "Notifications",
+          headerTitle: () => <HeaderTitle title="Notifications" />,
           tabBarStyle: { display: 'none' },
         }}
       />
@@ -75,7 +77,7 @@ export default function ProfileStackNavigator() {
         name="SavedAddresses"
         component={SavedAddressesScreen}
         options={{ 
-          title: "My Addresses",
+          headerTitle: () => <HeaderTitle title="My Addresses" />,
           tabBarStyle: { display: 'none' },
         }}
       />
@@ -83,7 +85,7 @@ export default function ProfileStackNavigator() {
         name="HelpSupport"
         component={HelpSupportScreen}
         options={{ 
-          title: "Help & Support",
+          headerTitle: () => <HeaderTitle title="Help & Support" />,
           tabBarStyle: { display: 'none' },
         }}
       />
@@ -91,7 +93,7 @@ export default function ProfileStackNavigator() {
         name="Settings"
         component={SettingsScreen}
         options={{ 
-          title: "Settings",
+          headerTitle: () => <HeaderTitle title="Settings" />,
           tabBarStyle: { display: 'none' },
         }}
       />
@@ -106,7 +108,7 @@ export default function ProfileStackNavigator() {
       <Stack.Screen
         name="Crash"
         component={CrashScreen}
-        options={{ title: "Crash Test" }}
+        options={{ headerTitle: () => <HeaderTitle title="Crash Test" /> }}
       />
     </Stack.Navigator>
   );

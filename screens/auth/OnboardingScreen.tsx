@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { View, StyleSheet, Dimensions, FlatList, Pressable, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { LinearGradient } from 'expo-linear-gradient';
+import { replace } from '@/navigation/navigationRef';
 import { ThemedText } from '@/components/ThemedText';
 import { Button } from '@/components/Button';
 import { useAuth } from '@/hooks/useAuth';
@@ -40,7 +38,6 @@ const slides: OnboardingSlide[] = [
 ];
 
 export default function OnboardingScreen() {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { completeOnboarding } = useAuth();
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
@@ -56,12 +53,12 @@ export default function OnboardingScreen() {
 
   const handleSkip = async () => {
     await completeOnboarding();
-    navigation.replace('Login');
+    replace('Login');
   };
 
   const handleGetStarted = async () => {
     await completeOnboarding();
-    navigation.replace('Login');
+    replace('Login');
   };
 
   const renderSlide = ({ item }: { item: OnboardingSlide }) => (
@@ -113,13 +110,9 @@ export default function OnboardingScreen() {
         </View>
 
         {currentIndex === slides.length - 1 ? (
-          <Button onPress={handleGetStarted} style={styles.button}>
-            Get Started
-          </Button>
+          <Button onPress={handleGetStarted} title="Get Started" variant="secondary" />
         ) : (
-          <Button onPress={handleNext} style={styles.button}>
-            Next
-          </Button>
+          <Button onPress={handleNext} title="Next" variant="secondary" />
         )}
       </View>
     </LinearGradient>

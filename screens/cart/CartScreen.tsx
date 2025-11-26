@@ -76,9 +76,7 @@ export default function CartScreen() {
         <Feather name="shopping-cart" size={80} color={Colors.light.textGray} />
         <ThemedText type="h2" style={styles.emptyTitle}>Your cart is empty</ThemedText>
         <ThemedText style={styles.emptySubtitle}>Add items to get started</ThemedText>
-        <Button onPress={() => navigation.navigate('Home')}>
-          Start Shopping
-        </Button>
+        <Button title="Start Shopping" onPress={() => navigation.navigate('Home')} />
       </View>
     );
   }
@@ -141,9 +139,7 @@ export default function CartScreen() {
             <ThemedText type="h3" style={styles.totalPrice}>₹{finalTotal}</ThemedText>
           </View>
         </View>
-        <Button onPress={() => navigation.navigate('CheckoutAddress')}>
-          Proceed to Checkout
-        </Button>
+        <Button title="Proceed to Checkout" onPress={() => navigation.navigate('CheckoutAddress')} />
       </View>
     </View>
   );

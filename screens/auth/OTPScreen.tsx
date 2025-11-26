@@ -12,10 +12,13 @@ import type { RootStackParamList } from '@/navigation/RootNavigator';
 export default function OTPScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<RootStackParamList, 'OTP'>>();
+  console.log('OTPScreen rendered with params:', route.params);
   const { signIn } = useAuth();
   const insets = useSafeAreaInsets();
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [timer, setTimer] = useState(30);
+  const [isVerifying, setIsVerifying] = useState(false); // New state for loading
+  const [errorMessage, setErrorMessage] = useState(''); // New state for error messages
   const inputRefs = useRef<Array<TextInput | null>>([]);
 
   useEffect(() => {
@@ -26,6 +29,7 @@ export default function OTPScreen() {
   }, []);
 
   const handleOtpChange = (value: string, index: number) => {
+    setErrorMessage(''); // Clear error message on OTP change
     if (value.length <= 1 && /^\d*$/.test(value)) {
       const newOtp = [...otp];
       newOtp[index] = value;
@@ -46,12 +50,28 @@ export default function OTPScreen() {
   const handleVerify = async () => {
     const otpValue = otp.join('');
     if (otpValue.length === 6) {
-      // Sign in the user
-      await signIn({
-        id: '1',
-        name: route.params.name || 'User',
-        phone: route.params.phone,
-      });
+      setIsVerifying(true);
+      setErrorMessage('');
+
+      // Simulate API call for OTP verification
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate 2 second delay
+
+      setIsVerifying(false);
+
+      // Simulate successful verification (e.g., if OTP is '123456')
+      // In a real app, you would send this to your backend for verification
+      if (otpValue === '123456') { // Example successful OTP
+        await signIn({
+          id: '1',
+          name: route.params.name || 'User',
+          phone: route.params.phone,
+        });
+        // RootNavigator will handle navigation to Main based on user state change
+      } else {
+        setErrorMessage('Invalid OTP. Please try again.');
+      }
+    } else {
+      setErrorMessage('Please enter a 6-digit OTP.');
     }
   };
 
@@ -59,6 +79,7 @@ export default function OTPScreen() {
     setTimer(30);
     setOtp(['', '', '', '', '', '']);
     inputRefs.current[0]?.focus();
+    setErrorMessage('');
   };
 
   const allDigitsFilled = otp.join('').length === 6;
@@ -102,6 +123,7 @@ export default function OTPScreen() {
                 style={[
                   styles.otpBoxWrapper,
                   digit && styles.otpBoxFilled,
+                  errorMessage && styles.otpBoxError, // Add error style
                 ]}
               >
                 <TextInput
@@ -116,10 +138,15 @@ export default function OTPScreen() {
                   maxLength={1}
                   autoFocus={index === 0}
                   placeholderTextColor="#DDD"
+                  editable={!isVerifying} // Disable input during verification
                 />
               </View>
             ))}
           </View>
+
+          {errorMessage ? (
+            <ThemedText style={styles.errorText}>{errorMessage}</ThemedText>
+          ) : null}
 
           {/* Timer or Resend */}
           <View style={styles.timerContainer}>
@@ -131,7 +158,7 @@ export default function OTPScreen() {
                 </ThemedText>
               </>
             ) : (
-              <Pressable onPress={handleResend} style={styles.resendButton}>
+              <Pressable onPress={handleResend} style={styles.resendButton} disabled={isVerifying}>
                 <Feather name="refresh-cw" size={16} color="#FF6B9D" />
                 <ThemedText style={styles.resendText}>Resend Code</ThemedText>
               </Pressable>
@@ -141,23 +168,23 @@ export default function OTPScreen() {
           {/* Verify Button */}
           <Pressable
             onPress={handleVerify}
-            disabled={!allDigitsFilled}
+            disabled={!allDigitsFilled || isVerifying} // Disable button while verifying
             style={[
               styles.verifyButton,
-              allDigitsFilled && styles.verifyButtonActive
+              (allDigitsFilled && !isVerifying) && styles.verifyButtonActive
             ]}
           >
             <LinearGradient
-              colors={allDigitsFilled ? ['#FF6B9D', '#FF8FB3'] : ['#D0D0D0', '#B8B8B8']}
+              colors={(allDigitsFilled && !isVerifying) ? ['#FF6B9D', '#FF8FB3'] : ['#D0D0D0', '#B8B8B8']}
               style={styles.verifyButtonGradient}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
             >
               <ThemedText style={[
                 styles.verifyButtonText,
-                !allDigitsFilled && styles.verifyButtonTextDisabled
+                (!allDigitsFilled || isVerifying) && styles.verifyButtonTextDisabled
               ]}>
-                Verify OTP
+                {isVerifying ? 'Verifying...' : 'Verify OTP'}
               </ThemedText>
             </LinearGradient>
           </Pressable>
@@ -261,6 +288,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     elevation: 3,
   },
+  otpBoxError: { // New style for error state
+    borderColor: '#EF4444', // Red border
+    shadowColor: '#EF4444',
+  },
   otpInput: {
     width: '100%',
     height: '100%',
@@ -331,5 +362,12 @@ const styles = StyleSheet.create({
     color: '#9CA3AF',
     textAlign: 'center',
     lineHeight: 18,
+  },
+  errorText: { // New style for error message
+    fontSize: 12,
+    color: '#EF4444',
+    textAlign: 'center',
+    marginBottom: 16,
+    fontWeight: '600',
   },
 });

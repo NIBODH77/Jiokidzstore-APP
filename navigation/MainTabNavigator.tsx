@@ -55,7 +55,7 @@ export default function MainTabNavigator() {
         name="HomeTab"
         component={HomeStackNavigator}
         options={{
-          title: "Home",
+          tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
             <Feather name="home" size={size} color={color} />
           ),
@@ -65,7 +65,7 @@ export default function MainTabNavigator() {
         name="DealsTab"
         component={DealsStackNavigator}
         options={{
-          title: "Deals",
+          tabBarLabel: "Deals",
           tabBarIcon: ({ color, size }) => (
             <Feather name="zap" size={size} color={color} />
           ),
@@ -75,7 +75,7 @@ export default function MainTabNavigator() {
         name="CategoriesTab"
         component={CategoriesStackNavigator}
         options={{
-          title: "Categories",
+          tabBarLabel: "Categories",
           tabBarIcon: ({ color, size }) => (
             <Feather name="grid" size={size} color={color} />
           ),
@@ -85,7 +85,7 @@ export default function MainTabNavigator() {
         name="WishlistTab"
         component={WishlistStackNavigator}
         options={{
-          title: "Wishlist",
+          tabBarLabel: "Wishlist",
           tabBarIcon: ({ color, size }) => (
             <Feather name="heart" size={size} color={color} />
           ),
@@ -95,7 +95,7 @@ export default function MainTabNavigator() {
         name="ProfileTab"
         component={ProfileStackNavigator}
         options={{
-          title: "Profile",
+          tabBarLabel: "Profile",
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),

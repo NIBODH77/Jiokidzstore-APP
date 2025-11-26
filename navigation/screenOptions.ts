@@ -16,17 +16,7 @@ export const getCommonScreenOptions = ({
   isDark,
   transparent = true,
 }: ScreenOptionsParams): NativeStackNavigationOptions => ({
-  headerTitleAlign: "center",
-  headerTransparent: transparent,
-  headerBlurEffect: isDark ? "dark" : "light",
-  headerTintColor: theme.text,
-  headerStyle: {
-    backgroundColor: Platform.select({
-      ios: undefined,
-      android: theme.backgroundRoot,
-      web: theme.backgroundRoot,
-    }),
-  },
+  headerShown: false, // Headers are now hidden
   gestureEnabled: true,
   gestureDirection: "horizontal",
   fullScreenGestureEnabled: isLiquidGlassAvailable() ? false : true,

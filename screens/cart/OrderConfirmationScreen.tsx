@@ -60,9 +60,7 @@ export default function OrderConfirmationScreen() {
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button onPress={handleTrackOrder}>
-            Track Order
-          </Button>
+          <Button title="Track Order" onPress={handleTrackOrder} />
           <Pressable onPress={handleContinueShopping} style={styles.secondaryButton}>
             <ThemedText style={styles.secondaryButtonText}>Continue Shopping</ThemedText>
           </Pressable>

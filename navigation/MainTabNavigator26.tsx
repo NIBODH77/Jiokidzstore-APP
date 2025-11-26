@@ -23,7 +23,7 @@ export default function MainTabNavigator26() {
         name="HomeTab"
         component={HomeStackNavigator}
         options={{
-          title: "Home",
+          tabBarLabel: "Home",
           icon: {
             sfSymbolName: "house",
           },
@@ -36,7 +36,7 @@ export default function MainTabNavigator26() {
         name="ProfileTab"
         component={ProfileStackNavigator}
         options={{
-          title: "Profile",
+          tabBarLabel: "Profile",
           icon: {
             sfSymbolName: "person",
           },

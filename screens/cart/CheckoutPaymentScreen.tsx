@@ -45,9 +45,7 @@ export default function CheckoutPaymentScreen() {
           </Pressable>
         ))}
         <View style={styles.button}>
-          <Button onPress={handleContinue}>
-            Proceed to Order Summary
-          </Button>
+          <Button title="Proceed to Order Summary" onPress={handleContinue} />
         </View>
       </View>
     </ScreenScrollView>

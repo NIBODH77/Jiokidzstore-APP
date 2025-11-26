@@ -56,7 +56,7 @@ export default function AddEditAddressScreen() {
           maxLength={6}
         />
       </View>
-      <Button>Save Address</Button>
+      <Button title="Save Address" />
     </ScreenKeyboardAwareScrollView>
   );
 }
