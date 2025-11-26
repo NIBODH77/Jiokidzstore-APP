@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '@/hooks/useAuth';
-import SplashScreen from '@/screens/auth/SplashScreen';
+import SimpleSplashScreen from '@/screens/auth/SimpleSplashScreen';
 import OnboardingScreen from '@/screens/auth/OnboardingScreen';
 import LoginScreen from '@/screens/auth/LoginScreen';
 import OTPScreen from '@/screens/auth/OTPScreen';
@@ -35,7 +35,18 @@ const AuthStack = () => {
 
 
 export default function RootNavigator() {
-  const { user, isLoading, hasSeenOnboarding } = useAuth(); // Keep hasSeenOnboarding for initial render logic if needed
+  const { user, isLoading, hasSeenOnboarding } = useAuth();
+
+  if (isLoading) {
+    return (
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Splash" component={SimpleSplashScreen} />
+        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="OTP" component={OTPScreen} />
+      </Stack.Navigator>
+    );
+  }
 
   if (user) {
     // If user is authenticated, show Main app
