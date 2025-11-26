@@ -343,7 +343,7 @@ function Slide({ title, subtitle, icon, logo, gradient, isFirstSlide, slideIndex
             </Animated.View>
           </>
         )}
-      </View>.
+      </View>
     </LinearGradient>
   );
 }
