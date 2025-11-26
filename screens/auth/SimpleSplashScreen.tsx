@@ -126,6 +126,11 @@ export default function SimpleSplashScreen() {
           size={60}
           position={{ top: 40, right: 10 }}
         />
+        <FloatingCircle
+          delay={200}
+          size={45}
+          position={{ top: 100, right: width * 0.15 }}
+        />
 
         {/* Bottom Left Circles */}
         <FloatingCircle
@@ -137,6 +142,25 @@ export default function SimpleSplashScreen() {
           delay={300}
           size={50}
           position={{ bottom: 50, left: 20 }}
+        />
+        <FloatingCircle
+          delay={600}
+          size={70}
+          position={{ bottom: 80, left: width * 0.15 }}
+        />
+
+        {/* Top Left Circles */}
+        <FloatingCircle
+          delay={400}
+          size={55}
+          position={{ top: height * 0.2, left: -15 }}
+        />
+
+        {/* Bottom Right Circles */}
+        <FloatingCircle
+          delay={700}
+          size={65}
+          position={{ bottom: 30, right: width * 0.12 }}
         />
 
         {/* Center Decorative Elements */}
@@ -162,6 +186,30 @@ export default function SimpleSplashScreen() {
             },
           ]}
         />
+        <View
+          style={[
+            styles.decorativeCircle,
+            {
+              top: height * 0.4,
+              left: width * 0.05,
+              width: 100,
+              height: 100,
+              backgroundColor: 'rgba(255, 182, 217, 0.06)',
+            },
+          ]}
+        />
+        <View
+          style={[
+            styles.decorativeCircle,
+            {
+              bottom: height * 0.1,
+              right: width * 0.08,
+              width: 110,
+              height: 110,
+              backgroundColor: 'rgba(255, 107, 157, 0.06)',
+            },
+          ]}
+        />
 
         {/* Main Logo Container */}
         <View style={styles.content}>
@@ -172,11 +220,6 @@ export default function SimpleSplashScreen() {
               resizeMode="contain"
             />
           </Animated.View>
-
-          {/* Glow Effect */}
-          <View style={styles.glowContainer}>
-            <View style={styles.glowCircle} />
-          </View>
         </View>
       </LinearGradient>
     </View>
@@ -207,22 +250,6 @@ const styles = StyleSheet.create({
   logo: {
     width: '100%',
     height: '100%',
-  },
-  glowContainer: {
-    position: 'absolute',
-    width: 280,
-    height: 280,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 0,
-  },
-  glowCircle: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 140,
-    backgroundColor: 'rgba(255, 107, 157, 0.1)',
-    borderWidth: 2,
-    borderColor: 'rgba(255, 107, 157, 0.15)',
   },
   decorativeCircle: {
     position: 'absolute',
