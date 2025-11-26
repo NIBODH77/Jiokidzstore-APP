@@ -1,11 +1,12 @@
 
 import React from "react";
-import { StyleSheet, Pressable, Image, View } from "react-native";
+import { StyleSheet, Pressable, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  withTiming,
 } from "react-native-reanimated";
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -31,9 +32,14 @@ export function ProductCard({
   const { theme } = useTheme();
   const { width } = useResponsive();
   const scale = useSharedValue(1);
+  const imageOpacity = useSharedValue(0);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
+  }));
+
+  const imageAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: imageOpacity.value,
   }));
 
   const handlePressIn = () => {
@@ -43,6 +49,10 @@ export function ProductCard({
   const handlePressOut = () => {
     scale.value = withSpring(1);
   };
+  
+  const handleImageLoad = () => {
+    imageOpacity.value = withTiming(1, { duration: 300 });
+  };
 
   const cardWidth = width / 2;
   const imageHeight = cardWidth;
@@ -50,6 +60,10 @@ export function ProductCard({
   const discount = (product?.originalPrice && product?.price) ? Math.round(
     ((product.originalPrice - product.price) / product.originalPrice) * 100
   ) : 0;
+  
+  const firstImage = product.images && product.images.length > 0 ? product.images[0] : null;
+  const imageSource = typeof firstImage === 'string' ? { uri: firstImage } : firstImage;
+
 
   return (
     <Animated.View style={[animatedStyle, { width: cardWidth }]}>
@@ -60,7 +74,15 @@ export function ProductCard({
         style={styles.container}
       >
         <View style={[styles.imageContainer, { height: imageHeight }]}>
-          <Image source={typeof product.image === 'string' ? { uri: product.image } : product.image} style={styles.image} />
+          {imageSource ? (
+            <Animated.Image 
+              source={imageSource} 
+              style={[styles.image, imageAnimatedStyle]}
+              onLoad={handleImageLoad}
+            />
+          ) : (
+            <View style={styles.imagePlaceholder} />
+          )}
           <LinearGradient
             colors={['transparent', 'rgba(0,0,0,0.15)']}
             style={styles.imageGradient}
@@ -145,6 +167,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
+  },
+  imagePlaceholder: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#F0F0F0',
   },
   imageGradient: {
     position: 'absolute',
