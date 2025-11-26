@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '@/hooks/useAuth';
 import SimpleSplashScreen from '@/screens/auth/SimpleSplashScreen';
@@ -19,46 +19,32 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-// Define an AuthStack that always includes Onboarding, Login, and OTP
-const AuthStack = () => {
-  const { hasSeenOnboarding } = useAuth(); // hasSeenOnboarding is used here for initialRouteName
-
-  return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}
-      initialRouteName={hasSeenOnboarding ? "Login" : "Onboarding"}
-    >
-      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="OTP" component={OTPScreen} />
-    </Stack.Navigator>
-  );
-};
-
-
 export default function RootNavigator() {
   const { user, isLoading, hasSeenOnboarding } = useAuth();
+  const [isSplashFinished, setSplashFinished] = useState(false);
 
-  if (user) {
-    // If user is authenticated, show Main app
+  if (!isSplashFinished || isLoading) {
+    return <SimpleSplashScreen onFinish={() => setSplashFinished(true)} />;
+  }
+
+  // User is not authenticated, and splash is finished
+  if (!user) {
     return (
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Main" component={MainTabNavigator} />
+      <Stack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName={hasSeenOnboarding ? 'Login' : 'Onboarding'}
+      >
+        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="OTP" component={OTPScreen} />
       </Stack.Navigator>
     );
   }
 
-  // Always show splash screen first, then app intro carousel, then login
+  // User is authenticated, and splash is finished
   return (
-    <Stack.Navigator 
-      screenOptions={{ headerShown: false }}
-      initialRouteName="Splash"
-    >
-      <Stack.Screen name="Splash" component={SimpleSplashScreen} />
-      <Stack.Screen name="AppIntro" component={AppIntroCarousel} />
-      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="OTP" component={OTPScreen} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Main" component={MainTabNavigator} />
     </Stack.Navigator>
   );
 }

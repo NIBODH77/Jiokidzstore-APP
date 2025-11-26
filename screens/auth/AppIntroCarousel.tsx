@@ -69,7 +69,7 @@ export default function AppIntroCarousel() {
         animated: true,
       });
     } else {
-      navigation.replace('Login');
+      navigation.replace('Onboarding');
     }
   };
 

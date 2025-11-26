@@ -6,6 +6,7 @@ import Animated, {
   useAnimatedStyle,
   withRepeat,
   withTiming,
+  withSpring,
   Easing,
   interpolate,
 } from 'react-native-reanimated';
@@ -54,55 +55,36 @@ function FloatingCircle({ delay, size, position }: any) {
   );
 }
 
-export default function SimpleSplashScreen() {
-  const navigation = useNavigation<any>();
+export default function SimpleSplashScreen({ onFinish }: { onFinish: () => void }) {
   const rotateValue = useSharedValue(0);
   const scaleValue = useSharedValue(0.8);
   const opacityValue = useSharedValue(0);
   const jumpValue = useSharedValue(0);
 
   useEffect(() => {
-    rotateValue.value = withRepeat(
-      withTiming(360, {
-        duration: 3000,
-        easing: Easing.linear,
-      }),
-      -1,
-      false
-    );
+    // Animate opacity and scale to bring the logo in with a spring effect
+    opacityValue.value = withTiming(1, { duration: 400, easing: Easing.ease });
+    scaleValue.value = withSpring(1, { damping: 12, stiffness: 90 });
 
-    scaleValue.value = withTiming(1, {
-      duration: 800,
-      easing: Easing.out(Easing.ease),
+    // Rotate with a spring for a more professional and dynamic effect
+    rotateValue.value = withSpring(360 * 2, {
+      damping: 18,
+      stiffness: 90,
+      mass: 1.2,
     });
 
-    opacityValue.value = withTiming(1, {
-      duration: 600,
-      easing: Easing.ease,
-    });
-
-    // Jump animation
-    jumpValue.value = withRepeat(
-      withTiming(1, {
-        duration: 1200,
-        easing: Easing.bezier(0.34, 1.56, 0.64, 1),
-      }),
-      -1,
-      true
-    );
-
+    // Set a timer to call onFinish after the animation duration
     const timer = setTimeout(() => {
-      navigation.replace('AppIntro');
-    }, 5500);
+      onFinish();
+    }, 3000); // Keep splash for 3 seconds
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [onFinish, opacityValue, scaleValue, rotateValue]);
 
   const animatedLogoStyle = useAnimatedStyle(() => ({
     transform: [
       { rotate: `${rotateValue.value}deg` },
       { scale: scaleValue.value },
-      { translateY: interpolate(jumpValue.value, [0, 1], [0, -40]) },
     ],
     opacity: opacityValue.value,
   }));

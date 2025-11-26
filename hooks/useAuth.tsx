@@ -34,6 +34,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const loadUserData = async () => {
     try {
+      // Clear storage to ensure the pre-login flow is always shown during development
+      await AsyncStorage.clear();
+
       const [userData, onboardingData] = await Promise.all([
         AsyncStorage.getItem(USER_KEY),
         AsyncStorage.getItem(ONBOARDING_KEY),
