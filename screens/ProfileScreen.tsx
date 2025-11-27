@@ -64,12 +64,7 @@ export default function ProfileScreen() {
   };
 
   return (
-    <ScreenScrollView 
-      contentContainerStyle={[
-        styles.contentContainer,
-        { paddingTop: 0, paddingHorizontal: 0 }
-      ]}
-    >
+    <View style={styles.container}>
       <View style={[styles.header]}>
         <View style={styles.avatarContainer}>
           <View style={[styles.avatar, { width: avatarSize, height: avatarSize, borderRadius: avatarSize / 2 }]}>
@@ -84,7 +79,13 @@ export default function ProfileScreen() {
         </ThemedText>
       </View>
 
-      <View style={styles.section}>
+      <ScreenScrollView 
+        contentContainerStyle={[
+          styles.contentContainer,
+          { paddingTop: 0, paddingHorizontal: 0 }
+        ]}
+      >
+        <View style={styles.section}>
         <MenuItem
           icon="edit-2"
           title="Edit Profile"
@@ -135,11 +136,16 @@ export default function ProfileScreen() {
           danger
         />
       </View>
-    </ScreenScrollView>
+      </ScreenScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
   contentContainer: {
     flexGrow: 1,
     paddingBottom: Spacing.xl,
