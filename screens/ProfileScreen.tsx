@@ -152,13 +152,15 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    paddingVertical: Spacing.lg,
+    paddingTop: Spacing.xl,
+    paddingBottom: Spacing.lg,
     borderBottomWidth: 1,
     borderBottomColor: Colors.light.border,
     backgroundColor: '#FFE5EE',
   },
   avatarContainer: {
     marginBottom: Spacing.md,
+    marginTop: Spacing.md,
   },
   avatar: {
     backgroundColor: Colors.light.backgroundSecondary,
