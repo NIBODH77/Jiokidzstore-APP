@@ -127,7 +127,7 @@ export default function ProfileScreen() {
         />
       </View>
 
-      <View style={styles.section}>
+      <View style={[styles.section, { marginBottom: Spacing.xxl * 2 }]}>
         <MenuItem
           icon="log-out"
           title="Logout"
