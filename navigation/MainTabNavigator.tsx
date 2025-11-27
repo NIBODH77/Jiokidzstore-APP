@@ -30,15 +30,15 @@ export default function MainTabNavigator() {
     <Tab.Navigator
       initialRouteName="HomeTab"
       screenOptions={({ route }) => {
-        const routeName = getFocusedRouteNameFromRoute(route) ?? "ProfileTab";
-        const isProfileNested = routeName !== "ProfileTab";
+        const routeName = getFocusedRouteNameFromRoute(route) ?? "Profile";
+        const isProfileTab = route.name === "ProfileTab";
         
         return {
           tabBarActiveTintColor: theme.tabIconSelected,
           tabBarInactiveTintColor: theme.tabIconDefault,
           tabBarStyle: {
             position: "absolute",
-            display: isProfileNested ? "none" : "flex",
+            display: isProfileTab ? "none" : "flex",
             backgroundColor: Platform.select({
               ios: "transparent",
               android: theme.backgroundRoot,

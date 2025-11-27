@@ -1,5 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Feather } from "@expo/vector-icons";
 
 import ProfileScreen from "@/screens/ProfileScreen";
 import EditProfileScreen from "@/screens/account/EditProfileScreen";
@@ -13,6 +14,7 @@ import ProductDetailScreen from "@/screens/product/ProductDetailScreen";
 import CrashScreen from "@/screens/CrashScreen";
 import { useTheme } from "@/hooks/useTheme";
 import { getCommonScreenOptions } from "@/navigation/screenOptions";
+import { Colors } from "@/constants/theme";
 
 import { HeaderTitle } from "@/components/HeaderTitle";
 
@@ -35,18 +37,29 @@ export default function ProfileStackNavigator() {
   const { theme, isDark } = useTheme();
 
   return (
-    <Stack.Navigator screenOptions={getCommonScreenOptions({ theme, isDark })}>
+    <Stack.Navigator 
+      screenOptions={({ navigation }) => ({
+        ...getCommonScreenOptions({ theme, isDark }),
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: theme.backgroundRoot,
+        },
+        headerTintColor: Colors.light.primary,
+        headerBackTitleVisible: false,
+      })}
+    >
       <Stack.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{ headerTitle: () => <HeaderTitle title="My Profile" /> }}
+        options={{ 
+          headerShown: false,
+        }}
       />
       <Stack.Screen
         name="EditProfile"
         component={EditProfileScreen}
         options={{ 
           headerTitle: () => <HeaderTitle title="Edit Profile" />,
-          tabBarStyle: { display: 'none' },
         }}
       />
       <Stack.Screen
@@ -54,7 +67,6 @@ export default function ProfileStackNavigator() {
         component={OrderHistoryScreen}
         options={{ 
           headerTitle: () => <HeaderTitle title="My Orders" />,
-          tabBarStyle: { display: 'none' },
         }}
       />
       <Stack.Screen
@@ -62,7 +74,6 @@ export default function ProfileStackNavigator() {
         component={OrderTrackingScreen}
         options={{ 
           headerTitle: () => <HeaderTitle title="Track Order" />,
-          tabBarStyle: { display: 'none' },
         }}
       />
       <Stack.Screen
@@ -70,7 +81,6 @@ export default function ProfileStackNavigator() {
         component={NotificationsScreen}
         options={{ 
           headerTitle: () => <HeaderTitle title="Notifications" />,
-          tabBarStyle: { display: 'none' },
         }}
       />
       <Stack.Screen
@@ -78,7 +88,6 @@ export default function ProfileStackNavigator() {
         component={SavedAddressesScreen}
         options={{ 
           headerTitle: () => <HeaderTitle title="My Addresses" />,
-          tabBarStyle: { display: 'none' },
         }}
       />
       <Stack.Screen
@@ -86,7 +95,6 @@ export default function ProfileStackNavigator() {
         component={HelpSupportScreen}
         options={{ 
           headerTitle: () => <HeaderTitle title="Help & Support" />,
-          tabBarStyle: { display: 'none' },
         }}
       />
       <Stack.Screen
@@ -94,7 +102,6 @@ export default function ProfileStackNavigator() {
         component={SettingsScreen}
         options={{ 
           headerTitle: () => <HeaderTitle title="Settings" />,
-          tabBarStyle: { display: 'none' },
         }}
       />
       <Stack.Screen
@@ -102,7 +109,6 @@ export default function ProfileStackNavigator() {
         component={ProductDetailScreen}
         options={{ 
           headerShown: false,
-          tabBarStyle: { display: 'none' },
         }}
       />
       <Stack.Screen
