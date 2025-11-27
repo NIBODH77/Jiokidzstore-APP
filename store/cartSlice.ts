@@ -130,34 +130,26 @@ export function cartReducer(state = initialState, action: CartAction): CartState
 }
 
 // Action creators with proper Redux types
-export function addToCart(
+export const addToCart = (
   product: Product,
   quantity = 1,
   selectedSize?: string,
   selectedColor?: string
-) {
-  return {
-    type: ADD_TO_CART as const,
-    payload: { product, quantity, selectedSize, selectedColor } as AddToCartPayload,
-  };
-}
+): AddToCartAction => ({
+  type: ADD_TO_CART,
+  payload: { product, quantity, selectedSize, selectedColor },
+});
 
-export function removeFromCart(productId: string) {
-  return {
-    type: REMOVE_FROM_CART as const,
-    payload: productId,
-  };
-}
+export const removeFromCart = (productId: string): RemoveFromCartAction => ({
+  type: REMOVE_FROM_CART,
+  payload: productId,
+});
 
-export function updateCartItem(productId: string, quantity: number) {
-  return {
-    type: UPDATE_CART_ITEM as const,
-    payload: { productId, quantity },
-  };
-}
+export const updateCartItem = (productId: string, quantity: number): UpdateCartItemAction => ({
+  type: UPDATE_CART_ITEM,
+  payload: { productId, quantity },
+});
 
-export function clearCart() {
-  return {
-    type: CLEAR_CART as const,
-  };
-}
+export const clearCart = (): ClearCartAction => ({
+  type: CLEAR_CART,
+});
