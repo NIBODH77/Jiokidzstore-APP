@@ -3,6 +3,7 @@ import { View, StyleSheet, Pressable, Image, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Feather } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { useAuth } from '@/hooks/useAuth';
@@ -65,7 +66,12 @@ export default function ProfileScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.header]}>
+      <LinearGradient
+        colors={['#FF6B9D', '#FFE5EE']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.header}
+      >
         <View style={styles.avatarContainer}>
           <View style={[styles.avatar, { width: avatarSize, height: avatarSize, borderRadius: avatarSize / 2 }]}>
             <Feather name="user" size={avatarSize * 0.4} color={Colors.light.primary} />
@@ -77,7 +83,7 @@ export default function ProfileScreen() {
         <ThemedText style={[styles.userPhone, { fontSize: isSmallDevice ? 13 : 14 }]}>
           {user?.phone || user?.email || ''}
         </ThemedText>
-      </View>
+      </LinearGradient>
 
       <ScreenScrollView 
         contentContainerStyle={[
@@ -156,7 +162,6 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.lg,
     borderBottomWidth: 1,
     borderBottomColor: Colors.light.border,
-    backgroundColor: '#FFE5EE',
   },
   avatarContainer: {
     marginBottom: Spacing.md,
