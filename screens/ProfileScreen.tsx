@@ -92,56 +92,53 @@ export default function ProfileScreen() {
         ]}
       >
         <View style={styles.section}>
-        <MenuItem
-          icon="edit-2"
-          title="Edit Profile"
-          onPress={() => navigation.navigate('EditProfile')}
-        />
-        <MenuItem
-          icon="package"
-          title="My Orders"
-          onPress={() => navigation.navigate('OrderHistory')}
-          badge={2}
-        />
-        <MenuItem
-          icon="heart"
-          title="My Wishlist"
-          onPress={() => navigation.getParent()?.navigate('WishlistTab' as any)}
-        />
-        <MenuItem
-          icon="map-pin"
-          title="Saved Addresses"
-          onPress={() => navigation.navigate('SavedAddresses')}
-        />
-        <MenuItem
-          icon="bell"
-          title="Notifications"
-          onPress={() => navigation.navigate('Notifications')}
-          badge={5}
-        />
-      </View>
+          <MenuItem
+            icon="edit-2"
+            title="Edit Profile"
+            onPress={() => navigation.navigate('EditProfile')}
+          />
+          <MenuItem
+            icon="package"
+            title="My Orders"
+            onPress={() => navigation.navigate('OrderHistory')}
+            badge={2}
+          />
+          <MenuItem
+            icon="heart"
+            title="My Wishlist"
+            onPress={() => navigation.getParent()?.navigate('WishlistTab' as any)}
+          />
+          <MenuItem
+            icon="map-pin"
+            title="Saved Addresses"
+            onPress={() => navigation.navigate('SavedAddresses')}
+          />
+          <MenuItem
+            icon="bell"
+            title="Notifications"
+            onPress={() => navigation.navigate('Notifications')}
+            badge={5}
+          />
+        </View>
 
-      <View style={styles.section}>
-        <MenuItem
-          icon="help-circle"
-          title="Help & Support"
-          onPress={() => navigation.navigate('HelpSupport')}
-        />
-        <MenuItem
-          icon="settings"
-          title="Settings"
-          onPress={() => navigation.navigate('Settings')}
-        />
-      </View>
-
-      <View style={styles.section}>
-        <MenuItem
-          icon="log-out"
-          title="Logout"
-          onPress={handleLogout}
-          danger
-        />
-      </View>
+        <View style={styles.section}>
+          <MenuItem
+            icon="help-circle"
+            title="Help & Support"
+            onPress={() => navigation.navigate('HelpSupport')}
+          />
+          <MenuItem
+            icon="settings"
+            title="Settings"
+            onPress={() => navigation.navigate('Settings')}
+          />
+          <MenuItem
+            icon="log-out"
+            title="Logout"
+            onPress={handleLogout}
+            danger
+          />
+        </View>
       </ScreenScrollView>
     </View>
   );
