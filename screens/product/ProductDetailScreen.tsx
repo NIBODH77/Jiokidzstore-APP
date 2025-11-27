@@ -50,7 +50,7 @@ export default function ProductDetailScreen() {
         quantity,
         selectedSize || undefined,
         selectedColor || undefined
-      ));
+      ) as any);
       
       // Also save to local storage
       await cartStorage.addToCart({

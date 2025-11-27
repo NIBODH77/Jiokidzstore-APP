@@ -70,7 +70,7 @@ export default function ProfileScreen() {
         { paddingTop: Spacing.lg, paddingHorizontal: 0 }
       ]}
     >
-      <View style={[styles.header, { paddingVertical: headerPadding }]}>
+      <View style={[styles.header]}>
         <View style={styles.avatarContainer}>
           <View style={[styles.avatar, { width: avatarSize, height: avatarSize, borderRadius: avatarSize / 2 }]}>
             <Feather name="user" size={avatarSize * 0.4} color={Colors.light.primary} />
@@ -143,12 +143,14 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexGrow: 1,
     paddingBottom: Spacing.xl,
+    backgroundColor: '#FFE5EE',
   },
   header: {
     alignItems: 'center',
     paddingVertical: Spacing.lg,
     borderBottomWidth: 1,
     borderBottomColor: Colors.light.border,
+    backgroundColor: '#FFE5EE',
   },
   avatarContainer: {
     marginBottom: Spacing.md,
@@ -171,6 +173,7 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.lg,
     paddingHorizontal: Spacing.lg,
     marginTop: Spacing.md,
+    maxHeight: 'auto',
   },
   menuItem: {
     flexDirection: 'row',
