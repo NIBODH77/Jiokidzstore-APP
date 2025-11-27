@@ -1,5 +1,5 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator, getFocusedRouteNameFromRoute } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
 import { Platform, StyleSheet, View } from "react-native";
@@ -28,27 +28,33 @@ export default function MainTabNavigator() {
   return (
     <Tab.Navigator
       initialRouteName="HomeTab"
-      screenOptions={{
-        tabBarActiveTintColor: theme.tabIconSelected,
-        tabBarInactiveTintColor: theme.tabIconDefault,
-        tabBarStyle: {
-          position: "absolute",
-          backgroundColor: Platform.select({
-            ios: "transparent",
-            android: theme.backgroundRoot,
-          }),
-          borderTopWidth: 0,
-          elevation: 0,
-        },
-        tabBarBackground: () =>
-          Platform.OS === "ios" ? (
-            <BlurView
-              intensity={100}
-              tint={isDark ? "dark" : "light"}
-              style={StyleSheet.absoluteFill}
-            />
-          ) : null,
-        headerShown: false,
+      screenOptions={({ route }) => {
+        const routeName = getFocusedRouteNameFromRoute(route) ?? "ProfileTab";
+        const isProfileNested = routeName !== "ProfileTab";
+        
+        return {
+          tabBarActiveTintColor: theme.tabIconSelected,
+          tabBarInactiveTintColor: theme.tabIconDefault,
+          tabBarStyle: {
+            position: "absolute",
+            display: isProfileNested ? "none" : "flex",
+            backgroundColor: Platform.select({
+              ios: "transparent",
+              android: theme.backgroundRoot,
+            }),
+            borderTopWidth: 0,
+            elevation: 0,
+          },
+          tabBarBackground: () =>
+            Platform.OS === "ios" ? (
+              <BlurView
+                intensity={100}
+                tint={isDark ? "dark" : "light"}
+                style={StyleSheet.absoluteFill}
+              />
+            ) : null,
+          headerShown: false,
+        };
       }}
     >
       <Tab.Screen
