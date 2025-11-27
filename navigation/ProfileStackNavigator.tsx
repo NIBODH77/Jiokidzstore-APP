@@ -40,12 +40,7 @@ export default function ProfileStackNavigator() {
     <Stack.Navigator 
       screenOptions={({ navigation }) => ({
         ...getCommonScreenOptions({ theme, isDark }),
-        headerShown: true,
-        headerStyle: {
-          backgroundColor: theme.backgroundRoot,
-        },
-        headerTintColor: Colors.light.primary,
-        headerBackTitleVisible: false,
+        headerShown: false,
       })}
     >
       <Stack.Screen

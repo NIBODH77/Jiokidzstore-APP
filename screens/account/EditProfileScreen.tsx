@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Pressable, TextInput, Alert } from 'react-native';
+import { View, StyleSheet, Pressable, TextInput, Alert, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ScreenKeyboardAwareScrollView } from '@/components/ScreenKeyboardAwareScrollView';
+import { ScrollableHeaderBack } from '@/components/ScrollableHeaderBack';
 import { ThemedText } from '@/components/ThemedText';
 import { Toast } from '@/components/Toast';
 import { useAuth } from '@/hooks/useAuth';
@@ -53,9 +53,11 @@ export default function EditProfileScreen() {
   ] as const;
 
   return (
-    <View style={styles.wrapper}>
-      <ScreenKeyboardAwareScrollView contentContainerStyle={{ paddingTop: Spacing.lg, paddingBottom: Spacing.xl }}>
-        <View style={[styles.container, { paddingTop: Spacing.lg }]}>
+    <ScrollableHeaderBack 
+      title="Edit Profile"
+      contentContainerStyle={{ paddingTop: 80, paddingBottom: Spacing.xl, paddingHorizontal: Spacing.lg }}
+    >
+      <View style={styles.container}>
         {/* User Info Header */}
         <View style={styles.header}>
           <View style={styles.avatarContainer}>
