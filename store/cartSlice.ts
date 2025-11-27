@@ -13,27 +13,29 @@ const initialState: CartState = {
 };
 
 // Action types
-export const ADD_TO_CART = 'cart/ADD_TO_CART';
-export const REMOVE_FROM_CART = 'cart/REMOVE_FROM_CART';
-export const UPDATE_CART_ITEM = 'cart/UPDATE_CART_ITEM';
-export const CLEAR_CART = 'cart/CLEAR_CART';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM';
+export const CLEAR_CART = 'CLEAR_CART';
 
-interface AddToCartAction {
-  type: typeof ADD_TO_CART;
-  payload: {
-    product: Product;
-    quantity?: number;
-    selectedSize?: string;
-    selectedColor?: string;
-  };
+export interface AddToCartPayload {
+  product: Product;
+  quantity?: number;
+  selectedSize?: string;
+  selectedColor?: string;
 }
 
-interface RemoveFromCartAction {
+export interface AddToCartAction {
+  type: typeof ADD_TO_CART;
+  payload: AddToCartPayload;
+}
+
+export interface RemoveFromCartAction {
   type: typeof REMOVE_FROM_CART;
   payload: string;
 }
 
-interface UpdateCartItemAction {
+export interface UpdateCartItemAction {
   type: typeof UPDATE_CART_ITEM;
   payload: {
     productId: string;
@@ -41,7 +43,7 @@ interface UpdateCartItemAction {
   };
 }
 
-interface ClearCartAction {
+export interface ClearCartAction {
   type: typeof CLEAR_CART;
 }
 
@@ -127,27 +129,35 @@ export function cartReducer(state = initialState, action: CartAction): CartState
   }
 }
 
-// Action creators
-export const addToCart = (
+// Action creators with proper Redux types
+export function addToCart(
   product: Product,
   quantity = 1,
   selectedSize?: string,
   selectedColor?: string
-): AddToCartAction => ({
-  type: ADD_TO_CART,
-  payload: { product, quantity, selectedSize, selectedColor },
-});
+) {
+  return {
+    type: ADD_TO_CART as const,
+    payload: { product, quantity, selectedSize, selectedColor } as AddToCartPayload,
+  };
+}
 
-export const removeFromCart = (productId: string): RemoveFromCartAction => ({
-  type: REMOVE_FROM_CART,
-  payload: productId,
-});
+export function removeFromCart(productId: string) {
+  return {
+    type: REMOVE_FROM_CART as const,
+    payload: productId,
+  };
+}
 
-export const updateCartItem = (productId: string, quantity: number): UpdateCartItemAction => ({
-  type: UPDATE_CART_ITEM,
-  payload: { productId, quantity },
-});
+export function updateCartItem(productId: string, quantity: number) {
+  return {
+    type: UPDATE_CART_ITEM as const,
+    payload: { productId, quantity },
+  };
+}
 
-export const clearCart = (): ClearCartAction => ({
-  type: CLEAR_CART,
-});
+export function clearCart() {
+  return {
+    type: CLEAR_CART as const,
+  };
+}

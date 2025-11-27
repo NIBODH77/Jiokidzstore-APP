@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, ScrollView, Pressable, Dimensions, Image, Platform, Alert } from 'react-native';
 import { useNavigation, useRoute, RouteProp, useIsFocused } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ThemedText } from '@/components/ThemedText';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRODUCTS } from '@/data/mockData';
 import { wishlistStorage, cartStorage } from '@/utils/storage';
+import { addToCart } from '@/store/cartSlice';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 
 const { width } = Dimensions.get('window');
@@ -14,6 +16,7 @@ const { width } = Dimensions.get('window');
 export default function ProductDetailScreen() {
   const navigation = useNavigation();
   const route = useRoute<RouteProp<HomeStackParamList, 'ProductDetail'>>();
+  const dispatch = useDispatch();
   const insets = useSafeAreaInsets();
   const isFocused = useIsFocused();
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
@@ -41,6 +44,15 @@ export default function ProductDetailScreen() {
         return;
       }
       
+      // Dispatch to Redux
+      dispatch(addToCart(
+        product,
+        quantity,
+        selectedSize || undefined,
+        selectedColor || undefined
+      ));
+      
+      // Also save to local storage
       await cartStorage.addToCart({
         id: Date.now().toString(),
         product,

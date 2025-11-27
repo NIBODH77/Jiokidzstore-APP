@@ -3,6 +3,7 @@ import { View, StyleSheet, Pressable, Image, Dimensions, FlatList, Platform, Scr
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
@@ -17,13 +18,16 @@ import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 import { PRODUCTS, CATEGORIES } from '@/data/mockData';
 import { wishlistStorage } from '@/utils/storage';
+import { selectCartTotalItems } from '@/store/cartSlice';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
+import type { RootState } from '@/store/store';
 
 export default function HomeScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const insets = useSafeAreaInsets();
   const [products, setProducts] = useState(PRODUCTS);
   const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
+  const cartCount = useSelector((state: RootState) => selectCartTotalItems(state.cart));
 
   // Load wishlist on mount
   useEffect(() => {
@@ -230,9 +234,11 @@ export default function HomeScreen() {
           style={styles.cartFABGradient}
         >
           <Feather name="shopping-cart" size={24} color="#FFFFFF" />
-          <View style={styles.cartBadge}>
-            <ThemedText style={styles.cartBadgeText}>3</ThemedText>
-          </View>
+          {cartCount > 0 && (
+            <View style={styles.cartBadge}>
+              <ThemedText style={styles.cartBadgeText}>{cartCount}</ThemedText>
+            </View>
+          )}
         </LinearGradient>
       </Pressable>
     </View>
