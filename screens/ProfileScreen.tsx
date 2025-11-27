@@ -143,7 +143,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexGrow: 1,
     paddingBottom: Spacing.xl,
-    backgroundColor: '#FFE5EE',
   },
   header: {
     alignItems: 'center',
@@ -173,7 +172,6 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.lg,
     paddingHorizontal: Spacing.lg,
     marginTop: Spacing.md,
-    maxHeight: 'auto',
   },
   menuItem: {
     flexDirection: 'row',
