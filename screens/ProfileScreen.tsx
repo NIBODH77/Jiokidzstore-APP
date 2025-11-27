@@ -73,9 +73,10 @@ export default function ProfileScreen() {
         style={styles.header}
       >
         <View style={styles.avatarContainer}>
-          <View style={[styles.avatar, { width: avatarSize, height: avatarSize, borderRadius: avatarSize / 2 }]}>
-            <Feather name="user" size={avatarSize * 0.4} color={Colors.light.primary} />
-          </View>
+          <Image
+            source={require('@/assets/images/user-avatar.png')}
+            style={[styles.avatar, { width: avatarSize, height: avatarSize, borderRadius: avatarSize / 2 }]}
+          />
         </View>
         <ThemedText type="h2" style={[styles.userName, { fontSize: isSmallDevice ? 18 : 20 }]}>
           {user?.name || 'User'}
