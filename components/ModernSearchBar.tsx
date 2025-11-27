@@ -6,21 +6,10 @@ import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 
 const TRENDING_SEARCHES = ['Toys', 'Girl Clothes', 'Baby Diapers', 'Boy Shoes'];
 
-export interface Product {
-  id: string;
-  name: string;
-  price: number;
-  category: string;
-  brand: string;
-  images: any[];
-  rating?: number;
-  [key: string]: any;
-}
-
 interface ModernSearchBarProps {
   onSearch?: (text: string) => void;
   onProductSelect?: (productId: string) => void;
-  products?: Product[];
+  products?: any[];
   onMicPress?: () => void;
   onLocationPress?: () => void;
   onNotificationPress?: () => void;
@@ -37,17 +26,20 @@ export function ModernSearchBar({
   const [text, setText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
-  // Filter products based on search text
+  // Filter products based on search text - character by character
   const filteredProducts = useMemo(() => {
-    if (!text.trim() || !products.length) return [];
+    if (!text.trim()) return [];
+    if (!products || products.length === 0) {
+      return [];
+    }
     const query = text.toLowerCase();
-    return products
-      .filter(p => 
-        p.name.toLowerCase().includes(query) ||
-        p.brand?.toLowerCase().includes(query) ||
-        p.category?.toLowerCase().includes(query)
-      )
-      .slice(0, 8); // Limit to 8 results
+    const results = products.filter((p: any) => {
+      const name = p.name?.toLowerCase() || '';
+      const brand = p.brand?.toLowerCase() || '';
+      const category = p.category?.toLowerCase() || '';
+      return name.includes(query) || brand.includes(query) || category.includes(query);
+    });
+    return results.slice(0, 8);
   }, [text, products]);
 
   return (

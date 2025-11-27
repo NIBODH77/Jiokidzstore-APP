@@ -94,7 +94,7 @@ export default function HomeScreen() {
         {/* Search Bar */}
         <ModernSearchBar 
           onSearch={handleSearchPress}
-          products={updatedProducts}
+          products={updatedProducts && updatedProducts.length > 0 ? updatedProducts : PRODUCTS}
           onProductSelect={handleProductPress}
         />
 
