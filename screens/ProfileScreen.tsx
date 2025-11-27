@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   },
   avatarContainer: {
     marginBottom: Spacing.md,
-    marginTop: Spacing.md,
+    marginTop: Spacing.xl,
   },
   avatar: {
     backgroundColor: Colors.light.backgroundSecondary,
