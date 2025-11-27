@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Pressable, Linking } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { ScreenScrollView } from '@/components/ScreenScrollView';
+import { ScrollableHeaderBack } from '@/components/ScrollableHeaderBack';
 import { ThemedText } from '@/components/ThemedText';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 
@@ -14,28 +14,28 @@ export default function HelpSupportScreen() {
   ];
 
   return (
-    <ScreenScrollView contentContainerStyle={{ paddingBottom: Spacing.xl }}>
-      <View style={styles.container}>
-        <ThemedText type="h3" style={styles.title}>How can we help you?</ThemedText>
-        {helpItems.map((item, index) => (
-          <Pressable key={index} style={styles.helpCard} onPress={item.action}>
-            <View style={styles.helpIcon}>
-              <Feather name={item.icon as any} size={24} color={Colors.light.primary} />
-            </View>
-            <View style={styles.helpContent}>
-              <ThemedText style={styles.helpTitle}>{item.title}</ThemedText>
-              <ThemedText type="caption" style={styles.helpSubtitle}>{item.subtitle}</ThemedText>
-            </View>
-            <Feather name="chevron-right" size={20} color={Colors.light.textGray} />
-          </Pressable>
-        ))}
-      </View>
-    </ScreenScrollView>
+    <ScrollableHeaderBack 
+      title="Help & Support"
+      contentContainerStyle={{ paddingTop: 80, paddingBottom: Spacing.xl, paddingHorizontal: Spacing.lg }}
+    >
+      <ThemedText type="h3" style={styles.title}>How can we help you?</ThemedText>
+      {helpItems.map((item, index) => (
+        <Pressable key={index} style={styles.helpCard} onPress={item.action}>
+          <View style={styles.helpIcon}>
+            <Feather name={item.icon as any} size={24} color={Colors.light.primary} />
+          </View>
+          <View style={styles.helpContent}>
+            <ThemedText style={styles.helpTitle}>{item.title}</ThemedText>
+            <ThemedText type="caption" style={styles.helpSubtitle}>{item.subtitle}</ThemedText>
+          </View>
+          <Feather name="chevron-right" size={20} color={Colors.light.textGray} />
+        </Pressable>
+      ))}
+    </ScrollableHeaderBack>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { paddingHorizontal: Spacing.lg, paddingTop: Spacing.lg },
   title: { marginBottom: Spacing.lg },
   helpCard: {
     flexDirection: 'row',
