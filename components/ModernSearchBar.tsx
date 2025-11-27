@@ -25,6 +25,7 @@ export function ModernSearchBar({
 }: ModernSearchBarProps) {
   const [text, setText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
   // Filter products based on search text - character by character
   const filteredProducts = useMemo(() => {
@@ -41,6 +42,12 @@ export function ModernSearchBar({
     });
     return results.slice(0, 8);
   }, [text, products]);
+
+  const handleSelectProduct = (productId: string) => {
+    onProductSelect?.(productId);
+    setText('');
+    setShowResults(false);
+  };
 
   return (
     <LinearGradient
@@ -80,9 +87,13 @@ export function ModernSearchBar({
             value={text}
             onChangeText={(newText) => {
               setText(newText);
+              setShowResults(true);
               onSearch?.(newText);
             }}
-            onFocus={() => setIsFocused(true)}
+            onFocus={() => {
+              setIsFocused(true);
+              if (text.length > 0) setShowResults(true);
+            }}
             onBlur={() => setIsFocused(false)}
           />
           {text.length > 0 && (
@@ -97,38 +108,34 @@ export function ModernSearchBar({
       </View>
 
       {/* Search Results or Trending Searches */}
-      {isFocused && (
+      {(showResults || (isFocused && text.length === 0)) && (
         <View style={styles.suggestionsContainer}>
-          {filteredProducts.length > 0 ? (
+          {showResults && filteredProducts.length > 0 ? (
             <>
-              <Text style={styles.suggestionsTitle}>Search Results</Text>
-              <ScrollView style={styles.resultsScroll} scrollEnabled={true} nestedScrollEnabled={true}>
-                {filteredProducts.map((product) => (
-                  <Pressable
-                    key={product.id}
-                    style={styles.productResultItem}
-                    onPress={() => {
-                      onProductSelect?.(product.id);
-                      setText('');
-                      setIsFocused(false);
-                    }}
-                  >
-                    {product.images && product.images[0] && (
-                      <Image
-                        source={product.images[0]}
-                        style={styles.resultProductImage}
-                      />
-                    )}
-                    <View style={styles.resultProductInfo}>
-                      <Text style={styles.resultProductName} numberOfLines={1}>{product.name}</Text>
-                      <Text style={styles.resultProductBrand}>{product.brand}</Text>
-                      <Text style={styles.resultProductPrice}>₹{product.price}</Text>
-                    </View>
-                  </Pressable>
-                ))}
-              </ScrollView>
+              <Text style={styles.suggestionsTitle}>Search Results ({filteredProducts.length})</Text>
+              {filteredProducts.map((product) => (
+                <Pressable
+                  key={product.id}
+                  style={styles.productResultItem}
+                  onPress={() => handleSelectProduct(product.id)}
+                >
+                  {product.images && product.images[0] && (
+                    <Image
+                      source={product.images[0]}
+                      style={styles.resultProductImage}
+                    />
+                  )}
+                  <View style={styles.resultProductInfo}>
+                    <Text style={styles.resultProductName} numberOfLines={1}>{product.name}</Text>
+                    <Text style={styles.resultProductBrand}>{product.brand}</Text>
+                    <Text style={styles.resultProductPrice}>₹{product.price}</Text>
+                  </View>
+                </Pressable>
+              ))}
             </>
-          ) : text.length === 0 ? (
+          ) : showResults && text.length > 0 ? (
+            <Text style={styles.noResultsText}>No products found for "{text}"</Text>
+          ) : !showResults && text.length === 0 ? (
             <>
               <Text style={styles.suggestionsTitle}>Trending Searches</Text>
               <FlatList
@@ -136,7 +143,10 @@ export function ModernSearchBar({
                 renderItem={({ item }) => (
                   <Pressable
                     style={styles.suggestionItem}
-                    onPress={() => setText(item)}
+                    onPress={() => {
+                      setText(item);
+                      setShowResults(true);
+                    }}
                   >
                     <Feather name="trending-up" size={14} color={Colors.light.primary} />
                     <Text style={styles.suggestionText}>{item}</Text>
@@ -146,9 +156,7 @@ export function ModernSearchBar({
                 scrollEnabled={false}
               />
             </>
-          ) : (
-            <Text style={styles.noResultsText}>No products found for "{text}"</Text>
-          )}
+          ) : null}
         </View>
       )}
     </LinearGradient>
@@ -230,11 +238,17 @@ const styles = StyleSheet.create({
   },
   suggestionsContainer: {
     marginTop: Spacing.md,
-    backgroundColor: 'rgba(255,107,157,0.05)',
+    backgroundColor: '#FFFFFF',
     borderRadius: BorderRadius.md,
-    paddingHorizontal: Spacing.lg,
+    paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.md,
     marginHorizontal: Spacing.lg,
+    maxHeight: 400,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
   },
   suggestionsTitle: {
     fontSize: 12,
@@ -256,9 +270,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: Colors.light.text,
   },
-  resultsScroll: {
-    maxHeight: 300,
-  },
   productResultItem: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -266,6 +277,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.md,
     borderBottomWidth: 1,
     borderBottomColor: '#FFE5EE',
+    backgroundColor: '#FFFFFF',
   },
   resultProductImage: {
     width: 50,
