@@ -82,22 +82,26 @@ export function ModernSearchBar({
           <Feather name="search" size={18} color={Colors.light.textGray} />
           <TextInput
             style={styles.input}
-            placeholder="Search..."
+            placeholder="Search products..."
             placeholderTextColor={Colors.light.textGray}
             value={text}
             onChangeText={(newText) => {
               setText(newText);
-              setShowResults(true);
-              onSearch?.(newText);
+              setShowResults(newText.length > 0);
             }}
             onFocus={() => {
               setIsFocused(true);
               if (text.length > 0) setShowResults(true);
             }}
-            onBlur={() => setIsFocused(false)}
+            onBlur={() => {
+              setIsFocused(false);
+            }}
           />
           {text.length > 0 && (
-            <Pressable onPress={() => setText('')}>
+            <Pressable onPress={() => {
+              setText('');
+              setShowResults(false);
+            }}>
               <Feather name="x" size={18} color={Colors.light.textGray} />
             </Pressable>
           )}
@@ -108,9 +112,9 @@ export function ModernSearchBar({
       </View>
 
       {/* Search Results or Trending Searches */}
-      {(showResults || (isFocused && text.length === 0)) && (
+      {showResults && (
         <View style={styles.suggestionsContainer}>
-          {showResults && filteredProducts.length > 0 ? (
+          {filteredProducts.length > 0 ? (
             <>
               <Text style={styles.suggestionsTitle}>Search Results ({filteredProducts.length})</Text>
               {filteredProducts.map((product) => (
@@ -133,29 +137,8 @@ export function ModernSearchBar({
                 </Pressable>
               ))}
             </>
-          ) : showResults && text.length > 0 ? (
+          ) : text.length > 0 ? (
             <Text style={styles.noResultsText}>No products found for "{text}"</Text>
-          ) : !showResults && text.length === 0 ? (
-            <>
-              <Text style={styles.suggestionsTitle}>Trending Searches</Text>
-              <FlatList
-                data={TRENDING_SEARCHES}
-                renderItem={({ item }) => (
-                  <Pressable
-                    style={styles.suggestionItem}
-                    onPress={() => {
-                      setText(item);
-                      setShowResults(true);
-                    }}
-                  >
-                    <Feather name="trending-up" size={14} color={Colors.light.primary} />
-                    <Text style={styles.suggestionText}>{item}</Text>
-                  </Pressable>
-                )}
-                keyExtractor={(item) => item}
-                scrollEnabled={false}
-              />
-            </>
           ) : null}
         </View>
       )}
@@ -167,12 +150,13 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: Spacing.lg,
     paddingVertical: 20,
-    zIndex: 10,
-    justifyContent: 'space-between',
+    zIndex: 100,
+    justifyContent: 'flex-start',
     minHeight: 140,
     borderBottomLeftRadius: 28,
     borderBottomRightRadius: 28,
-    overflow: 'hidden',
+    overflow: 'visible',
+    position: 'relative' as any,
   },
   topRow: {
     flexDirection: 'row',
@@ -237,18 +221,22 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   suggestionsContainer: {
-    marginTop: Spacing.md,
+    marginTop: 8,
     backgroundColor: '#FFFFFF',
-    borderRadius: BorderRadius.md,
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.md,
-    marginHorizontal: Spacing.lg,
+    borderRadius: 12,
+    paddingVertical: 8,
     maxHeight: 400,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 5,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 12,
+    elevation: 10,
+    zIndex: 10000,
+    position: 'absolute' as any,
+    top: 140,
+    left: 16,
+    right: 16,
+    width: 'auto',
   },
   suggestionsTitle: {
     fontSize: 12,
@@ -273,17 +261,18 @@ const styles = StyleSheet.create({
   productResultItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: Spacing.md,
+    paddingVertical: 10,
     paddingHorizontal: Spacing.md,
     borderBottomWidth: 1,
     borderBottomColor: '#FFE5EE',
     backgroundColor: '#FFFFFF',
   },
   resultProductImage: {
-    width: 50,
-    height: 50,
-    borderRadius: BorderRadius.md,
+    width: 40,
+    height: 40,
+    borderRadius: 8,
     marginRight: Spacing.md,
+    backgroundColor: '#FFE5EE',
   },
   resultProductInfo: {
     flex: 1,
