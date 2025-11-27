@@ -142,7 +142,6 @@ export default function EditProfileScreen() {
           </Pressable>
         </View>
       </View>
-      </ScreenKeyboardAwareScrollView>
       {showSuccessToast && (
         <Toast 
           message="Profile updated successfully" 
@@ -151,7 +150,7 @@ export default function EditProfileScreen() {
           onDismiss={() => setShowSuccessToast(false)}
         />
       )}
-    </View>
+    </ScrollableHeaderBack>
   );
 }
 

@@ -1,0 +1,74 @@
+ogs for your project will appear below. Press Ctrl+C to exit.
+Web Bundled 4549ms index.js (1211 modules)
+ LOG  [web] Logs will appear in the browser console
+Error: Unauthorized request from https://df1275fb-a130-4f41-bb7d-959948b8e71d-00-3fq4pi3ktnwll.riker.replit.dev:8080. This may happen because of a conflicting browser extension to intercept HTTP requests. Disable browser extensions or use incognito mode and try again.
+    at /home/runner/workspace/node_modules/expo/node_modules/@expo/cli/src/start/server/middleware/CorsMiddleware.ts:27:11
+    at call (/home/runner/workspace/node_modules/connect/index.js:239:7)
+    at next (/home/runner/workspace/node_modules/connect/index.js:183:5)
+    at /home/runner/workspace/node_modules/expo/node_modules/@expo/cli/src/start/server/middleware/ContextModuleSourceMapsMiddleware.ts:29:7
+    at call (/home/runner/workspace/node_modules/connect/index.js:239:7)
+    at next (/home/runner/workspace/node_modules/connect/index.js:183:5)
+    at middleware (/home/runner/workspace/node_modules/expo/node_modules/@expo/cli/src/start/server/middleware/ExpoMiddleware.ts:62:16)
+    at call (/home/runner/workspace/node_modules/connect/index.js:239:7)
+    at next (/home/runner/workspace/node_modules/connect/index.js:183:5)
+    at Function.handle (/home/runner/workspace/node_modules/connect/index.js:186:3)
+    at Server.app (/home/runner/workspace/node_modules/connect/index.js:51:37)
+    at Server.emit (node:events:524:28)
+    at parserOnIncoming (node:_http_server:1141:12)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:118:17)
+ ERROR  Error: /home/runner/workspace/screens/account/EditProfileScreen.tsx: Expected corresponding JSX closing tag for <ScrollableHeaderBack>. (145:6)
+
+  143 |         </View>
+  144 |       </View>
+> 145 |       </ScreenKeyboardAwareScrollView>
+      |       ^
+  146 |       {showSuccessToast && (
+  147 |         <Toast 
+  148 |           message="Profile updated successfully" 
+ ERROR  Error: /home/runner/workspace/screens/account/EditProfileScreen.tsx: Expected corresponding JSX closing tag for <ScrollableHeaderBack>. (145:6)
+
+  143 |         </View>
+  144 |       </View>
+> 145 |       </ScreenKeyboardAwareScrollView>
+      |       ^
+  146 |       {showSuccessToast && (
+  147 |         <Toast 
+  148 |           message="Profile updated successfully" 
+ ERROR  Error: /home/runner/workspace/screens/account/EditProfileScreen.tsx: Expected corresponding JSX closing tag for <ScrollableHeaderBack>. (145:6)
+
+  143 |         </View>
+  144 |       </View>
+> 145 |       </ScreenKeyboardAwareScrollView>
+      |       ^
+  146 |       {showSuccessToast && (
+  147 |         <Toast 
+  148 |           message="Profile updated successfully" 
+ ERROR  Error: /home/runner/workspace/screens/account/EditProfileScreen.tsx: Expected corresponding JSX closing tag for <ScrollableHeaderBack>. (145:6)
+
+  143 |         </View>
+  144 |       </View>
+> 145 |       </ScreenKeyboardAwareScrollView>
+      |       ^
+  146 |       {showSuccessToast && (
+  147 |         <Toast 
+  148 |           message="Profile updated successfully" 
+Web Bundling failed 17ms index.js (1 module)
+ ERROR  Error: /home/runner/workspace/screens/account/EditProfileScreen.tsx: Expected corresponding JSX closing tag for <ScrollableHeaderBack>. (145:6)
+
+  143 |         </View>
+  144 |       </View>
+> 145 |       </ScreenKeyboardAwareScrollView>
+      |       ^
+  146 |       {showSuccessToast && (
+  147 |         <Toast 
+  148 |           message="Profile updated successfully" 
+Web Bundling failed 12ms index.js (1 module)
+ ERROR  Error: /home/runner/workspace/screens/account/EditProfileScreen.tsx: Expected corresponding JSX closing tag for <ScrollableHeaderBack>. (145:6)
+
+  143 |         </View>
+  144 |       </View>
+> 145 |       </ScreenKeyboardAwareScrollView>
+      |       ^
+  146 |       {showSuccessToast && (
+  147 |         <Toast 
+  148 |           message="Profile updated successfully" 
