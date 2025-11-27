@@ -5,28 +5,32 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { SafeAreaProvider } from "react-native-safe-area-context"; // Removed useSafeAreaInsets
 import { StatusBar } from "expo-status-bar";
+import { Provider } from "react-redux";
 // Removed import AsyncStorage
 
 import { navigationRef } from "@/navigation/navigationRef";
 import RootNavigator from "@/navigation/RootNavigator";
 import { AuthProvider } from "@/hooks/useAuth"; // Removed useAuth
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { store } from "@/store/store";
 
 export default function App() {
   return (
   <ErrorBoundary>
-    <SafeAreaProvider>
-        <GestureHandlerRootView style={styles.root}>
-          <KeyboardProvider>
-            <AuthProvider>
-              <NavigationContainer ref={navigationRef}>
-                <RootNavigator />
-              </NavigationContainer>
-            </AuthProvider>
-            <StatusBar style="dark" />
-          </KeyboardProvider>
-        </GestureHandlerRootView>
-      </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+          <GestureHandlerRootView style={styles.root}>
+            <KeyboardProvider>
+              <AuthProvider>
+                <NavigationContainer ref={navigationRef}>
+                  <RootNavigator />
+                </NavigationContainer>
+              </AuthProvider>
+              <StatusBar style="dark" />
+            </KeyboardProvider>
+          </GestureHandlerRootView>
+        </SafeAreaProvider>
+    </Provider>
   </ErrorBoundary>
   );
 }

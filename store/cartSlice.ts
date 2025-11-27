@@ -1,0 +1,153 @@
+import { Product, CartItem } from '@/data/types';
+
+export interface CartState {
+  items: CartItem[];
+  totalItems: number;
+  totalPrice: number;
+}
+
+const initialState: CartState = {
+  items: [],
+  totalItems: 0,
+  totalPrice: 0,
+};
+
+// Action types
+export const ADD_TO_CART = 'cart/ADD_TO_CART';
+export const REMOVE_FROM_CART = 'cart/REMOVE_FROM_CART';
+export const UPDATE_CART_ITEM = 'cart/UPDATE_CART_ITEM';
+export const CLEAR_CART = 'cart/CLEAR_CART';
+
+interface AddToCartAction {
+  type: typeof ADD_TO_CART;
+  payload: {
+    product: Product;
+    quantity?: number;
+    selectedSize?: string;
+    selectedColor?: string;
+  };
+}
+
+interface RemoveFromCartAction {
+  type: typeof REMOVE_FROM_CART;
+  payload: string;
+}
+
+interface UpdateCartItemAction {
+  type: typeof UPDATE_CART_ITEM;
+  payload: {
+    productId: string;
+    quantity: number;
+  };
+}
+
+interface ClearCartAction {
+  type: typeof CLEAR_CART;
+}
+
+export type CartAction = AddToCartAction | RemoveFromCartAction | UpdateCartItemAction | ClearCartAction;
+
+// Selectors
+export const selectCartItems = (state: CartState) => state.items;
+export const selectCartTotalItems = (state: CartState) => state.totalItems;
+export const selectCartTotalPrice = (state: CartState) => state.totalPrice;
+
+// Reducer
+export function cartReducer(state = initialState, action: CartAction): CartState {
+  switch (action.type) {
+    case ADD_TO_CART: {
+      const existingItem = state.items.find((item) => item.product.id === action.payload.product.id);
+
+      if (existingItem) {
+        const updatedItems = state.items.map((item) =>
+          item.product.id === action.payload.product.id
+            ? { ...item, quantity: item.quantity + (action.payload.quantity || 1) }
+            : item
+        );
+
+        return {
+          ...state,
+          items: updatedItems,
+          totalItems: state.totalItems + (action.payload.quantity || 1),
+          totalPrice: state.totalPrice + action.payload.product.price * (action.payload.quantity || 1),
+        };
+      }
+
+      const newItem: CartItem = {
+        id: action.payload.product.id,
+        product: action.payload.product,
+        quantity: action.payload.quantity || 1,
+        selectedSize: action.payload.selectedSize,
+        selectedColor: action.payload.selectedColor,
+      };
+
+      return {
+        ...state,
+        items: [...state.items, newItem],
+        totalItems: state.totalItems + (action.payload.quantity || 1),
+        totalPrice: state.totalPrice + action.payload.product.price * (action.payload.quantity || 1),
+      };
+    }
+
+    case REMOVE_FROM_CART: {
+      const itemToRemove = state.items.find((item) => item.product.id === action.payload);
+      if (!itemToRemove) return state;
+
+      return {
+        ...state,
+        items: state.items.filter((item) => item.product.id !== action.payload),
+        totalItems: state.totalItems - itemToRemove.quantity,
+        totalPrice: state.totalPrice - itemToRemove.product.price * itemToRemove.quantity,
+      };
+    }
+
+    case UPDATE_CART_ITEM: {
+      const itemToUpdate = state.items.find((item) => item.product.id === action.payload.productId);
+      if (!itemToUpdate) return state;
+
+      const quantityDifference = action.payload.quantity - itemToUpdate.quantity;
+
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.product.id === action.payload.productId
+            ? { ...item, quantity: action.payload.quantity }
+            : item
+        ),
+        totalItems: state.totalItems + quantityDifference,
+        totalPrice: state.totalPrice + itemToUpdate.product.price * quantityDifference,
+      };
+    }
+
+    case CLEAR_CART:
+      return initialState;
+
+    default:
+      return state;
+  }
+}
+
+// Action creators
+export const addToCart = (
+  product: Product,
+  quantity = 1,
+  selectedSize?: string,
+  selectedColor?: string
+): AddToCartAction => ({
+  type: ADD_TO_CART,
+  payload: { product, quantity, selectedSize, selectedColor },
+});
+
+export const removeFromCart = (productId: string): RemoveFromCartAction => ({
+  type: REMOVE_FROM_CART,
+  payload: productId,
+});
+
+export const updateCartItem = (productId: string, quantity: number): UpdateCartItemAction => ({
+  type: UPDATE_CART_ITEM,
+  payload: { productId, quantity },
+});
+
+export const clearCart = (): ClearCartAction => ({
+  type: CLEAR_CART,
+});
