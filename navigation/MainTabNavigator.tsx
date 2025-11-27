@@ -1,5 +1,6 @@
 import React from "react";
-import { createBottomTabNavigator, getFocusedRouteNameFromRoute } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
 import { Platform, StyleSheet, View } from "react-native";
