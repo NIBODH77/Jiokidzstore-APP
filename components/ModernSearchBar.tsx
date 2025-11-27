@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Pressable, FlatList, Text, Image } from 'react-native';
+import React, { useState, useMemo } from 'react';
+import { StyleSheet, View, TextInput, Pressable, FlatList, Text, Image, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 
 const TRENDING_SEARCHES = ['Toys', 'Girl Clothes', 'Baby Diapers', 'Boy Shoes'];
 
+export interface Product {
+  id: string;
+  name: string;
+  price: number;
+  category: string;
+  brand: string;
+  images: any[];
+  rating?: number;
+  [key: string]: any;
+}
+
 interface ModernSearchBarProps {
   onSearch?: (text: string) => void;
+  onProductSelect?: (productId: string) => void;
+  products?: Product[];
   onMicPress?: () => void;
   onLocationPress?: () => void;
   onNotificationPress?: () => void;
@@ -15,12 +28,27 @@ interface ModernSearchBarProps {
 
 export function ModernSearchBar({ 
   onSearch, 
+  onProductSelect,
+  products = [],
   onMicPress,
   onLocationPress,
   onNotificationPress
 }: ModernSearchBarProps) {
   const [text, setText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+
+  // Filter products based on search text
+  const filteredProducts = useMemo(() => {
+    if (!text.trim() || !products.length) return [];
+    const query = text.toLowerCase();
+    return products
+      .filter(p => 
+        p.name.toLowerCase().includes(query) ||
+        p.brand?.toLowerCase().includes(query) ||
+        p.category?.toLowerCase().includes(query)
+      )
+      .slice(0, 8); // Limit to 8 results
+  }, [text, products]);
 
   return (
     <LinearGradient
@@ -76,24 +104,59 @@ export function ModernSearchBar({
         </View>
       </View>
 
-      {/* Trending Searches */}
-      {isFocused && text.length === 0 && (
+      {/* Search Results or Trending Searches */}
+      {isFocused && (
         <View style={styles.suggestionsContainer}>
-          <Text style={styles.suggestionsTitle}>Trending Searches</Text>
-          <FlatList
-            data={TRENDING_SEARCHES}
-            renderItem={({ item }) => (
-              <Pressable
-                style={styles.suggestionItem}
-                onPress={() => setText(item)}
-              >
-                <Feather name="trending-up" size={14} color={Colors.light.primary} />
-                <Text style={styles.suggestionText}>{item}</Text>
-              </Pressable>
-            )}
-            keyExtractor={(item) => item}
-            scrollEnabled={false}
-          />
+          {filteredProducts.length > 0 ? (
+            <>
+              <Text style={styles.suggestionsTitle}>Search Results</Text>
+              <ScrollView style={styles.resultsScroll} scrollEnabled={true} nestedScrollEnabled={true}>
+                {filteredProducts.map((product) => (
+                  <Pressable
+                    key={product.id}
+                    style={styles.productResultItem}
+                    onPress={() => {
+                      onProductSelect?.(product.id);
+                      setText('');
+                      setIsFocused(false);
+                    }}
+                  >
+                    {product.images && product.images[0] && (
+                      <Image
+                        source={product.images[0]}
+                        style={styles.resultProductImage}
+                      />
+                    )}
+                    <View style={styles.resultProductInfo}>
+                      <Text style={styles.resultProductName} numberOfLines={1}>{product.name}</Text>
+                      <Text style={styles.resultProductBrand}>{product.brand}</Text>
+                      <Text style={styles.resultProductPrice}>₹{product.price}</Text>
+                    </View>
+                  </Pressable>
+                ))}
+              </ScrollView>
+            </>
+          ) : text.length === 0 ? (
+            <>
+              <Text style={styles.suggestionsTitle}>Trending Searches</Text>
+              <FlatList
+                data={TRENDING_SEARCHES}
+                renderItem={({ item }) => (
+                  <Pressable
+                    style={styles.suggestionItem}
+                    onPress={() => setText(item)}
+                  >
+                    <Feather name="trending-up" size={14} color={Colors.light.primary} />
+                    <Text style={styles.suggestionText}>{item}</Text>
+                  </Pressable>
+                )}
+                keyExtractor={(item) => item}
+                scrollEnabled={false}
+              />
+            </>
+          ) : (
+            <Text style={styles.noResultsText}>No products found for "{text}"</Text>
+          )}
         </View>
       )}
     </LinearGradient>
@@ -200,5 +263,47 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     color: Colors.light.text,
+  },
+  resultsScroll: {
+    maxHeight: 300,
+  },
+  productResultItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: '#FFE5EE',
+  },
+  resultProductImage: {
+    width: 50,
+    height: 50,
+    borderRadius: BorderRadius.md,
+    marginRight: Spacing.md,
+  },
+  resultProductInfo: {
+    flex: 1,
+  },
+  resultProductName: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: Colors.light.text,
+  },
+  resultProductBrand: {
+    fontSize: 11,
+    color: Colors.light.textGray,
+    marginTop: 2,
+  },
+  resultProductPrice: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: Colors.light.primary,
+    marginTop: 2,
+  },
+  noResultsText: {
+    fontSize: 14,
+    color: Colors.light.textGray,
+    textAlign: 'center',
+    paddingVertical: Spacing.lg,
   },
 });

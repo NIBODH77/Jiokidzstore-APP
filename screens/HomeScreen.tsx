@@ -92,7 +92,11 @@ export default function HomeScreen() {
       {/* Scrollable Content with Header */}
       <ScreenScrollView contentContainerStyle={styles.scrollContent}>
         {/* Search Bar */}
-        <ModernSearchBar onSearch={handleSearchPress} />
+        <ModernSearchBar 
+          onSearch={handleSearchPress}
+          products={updatedProducts}
+          onProductSelect={handleProductPress}
+        />
 
         {/* Hero Section */}
         <View style={styles.heroContainer}>
