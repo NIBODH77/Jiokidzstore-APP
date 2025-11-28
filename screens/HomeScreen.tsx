@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import { View, StyleSheet, Pressable, Image, Dimensions, FlatList, Platform, ScrollView, Text } from 'react-native';
+import { View, StyleSheet, Pressable, Image, Dimensions, FlatList, Platform, ScrollView, Text, ImageSourcePropType } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -20,6 +20,17 @@ import { wishlistStorage } from '@/utils/storage';
 import { selectCartTotalItems } from '@/store/cartSlice';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 import type { RootState } from '@/store/store';
+
+const categoryImages: Record<string, ImageSourcePropType> = {
+  'Boy Fashion': require('../attached_assets/generated_images/boys_casual_fashion_clothing.png'),
+  'Girl Fashion': require('../attached_assets/generated_images/girls_fashion_clothing.png'),
+  'Footwear': require('../attached_assets/generated_images/kids_footwear_shoes.png'),
+  'Toys': require('../attached_assets/generated_images/colorful_kids_toys.png'),
+  'Diapers': require('../attached_assets/generated_images/baby_diapers_products.png'),
+  'Books': require('../attached_assets/generated_images/colorful_children_books.png'),
+  'Accessories': require('../attached_assets/generated_images/kids_accessories_collection.png'),
+  'Baby Care': require('../attached_assets/generated_images/baby_care_products.png'),
+};
 
 export default function HomeScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
@@ -126,8 +137,12 @@ export default function HomeScreen() {
                     { backgroundColor: category.color + '22' }
                   ]}
                 >
-                  <View style={styles.categoryIconContainer}>
-                    <Feather name={category.icon as any} size={24} color={category.color} />
+                  <View style={styles.categoryImageContainer}>
+                    <Image 
+                      source={categoryImages[category.name] || require('../attached_assets/generated_images/kids_footwear_shoes.png')}
+                      style={styles.categoryImage}
+                      resizeMode="contain"
+                    />
                   </View>
                   <ThemedText style={styles.categoryName}>{category.name}</ThemedText>
                   <ThemedText style={styles.categoryCount}>{category.itemCount}+ Items</ThemedText>
@@ -314,14 +329,16 @@ const styles = StyleSheet.create({
     elevation: 1,
     alignItems: 'center',
   },
-  categoryIconContainer: {
-    width: 50,
+  categoryImageContainer: {
+    width: '100%',
     height: 50,
-    borderRadius: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    marginBottom: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 8,
+  },
+  categoryImage: {
+    width: '100%',
+    height: '100%',
   },
   categoryName: {
     fontSize: 11,

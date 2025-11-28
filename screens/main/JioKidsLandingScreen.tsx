@@ -5,10 +5,22 @@ import {
   ScrollView,
   Text,
   Dimensions,
+  Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '@/constants/theme';
+
+const categoryImages = {
+  'Boy Fashion': require('../../attached_assets/generated_images/boys_casual_fashion_clothing.png'),
+  'Girl Fashion': require('../../attached_assets/generated_images/girls_fashion_clothing.png'),
+  'Footwear': require('../../attached_assets/generated_images/kids_footwear_shoes.png'),
+  'Toys': require('../../attached_assets/generated_images/colorful_kids_toys.png'),
+  'Diapers': require('../../attached_assets/generated_images/baby_diapers_products.png'),
+  'Books': require('../../attached_assets/generated_images/colorful_children_books.png'),
+  'Accessories': require('../../attached_assets/generated_images/kids_accessories_collection.png'),
+  'Baby Care': require('../../attached_assets/generated_images/baby_care_products.png'),
+};
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -86,8 +98,12 @@ export default function JioKidsLandingScreen() {
                 key={category.id} 
                 style={[styles.categoryCard, { backgroundColor: category.bgColor }]}
               >
-                <View style={styles.categoryIconContainer}>
-                  <Text style={styles.categoryEmoji}>{category.emoji}</Text>
+                <View style={styles.categoryImageContainer}>
+                  <Image 
+                    source={categoryImages[category.name as keyof typeof categoryImages]}
+                    style={styles.categoryImage}
+                    resizeMode="contain"
+                  />
                 </View>
                 <Text style={styles.categoryName}>{category.name}</Text>
                 <Text style={styles.categoryCount}>{category.itemCount}+ Items</Text>
@@ -247,5 +263,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#6B7280',
     fontWeight: '500',
+  },
+  categoryImageContainer: {
+    width: '100%',
+    height: 60,
+    marginBottom: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  categoryImage: {
+    width: '100%',
+    height: '100%',
   },
 });
