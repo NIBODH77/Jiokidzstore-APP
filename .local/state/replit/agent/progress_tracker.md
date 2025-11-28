@@ -9,4 +9,4 @@
 [x] 9. Created JioKids landing page with Welcome header, stats, features, and categories
 [x] 10. Added Shopping, Explore, Parenting tabs - Shopping tab opens full app
 [x] 11. Improved landing page with better margins, padding, and professional styling
-[x] 12. Fixed Expo module installation issue - app now running successfully
+[x] 12. Changed Shop by Category from circular icons to FirstCry-style cards with background colors and item counts

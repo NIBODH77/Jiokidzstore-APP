@@ -26,14 +26,14 @@ const FEATURES = [
 ];
 
 const CATEGORIES = [
-  { id: '1', name: 'Boy Fashion', emoji: '👦' },
-  { id: '2', name: 'Girl Fashion', emoji: '👧' },
-  { id: '3', name: 'Footwear', emoji: '👟' },
-  { id: '4', name: 'Toys', emoji: '🧸' },
-  { id: '5', name: 'Diapers', emoji: '🍼' },
-  { id: '6', name: 'Books', emoji: '📚' },
-  { id: '7', name: 'Accessories', emoji: '🎒' },
-  { id: '8', name: 'Baby Care', emoji: '🐤' },
+  { id: '1', name: 'Boy Fashion', emoji: '👦', bgColor: '#E3F2FD', itemCount: 245 },
+  { id: '2', name: 'Girl Fashion', emoji: '👧', bgColor: '#FCE4EC', itemCount: 312 },
+  { id: '3', name: 'Footwear', emoji: '👟', bgColor: '#FFF3E0', itemCount: 128 },
+  { id: '4', name: 'Toys', emoji: '🧸', bgColor: '#F3E5F5', itemCount: 567 },
+  { id: '5', name: 'Diapers', emoji: '🍼', bgColor: '#E8F5E9', itemCount: 89 },
+  { id: '6', name: 'Books', emoji: '📚', bgColor: '#FFEBEE', itemCount: 201 },
+  { id: '7', name: 'Accessories', emoji: '🎒', bgColor: '#E0F7FA', itemCount: 156 },
+  { id: '8', name: 'Baby Care', emoji: '🐤', bgColor: '#FFF8E1', itemCount: 234 },
 ];
 
 export default function JioKidsLandingScreen() {
@@ -82,9 +82,15 @@ export default function JioKidsLandingScreen() {
           <Text style={styles.sectionTitle}>Shop by Category</Text>
           <View style={styles.categoriesGrid}>
             {CATEGORIES.map((category) => (
-              <View key={category.id} style={styles.categoryItem}>
-                <Text style={styles.categoryEmoji}>{category.emoji}</Text>
+              <View 
+                key={category.id} 
+                style={[styles.categoryCard, { backgroundColor: category.bgColor }]}
+              >
+                <View style={styles.categoryIconContainer}>
+                  <Text style={styles.categoryEmoji}>{category.emoji}</Text>
+                </View>
                 <Text style={styles.categoryName}>{category.name}</Text>
+                <Text style={styles.categoryCount}>{category.itemCount}+ Items</Text>
               </View>
             ))}
           </View>
@@ -205,20 +211,41 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    gap: 12,
   },
-  categoryItem: {
-    width: (SCREEN_WIDTH - 60) / 4,
+  categoryCard: {
+    width: (SCREEN_WIDTH - 52) / 2,
+    paddingVertical: 16,
+    paddingHorizontal: 14,
+    borderRadius: 16,
+    marginBottom: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  categoryIconContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 12,
   },
   categoryEmoji: {
-    fontSize: 36,
-    marginBottom: 8,
+    fontSize: 28,
   },
   categoryName: {
-    fontSize: 11,
+    fontSize: 14,
     color: '#1F2937',
-    textAlign: 'center',
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  categoryCount: {
+    fontSize: 12,
+    color: '#6B7280',
     fontWeight: '500',
   },
 });
