@@ -41,21 +41,21 @@ export default function JioKidsLandingScreen() {
 
   return (
     <View style={styles.container}>
+      <LinearGradient
+        colors={['#FF9EB5', '#FFD4E0']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={[styles.header, { paddingTop: insets.top + 16 }]}
+      >
+        <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
+        <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
+      </LinearGradient>
+
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={[styles.scrollContent, { paddingBottom: 100 }]}
         showsVerticalScrollIndicator={false}
       >
-        <LinearGradient
-          colors={['#FF9EB5', '#FFD4E0']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: 1 }}
-          style={[styles.header, { paddingTop: insets.top + 20 }]}
-        >
-          <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
-          <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
-        </LinearGradient>
-
         <View style={styles.statsContainer}>
           {STATS.map((stat, index) => (
             <View key={index} style={styles.statItem}>
@@ -99,17 +99,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
-  },
   header: {
     paddingHorizontal: 20,
-    paddingBottom: 40,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+    paddingBottom: 20,
     alignItems: 'center',
   },
   welcomeTitle: {
@@ -125,13 +117,19 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     textAlign: 'center',
   },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingTop: 20,
+  },
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     marginHorizontal: 20,
-    marginTop: -25,
     paddingVertical: 20,
     paddingHorizontal: 15,
     borderRadius: 16,
