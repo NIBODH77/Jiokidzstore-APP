@@ -311,7 +311,7 @@ export default function AgeGroupDetailScreen() {
         </View>
 
         {/* Bottom Spacing */}
-        <View style={{ height: 30 }} />
+        <View style={{ height: 100 }} />
       </ScrollView>
     </View>
   );
