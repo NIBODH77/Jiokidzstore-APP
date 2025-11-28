@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import { View, StyleSheet, Pressable, Image, Dimensions, FlatList, Platform, ScrollView } from 'react-native';
+import { View, StyleSheet, Pressable, Image, Dimensions, FlatList, Platform, ScrollView, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -9,7 +9,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ProductCard } from '@/components/ProductCard';
-import { ModernCategory } from '@/components/ModernCategory';
 import { ModernSearchBar } from '@/components/ModernSearchBar';
 import { ModernHeroSection } from '@/components/ModernHeroSection';
 import { BestSellersCarousel } from '@/components/BestSellersCarousel';
@@ -115,20 +114,27 @@ export default function HomeScreen() {
               <ThemedText style={styles.seeAllText}>View All</ThemedText>
             </Pressable>
           </View>
-          <FlatList
-            data={CATEGORIES}
-            renderItem={({ item }) => (
-              <ModernCategory
-                category={item}
+          <View style={styles.categoriesGrid}>
+            {CATEGORIES.map((category) => (
+              <Pressable 
+                key={category.id}
                 onPress={handleCategoryPress}
-              />
-            )}
-            keyExtractor={(item) => item.id}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.categoriesList}
-            scrollEventThrottle={16}
-          />
+              >
+                <View 
+                  style={[
+                    styles.categoryCard, 
+                    { backgroundColor: category.color + '22' }
+                  ]}
+                >
+                  <View style={styles.categoryIconContainer}>
+                    <Feather name={category.icon as any} size={24} color={category.color} />
+                  </View>
+                  <ThemedText style={styles.categoryName}>{category.name}</ThemedText>
+                  <ThemedText style={styles.categoryCount}>{category.itemCount}+ Items</ThemedText>
+                </View>
+              </Pressable>
+            ))}
+          </View>
         </View>
 
         {/* Flash Sale Section */}
