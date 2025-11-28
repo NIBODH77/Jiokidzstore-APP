@@ -16,7 +16,7 @@ import { PersonalizedSection } from '@/components/PersonalizedSection';
 import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 import { PRODUCTS, CATEGORIES } from '@/data/mockData';
-import { AGE_GROUPS } from '@/data/ageGroupData';
+import { GIRLS_AGE_GROUPS, BOYS_AGE_GROUPS, AGE_WISE_CATEGORIES } from '@/data/ageGroupData';
 import { wishlistStorage } from '@/utils/storage';
 import { selectCartTotalItems } from '@/store/cartSlice';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
@@ -109,16 +109,16 @@ export default function HomeScreen() {
         </View>
 
 
-        {/* Age Groups */}
+        {/* Shop by Age - Girls Row */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <ThemedText style={styles.sectionTitle}>Shop by Age</ThemedText>
+            <ThemedText style={styles.sectionTitle}>👧 Shop by Age - Girls</ThemedText>
             <Pressable onPress={() => navigation.navigate('AgeWise')}>
               <ThemedText style={styles.seeAllText}>View All</ThemedText>
             </Pressable>
           </View>
           <View style={styles.ageGroupGrid}>
-            {AGE_GROUPS.map((ageGroup) => (
+            {GIRLS_AGE_GROUPS.map((ageGroup) => (
               <Pressable 
                 key={ageGroup.id}
                 style={styles.ageGroupItem}
@@ -131,6 +131,60 @@ export default function HomeScreen() {
                   ]}
                 />
                 <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
+              </Pressable>
+            ))}
+          </View>
+        </View>
+
+        {/* Shop by Age - Boys Row */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <ThemedText style={styles.sectionTitle}>👦 Shop by Age - Boys</ThemedText>
+            <Pressable onPress={() => navigation.navigate('AgeWise')}>
+              <ThemedText style={styles.seeAllText}>View All</ThemedText>
+            </Pressable>
+          </View>
+          <View style={styles.ageGroupGrid}>
+            {BOYS_AGE_GROUPS.map((ageGroup) => (
+              <Pressable 
+                key={ageGroup.id}
+                style={styles.ageGroupItem}
+                onPress={() => navigation.navigate('AgeWise')}
+              >
+                <View 
+                  style={[
+                    styles.ageGroupCard, 
+                    { backgroundColor: ageGroup.color }
+                  ]}
+                />
+                <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
+              </Pressable>
+            ))}
+          </View>
+        </View>
+
+        {/* Shop by Age - Combined Winter */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <ThemedText style={styles.sectionTitle}>❄️ Winter Essentials - All</ThemedText>
+            <Pressable onPress={() => navigation.navigate('AgeWise')}>
+              <ThemedText style={styles.seeAllText}>View All</ThemedText>
+            </Pressable>
+          </View>
+          <View style={styles.ageGroupGrid}>
+            {AGE_WISE_CATEGORIES.map((category) => (
+              <Pressable 
+                key={category.id}
+                style={styles.ageGroupItem}
+                onPress={() => navigation.navigate('AgeWise')}
+              >
+                <View 
+                  style={[
+                    styles.ageGroupCard, 
+                    { backgroundColor: category.color }
+                  ]}
+                />
+                <ThemedText style={styles.ageGroupName}>{category.name}</ThemedText>
               </Pressable>
             ))}
           </View>
