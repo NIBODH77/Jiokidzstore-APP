@@ -5,6 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { ThemedText } from '@/components/ThemedText';
+import { TopHeader } from '@/components/TopHeader';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 import { AGE_GROUPS, AGE_WISE_CATEGORIES, AgeGroup } from '@/data/ageGroupData';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
@@ -70,15 +71,8 @@ export default function AgeWiseScreen() {
   ), [navigation]);
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()}>
-          <Feather name="arrow-left" size={24} color={Colors.text} />
-        </Pressable>
-        <ThemedText style={styles.headerTitle}>Shop by Age</ThemedText>
-        <View style={{ width: 24 }} />
-      </View>
+    <View style={styles.container}>
+      <TopHeader showBackButton={true} />
 
       {/* Age Group Selector */}
       <FlatList

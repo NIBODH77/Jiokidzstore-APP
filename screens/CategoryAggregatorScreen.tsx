@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, ScrollView, Image } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { ThemedText } from '@/components/ThemedText';
+import { TopHeader } from '@/components/TopHeader';
 import { ProductCard } from '@/components/ProductCard';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 import { PRODUCTS, CATEGORIES } from '@/data/mockData';
 import { wishlistStorage } from '@/utils/storage';
-import type { CategoriesStackParamList } from '@/navigation/CategoriesStackNavigator'; // Reusing this for product detail navigation
+import type { CategoriesStackParamList } from '@/navigation/CategoriesStackNavigator';
 
 // Placeholder for ad images
 const AD_IMAGES = [
@@ -60,42 +61,45 @@ export default function CategoryAggregatorScreen() {
   const categoriesToDisplay = CATEGORIES.slice(0, 5);
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      {/* Ad Section Placeholder */}
-      <View style={styles.adBannerContainer}>
-        <Image source={{ uri: AD_IMAGES[0] }} style={styles.adBannerImage} />
-        {/* In a real app, this would be a carousel or dynamic ad */}
-      </View>
+    <View style={{ flex: 1 }}>
+      <TopHeader showBackButton={true} />
+      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        {/* Ad Section Placeholder */}
+        <View style={styles.adBannerContainer}>
+          <Image source={{ uri: AD_IMAGES[0] }} style={styles.adBannerImage} />
+          {/* In a real app, this would be a carousel or dynamic ad */}
+        </View>
 
-      {/* 5 Category Sections */}
-      {categoriesToDisplay.map((category) => {
-        const categoryProducts = allProducts
-          .filter((product) => product.category === category.name)
-          .slice(0, 4); // Take only first 4 products
+        {/* 5 Category Sections */}
+        {categoriesToDisplay.map((category) => {
+          const categoryProducts = allProducts
+            .filter((product) => product.category === category.name)
+            .slice(0, 4);
 
-        if (categoryProducts.length === 0) {
-          return null; // Don't render section if no products
-        }
+          if (categoryProducts.length === 0) {
+            return null;
+          }
 
-        return (
-          <View key={category.id} style={styles.categorySection}>
-            <ThemedText style={styles.categoryTitle}>{category.name}</ThemedText>
-            <View style={styles.productGrid}>
-              {categoryProducts.map((product) => (
-                <View key={product.id} style={styles.productItem}>
-                  <ProductCard
-                    product={product}
-                    onPress={() => handleProductPress(product.id)}
-                    onWishlistPress={() => handleWishlistToggle(product.id)}
-                    isWishlisted={product.isWishlisted}
-                  />
-                </View>
-              ))}
+          return (
+            <View key={category.id} style={styles.categorySection}>
+              <ThemedText style={styles.categoryTitle}>{category.name}</ThemedText>
+              <View style={styles.productGrid}>
+                {categoryProducts.map((product) => (
+                  <View key={product.id} style={styles.productItem}>
+                    <ProductCard
+                      product={product}
+                      onPress={() => handleProductPress(product.id)}
+                      onWishlistPress={() => handleWishlistToggle(product.id)}
+                      isWishlisted={product.isWishlisted}
+                    />
+                  </View>
+                ))}
+              </View>
             </View>
-          </View>
-        );
-      })}
-    </ScrollView>
+          );
+        })}
+      </ScrollView>
+    </View>
   );
 }
 
@@ -109,8 +113,8 @@ const styles = StyleSheet.create({
   },
   adBannerContainer: {
     width: '100%',
-    height: 200, // Fixed height for ad banner
-    backgroundColor: Colors.light.tint,
+    height: 200,
+    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: Spacing.xl,

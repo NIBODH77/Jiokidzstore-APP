@@ -9,6 +9,7 @@ import { TopHeader } from '@/components/TopHeader';
 import { Colors } from '@/constants/theme';
 
 const { width: screenWidth } = Dimensions.get('window');
+const screenHeight = Dimensions.get('window').height;
 
 interface Section {
   id: string;
@@ -229,7 +230,7 @@ export default function AgeGroupDetailScreen() {
   return (
     <View style={styles.container}>
       {/* Top Header with Back Button */}
-      <TopHeader showBackButton={true} cartCount={0} />
+      <TopHeader showBackButton={true} />
       
       {/* Ad Carousel */}
       <View style={styles.carouselContainer}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, FlatList, Dimensions } from 'react-native';
-import { StackScreenProps } from '@react-navigation/stack';
+import { useRoute } from '@react-navigation/native';
 
 import { ThemedText } from '@/components/ThemedText';
 import { TopHeader } from '@/components/TopHeader';
@@ -9,14 +9,6 @@ import { Spacing, BorderRadius, Colors } from '@/constants/theme';
 import { PRODUCTS, CATEGORIES } from '@/data/mockData';
 import { Product } from '@/data/types';
 import { ProductCardDetails } from '@/components/ProductCardDetails';
-
-// Define the RootStackParamList type for navigation
-type RootStackParamList = {
-  CategoryDetails: { categoryName: string };
-  // Add other screen names and their params if needed
-};
-
-type CategoryDetailsScreenProps = StackScreenProps<RootStackParamList, 'CategoryDetails'>;
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -29,9 +21,10 @@ const chunkArray = (array: any[], chunkSize: number) => {
   return result;
 };
 
-export default function CategoryDetailsScreen({ route }: CategoryDetailsScreenProps) {
+export default function CategoryDetailsScreen() {
+  const route = useRoute<any>();
   const { theme } = useTheme();
-  const { categoryName } = route.params;
+  const { categoryName } = route.params || { categoryName: 'Category' };
 
   // Filter products relevant to the category
   const categoryProducts = PRODUCTS.filter(product => product.category === categoryName);
@@ -131,19 +124,19 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.xs,
   },
   categorySubtitle: {
-    fontSize: Typography.body.fontSize,
+    fontSize: 14,
+    fontWeight: '400',
     color: Colors.light.textGray,
   },
   sectionContainer: {
     marginTop: Spacing.xl,
-    // No horizontal padding here, it's handled by carouselPage and productCardWrapper
   },
   sectionTitle: {
-    fontSize: Typography.h2.fontSize,
-    fontWeight: Typography.h2.fontWeight,
+    fontSize: 20,
+    fontWeight: '700',
     color: Colors.light.text,
     marginBottom: Spacing.md,
-    paddingHorizontal: Spacing.md, // Add padding to align with carousel content
+    paddingHorizontal: Spacing.md,
   },
   flatListContentContainer: {
     paddingHorizontal: Spacing.md, // Padding around the entire FlatList content

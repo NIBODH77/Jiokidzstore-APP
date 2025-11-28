@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '@/store/store';
 import { selectCartTotalItems } from '@/store/cartSlice';
 
-const jiokidzLogo = require('../attached_assets/generated_images/jiokidz_colorful_app_logo.png');
+const jiokidzLogo = require('../attached_assets/generated_images/jiokidz_logo_final.png');
 
 interface TopHeaderProps {
   showBackButton?: boolean;
