@@ -1,29 +1,29 @@
 import React from 'react';
-import { View, StyleSheet, Pressable, Image, Dimensions } from 'react-native';
+import { View, StyleSheet, Pressable, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/store/store';
+import { selectCartTotalItems } from '@/store/cartSlice';
 
 const jiokidzLogo = require('../attached_assets/generated_images/jiokidz_colorful_app_logo.png');
 
 interface TopHeaderProps {
   showBackButton?: boolean;
-  onCartPress?: () => void;
-  cartCount?: number;
 }
 
-const { width: screenWidth } = Dimensions.get('window');
-
-export function TopHeader({ showBackButton = false, onCartPress, cartCount = 0 }: TopHeaderProps) {
+export function TopHeader({ showBackButton = false }: TopHeaderProps) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
+  const cartCount = useSelector((state: RootState) => selectCartTotalItems(state.cart));
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.content}>
-        {/* Left Section - Back Button */}
+        {/* Left - Back Button */}
         <View style={styles.leftSection}>
-          {showBackButton && (
+          {showBackButton ? (
             <Pressable 
               onPress={() => navigation.goBack()}
               style={styles.backButton}
@@ -31,26 +31,20 @@ export function TopHeader({ showBackButton = false, onCartPress, cartCount = 0 }
             >
               <Feather name="chevron-left" size={32} color="#1F2937" strokeWidth={2.5} />
             </Pressable>
+          ) : (
+            <View style={styles.leftPlaceholder} />
           )}
         </View>
 
-        {/* Center Logo */}
+        {/* Center - Logo */}
         <Image
           source={jiokidzLogo}
           style={styles.logo}
           resizeMode="contain"
         />
 
-        {/* Right Section - Icons */}
+        {/* Right - Notification & Cart */}
         <View style={styles.rightSection}>
-          <Pressable style={styles.iconButton} hitSlop={8}>
-            <Feather name="search" size={28} color="#1F2937" strokeWidth={1.8} />
-          </Pressable>
-          
-          <Pressable style={styles.iconButton} hitSlop={8}>
-            <Feather name="user" size={28} color="#1F2937" strokeWidth={1.8} />
-          </Pressable>
-          
           <Pressable style={styles.iconButton} hitSlop={8}>
             <Feather name="bell" size={28} color="#1F2937" strokeWidth={1.8} />
             <View style={styles.notificationBadge}>
@@ -58,22 +52,13 @@ export function TopHeader({ showBackButton = false, onCartPress, cartCount = 0 }
             </View>
           </Pressable>
           
-          <Pressable style={styles.iconButton} hitSlop={8}>
-            <Feather name="heart" size={28} color="#1F2937" strokeWidth={1.8} />
-            <View style={styles.favoriteBadge}>
-              <View style={styles.badgeDot} />
-            </View>
-          </Pressable>
-          
-          <Pressable 
-            onPress={onCartPress}
-            style={styles.cartButton}
-            hitSlop={8}
-          >
+          <Pressable style={styles.cartButton} hitSlop={8}>
             <Feather name="shopping-cart" size={28} color="#1F2937" strokeWidth={1.8} />
             {cartCount > 0 && (
               <View style={styles.cartBadge}>
-                <Feather name="shopping-cart" size={11} color="#FFFFFF" strokeWidth={2} />
+                <View style={styles.cartCount}>
+                  <Feather name="shopping-cart" size={11} color="#FFFFFF" strokeWidth={2} />
+                </View>
               </View>
             )}
           </Pressable>
@@ -108,6 +93,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  leftPlaceholder: {
+    width: 48,
+    height: 48,
+  },
   backButton: {
     width: 48,
     height: 48,
@@ -125,7 +114,7 @@ const styles = StyleSheet.create({
   rightSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 12,
   },
   iconButton: {
     width: 48,
@@ -158,23 +147,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#FFFFFF',
   },
-  favoriteBadge: {
-    position: 'absolute',
-    top: 4,
-    right: 4,
-    width: 20,
-    height: 20,
-    backgroundColor: '#FFE5D5',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#FFFFFF',
-  },
   cartBadge: {
     position: 'absolute',
     top: 2,
     right: 2,
+  },
+  cartCount: {
     width: 24,
     height: 24,
     backgroundColor: '#FF6B35',
