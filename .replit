@@ -5,8 +5,8 @@ modules = ["nodejs-20", "web"]
 channel = "stable-25_05"
 
 [[ports]]
-localPort = 8080
-externalPort = 8080
+localPort = 5000
+externalPort = 80
 
 [[ports]]
 localPort = 8081
@@ -15,6 +15,10 @@ externalPort = 80
 [[ports]]
 localPort = 8082
 externalPort = 3000
+
+[[ports]]
+localPort = 34029
+externalPort = 5173
 
 [[ports]]
 localPort = 35019
@@ -84,13 +88,13 @@ args = "Start application"
 name = "Start application"
 author = "agent"
 
+[workflows.workflow.metadata]
+outputType = "webview"
+
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm run dev"
-waitForPort = 8080
-
-[workflows.workflow.metadata]
-outputType = "console"
+waitForPort = 5000
 
 [agent]
 stack = "EXPO"
