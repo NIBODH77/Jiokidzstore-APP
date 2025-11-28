@@ -6,6 +6,7 @@ import AppIntroCarousel from '@/screens/auth/AppIntroCarousel';
 import OnboardingScreen from '@/screens/auth/OnboardingScreen';
 import LoginScreen from '@/screens/auth/LoginScreen';
 import OTPScreen from '@/screens/auth/OTPScreen';
+import LandingTabNavigator from '@/navigation/LandingTabNavigator';
 import MainTabNavigator from '@/navigation/MainTabNavigator';
 
 export type RootStackParamList = {
@@ -14,6 +15,7 @@ export type RootStackParamList = {
   Onboarding: undefined;
   Login: undefined;
   OTP: { phone: string; name?: string };
+  Landing: undefined;
   Main: undefined;
 };
 
@@ -27,7 +29,6 @@ export default function RootNavigator() {
     return <SimpleSplashScreen onFinish={() => setSplashFinished(true)} />;
   }
 
-  // User is not authenticated, and splash is finished
   if (!user) {
     return (
       <Stack.Navigator
@@ -41,9 +42,9 @@ export default function RootNavigator() {
     );
   }
 
-  // User is authenticated, and splash is finished
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Landing" component={LandingTabNavigator} />
       <Stack.Screen name="Main" component={MainTabNavigator} />
     </Stack.Navigator>
   );
