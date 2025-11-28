@@ -42,9 +42,9 @@ export default function JioKidsLandingScreen() {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#FF9EB5', '#FFD4E0']}
+        colors={['#FF6B9D', '#FF8FB3', '#FFB8D0']}
         start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 1 }}
+        end={{ x: 1, y: 1 }}
         style={[styles.header, { paddingTop: insets.top + 16 }]}
       >
         <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
@@ -101,8 +101,10 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingBottom: 24,
     alignItems: 'center',
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
   },
   welcomeTitle: {
     fontSize: 28,
