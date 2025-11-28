@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Pressable, Image, ScrollView, Dimensions } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, StyleSheet, Pressable, Image, ScrollView, Dimensions, FlatList } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { ThemedText } from '@/components/ThemedText';
 import { Colors } from '@/constants/theme';
+
+const { width: screenWidth } = Dimensions.get('window');
 
 interface Section {
   id: string;
@@ -15,6 +17,38 @@ interface Section {
   backgroundColor: string;
   gradientColors?: string[];
 }
+
+interface AdBanner {
+  id: string;
+  title: string;
+  subtitle: string;
+  gradientColors: string[];
+  icon: string;
+}
+
+const adBanners: AdBanner[] = [
+  {
+    id: '1',
+    title: 'Get Ready This Season',
+    subtitle: 'with TOFFYHOUSE',
+    gradientColors: ['#FFE5D5', '#FFDCC4'],
+    icon: '🎀',
+  },
+  {
+    id: '2',
+    title: 'Winter Wonderland',
+    subtitle: 'FLAT 40% OFF',
+    gradientColors: ['#E0F7FA', '#B3E5FC'],
+    icon: '❄️',
+  },
+  {
+    id: '3',
+    title: 'Summer Collection',
+    subtitle: 'FLAT 50% OFF',
+    gradientColors: ['#FFF8E1', '#FFEB3B'],
+    icon: '☀️',
+  },
+];
 
 export default function AgeGroupDetailScreen() {
   const route = useRoute<any>();
@@ -132,8 +166,43 @@ export default function AgeGroupDetailScreen() {
     setExpandedId(expandedId === id ? null : id);
   };
 
+  const renderAdBanner = ({ item }: { item: AdBanner }) => (
+    <Pressable style={styles.adBannerContainer}>
+      <LinearGradient
+        colors={item.gradientColors as any}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.adBannerGradient}
+      >
+        <View style={styles.adBannerContent}>
+          <ThemedText style={styles.adBannerIcon}>{item.icon}</ThemedText>
+          <View style={styles.adTextContainer}>
+            <ThemedText style={styles.adTitle}>{item.title}</ThemedText>
+            <ThemedText style={styles.adSubtitle}>{item.subtitle}</ThemedText>
+          </View>
+          <Feather name="arrow-right" size={20} color="#1F2937" />
+        </View>
+      </LinearGradient>
+    </Pressable>
+  );
+
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
+      {/* Ad Carousel at Top */}
+      <View style={styles.carouselContainer}>
+        <FlatList
+          data={adBanners}
+          renderItem={renderAdBanner}
+          keyExtractor={(item) => item.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled
+          snapToInterval={screenWidth - 32}
+          decelerationRate="fast"
+          contentContainerStyle={styles.carouselContent}
+        />
+      </View>
+
       {/* Header */}
       <View style={styles.headerTop}>
         <View style={styles.headerContent}>
@@ -202,6 +271,48 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+  },
+  carouselContainer: {
+    height: 140,
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 8,
+  },
+  carouselContent: {
+    paddingHorizontal: 8,
+  },
+  adBannerContainer: {
+    width: screenWidth - 32,
+    marginHorizontal: 8,
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  adBannerGradient: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    justifyContent: 'center',
+  },
+  adBannerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  adBannerIcon: {
+    fontSize: 40,
+  },
+  adTextContainer: {
+    flex: 1,
+  },
+  adTitle: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#1F2937',
+    marginBottom: 2,
+  },
+  adSubtitle: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#FF6B35',
   },
   headerTop: {
     paddingHorizontal: 16,
