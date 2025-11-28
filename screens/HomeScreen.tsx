@@ -437,7 +437,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   ageGroupItem: {
-    width: '23%',
+    width: '18%',
     alignItems: 'center',
     marginBottom: 18,
   },
