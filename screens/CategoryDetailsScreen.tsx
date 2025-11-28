@@ -3,11 +3,12 @@ import { StyleSheet, View, ScrollView, FlatList, Dimensions } from 'react-native
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { ThemedText } from '@/components/ThemedText';
+import { TopHeader } from '@/components/TopHeader';
 import { useTheme } from '@/hooks/useTheme';
-import { Spacing, BorderRadius, Shadows, Colors } from '@/constants/theme';
+import { Spacing, BorderRadius, Colors } from '@/constants/theme';
 import { PRODUCTS, CATEGORIES } from '@/data/mockData';
 import { Product } from '@/data/types';
-import { ProductCardDetails } from '@/components/ProductCardDetails'; // Import the new card component
+import { ProductCardDetails } from '@/components/ProductCardDetails';
 
 // Define the RootStackParamList type for navigation
 type RootStackParamList = {
@@ -81,12 +82,14 @@ export default function CategoryDetailsScreen({ route }: CategoryDetailsScreenPr
   );
 
   return (
-    <ScrollView style={[styles.container, { backgroundColor: theme.backgroundRoot }]}>
-      {/* Category Header */}
-      <View style={styles.headerContainer}>
-        <ThemedText type="h1" style={styles.categoryTitle}>{categoryName}</ThemedText>
-        <ThemedText type="body" style={styles.categorySubtitle}>Explore top products in this category</ThemedText>
-      </View>
+    <View style={{ flex: 1, backgroundColor: theme.backgroundRoot }}>
+      <TopHeader showBackButton={true} />
+      <ScrollView style={[styles.container, { backgroundColor: theme.backgroundRoot }]}>
+        {/* Category Header */}
+        <View style={styles.headerContainer}>
+          <ThemedText type="h1" style={styles.categoryTitle}>{categoryName}</ThemedText>
+          <ThemedText type="body" style={styles.categorySubtitle}>Explore top products in this category</ThemedText>
+        </View>
 
       {/* Product Sections */}
       {sectionsWithEnoughProducts.map((section, index) => (
@@ -105,8 +108,9 @@ export default function CategoryDetailsScreen({ route }: CategoryDetailsScreenPr
           />
         </View>
       ))}
-      <View style={{ height: Spacing.xxl }} />{/* Extra spacing at the bottom */}
-    </ScrollView>
+      <View style={{ height: Spacing.xxl }} />
+      </ScrollView>
+    </View>
   );
 }
 
@@ -121,8 +125,8 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.light.border,
   },
   categoryTitle: {
-    fontSize: Typography.h1.fontSize,
-    fontWeight: Typography.h1.fontWeight,
+    fontSize: 24,
+    fontWeight: '700',
     color: Colors.light.text,
     marginBottom: Spacing.xs,
   },
