@@ -282,6 +282,7 @@ const styles = StyleSheet.create({
   },
   adBannerContainer: {
     width: screenWidth - 32,
+    height: 400,
     marginHorizontal: 8,
     borderRadius: 12,
     overflow: 'hidden',
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
   adBannerGradient: {
     flex: 1,
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingVertical: 16,
     justifyContent: 'center',
   },
   adBannerContent: {
