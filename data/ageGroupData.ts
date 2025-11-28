@@ -5,12 +5,13 @@ export interface AgeGroup {
   color: string;
   icon?: string;
   itemCount: number;
+  image?: string;
 }
 
 export interface AgeWiseCategory {
   id: string;
   name: string;
-  image?: string;
+  image?: any;
   color: string;
   itemCount: number;
 }

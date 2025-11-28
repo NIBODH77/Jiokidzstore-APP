@@ -24,6 +24,30 @@ import type { RootState } from '@/store/store';
 
 import { categoryImages } from '../data/mockData';
 
+const girlsImages: { [key: string]: any } = {
+  'g1': require('../attached_assets/generated_images/newborn_girl_fashion.png'),
+  'g2': require('../attached_assets/generated_images/infant_girl_fashion.png'),
+  'g3': require('../attached_assets/generated_images/toddler_girl_fashion.png'),
+  'g4': require('../attached_assets/generated_images/preschool_girl_fashion.png'),
+  'g5': require('../attached_assets/generated_images/kids_girl_fashion.png'),
+};
+
+const boysImages: { [key: string]: any } = {
+  'b1': require('../attached_assets/generated_images/newborn_boy_fashion.png'),
+  'b2': require('../attached_assets/generated_images/infant_boy_fashion.png'),
+  'b3': require('../attached_assets/generated_images/toddler_boy_fashion.png'),
+  'b4': require('../attached_assets/generated_images/preschool_boy_fashion.png'),
+  'b5': require('../attached_assets/generated_images/kids_boy_fashion.png'),
+};
+
+const winterImages: { [key: string]: any } = {
+  '1': require('../attached_assets/generated_images/winter_sweater_kids.png'),
+  '2': require('../attached_assets/generated_images/winter_sweatshirt_kids.png'),
+  '3': require('../attached_assets/generated_images/winter_jacket_kids.png'),
+  '4': require('../attached_assets/generated_images/thermal_innerwear_kids.png'),
+  '5': require('../attached_assets/generated_images/winter_essentials_kids.png'),
+};
+
 export default function HomeScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const insets = useSafeAreaInsets();
@@ -129,7 +153,15 @@ export default function HomeScreen() {
                     styles.ageGroupCard, 
                     { backgroundColor: ageGroup.color }
                   ]}
-                />
+                >
+                  {girlsImages[ageGroup.id] && (
+                    <Image 
+                      source={girlsImages[ageGroup.id]}
+                      style={styles.ageGroupImage}
+                      resizeMode="contain"
+                    />
+                  )}
+                </View>
                 <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
               </Pressable>
             ))}
@@ -156,7 +188,15 @@ export default function HomeScreen() {
                     styles.ageGroupCard, 
                     { backgroundColor: ageGroup.color }
                   ]}
-                />
+                >
+                  {boysImages[ageGroup.id] && (
+                    <Image 
+                      source={boysImages[ageGroup.id]}
+                      style={styles.ageGroupImage}
+                      resizeMode="contain"
+                    />
+                  )}
+                </View>
                 <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
               </Pressable>
             ))}
@@ -183,7 +223,15 @@ export default function HomeScreen() {
                     styles.ageGroupCard, 
                     { backgroundColor: category.color }
                   ]}
-                />
+                >
+                  {winterImages[category.id] && (
+                    <Image 
+                      source={winterImages[category.id]}
+                      style={styles.ageGroupImage}
+                      resizeMode="contain"
+                    />
+                  )}
+                </View>
                 <ThemedText style={styles.ageGroupName}>{category.name}</ThemedText>
               </Pressable>
             ))}
@@ -453,6 +501,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
     marginBottom: 6,
+  },
+  ageGroupImage: {
+    width: '85%',
+    height: '85%',
   },
   ageGroupName: {
     fontSize: 11,
