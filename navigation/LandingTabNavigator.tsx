@@ -1,15 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Platform, StyleSheet, View, Text } from 'react-native';
+import { Platform, StyleSheet, View, Text, Pressable } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation, CommonActions } from '@react-navigation/native';
 import JioKidsLandingScreen from '@/screens/main/JioKidsLandingScreen';
-import MainTabNavigator from '@/navigation/MainTabNavigator';
 import { useTheme } from '@/hooks/useTheme';
 import { Colors } from '@/constants/theme';
 
 export type LandingTabParamList = {
-  ShoppingTab: undefined;
+  ShoppingLanding: undefined;
   ExploreTab: undefined;
   ParentingTab: undefined;
 };
@@ -36,16 +36,13 @@ function ParentingScreen() {
   );
 }
 
-function ShoppingLandingWrapper() {
-  return <JioKidsLandingScreen />;
-}
-
 export default function LandingTabNavigator() {
   const { theme, isDark } = useTheme();
+  const navigation = useNavigation<any>();
 
   return (
     <Tab.Navigator
-      initialRouteName="ShoppingTab"
+      initialRouteName="ShoppingLanding"
       screenOptions={{
         tabBarActiveTintColor: Colors.light.primary,
         tabBarInactiveTintColor: '#9CA3AF',
@@ -76,12 +73,20 @@ export default function LandingTabNavigator() {
       }}
     >
       <Tab.Screen
-        name="ShoppingTab"
-        component={ShoppingLandingWrapper}
+        name="ShoppingLanding"
+        component={JioKidsLandingScreen}
         options={{
           tabBarLabel: 'Shopping',
           tabBarIcon: ({ color, size }) => (
             <Feather name="shopping-bag" size={size} color={color} />
+          ),
+          tabBarButton: (props) => (
+            <Pressable
+              {...props}
+              onPress={() => {
+                navigation.navigate('Main');
+              }}
+            />
           ),
         }}
       />

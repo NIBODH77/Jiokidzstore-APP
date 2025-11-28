@@ -4,13 +4,11 @@ import {
   StyleSheet,
   ScrollView,
   Text,
-  Pressable,
   Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
-import { Colors, Spacing, BorderRadius } from '@/constants/theme';
+import { Colors } from '@/constants/theme';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -38,19 +36,8 @@ const CATEGORIES = [
   { id: '8', name: 'Baby Care', emoji: '🐤' },
 ];
 
-interface JioKidsLandingScreenProps {
-  onNavigateToShopping?: () => void;
-}
-
-export default function JioKidsLandingScreen({ onNavigateToShopping }: JioKidsLandingScreenProps) {
+export default function JioKidsLandingScreen() {
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
-
-  const handleCategoryPress = (categoryId: string) => {
-    if (onNavigateToShopping) {
-      onNavigateToShopping();
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -95,14 +82,10 @@ export default function JioKidsLandingScreen({ onNavigateToShopping }: JioKidsLa
           <Text style={styles.sectionTitle}>Shop by Category</Text>
           <View style={styles.categoriesGrid}>
             {CATEGORIES.map((category) => (
-              <Pressable
-                key={category.id}
-                style={styles.categoryItem}
-                onPress={() => handleCategoryPress(category.id)}
-              >
+              <View key={category.id} style={styles.categoryItem}>
                 <Text style={styles.categoryEmoji}>{category.emoji}</Text>
                 <Text style={styles.categoryName}>{category.name}</Text>
-              </Pressable>
+              </View>
             ))}
           </View>
         </View>
