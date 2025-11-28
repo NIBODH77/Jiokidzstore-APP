@@ -54,8 +54,15 @@ export default function LandingTabNavigator() {
           }),
           borderTopWidth: 0,
           elevation: 0,
-          height: 60,
-          paddingBottom: 8,
+          height: 70,
+          paddingBottom: 16,
+          marginBottom: 10,
+          marginHorizontal: 16,
+          borderRadius: 20,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 8,
         },
         tabBarBackground: () =>
           Platform.OS === 'ios' ? (
