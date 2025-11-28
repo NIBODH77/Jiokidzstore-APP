@@ -109,10 +109,10 @@ export default function HomeScreen() {
         </View>
 
 
-        {/* Shop by Age - Girls Row */}
+        {/* Baby Girls Fashion Row */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <ThemedText style={styles.sectionTitle}>👧 Shop by Age - Girls</ThemedText>
+            <ThemedText style={styles.sectionTitle}>👧 Baby Girls Fashion</ThemedText>
             <Pressable onPress={() => navigation.navigate('AgeWise')}>
               <ThemedText style={styles.seeAllText}>View All</ThemedText>
             </Pressable>
@@ -136,10 +136,10 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        {/* Shop by Age - Boys Row */}
+        {/* Baby Boys Fashion Row */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <ThemedText style={styles.sectionTitle}>👦 Shop by Age - Boys</ThemedText>
+            <ThemedText style={styles.sectionTitle}>👦 Baby Boys Fashion</ThemedText>
             <Pressable onPress={() => navigation.navigate('AgeWise')}>
               <ThemedText style={styles.seeAllText}>View All</ThemedText>
             </Pressable>
