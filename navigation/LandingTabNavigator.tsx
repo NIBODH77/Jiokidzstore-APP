@@ -80,13 +80,15 @@ export default function LandingTabNavigator() {
           tabBarIcon: ({ color, size }) => (
             <Feather name="shopping-bag" size={size} color={color} />
           ),
-          tabBarButton: (props) => (
+          tabBarButton: ({ children, style }) => (
             <Pressable
-              {...props}
+              style={style as any}
               onPress={() => {
                 navigation.navigate('Main');
               }}
-            />
+            >
+              {children}
+            </Pressable>
           ),
         }}
       />

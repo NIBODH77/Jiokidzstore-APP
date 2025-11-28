@@ -6,3 +6,5 @@
 [x] 6. Fixed LinearGradient errors
 [x] 7. Added splash screen with rotating logo on app startup
 [x] 8. Fixed npm package installation issue - Expo module now working
+[x] 9. Created JioKids landing page with Welcome header, stats, features, and categories
+[x] 10. Added Shopping, Explore, Parenting tabs - Shopping tab opens full app
