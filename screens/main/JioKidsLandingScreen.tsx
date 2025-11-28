@@ -6,10 +6,14 @@ import {
   Text,
   Dimensions,
   Image,
+  Pressable,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '@/constants/theme';
+import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 
 const categoryImages = {
   'Boy Fashion': require('../../attached_assets/generated_images/boys_casual_fashion_clothing.png'),
@@ -50,6 +54,7 @@ const CATEGORIES = [
 
 export default function JioKidsLandingScreen() {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
 
   return (
     <View style={styles.container}>
@@ -91,7 +96,12 @@ export default function JioKidsLandingScreen() {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Shop by Category</Text>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Shop by Category</Text>
+            <Pressable onPress={() => navigation.navigate('AgeWise')}>
+              <Text style={styles.viewAllText}>Age-wise →</Text>
+            </Pressable>
+          </View>
           <View style={styles.categoriesGrid}>
             {CATEGORIES.map((category) => (
               <View 
@@ -259,5 +269,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#6B7280',
     fontWeight: '500',
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  viewAllText: {
+    fontSize: 13,
+    color: '#FF6B9D',
+    fontWeight: '600',
   },
 });

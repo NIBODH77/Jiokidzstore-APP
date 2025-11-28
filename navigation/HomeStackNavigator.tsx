@@ -120,6 +120,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "@/screens/HomeScreen";
+import AgeWiseScreen from "@/screens/AgeWiseScreen";
 import ProductDetailScreen from "@/screens/product/ProductDetailScreen";
 import SearchScreen from "@/screens/product/SearchScreen";
 import FlashSaleScreen from "@/screens/product/FlashSaleScreen";
@@ -138,6 +139,7 @@ import { getCommonScreenOptions } from "@/navigation/screenOptions";
 
 export type HomeStackParamList = {
   Home: undefined;
+  AgeWise: undefined;
   ProductDetail: { productId: string };
   Search: undefined;
   FlashSale: undefined;
@@ -167,6 +169,15 @@ export default function HomeStackNavigator() {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      {/* AGE WISE SCREEN */}
+      <Stack.Screen
+        name="AgeWise"
+        component={AgeWiseScreen}
         options={{
           headerShown: false,
         }}
