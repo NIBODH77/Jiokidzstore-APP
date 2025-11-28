@@ -21,14 +21,15 @@ export function TopHeader({ showBackButton = false, onCartPress, cartCount = 0 }
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.content}>
-        {/* Left Section */}
+        {/* Left Section - Back Button */}
         <View style={styles.leftSection}>
           {showBackButton && (
             <Pressable 
               onPress={() => navigation.goBack()}
               style={styles.backButton}
+              hitSlop={10}
             >
-              <Feather name="chevron-left" size={28} color="#333" />
+              <Feather name="chevron-left" size={32} color="#1F2937" strokeWidth={2.5} />
             </Pressable>
           )}
         </View>
@@ -40,38 +41,39 @@ export function TopHeader({ showBackButton = false, onCartPress, cartCount = 0 }
           resizeMode="contain"
         />
 
-        {/* Right Section */}
+        {/* Right Section - Icons */}
         <View style={styles.rightSection}>
-          <Pressable style={styles.iconButton}>
-            <Feather name="search" size={24} color="#333" />
+          <Pressable style={styles.iconButton} hitSlop={8}>
+            <Feather name="search" size={28} color="#1F2937" strokeWidth={1.8} />
           </Pressable>
           
-          <Pressable style={styles.iconButton}>
-            <Feather name="user" size={24} color="#333" />
+          <Pressable style={styles.iconButton} hitSlop={8}>
+            <Feather name="user" size={28} color="#1F2937" strokeWidth={1.8} />
           </Pressable>
           
-          <Pressable style={styles.iconButton}>
-            <Feather name="bell" size={24} color="#333" />
+          <Pressable style={styles.iconButton} hitSlop={8}>
+            <Feather name="bell" size={28} color="#1F2937" strokeWidth={1.8} />
             <View style={styles.notificationBadge}>
-              <Feather name="bell" size={12} color="#FF6B35" />
+              <View style={styles.badgeDot} />
             </View>
           </Pressable>
           
-          <Pressable style={styles.iconButton}>
-            <Feather name="heart" size={24} color="#333" />
-            <View style={styles.badge}>
-              <Feather name="heart" size={10} color="#FF6B35" />
+          <Pressable style={styles.iconButton} hitSlop={8}>
+            <Feather name="heart" size={28} color="#1F2937" strokeWidth={1.8} />
+            <View style={styles.favoriteBadge}>
+              <View style={styles.badgeDot} />
             </View>
           </Pressable>
           
           <Pressable 
             onPress={onCartPress}
             style={styles.cartButton}
+            hitSlop={8}
           >
-            <Feather name="shopping-cart" size={24} color="#333" />
+            <Feather name="shopping-cart" size={28} color="#1F2937" strokeWidth={1.8} />
             {cartCount > 0 && (
               <View style={styles.cartBadge}>
-                <Feather name="shopping-cart" size={10} color="#FFFFFF" />
+                <Feather name="shopping-cart" size={11} color="#FFFFFF" strokeWidth={2} />
               </View>
             )}
           </Pressable>
@@ -84,74 +86,86 @@ export function TopHeader({ showBackButton = false, onCartPress, cartCount = 0 }
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
+    borderBottomWidth: 1.5,
+    borderBottomColor: '#E5E5E5',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 3,
   },
   content: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    minHeight: 56,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    minHeight: 70,
   },
   leftSection: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-  },
-  backButton: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  backButton: {
+    width: 48,
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 12,
+    backgroundColor: '#F5F5F5',
+  },
   logo: {
-    width: 120,
-    height: 40,
-    marginHorizontal: 16,
+    flex: 1,
+    width: 140,
+    height: 50,
+    marginHorizontal: 8,
   },
   rightSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: 8,
   },
   iconButton: {
-    width: 40,
-    height: 40,
+    width: 48,
+    height: 48,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+    borderRadius: 10,
+    backgroundColor: '#F9F9F9',
   },
   cartButton: {
-    width: 40,
-    height: 40,
+    width: 48,
+    height: 48,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+    borderRadius: 10,
+    backgroundColor: '#F9F9F9',
   },
   notificationBadge: {
     position: 'absolute',
-    top: 0,
-    right: 0,
-    width: 18,
-    height: 18,
-    backgroundColor: '#FFF3E0',
-    borderRadius: 9,
+    top: 4,
+    right: 4,
+    width: 20,
+    height: 20,
+    backgroundColor: '#FFE5D5',
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
     borderColor: '#FFFFFF',
   },
-  badge: {
+  favoriteBadge: {
     position: 'absolute',
-    top: 0,
-    right: 0,
-    width: 16,
-    height: 16,
+    top: 4,
+    right: 4,
+    width: 20,
+    height: 20,
     backgroundColor: '#FFE5D5',
-    borderRadius: 8,
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
@@ -159,15 +173,26 @@ const styles = StyleSheet.create({
   },
   cartBadge: {
     position: 'absolute',
-    top: 0,
-    right: 0,
-    width: 20,
-    height: 20,
+    top: 2,
+    right: 2,
+    width: 24,
+    height: 24,
     backgroundColor: '#FF6B35',
-    borderRadius: 10,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
     borderColor: '#FFFFFF',
+    shadowColor: '#FF6B35',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 4,
+  },
+  badgeDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#FF6B35',
   },
 });
