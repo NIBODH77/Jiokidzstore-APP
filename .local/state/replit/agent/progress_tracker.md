@@ -5,3 +5,4 @@
 [x] 5. Inform user the import is completed and they can start building
 [x] 6. Fixed LinearGradient errors
 [x] 7. Added splash screen with rotating logo on app startup
+[x] 8. Fixed npm package installation issue - Expo module now working
