@@ -131,21 +131,22 @@ export default function HomeScreen() {
                 key={category.id}
                 onPress={handleCategoryPress}
               >
-                <View 
-                  style={[
-                    styles.categoryCard, 
-                    { backgroundColor: category.color + '22' }
-                  ]}
-                >
-                  <View style={styles.categoryImageContainer}>
-                    <Image 
-                      source={categoryImages[category.name] || require('../attached_assets/generated_images/kids_footwear_shoes.png')}
-                      style={styles.categoryImage}
-                      resizeMode="contain"
-                    />
+                <View style={styles.categoryItem}>
+                  <View 
+                    style={[
+                      styles.categoryCard, 
+                      { backgroundColor: category.color + '22' }
+                    ]}
+                  >
+                    <View style={styles.categoryImageContainer}>
+                      <Image 
+                        source={categoryImages[category.name] || require('../attached_assets/generated_images/kids_footwear_shoes.png')}
+                        style={styles.categoryImage}
+                        resizeMode="contain"
+                      />
+                    </View>
                   </View>
                   <ThemedText style={styles.categoryName}>{category.name}</ThemedText>
-                  <ThemedText style={styles.categoryCount}>{category.itemCount}+ Items</ThemedText>
                 </View>
               </Pressable>
             ))}
@@ -313,39 +314,44 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    paddingHorizontal: 12,
-    gap: 10,
+    paddingHorizontal: 8,
+    gap: 8,
+  },
+  categoryItem: {
+    width: '25%',
+    alignItems: 'center',
+    marginBottom: 16,
   },
   categoryCard: {
-    width: (Dimensions.get('window').width - 48) / 4,
+    width: '100%',
+    aspectRatio: 1,
     paddingVertical: 12,
-    paddingHorizontal: 8,
+    paddingHorizontal: 12,
     borderRadius: 12,
-    marginBottom: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 1,
-    alignItems: 'center',
   },
   categoryImageContainer: {
     width: '100%',
-    height: 50,
-    marginBottom: 8,
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   categoryImage: {
-    width: '100%',
-    height: '100%',
+    width: '85%',
+    height: '85%',
   },
   categoryName: {
     fontSize: 11,
     fontWeight: '600',
     color: '#1F2937',
     textAlign: 'center',
-    marginBottom: 4,
+    marginTop: 6,
   },
   categoryCount: {
     fontSize: 10,
