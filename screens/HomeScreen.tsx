@@ -16,6 +16,7 @@ import { PersonalizedSection } from '@/components/PersonalizedSection';
 import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 import { PRODUCTS, CATEGORIES } from '@/data/mockData';
+import { AGE_GROUPS } from '@/data/ageGroupData';
 import { wishlistStorage } from '@/utils/storage';
 import { selectCartTotalItems } from '@/store/cartSlice';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
@@ -107,6 +108,33 @@ export default function HomeScreen() {
           />
         </View>
 
+
+        {/* Age Groups */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <ThemedText style={styles.sectionTitle}>Shop by Age</ThemedText>
+            <Pressable onPress={() => navigation.navigate('AgeWise')}>
+              <ThemedText style={styles.seeAllText}>View All</ThemedText>
+            </Pressable>
+          </View>
+          <View style={styles.ageGroupGrid}>
+            {AGE_GROUPS.map((ageGroup) => (
+              <Pressable 
+                key={ageGroup.id}
+                style={styles.ageGroupItem}
+                onPress={() => navigation.navigate('AgeWise')}
+              >
+                <View 
+                  style={[
+                    styles.ageGroupCard, 
+                    { backgroundColor: ageGroup.color }
+                  ]}
+                />
+                <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
+              </Pressable>
+            ))}
+          </View>
+        </View>
 
         {/* Categories */}
         <View style={styles.section}>
@@ -346,6 +374,35 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: '#9CA3AF',
     fontWeight: '500',
+  },
+  ageGroupGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  ageGroupItem: {
+    width: '18%',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  ageGroupCard: {
+    width: 65,
+    height: 65,
+    borderRadius: 12,
+    marginBottom: 6,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  ageGroupName: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: '#1F2937',
+    textAlign: 'center',
+    width: '100%',
   },
   flashSaleBanner: {
     marginHorizontal: 16,
