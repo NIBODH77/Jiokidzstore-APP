@@ -14,7 +14,7 @@ const images = {
 };
 
 // Category Images
-const categoryImages = {
+export const categoryImages = {
   'Footwear': require('../attached_assets/generated_images/kids_footwear_shoes.png'),
   'Fashion Accessories': require('../attached_assets/generated_images/fashion_accessories_collection.png'),
   'Disney & Marvel': require('../attached_assets/generated_images/disney_marvel_merchandise.png'),

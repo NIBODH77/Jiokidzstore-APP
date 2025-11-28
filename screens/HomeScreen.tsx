@@ -21,16 +21,7 @@ import { selectCartTotalItems } from '@/store/cartSlice';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 import type { RootState } from '@/store/store';
 
-const categoryImages: Record<string, ImageSourcePropType> = {
-  'Boy Fashion': require('../attached_assets/generated_images/boys_casual_fashion_clothing.png'),
-  'Girl Fashion': require('../attached_assets/generated_images/girls_fashion_clothing.png'),
-  'Footwear': require('../attached_assets/generated_images/kids_footwear_shoes.png'),
-  'Toys': require('../attached_assets/generated_images/colorful_kids_toys.png'),
-  'Diapers': require('../attached_assets/generated_images/baby_diapers_products.png'),
-  'Books': require('../attached_assets/generated_images/colorful_children_books.png'),
-  'Accessories': require('../attached_assets/generated_images/kids_accessories_collection.png'),
-  'Baby Care': require('../attached_assets/generated_images/baby_care_products.png'),
-};
+import { categoryImages } from '../data/mockData';
 
 export default function HomeScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
