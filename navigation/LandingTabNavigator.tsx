@@ -56,6 +56,7 @@ export default function LandingTabNavigator() {
           elevation: 0,
           height: 70,
           paddingBottom: 16,
+          marginBottom: 8,
         },
         tabBarBackground: () =>
           Platform.OS === 'ios' ? (
