@@ -146,7 +146,11 @@ export default function HomeScreen() {
               <Pressable 
                 key={ageGroup.id}
                 style={styles.ageGroupItem}
-                onPress={() => navigation.navigate('AgeWise')}
+                onPress={() => navigation.navigate('AgeGroupDetail', { 
+                  ageRange: ageGroup.ageRange, 
+                  gender: 'girls',
+                  color: ageGroup.color
+                })}
               >
                 <View 
                   style={[
@@ -181,7 +185,11 @@ export default function HomeScreen() {
               <Pressable 
                 key={ageGroup.id}
                 style={styles.ageGroupItem}
-                onPress={() => navigation.navigate('AgeWise')}
+                onPress={() => navigation.navigate('AgeGroupDetail', { 
+                  ageRange: ageGroup.ageRange, 
+                  gender: 'boys',
+                  color: ageGroup.color
+                })}
               >
                 <View 
                   style={[

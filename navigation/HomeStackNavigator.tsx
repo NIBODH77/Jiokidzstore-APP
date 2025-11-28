@@ -133,6 +133,7 @@ import CheckoutPaymentScreen from "@/screens/cart/CheckoutPaymentScreen";
 import OrderSummaryScreen from "@/screens/cart/OrderSummaryScreen";
 import OrderConfirmationScreen from "@/screens/cart/OrderConfirmationScreen";
 import CategoryAggregatorScreen from "@/screens/CategoryAggregatorScreen"; // Import new screen
+import AgeGroupDetailScreen from "@/screens/AgeGroupDetailScreen"; // Import age group detail screen
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
 import { getCommonScreenOptions } from "@/navigation/screenOptions";
@@ -140,6 +141,7 @@ import { getCommonScreenOptions } from "@/navigation/screenOptions";
 export type HomeStackParamList = {
   Home: undefined;
   AgeWise: undefined;
+  AgeGroupDetail: { ageRange: string; gender: string; color: string };
   ProductDetail: { productId: string };
   Search: undefined;
   FlashSale: undefined;
@@ -178,6 +180,15 @@ export default function HomeStackNavigator() {
       <Stack.Screen
         name="AgeWise"
         component={AgeWiseScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      {/* AGE GROUP DETAIL SCREEN */}
+      <Stack.Screen
+        name="AgeGroupDetail"
+        component={AgeGroupDetailScreen}
         options={{
           headerShown: false,
         }}
