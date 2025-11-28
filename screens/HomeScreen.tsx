@@ -130,24 +130,15 @@ export default function HomeScreen() {
               <Pressable 
                 key={category.id}
                 onPress={handleCategoryPress}
+                style={styles.categoryItem}
               >
-                <View style={styles.categoryItem}>
-                  <View 
-                    style={[
-                      styles.categoryCard, 
-                      { backgroundColor: category.color + '22' }
-                    ]}
-                  >
-                    <View style={styles.categoryImageContainer}>
-                      <Image 
-                        source={categoryImages[category.name] || require('../attached_assets/generated_images/kids_footwear_shoes.png')}
-                        style={styles.categoryImage}
-                        resizeMode="contain"
-                      />
-                    </View>
-                  </View>
-                  <ThemedText style={styles.categoryName}>{category.name}</ThemedText>
-                </View>
+                <View 
+                  style={[
+                    styles.categoryCard, 
+                    { backgroundColor: category.color }
+                  ]}
+                />
+                <ThemedText style={styles.categoryName}>{category.name}</ThemedText>
               </Pressable>
             ))}
           </View>
@@ -313,28 +304,27 @@ const styles = StyleSheet.create({
   categoriesGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    paddingHorizontal: 8,
-    gap: 8,
+    justifyContent: 'space-around',
+    paddingHorizontal: 12,
+    gap: 6,
   },
   categoryItem: {
-    width: '25%',
+    width: '18%',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 20,
   },
   categoryCard: {
-    width: '100%',
-    aspectRatio: 1,
-    paddingVertical: 12,
-    paddingHorizontal: 12,
-    borderRadius: 12,
+    width: 65,
+    height: 65,
+    borderRadius: 32.5,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.12,
     shadowRadius: 4,
-    elevation: 1,
+    elevation: 3,
+    marginBottom: 8,
   },
   categoryImageContainer: {
     width: '100%',
@@ -347,11 +337,11 @@ const styles = StyleSheet.create({
     height: '85%',
   },
   categoryName: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: '600',
     color: '#1F2937',
     textAlign: 'center',
-    marginTop: 6,
+    width: '100%',
   },
   categoryCount: {
     fontSize: 10,
