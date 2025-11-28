@@ -24,29 +24,37 @@ interface AdBanner {
   subtitle: string;
   gradientColors: string[];
   icon: string;
+  image?: any;
 }
+
+const girlBannerImage = require('../attached_assets/generated_images/baby_girl_discount_banner.png');
+const boyBannerImage = require('../attached_assets/generated_images/baby_boy_winter_sale_banner.png');
+const megaSaleBannerImage = require('../attached_assets/generated_images/mega_kids_fashion_sale.png');
 
 const adBanners: AdBanner[] = [
   {
     id: '1',
-    title: 'Get Ready This Season',
-    subtitle: 'with TOFFYHOUSE',
+    title: 'Baby Girl Fashion',
+    subtitle: 'FLAT 40% OFF',
     gradientColors: ['#FFE5D5', '#FFDCC4'],
-    icon: '🎀',
+    icon: '👧',
+    image: girlBannerImage,
   },
   {
     id: '2',
-    title: 'Winter Wonderland',
-    subtitle: 'FLAT 40% OFF',
+    title: 'Baby Boy Fashion',
+    subtitle: 'WINTER SALE 50% OFF',
     gradientColors: ['#E0F7FA', '#B3E5FC'],
-    icon: '❄️',
+    icon: '👦',
+    image: boyBannerImage,
   },
   {
     id: '3',
-    title: 'Summer Collection',
-    subtitle: 'FLAT 50% OFF',
+    title: 'Mega Kids Sale',
+    subtitle: 'UP TO 60% OFF',
     gradientColors: ['#FFF8E1', '#FFEB3B'],
-    icon: '☀️',
+    icon: '🎉',
+    image: megaSaleBannerImage,
   },
 ];
 
@@ -168,21 +176,36 @@ export default function AgeGroupDetailScreen() {
 
   const renderAdBanner = ({ item }: { item: AdBanner }) => (
     <Pressable style={styles.adBannerContainer}>
-      <LinearGradient
-        colors={item.gradientColors as any}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.adBannerGradient}
-      >
-        <View style={styles.adBannerContent}>
-          <ThemedText style={styles.adBannerIcon}>{item.icon}</ThemedText>
-          <View style={styles.adTextContainer}>
-            <ThemedText style={styles.adTitle}>{item.title}</ThemedText>
-            <ThemedText style={styles.adSubtitle}>{item.subtitle}</ThemedText>
+      {item.image ? (
+        <Image 
+          source={item.image}
+          style={styles.bannerImage}
+          resizeMode="cover"
+        />
+      ) : (
+        <LinearGradient
+          colors={item.gradientColors as any}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.adBannerGradient}
+        >
+          <View style={styles.adBannerContent}>
+            <ThemedText style={styles.adBannerIcon}>{item.icon}</ThemedText>
+            <View style={styles.adTextContainer}>
+              <ThemedText style={styles.adTitle}>{item.title}</ThemedText>
+              <ThemedText style={styles.adSubtitle}>{item.subtitle}</ThemedText>
+            </View>
+            <Feather name="arrow-right" size={20} color="#1F2937" />
           </View>
-          <Feather name="arrow-right" size={20} color="#1F2937" />
+        </LinearGradient>
+      )}
+      {item.image && (
+        <View style={styles.bannerOverlay}>
+          <View style={styles.bannerBadge}>
+            <ThemedText style={styles.badgeText}>{item.subtitle}</ThemedText>
+          </View>
         </View>
-      </LinearGradient>
+      )}
     </Pressable>
   );
 
@@ -314,6 +337,27 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
     color: '#FF6B35',
+  },
+  bannerImage: {
+    width: '100%',
+    height: '100%',
+  },
+  bannerOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingBottom: 16,
+  },
+  bannerBadge: {
+    backgroundColor: 'rgba(255, 59, 48, 0.9)',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+  badgeText: {
+    color: '#FFFFFF',
+    fontWeight: '700',
+    fontSize: 14,
   },
   headerTop: {
     paddingHorizontal: 16,
