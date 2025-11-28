@@ -13,6 +13,7 @@ interface Section {
   description?: string;
   icon: string;
   backgroundColor: string;
+  gradientColors?: string[];
 }
 
 export default function AgeGroupDetailScreen() {
@@ -44,6 +45,35 @@ export default function AgeGroupDetailScreen() {
           icon: '✓',
           backgroundColor: '#FFF3E0',
         },
+        {
+          id: '4',
+          title: 'Occasion Wear',
+          description: 'Special occasion dresses and outfits for baby girls',
+          icon: '🎀',
+          backgroundColor: '#FFB3D9',
+          gradientColors: ['#FF69B4', '#FFB6D9'],
+        },
+        {
+          id: '5',
+          title: 'Accessories',
+          description: 'Cute accessories and add-ons for your baby',
+          icon: '🎀',
+          backgroundColor: '#D8BFD8',
+        },
+        {
+          id: '6',
+          title: 'Budget Store',
+          description: 'Affordable options for baby girl fashion',
+          icon: '🏪',
+          backgroundColor: '#FF6B6B',
+        },
+        {
+          id: '7',
+          title: 'Footwear',
+          description: 'Comfortable and stylish shoes for baby girls',
+          icon: '👟',
+          backgroundColor: '#FFB6D9',
+        },
       ]
     : [
         {
@@ -67,6 +97,35 @@ export default function AgeGroupDetailScreen() {
           icon: '✓',
           backgroundColor: '#FFF3E0',
         },
+        {
+          id: '4',
+          title: 'Occasion Wear',
+          description: 'Special occasion outfits for baby boys',
+          icon: '🎩',
+          backgroundColor: '#B3D9FF',
+          gradientColors: ['#4169E1', '#87CEEB'],
+        },
+        {
+          id: '5',
+          title: 'Accessories',
+          description: 'Cute accessories and add-ons for your baby',
+          icon: '🎀',
+          backgroundColor: '#C0C0C0',
+        },
+        {
+          id: '6',
+          title: 'Budget Store',
+          description: 'Affordable options for baby boy fashion',
+          icon: '🏪',
+          backgroundColor: '#FF6B6B',
+        },
+        {
+          id: '7',
+          title: 'Footwear',
+          description: 'Comfortable and stylish shoes for baby boys',
+          icon: '👟',
+          backgroundColor: '#FFB6D9',
+        },
       ];
 
   const toggleSection = (id: string) => {
@@ -76,37 +135,17 @@ export default function AgeGroupDetailScreen() {
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       {/* Header */}
-      <LinearGradient
-        colors={[color || '#FFE5E5', color ? color + '80' : '#FFD4E5']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.header}
-      >
+      <View style={styles.headerTop}>
         <View style={styles.headerContent}>
           <ThemedText style={styles.headerTitle}>
-            {gender === 'girls' ? '👧 ' : '👦 '}
-            {gender === 'girls' ? 'Girl' : 'Boy'} Fashion
+            {gender === 'girls' ? 'Girl' : 'Boy'} Fashion {ageRange}
           </ThemedText>
-          <ThemedText style={styles.ageRangeText}>{ageRange}</ThemedText>
         </View>
-      </LinearGradient>
+      </View>
 
       {/* Scrollable Content */}
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Promotional Banner */}
-        <View style={styles.promoBanner}>
-          <LinearGradient
-            colors={['#FFF9E6', '#FFE6CC']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.promoBannerGradient}
-          >
-            <View style={styles.promoBannerContent}>
-              <ThemedText style={styles.promoTitle}>Special Offers</ThemedText>
-              <ThemedText style={styles.promoSubtitle}>Flat 40% OFF on selected items</ThemedText>
-            </View>
-          </LinearGradient>
-        </View>
+        {/* Promotional Banner - Optional */}
 
         {/* Accordion Sections */}
         <View style={styles.sectionsContainer}>
@@ -164,52 +203,25 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  header: {
+  headerTop: {
     paddingHorizontal: 16,
-    paddingVertical: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    paddingVertical: 12,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
   },
   headerContent: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: '700',
     color: '#1F2937',
-    marginBottom: 4,
-  },
-  ageRangeText: {
-    fontSize: 16,
-    color: '#666',
-    fontWeight: '500',
   },
   content: {
     flex: 1,
     paddingHorizontal: 16,
-    paddingTop: 16,
-  },
-  promoBanner: {
-    marginBottom: 24,
-    borderRadius: 12,
-    overflow: 'hidden',
-  },
-  promoBannerGradient: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-  },
-  promoBannerContent: {
-    alignItems: 'center',
-  },
-  promoTitle: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#FF6B35',
-    marginBottom: 4,
-  },
-  promoSubtitle: {
-    fontSize: 12,
-    color: '#666',
+    paddingTop: 8,
   },
   sectionsContainer: {
     gap: 12,
