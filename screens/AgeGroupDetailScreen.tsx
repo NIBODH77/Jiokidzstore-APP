@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   carouselContainer: {
-    height: 140,
+    height: 420,
     backgroundColor: '#FFFFFF',
     paddingVertical: 8,
   },
