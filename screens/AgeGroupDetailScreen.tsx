@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, StyleSheet, Pressable, Image, ScrollView, Dimensions, FlatList } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useFocusEffect } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
@@ -63,6 +63,8 @@ export default function AgeGroupDetailScreen() {
   const insets = useSafeAreaInsets();
   const { ageRange, gender, color } = route.params || {};
   const [expandedId, setExpandedId] = useState<string | null>('1');
+  const carouselRef = useRef<FlatList>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const sections: Section[] = gender === 'girls' 
     ? [
@@ -174,6 +176,20 @@ export default function AgeGroupDetailScreen() {
     setExpandedId(expandedId === id ? null : id);
   };
 
+  // Auto-scroll carousel
+  useFocusEffect(() => {
+    const interval = setInterval(() => {
+      const nextIndex = (currentIndex + 1) % adBanners.length;
+      setCurrentIndex(nextIndex);
+      carouselRef.current?.scrollToIndex({
+        index: nextIndex,
+        animated: true,
+      });
+    }, 4000); // Change every 4 seconds
+
+    return () => clearInterval(interval);
+  });
+
   const renderAdBanner = ({ item }: { item: AdBanner }) => (
     <Pressable style={styles.adBannerContainer}>
       {item.image ? (
@@ -214,6 +230,7 @@ export default function AgeGroupDetailScreen() {
       {/* Ad Carousel at Top */}
       <View style={styles.carouselContainer}>
         <FlatList
+          ref={carouselRef}
           data={adBanners}
           renderItem={renderAdBanner}
           keyExtractor={(item) => item.id}
@@ -223,6 +240,11 @@ export default function AgeGroupDetailScreen() {
           snapToInterval={screenWidth - 32}
           decelerationRate="fast"
           contentContainerStyle={styles.carouselContent}
+          scrollEventThrottle={16}
+          onMomentumScrollEnd={(e) => {
+            const index = Math.round(e.nativeEvent.contentOffset.x / (screenWidth - 32));
+            setCurrentIndex(index);
+          }}
         />
       </View>
 
