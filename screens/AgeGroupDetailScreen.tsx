@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { ThemedText } from '@/components/ThemedText';
+import { TopHeader } from '@/components/TopHeader';
 import { Colors } from '@/constants/theme';
 
 const { width: screenWidth } = Dimensions.get('window');
@@ -226,8 +227,11 @@ export default function AgeGroupDetailScreen() {
   );
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
-      {/* Ad Carousel at Top */}
+    <View style={styles.container}>
+      {/* Top Header with Back Button */}
+      <TopHeader showBackButton={true} cartCount={0} />
+      
+      {/* Ad Carousel */}
       <View style={styles.carouselContainer}>
         <FlatList
           ref={carouselRef}
