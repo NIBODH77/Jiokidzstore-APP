@@ -135,9 +135,17 @@ export default function HomeScreen() {
                 <View 
                   style={[
                     styles.categoryCard, 
-                    { backgroundColor: category.color }
+                    { backgroundColor: category.color + '22' }
                   ]}
-                />
+                >
+                  <View style={styles.categoryImageContainer}>
+                    <Image 
+                      source={categoryImages[category.name] || require('../attached_assets/generated_images/kids_footwear_shoes.png')}
+                      style={styles.categoryImage}
+                      resizeMode="contain"
+                    />
+                  </View>
+                </View>
                 <ThemedText style={styles.categoryName}>{category.name}</ThemedText>
               </Pressable>
             ))}
@@ -304,27 +312,27 @@ const styles = StyleSheet.create({
   categoriesGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     paddingHorizontal: 12,
-    gap: 6,
+    gap: 8,
   },
   categoryItem: {
-    width: '18%',
+    width: '23%',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 18,
   },
   categoryCard: {
-    width: 65,
-    height: 65,
-    borderRadius: 32.5,
+    width: '100%',
+    aspectRatio: 1,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.12,
+    shadowOpacity: 0.08,
     shadowRadius: 4,
-    elevation: 3,
-    marginBottom: 8,
+    elevation: 2,
+    marginBottom: 6,
   },
   categoryImageContainer: {
     width: '100%',
@@ -333,11 +341,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   categoryImage: {
-    width: '85%',
-    height: '85%',
+    width: '80%',
+    height: '80%',
   },
   categoryName: {
-    fontSize: 10,
+    fontSize: 11,
     fontWeight: '600',
     color: '#1F2937',
     textAlign: 'center',
