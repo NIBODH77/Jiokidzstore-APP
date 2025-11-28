@@ -140,7 +140,7 @@ export default function HomeScreen() {
                 >
                   <View style={styles.categoryImageContainer}>
                     <Image 
-                      source={categoryImages[category.name] || require('../attached_assets/generated_images/kids_footwear_shoes.png')}
+                      source={categoryImages[category.name as keyof typeof categoryImages]}
                       style={styles.categoryImage}
                       resizeMode="contain"
                     />

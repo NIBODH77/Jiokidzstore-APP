@@ -15,14 +15,26 @@ const images = {
 
 // Category Images
 const categoryImages = {
-  'Boy Fashion': require('../attached_assets/generated_images/boys_casual_fashion_clothing.png'),
-  'Girl Fashion': require('../attached_assets/generated_images/girls_fashion_clothing.png'),
   'Footwear': require('../attached_assets/generated_images/kids_footwear_shoes.png'),
-  'Toys': require('../attached_assets/generated_images/colorful_kids_toys.png'),
-  'Diapers': require('../attached_assets/generated_images/baby_diapers_products.png'),
+  'Fashion Accessories': require('../attached_assets/generated_images/fashion_accessories_collection.png'),
+  'Disney & Marvel': require('../attached_assets/generated_images/disney_marvel_merchandise.png'),
+  'Toys & Gaming': require('../attached_assets/generated_images/toys_gaming_collection.png'),
+  'Baby Gear': require('../attached_assets/generated_images/baby_gear_products.png'),
+  'Diapering & Potty': require('../attached_assets/generated_images/diapering_potty_products.png'),
+  'Bath & Skin Care': require('../attached_assets/generated_images/bath_skin_care_products.png'),
+  'Feeding & Nursing': require('../attached_assets/generated_images/feeding_nursing_products.png'),
+  'Health & Safety': require('../attached_assets/generated_images/health_safety_products.png'),
+  'Baby Nursery': require('../attached_assets/generated_images/baby_nursery_furniture.png'),
+  'Art & Hobbies': require('../attached_assets/generated_images/art_hobbies_supplies.png'),
   'Books': require('../attached_assets/generated_images/colorful_children_books.png'),
-  'Accessories': require('../attached_assets/generated_images/kids_accessories_collection.png'),
-  'Baby Care': require('../attached_assets/generated_images/baby_care_products.png'),
+  'School Supplies': require('../attached_assets/generated_images/school_supplies_collection.png'),
+  'Sports & Outdoor': require('../attached_assets/generated_images/sports_outdoor_gear.png'),
+  'Home & Living': require('../attached_assets/generated_images/home_living_decor.png'),
+  'Birthday & Gifts': require('../attached_assets/generated_images/birthday_gifts_items.png'),
+  'Electronics & Tech': require('../attached_assets/generated_images/electronics_tech_gadgets.png'),
+  'Moms & Maternity': require('../attached_assets/generated_images/moms_maternity_products.png'),
+  'Beauty & Care': require('../attached_assets/generated_images/beauty_care_products.png'),
+  'Special Deals': require('../attached_assets/generated_images/special_deals_sale.png'),
 };
 
 export const CATEGORIES: Category[] = [
