@@ -5,6 +5,7 @@ import {
   ScrollView,
   Text,
   Dimensions,
+  Platform,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -43,50 +44,58 @@ export default function JioKidsLandingScreen() {
     <View style={styles.container}>
       <ScrollView
         style={styles.scrollView}
-        contentContainerStyle={[styles.scrollContent, { paddingBottom: 100 }]}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: 120 }]}
         showsVerticalScrollIndicator={false}
       >
         <LinearGradient
-          colors={['#FF9EB5', '#FFD4E0']}
+          colors={['#FF6B9D', '#FFA8C5', '#FFD4E0']}
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
-          style={[styles.header, { paddingTop: insets.top + 20 }]}
+          style={[styles.header, { paddingTop: insets.top + 32 }]}
         >
           <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
           <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
         </LinearGradient>
 
-        <View style={styles.statsContainer}>
-          {STATS.map((stat, index) => (
-            <View key={index} style={styles.statItem}>
-              <Text style={styles.statValue}>{stat.value}</Text>
-              <Text style={styles.statLabel}>{stat.label}</Text>
-            </View>
-          ))}
+        <View style={styles.statsWrapper}>
+          <View style={styles.statsContainer}>
+            {STATS.map((stat, index) => (
+              <View key={index} style={styles.statItem}>
+                <Text style={styles.statValue}>{stat.value}</Text>
+                <Text style={styles.statLabel}>{stat.label}</Text>
+              </View>
+            ))}
+          </View>
         </View>
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Why JioKids?</Text>
-          {FEATURES.map((feature, index) => (
-            <View key={index} style={styles.featureCard}>
-              <View style={styles.featureIndicator} />
-              <View style={styles.featureContent}>
-                <Text style={styles.featureTitle}>{feature.title}</Text>
-                <Text style={styles.featureSubtitle}>{feature.subtitle}</Text>
+          <View style={styles.featuresContainer}>
+            {FEATURES.map((feature, index) => (
+              <View key={index} style={styles.featureCard}>
+                <View style={styles.featureIndicator} />
+                <View style={styles.featureContent}>
+                  <Text style={styles.featureTitle}>{feature.title}</Text>
+                  <Text style={styles.featureSubtitle}>{feature.subtitle}</Text>
+                </View>
               </View>
-            </View>
-          ))}
+            ))}
+          </View>
         </View>
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Shop by Category</Text>
-          <View style={styles.categoriesGrid}>
-            {CATEGORIES.map((category) => (
-              <View key={category.id} style={styles.categoryItem}>
-                <Text style={styles.categoryEmoji}>{category.emoji}</Text>
-                <Text style={styles.categoryName}>{category.name}</Text>
-              </View>
-            ))}
+          <View style={styles.categoriesContainer}>
+            <View style={styles.categoriesGrid}>
+              {CATEGORIES.map((category) => (
+                <View key={category.id} style={styles.categoryItem}>
+                  <View style={styles.categoryEmojiContainer}>
+                    <Text style={styles.categoryEmoji}>{category.emoji}</Text>
+                  </View>
+                  <Text style={styles.categoryName}>{category.name}</Text>
+                </View>
+              ))}
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -97,7 +106,7 @@ export default function JioKidsLandingScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F8F9FA',
   },
   scrollView: {
     flex: 1,
@@ -106,100 +115,150 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   header: {
-    paddingHorizontal: 20,
-    paddingBottom: 40,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+    paddingHorizontal: 24,
+    paddingBottom: 50,
     alignItems: 'center',
   },
   welcomeTitle: {
-    fontSize: 28,
-    fontWeight: '700',
+    fontSize: 32,
+    fontWeight: '800',
     color: '#FFFFFF',
     textAlign: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
+    letterSpacing: 0.5,
+    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
   welcomeSubtitle: {
-    fontSize: 16,
+    fontSize: 17,
     color: '#FFFFFF',
-    opacity: 0.9,
+    opacity: 0.95,
     textAlign: 'center',
+    fontWeight: '500',
+    letterSpacing: 0.3,
+  },
+  statsWrapper: {
+    paddingHorizontal: 16,
+    marginTop: -30,
   },
   statsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    marginHorizontal: 20,
-    marginTop: -25,
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-    borderRadius: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
+    paddingVertical: 22,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.12,
+        shadowRadius: 12,
+      },
+      android: {
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.12)',
+      },
+    }),
   },
   statItem: {
     alignItems: 'center',
     flex: 1,
   },
   statValue: {
-    fontSize: 20,
-    fontWeight: '700',
+    fontSize: 22,
+    fontWeight: '800',
     color: Colors.light.primary,
+    letterSpacing: 0.5,
   },
   statLabel: {
-    fontSize: 12,
-    color: '#666666',
-    marginTop: 4,
+    fontSize: 13,
+    color: '#6B7280',
+    marginTop: 6,
+    fontWeight: '500',
   },
   section: {
-    paddingHorizontal: 20,
-    marginTop: 30,
+    paddingHorizontal: 16,
+    marginTop: 28,
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: '700',
     color: '#1F2937',
-    marginBottom: 16,
+    marginBottom: 18,
+    letterSpacing: 0.3,
+  },
+  featuresContainer: {
+    gap: 12,
   },
   featureCard: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    paddingVertical: 16,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
-    borderWidth: 1,
-    borderColor: '#F0F0F0',
+    paddingVertical: 18,
+    paddingHorizontal: 18,
+    borderRadius: 16,
+    marginBottom: 10,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 3,
+      },
+      web: {
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+      },
+    }),
   },
   featureIndicator: {
-    width: 4,
-    height: 40,
+    width: 5,
+    height: 44,
     backgroundColor: Colors.light.primary,
-    borderRadius: 2,
-    marginRight: 16,
+    borderRadius: 3,
+    marginRight: 18,
   },
   featureContent: {
     flex: 1,
   },
   featureTitle: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 17,
+    fontWeight: '700',
     color: '#1F2937',
-    marginBottom: 2,
+    marginBottom: 4,
+    letterSpacing: 0.2,
   },
   featureSubtitle: {
     fontSize: 14,
-    color: '#666666',
+    color: '#6B7280',
+    fontWeight: '400',
+  },
+  categoriesContainer: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 12,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 3,
+      },
+      web: {
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+      },
+    }),
   },
   categoriesGrid: {
     flexDirection: 'row',
@@ -207,18 +266,28 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   categoryItem: {
-    width: (SCREEN_WIDTH - 60) / 4,
+    width: (SCREEN_WIDTH - 72) / 4,
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 18,
+    paddingHorizontal: 4,
+  },
+  categoryEmojiContainer: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: '#FFF5F8',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
   },
   categoryEmoji: {
-    fontSize: 36,
-    marginBottom: 8,
+    fontSize: 28,
   },
   categoryName: {
-    fontSize: 11,
-    color: '#1F2937',
+    fontSize: 12,
+    color: '#374151',
     textAlign: 'center',
-    fontWeight: '500',
+    fontWeight: '600',
+    lineHeight: 16,
   },
 });
