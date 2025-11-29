@@ -203,6 +203,25 @@ export default function AgeGroupDetailScreen() {
     return () => clearInterval(interval);
   });
 
+  // Auto-scroll Season's Favourite carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeasonScrollIndex((prev) => (prev + 1) % 9); // 9 total cards
+    }, 3000); // Scroll every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (seasonScrollRef.current) {
+      const scrollPosition = seasonScrollIndex * 130; // 120px card + 10px gap
+      seasonScrollRef.current.scrollTo({
+        x: scrollPosition,
+        animated: true,
+      });
+    }
+  }, [seasonScrollIndex]);
+
   const renderAdBanner = ({ item }: { item: AdBanner }) => (
     <Pressable style={styles.adBannerContainer}>
       {item.image ? (
@@ -414,9 +433,11 @@ export default function AgeGroupDetailScreen() {
             </View>
           </View>
           <ScrollView 
+            ref={seasonScrollRef}
             horizontal 
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.seasonScrollContent}
+            scrollEventThrottle={16}
           >
             <Pressable style={styles.seasonCardSlide}>
               <Image 
