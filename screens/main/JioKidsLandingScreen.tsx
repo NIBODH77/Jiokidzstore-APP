@@ -184,6 +184,38 @@ export default function JioKidsLandingScreen() {
             ))}
           </View>
         </View>
+
+        <View style={styles.parentingZoneContainer}>
+          <Text style={styles.parentingZoneTitle}>Parenting Zone</Text>
+          <View style={styles.parentingZoneGrid}>
+            <Pressable 
+              style={[styles.parentingZoneCard, { backgroundColor: '#FFA500' }]}
+              onPress={() => {}}
+            >
+              <Text style={styles.parentingCardEmoji}>😴</Text>
+              <Text style={styles.parentingCardName}>Baby Names</Text>
+              <Text style={styles.parentingCardArrow}>›</Text>
+            </Pressable>
+            
+            <Pressable 
+              style={[styles.parentingZoneCard, { backgroundColor: '#4BA3FF' }]}
+              onPress={() => {}}
+            >
+              <Text style={styles.parentingCardEmoji}>🏆</Text>
+              <Text style={styles.parentingCardName}>Contests</Text>
+              <Text style={styles.parentingCardArrow}>›</Text>
+            </Pressable>
+            
+            <Pressable 
+              style={[styles.parentingZoneCard, { backgroundColor: '#FF69B4' }]}
+              onPress={() => {}}
+            >
+              <Text style={styles.parentingCardEmoji}>❓</Text>
+              <Text style={styles.parentingCardName}>Q&A</Text>
+              <Text style={styles.parentingCardArrow}>›</Text>
+            </Pressable>
+          </View>
+        </View>
       </ScrollView>
     </View>
   );
@@ -438,5 +470,51 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     lineHeight: 16,
+  },
+  parentingZoneContainer: {
+    paddingHorizontal: 20,
+    marginTop: 30,
+    marginBottom: 40,
+  },
+  parentingZoneTitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#1F2937',
+    marginBottom: 18,
+    textAlign: 'center',
+  },
+  parentingZoneGrid: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  parentingZoneCard: {
+    flex: 1,
+    paddingVertical: 24,
+    paddingHorizontal: 14,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  parentingCardEmoji: {
+    fontSize: 42,
+    marginBottom: 10,
+  },
+  parentingCardName: {
+    fontSize: 14,
+    color: '#FFFFFF',
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  parentingCardArrow: {
+    fontSize: 20,
+    color: '#FFFFFF',
+    fontWeight: '700',
   },
 });
