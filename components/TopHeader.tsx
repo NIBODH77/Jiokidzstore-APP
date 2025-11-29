@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'relative',
     borderRadius: 10,
-    backgroundColor: '#F9F9F9',
   },
   cartButton: {
     width: 48,
