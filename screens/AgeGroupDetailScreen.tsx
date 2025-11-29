@@ -794,81 +794,51 @@ export default function AgeGroupDetailScreen() {
           <ThemedText style={styles.innerwearTitle}>Everday Innerwear</ThemedText>
           <View style={styles.innerwearGrid}>
             <Pressable style={styles.innerwearCard}>
-              <LinearGradient
-                colors={['#E8F5E9', '#B3E5FC']}
-                style={styles.innerwearCardGradient}
-              >
-                <Image 
-                  source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=150&fit=crop' }}
-                  style={styles.innerwearCardImage}
-                  resizeMode="contain"
-                />
-              </LinearGradient>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=180&fit=crop' }}
+                style={styles.innerwearCardImage}
+                resizeMode="cover"
+              />
               <ThemedText style={styles.innerwearCardText}>Thermal{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.innerwearCard}>
-              <LinearGradient
-                colors={['#FFF9C4', '#FFECB3']}
-                style={styles.innerwearCardGradient}
-              >
-                <Image 
-                  source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=150&fit=crop' }}
-                  style={styles.innerwearCardImage}
-                  resizeMode="contain"
-                />
-              </LinearGradient>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=180&fit=crop' }}
+                style={styles.innerwearCardImage}
+                resizeMode="cover"
+              />
               <ThemedText style={styles.innerwearCardText}>Jhablas{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.innerwearCard}>
-              <LinearGradient
-                colors={['#FCE4EC', '#F8BBD9']}
-                style={styles.innerwearCardGradient}
-              >
-                <Image 
-                  source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=150&fit=crop' }}
-                  style={styles.innerwearCardImage}
-                  resizeMode="contain"
-                />
-              </LinearGradient>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=180&fit=crop' }}
+                style={styles.innerwearCardImage}
+                resizeMode="cover"
+              />
               <ThemedText style={styles.innerwearCardText}>Slips & Camisoles{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.innerwearCard}>
-              <LinearGradient
-                colors={['#FFCDD2', '#EF9A9A']}
-                style={styles.innerwearCardGradient}
-              >
-                <Image 
-                  source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=150&fit=crop' }}
-                  style={styles.innerwearCardImage}
-                  resizeMode="contain"
-                />
-              </LinearGradient>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=180&fit=crop' }}
+                style={styles.innerwearCardImage}
+                resizeMode="cover"
+              />
               <ThemedText style={styles.innerwearCardText}>Innerwear sets{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.innerwearCard}>
-              <LinearGradient
-                colors={['#E1F5FE', '#B3E5FC']}
-                style={styles.innerwearCardGradient}
-              >
-                <Image 
-                  source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=150&h=150&fit=crop' }}
-                  style={styles.innerwearCardImage}
-                  resizeMode="contain"
-                />
-              </LinearGradient>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=150&h=180&fit=crop' }}
+                style={styles.innerwearCardImage}
+                resizeMode="cover"
+              />
               <ThemedText style={styles.innerwearCardText}>Bloomers{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.innerwearCard}>
-              <LinearGradient
-                colors={['#F3E5F5', '#E1BEE7']}
-                style={styles.innerwearCardGradient}
-              >
-                <Image 
-                  source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=150&fit=crop' }}
-                  style={styles.innerwearCardImage}
-                  resizeMode="contain"
-                />
-              </LinearGradient>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=180&fit=crop' }}
+                style={styles.innerwearCardImage}
+                resizeMode="cover"
+              />
               <ThemedText style={styles.innerwearCardText}>Multi packs{'>'}</ThemedText>
             </Pressable>
           </View>
@@ -1503,15 +1473,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: '#FAFAFA',
   },
-  innerwearCardGradient: {
-    width: '100%',
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   innerwearCardImage: {
-    width: '80%',
-    height: '80%',
+    width: '100%',
+    height: 120,
+    backgroundColor: '#F0F0F0',
   },
   innerwearCardText: {
     fontSize: 11,
