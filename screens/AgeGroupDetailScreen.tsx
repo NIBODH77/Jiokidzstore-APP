@@ -865,9 +865,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   adBannerContainer: {
-    width: screenWidth - 32,
+    width: screenWidth,
     height: 240,
-    marginHorizontal: 8,
+    marginHorizontal: 0,
     borderRadius: 0,
     overflow: 'hidden',
   },
