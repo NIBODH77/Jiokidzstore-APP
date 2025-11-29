@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   rightSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 3,
+    gap: 1,
   },
   iconButton: {
     width: 40,
