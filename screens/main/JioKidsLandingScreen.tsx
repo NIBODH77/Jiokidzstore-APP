@@ -69,40 +69,36 @@ export default function JioKidsLandingScreen() {
         end={{ x: 1, y: 1 }}
         style={[styles.header, { paddingTop: insets.top + 16 }]}
       >
-        <View style={styles.headerContent}>
-          <View style={styles.headerTextSection}>
-            <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
-            <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
-          </View>
-          
-          <View style={styles.headerIcons}>
-            <Pressable 
-              style={styles.headerIconButton} 
-              hitSlop={8}
-              onPress={() => navigation.navigate('Wishlist' as never)}
-            >
-              <Feather name="heart" size={24} color="#FFFFFF" strokeWidth={1} />
-            </Pressable>
+        <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
+        <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
+        
+        <View style={styles.headerIcons}>
+          <Pressable 
+            style={styles.headerIconButton} 
+            hitSlop={12}
+            onPress={() => navigation.navigate('Wishlist' as never)}
+          >
+            <Feather name="heart" size={26} color="#FFFFFF" strokeWidth={1} />
+          </Pressable>
 
-            <Pressable 
-              style={styles.headerIconButton} 
-              hitSlop={8}
-              onPress={() => navigation.navigate('Profile' as never)}
-            >
-              <Feather name="user" size={24} color="#FFFFFF" strokeWidth={1} />
-            </Pressable>
-            
-            <Pressable style={styles.headerCartButton} hitSlop={8}>
-              <Feather name="shopping-cart" size={24} color="#FFFFFF" strokeWidth={1} />
-              {cartCount > 0 && (
-                <View style={styles.cartBadge}>
-                  <View style={styles.cartCount}>
-                    <Text style={styles.cartCountText}>{cartCount}</Text>
-                  </View>
+          <Pressable 
+            style={styles.headerIconButton} 
+            hitSlop={12}
+            onPress={() => navigation.navigate('Profile' as never)}
+          >
+            <Feather name="user" size={26} color="#FFFFFF" strokeWidth={1} />
+          </Pressable>
+          
+          <Pressable style={styles.headerCartButton} hitSlop={12}>
+            <Feather name="shopping-cart" size={26} color="#FFFFFF" strokeWidth={1} />
+            {cartCount > 0 && (
+              <View style={styles.cartBadge}>
+                <View style={styles.cartCount}>
+                  <Text style={styles.cartCountText}>{cartCount}</Text>
                 </View>
-              )}
-            </Pressable>
-          </View>
+              </View>
+            )}
+          </Pressable>
         </View>
       </LinearGradient>
 
@@ -171,16 +167,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
   },
-  headerContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    paddingTop: 8,
-  },
-  headerTextSection: {
-    flex: 1,
-    paddingRight: 16,
-  },
   welcomeTitle: {
     fontSize: 28,
     fontWeight: '700',
@@ -193,26 +179,29 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     opacity: 0.9,
     textAlign: 'left',
+    marginBottom: 16,
   },
   headerIcons: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 3,
-    flexShrink: 0,
+    gap: 12,
+    justifyContent: 'flex-start',
   },
   headerIconButton: {
-    width: 40,
-    height: 40,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative',
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
   },
   headerCartButton: {
-    width: 40,
-    height: 40,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative',
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
   },
   cartBadge: {
     position: 'absolute',
