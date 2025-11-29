@@ -3,6 +3,7 @@ import { StyleSheet, View, TextInput, Pressable, FlatList, Text, Image, ScrollVi
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
+import { useNavigation } from '@react-navigation/native';
 
 const TRENDING_SEARCHES = ['Toys', 'Girl Clothes', 'Baby Diapers', 'Boy Shoes'];
 
@@ -13,6 +14,9 @@ interface ModernSearchBarProps {
   onMicPress?: () => void;
   onLocationPress?: () => void;
   onNotificationPress?: () => void;
+  onCartPress?: () => void;
+  onWishlistPress?: () => void;
+  onProfilePress?: () => void;
 }
 
 export function ModernSearchBar({ 
@@ -21,8 +25,12 @@ export function ModernSearchBar({
   products = [],
   onMicPress,
   onLocationPress,
-  onNotificationPress
+  onNotificationPress,
+  onCartPress,
+  onWishlistPress,
+  onProfilePress
 }: ModernSearchBarProps) {
+  const navigation = useNavigation();
   const [text, setText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [showResults, setShowResults] = useState(false);
@@ -56,7 +64,7 @@ export function ModernSearchBar({
       end={{ x: 1, y: 1 }}
       style={styles.container}
     >
-      {/* Top Row: Logo and Notification Icon */}
+      {/* Top Row: Logo, Location, and Icons */}
       <View style={styles.topRow}>
         <View style={styles.logoSection}>
           <Image
@@ -69,9 +77,20 @@ export function ModernSearchBar({
             <Text style={styles.locationText}>Delhi, India</Text>
           </View>
         </View>
-        <Pressable style={styles.notificationButton} onPress={onNotificationPress}>
-          <Feather name="bell" size={20} color="#FFFFFF" />
-        </Pressable>
+        <View style={styles.iconsContainer}>
+          <Pressable style={styles.headerIconBtn} onPress={onCartPress}>
+            <Feather name="shopping-cart" size={20} color="#FFFFFF" />
+          </Pressable>
+          <Pressable style={styles.headerIconBtn} onPress={onNotificationPress}>
+            <Feather name="bell" size={20} color="#FFFFFF" />
+          </Pressable>
+          <Pressable style={styles.headerIconBtn} onPress={onWishlistPress}>
+            <Feather name="heart" size={20} color="#FFFFFF" />
+          </Pressable>
+          <Pressable style={styles.headerIconBtn} onPress={onProfilePress}>
+            <Feather name="user" size={20} color="#FFFFFF" />
+          </Pressable>
+        </View>
       </View>
 
       {/* Search Box */}
@@ -183,11 +202,16 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#FFFFFF',
   },
-  notificationButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#FFB6D9',
+  iconsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  headerIconBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
     justifyContent: 'center',
     alignItems: 'center',
   },
