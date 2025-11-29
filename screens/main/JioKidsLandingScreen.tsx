@@ -18,8 +18,9 @@ import { Colors } from '@/constants/theme';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 import type { RootState } from '@/store/store';
 import { selectCartTotalItems } from '@/store/cartSlice';
+import { categoryImages } from '@/data/mockData';
 
-const categoryImages = {
+const localCategoryImages = {
   'Boy Fashion': require('../../attached_assets/generated_images/boys_casual_fashion_clothing.png'),
   'Girl Fashion': require('../../attached_assets/generated_images/girls_fashion_clothing.png'),
   'Footwear': require('../../attached_assets/generated_images/kids_footwear_shoes.png'),
@@ -54,6 +55,29 @@ const CATEGORIES = [
   { id: '6', name: 'Books', emoji: '📚', bgColor: '#FFEBEE', itemCount: 201 },
   { id: '7', name: 'Accessories', emoji: '🎒', bgColor: '#E0F7FA', itemCount: 156 },
   { id: '8', name: 'Baby Care', emoji: '🐤', bgColor: '#FFF8E1', itemCount: 234 },
+];
+
+const COMPREHENSIVE_CATEGORIES = [
+  { id: '1', name: 'Footwear', image: categoryImages['Footwear'] },
+  { id: '2', name: 'Fashion Accessories', image: categoryImages['Fashion Accessories'] },
+  { id: '3', name: 'Disney & Marvel', image: categoryImages['Disney & Marvel'] },
+  { id: '4', name: 'Toys & Gaming', image: categoryImages['Toys & Gaming'] },
+  { id: '5', name: 'Baby Gear', image: categoryImages['Baby Gear'] },
+  { id: '6', name: 'Diapering & Potty', image: categoryImages['Diapering & Potty'] },
+  { id: '7', name: 'Bath & Skin Care', image: categoryImages['Bath & Skin Care'] },
+  { id: '8', name: 'Feeding & Nursing', image: categoryImages['Feeding & Nursing'] },
+  { id: '9', name: 'Health & Safety', image: categoryImages['Health & Safety'] },
+  { id: '10', name: 'Baby Nursery', image: categoryImages['Baby Nursery'] },
+  { id: '11', name: 'Art & Hobbies', image: categoryImages['Art & Hobbies'] },
+  { id: '12', name: 'Books', image: categoryImages['Books'] },
+  { id: '13', name: 'School Supplies', image: categoryImages['School Supplies'] },
+  { id: '14', name: 'Sports & Outdoor', image: categoryImages['Sports & Outdoor'] },
+  { id: '15', name: 'Home & Living', image: categoryImages['Home & Living'] },
+  { id: '16', name: 'Birthday & Gifts', image: categoryImages['Birthday & Gifts'] },
+  { id: '17', name: 'Electronics & Tech', image: categoryImages['Electronics & Tech'] },
+  { id: '18', name: 'Moms & Maternity', image: categoryImages['Moms & Maternity'] },
+  { id: '19', name: 'Beauty & Care', image: categoryImages['Beauty & Care'] },
+  { id: '20', name: 'Special Deals', image: categoryImages['Special Deals'] },
 ];
 
 export default function JioKidsLandingScreen() {
@@ -214,6 +238,27 @@ export default function JioKidsLandingScreen() {
               <Text style={styles.parentingCardName}>Q&A</Text>
               <Text style={styles.parentingCardArrow}>›</Text>
             </Pressable>
+          </View>
+        </View>
+
+        <View style={styles.allCategoriesSection}>
+          <View style={styles.allCategoriesHeader}>
+            <Text style={styles.allCategoriesTitle}>Shop by Category</Text>
+            <Pressable>
+              <Text style={styles.viewAllLink}>View All</Text>
+            </Pressable>
+          </View>
+          <View style={styles.allCategoriesGrid}>
+            {COMPREHENSIVE_CATEGORIES.map((category) => (
+              <Pressable key={category.id} style={styles.allCategoryCard} onPress={() => {}}>
+                <Image 
+                  source={category.image}
+                  style={styles.allCategoryImage}
+                  resizeMode="cover"
+                />
+                <Text style={styles.allCategoryName}>{category.name}</Text>
+              </Pressable>
+            ))}
           </View>
         </View>
       </ScrollView>
@@ -516,5 +561,53 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#FFFFFF',
     fontWeight: '700',
+  },
+  allCategoriesSection: {
+    paddingHorizontal: 20,
+    marginTop: 30,
+    marginBottom: 40,
+  },
+  allCategoriesHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 18,
+  },
+  allCategoriesTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#1F2937',
+  },
+  viewAllLink: {
+    fontSize: 13,
+    color: '#FF6B9D',
+    fontWeight: '600',
+  },
+  allCategoriesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  allCategoryCard: {
+    width: (SCREEN_WIDTH - 52) / 2.5,
+    aspectRatio: 1,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#F5F5F5',
+    justifyContent: 'flex-end',
+    paddingBottom: 10,
+  },
+  allCategoryImage: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  allCategoryName: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#1F2937',
+    textAlign: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    paddingVertical: 8,
+    zIndex: 1,
   },
 });
