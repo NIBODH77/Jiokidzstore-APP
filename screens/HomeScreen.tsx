@@ -1495,7 +1495,7 @@ const styles = StyleSheet.create({
   },
   coldWeatherPromoCard: {
     width: (Dimensions.get('window').width - 44) / 2.8,
-    height: 280,
+    height: 240,
     borderRadius: 16,
     overflow: 'hidden',
     position: 'relative',
@@ -1562,7 +1562,7 @@ const styles = StyleSheet.create({
   },
   coldWeatherCardImage: {
     width: '100%',
-    height: 200,
+    height: 160,
   },
   coldWeatherCardLabel: {
     backgroundColor: '#FFFFFF',
