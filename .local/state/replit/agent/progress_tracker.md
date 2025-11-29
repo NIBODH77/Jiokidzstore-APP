@@ -11,3 +11,4 @@
 [x] 11. Improved landing page with better margins, padding, and professional styling
 [x] 12. Changed Shop by Category from circular icons to FirstCry-style cards with background colors and item counts
 [x] 13. Fixed web preview - Changed from Expo mobile mode to web mode on port 5000
+[x] 14. Changed application to run on port 8080 as requested
