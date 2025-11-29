@@ -716,22 +716,23 @@ const styles = StyleSheet.create({
     height: 280,
   },
   trendingStoreSection: {
-    marginVertical: 24,
+    marginTop: 1,
+    marginBottom: 24,
     paddingVertical: 16,
     backgroundColor: '#FFFFFF',
   },
   trendingStoreScroll: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 0,
     gap: 16,
   },
   trendingStoreCard: {
-    width: Dimensions.get('window').width - 32,
+    width: Dimensions.get('window').width,
     alignItems: 'center',
   },
   trendingStoreCardImage: {
-    width: Dimensions.get('window').width - 48,
-    height: (Dimensions.get('window').width - 48) * 0.85,
-    borderRadius: 20,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').width * 0.85,
+    borderRadius: 0,
     marginBottom: 12,
   },
   trendingStoreCardTitle: {
