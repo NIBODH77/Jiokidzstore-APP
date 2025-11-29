@@ -669,25 +669,26 @@ const styles = StyleSheet.create({
     marginTop: -1,
   },
   trendingStoreSection: {
-    marginTop: 30,
-    paddingVertical: 20,
+    marginTop: 40,
+    paddingVertical: 24,
   },
   trendingStoreTitleRow: {
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 24,
+    paddingHorizontal: 16,
   },
   trendingStoreTitle: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: '800',
   },
   trendingText: {
     color: '#FF6B35',
     fontWeight: '800',
-    letterSpacing: 1,
+    letterSpacing: 2,
   },
   storeText: {
     color: '#4A90A4',
-    fontWeight: '600',
+    fontWeight: '700',
     fontStyle: 'italic',
   },
   trendingStoreScrollContent: {
