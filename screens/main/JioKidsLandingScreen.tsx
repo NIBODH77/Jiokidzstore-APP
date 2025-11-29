@@ -75,14 +75,6 @@ export default function JioKidsLandingScreen() {
           </View>
           
           <View style={styles.headerRight}>
-            {/* Notification */}
-            <Pressable style={styles.headerIconBtn} hitSlop={10}>
-              <Feather name="bell" size={24} color="#FFFFFF" strokeWidth={1.5} />
-              <View style={styles.notificationBadge}>
-                <View style={styles.badgeDot} />
-              </View>
-            </Pressable>
-            
             {/* Wishlist */}
             <Pressable 
               style={styles.headerIconBtn} 
@@ -90,6 +82,14 @@ export default function JioKidsLandingScreen() {
               onPress={() => navigation.navigate('Wishlist' as never)}
             >
               <Feather name="heart" size={24} color="#FFFFFF" strokeWidth={1.5} />
+            </Pressable>
+            
+            {/* Notification */}
+            <Pressable style={styles.headerIconBtn} hitSlop={10}>
+              <Feather name="bell" size={24} color="#FFFFFF" strokeWidth={1.5} />
+              <View style={styles.notificationBadge}>
+                <View style={styles.badgeDot} />
+              </View>
             </Pressable>
 
             {/* Profile */}
