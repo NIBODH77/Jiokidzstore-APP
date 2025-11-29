@@ -12,8 +12,12 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Feather } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
 import { Colors } from '@/constants/theme';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
+import type { RootState } from '@/store/store';
+import { selectCartTotalItems } from '@/store/cartSlice';
 
 const categoryImages = {
   'Boy Fashion': require('../../attached_assets/generated_images/boys_casual_fashion_clothing.png'),
@@ -55,6 +59,7 @@ const CATEGORIES = [
 export default function JioKidsLandingScreen() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
+  const cartCount = useSelector((state: RootState) => selectCartTotalItems(state.cart));
 
   return (
     <View style={styles.container}>
@@ -64,8 +69,41 @@ export default function JioKidsLandingScreen() {
         end={{ x: 1, y: 1 }}
         style={[styles.header, { paddingTop: insets.top + 16 }]}
       >
-        <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
-        <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
+        <View style={styles.headerContent}>
+          <View>
+            <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
+            <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
+          </View>
+          
+          <View style={styles.headerIcons}>
+            <Pressable 
+              style={styles.headerIconButton} 
+              hitSlop={8}
+              onPress={() => navigation.navigate('Wishlist' as never)}
+            >
+              <Feather name="heart" size={24} color="#FFFFFF" strokeWidth={1} />
+            </Pressable>
+
+            <Pressable 
+              style={styles.headerIconButton} 
+              hitSlop={8}
+              onPress={() => navigation.navigate('Profile' as never)}
+            >
+              <Feather name="user" size={24} color="#FFFFFF" strokeWidth={1} />
+            </Pressable>
+            
+            <Pressable style={styles.headerCartButton} hitSlop={8}>
+              <Feather name="shopping-cart" size={24} color="#FFFFFF" strokeWidth={1} />
+              {cartCount > 0 && (
+                <View style={styles.cartBadge}>
+                  <View style={styles.cartCount}>
+                    <Text style={styles.cartCountText}>{cartCount}</Text>
+                  </View>
+                </View>
+              )}
+            </Pressable>
+          </View>
+        </View>
       </LinearGradient>
 
       <ScrollView
@@ -130,22 +168,63 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 20,
     paddingBottom: 24,
-    alignItems: 'center',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
+  },
+  headerContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   welcomeTitle: {
     fontSize: 28,
     fontWeight: '700',
     color: '#FFFFFF',
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: 8,
   },
   welcomeSubtitle: {
     fontSize: 16,
     color: '#FFFFFF',
     opacity: 0.9,
-    textAlign: 'center',
+    textAlign: 'left',
+  },
+  headerIcons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 1,
+  },
+  headerIconButton: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+  },
+  headerCartButton: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+  },
+  cartBadge: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+  },
+  cartCount: {
+    width: 20,
+    height: 20,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cartCountText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#FF6B9D',
   },
   scrollView: {
     flex: 1,
