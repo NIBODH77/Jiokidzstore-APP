@@ -312,6 +312,100 @@ export default function JioKidsLandingScreen() {
           </ScrollView>
         </View>
 
+        {/* Season's Special Section */}
+        <View style={styles.seasonsSpecialSection}>
+          <View style={styles.seasonsSpecialHeader}>
+            <View style={styles.seasonsSpecialTitleContainer}>
+              <Text style={styles.seasonsSpecialTitle}>Season's Special</Text>
+              <Text style={styles.seasonsSpecialSubtitle}>Pick Your Winter Wardrobe Refresh Pieces</Text>
+            </View>
+            <View style={styles.startingPriceContainer}>
+              <Text style={styles.startingText}>STARTING</Text>
+              <Text style={styles.priceText}>₹199</Text>
+            </View>
+          </View>
+          
+          <View style={styles.seasonsSpecialGrid}>
+            {/* Row 1 */}
+            <View style={styles.seasonsRow}>
+              <Pressable style={styles.seasonsCardLarge} onPress={() => {}}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=400&h=500&fit=crop' }}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <Text style={styles.seasonsCardLabelText}>Hoodies</Text>
+                  <Text style={styles.seasonsCardArrow}>›</Text>
+                </View>
+              </Pressable>
+              <Pressable style={styles.seasonsCardSmall} onPress={() => {}}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop' }}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <Text style={styles.seasonsCardLabelText}>Sweatshirts</Text>
+                  <Text style={styles.seasonsCardArrow}>›</Text>
+                </View>
+              </Pressable>
+            </View>
+
+            {/* Row 2 */}
+            <View style={styles.seasonsRow}>
+              <Pressable style={styles.seasonsCardSmall} onPress={() => {}}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400&h=300&fit=crop' }}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <Text style={styles.seasonsCardLabelText}>Winter Sets</Text>
+                  <Text style={styles.seasonsCardArrow}>›</Text>
+                </View>
+              </Pressable>
+              <Pressable style={styles.seasonsCardLarge} onPress={() => {}}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=500&fit=crop' }}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <Text style={styles.seasonsCardLabelText}>Pullovers</Text>
+                  <Text style={styles.seasonsCardArrow}>›</Text>
+                </View>
+              </Pressable>
+            </View>
+
+            {/* Row 3 */}
+            <View style={styles.seasonsRow}>
+              <Pressable style={styles.seasonsCardLarge} onPress={() => {}}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1502451885777-c0cbbb49c990?w=400&h=500&fit=crop' }}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <Text style={styles.seasonsCardLabelText}>Jackets</Text>
+                  <Text style={styles.seasonsCardArrow}>›</Text>
+                </View>
+              </Pressable>
+              <Pressable style={styles.seasonsCardSmall} onPress={() => {}}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?w=400&h=300&fit=crop' }}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <Text style={styles.seasonsCardLabelText}>Sweaters</Text>
+                  <Text style={styles.seasonsCardArrow}>›</Text>
+                </View>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+
         <View style={styles.allCategoriesSection}>
           <View style={styles.allCategoriesHeader}>
             <Text style={styles.allCategoriesTitle}>Shop by Category</Text>
@@ -751,6 +845,98 @@ const styles = StyleSheet.create({
   trendingStoreImage: {
     width: '100%',
     height: '100%',
+  },
+  seasonsSpecialSection: {
+    marginTop: 30,
+    paddingHorizontal: 16,
+    backgroundColor: '#FFFFFF',
+  },
+  seasonsSpecialHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 16,
+  },
+  seasonsSpecialTitleContainer: {
+    flex: 1,
+  },
+  seasonsSpecialTitle: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#1A1A1A',
+    marginBottom: 4,
+  },
+  seasonsSpecialSubtitle: {
+    fontSize: 13,
+    color: '#666666',
+    fontWeight: '400',
+  },
+  startingPriceContainer: {
+    alignItems: 'flex-end',
+  },
+  startingText: {
+    fontSize: 11,
+    color: '#1A1A1A',
+    fontWeight: '600',
+    letterSpacing: 0.5,
+  },
+  priceText: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: '#1A237E',
+  },
+  seasonsSpecialGrid: {
+    gap: 10,
+  },
+  seasonsRow: {
+    flexDirection: 'row',
+    gap: 10,
+    marginBottom: 10,
+  },
+  seasonsCardLarge: {
+    flex: 1.2,
+    height: 200,
+    borderRadius: 16,
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  seasonsCardSmall: {
+    flex: 0.8,
+    height: 200,
+    borderRadius: 16,
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  seasonsCardImage: {
+    width: '100%',
+    height: '100%',
+  },
+  seasonsCardLabel: {
+    position: 'absolute',
+    bottom: 12,
+    left: 12,
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderRadius: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  seasonsCardLabelText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#1A1A1A',
+  },
+  seasonsCardArrow: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1A1A1A',
+    marginLeft: 2,
   },
   allCategoriesSection: {
     paddingHorizontal: 20,
