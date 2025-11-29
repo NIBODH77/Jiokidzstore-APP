@@ -210,7 +210,7 @@ export default function JioKidsLandingScreen() {
         </View>
 
         <LinearGradient
-          colors={['#A8E6E1', '#B8F0E8', '#C8F5ED']}
+          colors={['#B8F0E8', '#D4F5ED', '#E8FAF5']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.parentingZoneContainer}
@@ -218,34 +218,47 @@ export default function JioKidsLandingScreen() {
           <View style={styles.parentingZoneTitleBadge}>
             <Text style={styles.parentingZoneTitle}>Parenting Zone</Text>
           </View>
-          <View style={styles.parentingZoneGrid}>
-            <Pressable 
-              style={[styles.parentingZoneCard, { backgroundColor: '#FFA500' }]}
-              onPress={() => {}}
-            >
-              <Text style={styles.parentingCardEmoji}>😴</Text>
-              <Text style={styles.parentingCardName}>Baby Names</Text>
-              <Text style={styles.parentingCardArrow}>›</Text>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.parentingZoneScrollContent}
+          >
+            <Pressable style={styles.parentingZoneCard} onPress={() => {}}>
+              <View style={[styles.parentingCardImageContainer, { backgroundColor: '#FFA64D' }]}>
+                <Text style={styles.parentingCardImage}>👶💤</Text>
+              </View>
+              <View style={styles.parentingCardLabelRow}>
+                <Text style={styles.parentingCardName}>Baby Names</Text>
+                <View style={styles.parentingCardArrowCircle}>
+                  <Text style={styles.parentingCardArrow}>›</Text>
+                </View>
+              </View>
             </Pressable>
             
-            <Pressable 
-              style={[styles.parentingZoneCard, { backgroundColor: '#4BA3FF' }]}
-              onPress={() => {}}
-            >
-              <Text style={styles.parentingCardEmoji}>🏆</Text>
-              <Text style={styles.parentingCardName}>Contests</Text>
-              <Text style={styles.parentingCardArrow}>›</Text>
+            <Pressable style={styles.parentingZoneCard} onPress={() => {}}>
+              <View style={[styles.parentingCardImageContainer, { backgroundColor: '#4BA3FF' }]}>
+                <Text style={styles.parentingCardImage}>🏆</Text>
+              </View>
+              <View style={styles.parentingCardLabelRow}>
+                <Text style={styles.parentingCardName}>Contests</Text>
+                <View style={styles.parentingCardArrowCircle}>
+                  <Text style={styles.parentingCardArrow}>›</Text>
+                </View>
+              </View>
             </Pressable>
             
-            <Pressable 
-              style={[styles.parentingZoneCard, { backgroundColor: '#FF69B4' }]}
-              onPress={() => {}}
-            >
-              <Text style={styles.parentingCardEmoji}>❓</Text>
-              <Text style={styles.parentingCardName}>Q&A</Text>
-              <Text style={styles.parentingCardArrow}>›</Text>
+            <Pressable style={styles.parentingZoneCard} onPress={() => {}}>
+              <View style={[styles.parentingCardImageContainer, { backgroundColor: '#FF69B4' }]}>
+                <Text style={styles.parentingCardImage}>💬❓</Text>
+              </View>
+              <View style={styles.parentingCardLabelRow}>
+                <Text style={styles.parentingCardName}>Q&A</Text>
+                <View style={styles.parentingCardArrowCircle}>
+                  <Text style={styles.parentingCardArrow}>›</Text>
+                </View>
+              </View>
             </Pressable>
-          </View>
+          </ScrollView>
         </LinearGradient>
 
         <View style={styles.allCategoriesSection}>
@@ -543,13 +556,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
     marginTop: 30,
     marginBottom: 0,
-    paddingVertical: 30,
+    paddingVertical: 24,
     paddingHorizontal: 0,
   },
   parentingZoneTitleBadge: {
     backgroundColor: '#FFFFFF',
-    paddingVertical: 12,
-    paddingHorizontal: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 28,
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
@@ -562,47 +575,60 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   parentingZoneTitle: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '700',
     color: '#0B5B5E',
     textAlign: 'center',
   },
-  parentingZoneGrid: {
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    gap: 16,
+  parentingZoneScrollContent: {
     paddingHorizontal: 16,
+    gap: 14,
   },
   parentingZoneCard: {
-    width: '100%',
-    paddingVertical: 24,
-    paddingHorizontal: 20,
-    borderRadius: 24,
+    width: SCREEN_WIDTH * 0.42,
+    alignItems: 'center',
+  },
+  parentingCardImageContainer: {
+    width: SCREEN_WIDTH * 0.40,
+    height: SCREEN_WIDTH * 0.36,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.12,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  parentingCardImage: {
+    fontSize: 60,
+  },
+  parentingCardLabelRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 6,
-  },
-  parentingCardEmoji: {
-    fontSize: 52,
-    marginRight: 20,
+    justifyContent: 'center',
+    gap: 6,
   },
   parentingCardName: {
-    fontSize: 18,
-    color: '#FFFFFF',
-    fontWeight: '700',
-    textAlign: 'left',
-    flex: 1,
+    fontSize: 15,
+    color: '#1F2937',
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  parentingCardArrowCircle: {
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    backgroundColor: '#4BA3FF',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   parentingCardArrow: {
-    fontSize: 24,
+    fontSize: 14,
     color: '#FFFFFF',
     fontWeight: '700',
-    marginLeft: 10,
+    marginTop: -1,
   },
   allCategoriesSection: {
     paddingHorizontal: 20,
