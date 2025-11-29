@@ -304,14 +304,14 @@ export default function HomeScreen() {
             <Text style={styles.decorativeSnowflakeLeft}>❄</Text>
             <View style={styles.trendingTitleContainer}>
               <View style={styles.trendingLettersRow}>
-                <Text style={[styles.trendingLetter, { color: '#87CEEB' }]}>T</Text>
-                <Text style={[styles.trendingLetter, { color: '#FFB6C1' }]}>R</Text>
-                <Text style={[styles.trendingLetter, { color: '#98D8C8' }]}>E</Text>
-                <Text style={[styles.trendingLetter, { color: '#F7CAC9' }]}>N</Text>
-                <Text style={[styles.trendingLetter, { color: '#FFD700' }]}>D</Text>
-                <Text style={[styles.trendingLetter, { color: '#DDA0DD' }]}>I</Text>
-                <Text style={[styles.trendingLetter, { color: '#F0E68C' }]}>N</Text>
-                <Text style={[styles.trendingLetter, { color: '#FFB347' }]}>G</Text>
+                <Text style={[styles.trendingLetter, { color: '#8B4513' }]}>T</Text>
+                <Text style={[styles.trendingLetter, { color: '#A0522D' }]}>R</Text>
+                <Text style={[styles.trendingLetter, { color: '#CD853F' }]}>E</Text>
+                <Text style={[styles.trendingLetter, { color: '#D2691E' }]}>N</Text>
+                <Text style={[styles.trendingLetter, { color: '#DEB887' }]}>D</Text>
+                <Text style={[styles.trendingLetter, { color: '#F4A460' }]}>I</Text>
+                <Text style={[styles.trendingLetter, { color: '#FFD4A3' }]}>N</Text>
+                <Text style={[styles.trendingLetter, { color: '#FFDAB9' }]}>G</Text>
                 <Text style={styles.storeText}>Store</Text>
               </View>
               <View style={styles.storeUnderline} />
@@ -322,9 +322,9 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.trendingStoreScroll}
-            scrollEnabled={false}
+            scrollEnabled={true}
             decelerationRate="fast"
-            snapToInterval={Dimensions.get('window').width * 0.82 + 12}
+            snapToInterval={Dimensions.get('window').width + 16}
           >
             <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
               <Image 
@@ -729,7 +729,8 @@ const styles = StyleSheet.create({
     height: 280,
   },
   trendingStoreSection: {
-    marginTop: 32,
+    marginTop: 24,
+    marginBottom: 24,
     paddingVertical: 20,
     backgroundColor: '#FFFFFF',
   },
@@ -741,16 +742,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   decorativeSnowflakeLeft: {
-    fontSize: 16,
-    color: '#87CEEB',
+    fontSize: 18,
+    color: '#B0E0E6',
     marginRight: 12,
-    opacity: 0.7,
+    opacity: 0.8,
   },
   decorativeSnowflakeRight: {
-    fontSize: 16,
-    color: '#87CEEB',
+    fontSize: 18,
+    color: '#B0E0E6',
     marginLeft: 12,
-    opacity: 0.7,
+    opacity: 0.8,
   },
   trendingTitleContainer: {
     alignItems: 'center',
@@ -760,33 +761,35 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
   },
   trendingLetter: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: '800',
-    letterSpacing: 1,
+    letterSpacing: 1.5,
   },
   storeText: {
-    fontSize: 26,
-    color: '#5BA4A4',
+    fontSize: 28,
+    color: '#20B2AA',
     fontWeight: '500',
     fontStyle: 'italic',
-    marginLeft: 4,
+    marginLeft: 6,
   },
   storeUnderline: {
-    width: 60,
-    height: 2,
-    backgroundColor: '#5BA4A4',
-    marginTop: 2,
+    width: 65,
+    height: 2.5,
+    backgroundColor: '#20B2AA',
+    marginTop: 3,
     alignSelf: 'flex-end',
     marginRight: 0,
     borderRadius: 1,
   },
   trendingStoreScroll: {
-    paddingHorizontal: 16,
-    gap: 12,
+    paddingHorizontal: 0,
+    gap: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
   },
   trendingStoreCard: {
-    width: Dimensions.get('window').width * 0.82,
-    height: Dimensions.get('window').width * 1.1,
+    width: Dimensions.get('window').width - 32,
+    height: Dimensions.get('window').width * 1.35,
     borderRadius: 20,
     overflow: 'hidden',
     shadowColor: '#000',
@@ -794,6 +797,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 8,
     elevation: 6,
+    backgroundColor: '#FFFFFF',
   },
   trendingStoreCardImage: {
     width: '100%',
