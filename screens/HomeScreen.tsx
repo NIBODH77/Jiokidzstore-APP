@@ -82,7 +82,7 @@ export default function HomeScreen() {
   // Callback: Wishlist toggle with storage sync
   const handleWishlistToggle = useCallback(async (productId: string) => {
     const isCurrentlyWishlisted = wishlistedItems.has(productId);
-    
+
     try {
       if (isCurrentlyWishlisted) {
         await wishlistStorage.removeFromWishlist(productId);
@@ -446,7 +446,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   categoryItem: {
-    width: '23%',
+    width: '18%', // Changed from '23%'
     alignItems: 'center',
     marginBottom: 18,
   },
@@ -457,6 +457,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 6,
+    overflow: 'hidden', // Added
   },
   categoryImageContainer: {
     width: '100%',
@@ -465,8 +466,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   categoryImage: {
-    width: '80%',
-    height: '80%',
+    width: '100%', // Changed from '80%'
+    height: '100%', // Changed from '80%'
   },
   categoryName: {
     fontSize: 11,
@@ -499,10 +500,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 6,
+    overflow: 'hidden', // Added
   },
   ageGroupImage: {
-    width: '85%',
-    height: '85%',
+    width: '100%', // Changed from '85%'
+    height: '100%', // Changed from '85%'
   },
   ageGroupName: {
     fontSize: 11,
