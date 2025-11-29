@@ -298,6 +298,72 @@ export default function HomeScreen() {
           </Pressable>
         </View>
 
+        {/* Trending Store Section */}
+        <View style={styles.trendingStoreSection}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.trendingStoreScroll}
+          >
+            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/birthday_gifts_items.png')}
+                style={styles.trendingStoreCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.trendingStoreCardTitle}>Birthday & Gifts</ThemedText>
+            </Pressable>
+            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/electronics_tech_gadgets.png')}
+                style={styles.trendingStoreCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.trendingStoreCardTitle}>Electronics & Tech</ThemedText>
+            </Pressable>
+            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/moms_maternity_products.png')}
+                style={styles.trendingStoreCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.trendingStoreCardTitle}>Moms & Maternity</ThemedText>
+            </Pressable>
+            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/beauty_care_products.png')}
+                style={styles.trendingStoreCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.trendingStoreCardTitle}>Beauty & Care</ThemedText>
+            </Pressable>
+            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/special_deals_sale.png')}
+                style={styles.trendingStoreCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.trendingStoreCardTitle}>Special Deals</ThemedText>
+            </Pressable>
+            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/baby_gear_products.png')}
+                style={styles.trendingStoreCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.trendingStoreCardTitle}>Baby Gear</ThemedText>
+            </Pressable>
+            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/toys_gaming_collection.png')}
+                style={styles.trendingStoreCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.trendingStoreCardTitle}>Toys & Gaming</ThemedText>
+            </Pressable>
+          </ScrollView>
+        </View>
+
         {/* Flash Sale Section */}
         <Pressable style={styles.flashSaleBanner} onPress={() => navigation.navigate('FlashSale')}>
           <LinearGradient
@@ -648,5 +714,31 @@ const styles = StyleSheet.create({
   parentingZoneImage: {
     width: '100%',
     height: 280,
+  },
+  trendingStoreSection: {
+    marginVertical: 24,
+    paddingVertical: 16,
+    backgroundColor: '#FFFFFF',
+  },
+  trendingStoreScroll: {
+    paddingHorizontal: 16,
+    gap: 12,
+  },
+  trendingStoreCard: {
+    width: 120,
+    alignItems: 'center',
+  },
+  trendingStoreCardImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 12,
+    marginBottom: 8,
+  },
+  trendingStoreCardTitle: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#1F2937',
+    textAlign: 'center',
+    lineHeight: 16,
   },
 });
