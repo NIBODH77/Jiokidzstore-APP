@@ -304,14 +304,14 @@ export default function HomeScreen() {
             <Text style={styles.decorativeSnowflakeLeft}>❄</Text>
             <View style={styles.trendingTitleContainer}>
               <View style={styles.trendingLettersRow}>
-                <Text style={[styles.trendingLetter, { color: '#8B4513' }]}>T</Text>
-                <Text style={[styles.trendingLetter, { color: '#A0522D' }]}>R</Text>
-                <Text style={[styles.trendingLetter, { color: '#CD853F' }]}>E</Text>
+                <Text style={[styles.trendingLetter, { color: '#6B3410' }]}>T</Text>
+                <Text style={[styles.trendingLetter, { color: '#7B3F1A' }]}>R</Text>
+                <Text style={[styles.trendingLetter, { color: '#8B4513' }]}>E</Text>
+                <Text style={[styles.trendingLetter, { color: '#A0522D' }]}>N</Text>
+                <Text style={[styles.trendingLetter, { color: '#B8651F' }]}>D</Text>
+                <Text style={[styles.trendingLetter, { color: '#CD7F32' }]}>I</Text>
                 <Text style={[styles.trendingLetter, { color: '#D2691E' }]}>N</Text>
-                <Text style={[styles.trendingLetter, { color: '#DEB887' }]}>D</Text>
-                <Text style={[styles.trendingLetter, { color: '#F4A460' }]}>I</Text>
-                <Text style={[styles.trendingLetter, { color: '#FFD4A3' }]}>N</Text>
-                <Text style={[styles.trendingLetter, { color: '#FFDAB9' }]}>G</Text>
+                <Text style={[styles.trendingLetter, { color: '#DEB887' }]}>G</Text>
                 <Text style={styles.storeText}>Store</Text>
               </View>
               <View style={styles.storeUnderline} />
@@ -324,7 +324,7 @@ export default function HomeScreen() {
             contentContainerStyle={styles.trendingStoreScroll}
             scrollEnabled={true}
             decelerationRate="fast"
-            snapToInterval={Dimensions.get('window').width + 16}
+            snapToInterval={Dimensions.get('window').width}
           >
             <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
               <Image 
@@ -761,8 +761,8 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
   },
   trendingLetter: {
-    fontSize: 28,
-    fontWeight: '800',
+    fontSize: 32,
+    fontWeight: '900',
     letterSpacing: 1.5,
   },
   storeText: {
@@ -783,14 +783,12 @@ const styles = StyleSheet.create({
   },
   trendingStoreScroll: {
     paddingHorizontal: 0,
-    gap: 16,
-    paddingLeft: 16,
-    paddingRight: 16,
+    gap: 0,
   },
   trendingStoreCard: {
-    width: Dimensions.get('window').width - 32,
+    width: Dimensions.get('window').width,
     height: Dimensions.get('window').width * 1.35,
-    borderRadius: 20,
+    borderRadius: 0,
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
