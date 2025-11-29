@@ -1409,7 +1409,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   coldWeatherCard: {
-    width: (screenWidth - 32) / 3 - 5.3,
+    width: (screenWidth - 48) / 3,
     borderRadius: 12,
     overflow: 'hidden',
     backgroundColor: '#FAFAFA',
