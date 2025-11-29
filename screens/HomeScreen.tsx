@@ -581,6 +581,255 @@ export default function HomeScreen() {
           </ScrollView>
         </View>
 
+        {/* Cold-Weather Essentials Section */}
+        <View style={styles.coldWeatherSection}>
+          <View style={styles.coldWeatherHeader}>
+            <ThemedText style={styles.coldWeatherTitle}>Cold-Weather Essentials</ThemedText>
+            <ThemedText style={styles.coldWeatherSubtitle}>From Head to Toe: Winter Must-Haves</ThemedText>
+          </View>
+
+          {/* Row 1: Sweatshirts & Sweaters */}
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.coldWeatherRow}
+            scrollEnabled={true}
+            decelerationRate="fast"
+          >
+            <Pressable style={styles.coldWeatherPromoCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
+                style={styles.coldWeatherPromoImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherPromoOverlay}>
+                <ThemedText style={styles.coldWeatherPromoTitle}>SWEATSHIRTS &</ThemedText>
+                <ThemedText style={styles.coldWeatherPromoTitle}>SWEATERS</ThemedText>
+                <ThemedText style={styles.coldWeatherPromoPrice}>STARTING</ThemedText>
+                <ThemedText style={styles.coldWeatherPromoPriceValue}>₹199</ThemedText>
+                <View style={styles.coldWeatherPromoButton}>
+                  <Feather name="chevron-right" size={20} color="#FFFFFF" />
+                </View>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Hoodies›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Sweater Vests›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Pullovers›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Cardigans›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/baby_care_products.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Knits›</ThemedText>
+              </View>
+            </Pressable>
+          </ScrollView>
+
+          {/* Row 2: Jackets */}
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.coldWeatherRow}
+            scrollEnabled={true}
+            decelerationRate="fast"
+          >
+            <Pressable style={styles.coldWeatherPromoCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
+                style={styles.coldWeatherPromoImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherPromoOverlay}>
+                <ThemedText style={styles.coldWeatherPromoTitle}>JACKETS</ThemedText>
+                <ThemedText style={styles.coldWeatherPromoPrice}>STARTING</ThemedText>
+                <ThemedText style={styles.coldWeatherPromoPriceValue}>₹399</ThemedText>
+                <View style={styles.coldWeatherPromoButton}>
+                  <Feather name="chevron-right" size={20} color="#FFFFFF" />
+                </View>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Denim›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Coats›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Bomber Jackets›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Puffer Jackets›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/baby_care_products.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Windcheaters›</ThemedText>
+              </View>
+            </Pressable>
+          </ScrollView>
+
+          {/* Row 3: Thermals */}
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.coldWeatherRow}
+            scrollEnabled={true}
+            decelerationRate="fast"
+          >
+            <Pressable style={styles.coldWeatherPromoCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
+                style={styles.coldWeatherPromoImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherPromoOverlay}>
+                <ThemedText style={styles.coldWeatherPromoTitle}>THERMALS</ThemedText>
+                <ThemedText style={styles.coldWeatherPromoPrice}>STARTING</ThemedText>
+                <ThemedText style={styles.coldWeatherPromoPriceValue}>₹199</ThemedText>
+                <View style={styles.coldWeatherPromoButton}>
+                  <Feather name="chevron-right" size={20} color="#FFFFFF" />
+                </View>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Thermal Pants›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Thermals Sets›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Base Layers›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Long Johns›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AllProducts')}>
+              <Image 
+                source={require('../attached_assets/generated_images/baby_care_products.png')}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.coldWeatherCardLabel}>
+                <ThemedText style={styles.coldWeatherCardText}>Innerwear›</ThemedText>
+              </View>
+            </Pressable>
+          </ScrollView>
+        </View>
+
         {/* Flash Sale Section */}
         <Pressable style={styles.flashSaleBanner} onPress={() => navigation.navigate('FlashSale')}>
           <LinearGradient
@@ -1218,5 +1467,108 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1A1A1A',
     textAlign: 'left',
+  },
+  coldWeatherSection: {
+    marginTop: 0,
+    marginBottom: 24,
+    backgroundColor: '#FFFFFF',
+  },
+  coldWeatherHeader: {
+    paddingHorizontal: 16,
+    marginBottom: 16,
+  },
+  coldWeatherTitle: {
+    fontSize: 26,
+    fontWeight: '800',
+    color: '#1A1A1A',
+    marginBottom: 4,
+  },
+  coldWeatherSubtitle: {
+    fontSize: 14,
+    color: '#6B7280',
+    fontWeight: '400',
+  },
+  coldWeatherRow: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 16,
+  },
+  coldWeatherPromoCard: {
+    width: 200,
+    height: 280,
+    borderRadius: 16,
+    overflow: 'hidden',
+    position: 'relative',
+    borderWidth: 3,
+    borderColor: '#E5E7EB',
+  },
+  coldWeatherPromoImage: {
+    width: '100%',
+    height: '100%',
+  },
+  coldWeatherPromoOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(30, 41, 59, 0.75)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+  },
+  coldWeatherPromoTitle: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    letterSpacing: 0.5,
+  },
+  coldWeatherPromoPrice: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#F59E0B',
+    marginTop: 12,
+    letterSpacing: 1,
+  },
+  coldWeatherPromoPriceValue: {
+    fontSize: 36,
+    fontWeight: '900',
+    color: '#F59E0B',
+    marginTop: 4,
+  },
+  coldWeatherPromoButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  coldWeatherCard: {
+    width: 180,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderColor: '#E5E7EB',
+  },
+  coldWeatherCardImage: {
+    width: '100%',
+    height: 200,
+  },
+  coldWeatherCardLabel: {
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    borderTopWidth: 2,
+    borderTopColor: '#E5E7EB',
+  },
+  coldWeatherCardText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#1A1A1A',
+    textAlign: 'center',
   },
 });
