@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   searchBox: {
-    borderRadius: 28,
+    borderRadius: 20,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: Colors.light.border,
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: Spacing.lg,
-    paddingVertical: Spacing.md,
+    paddingVertical: Spacing.sm,
     gap: Spacing.md,
   },
   input: {
