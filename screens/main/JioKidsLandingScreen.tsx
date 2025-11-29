@@ -145,6 +145,24 @@ export default function JioKidsLandingScreen() {
         </View>
 
         <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Featured Collections</Text>
+          <View style={styles.featuredGrid}>
+            <View style={styles.featuredCard}>
+              <Text style={styles.featuredEmoji}>👧</Text>
+              <Text style={styles.featuredCardName}>Baby Girls Fashion</Text>
+            </View>
+            <View style={styles.featuredCard}>
+              <Text style={styles.featuredEmoji}>👦</Text>
+              <Text style={styles.featuredCardName}>Baby Boys Fashion</Text>
+            </View>
+            <View style={styles.featuredCard}>
+              <Text style={styles.featuredEmoji}>❄️</Text>
+              <Text style={styles.featuredCardName}>Winter Essentials</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Shop by Category</Text>
             <Pressable onPress={() => navigation.navigate('AgeWise')}>
@@ -396,5 +414,34 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#FF6B9D',
     fontWeight: '600',
+  },
+  featuredGrid: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  featuredCard: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 20,
+    paddingHorizontal: 12,
+    borderRadius: 14,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.04,
+    shadowRadius: 3,
+    elevation: 1,
+  },
+  featuredEmoji: {
+    fontSize: 32,
+    marginBottom: 10,
+  },
+  featuredCardName: {
+    fontSize: 13,
+    color: '#1F2937',
+    fontWeight: '600',
+    textAlign: 'center',
+    lineHeight: 16,
   },
 });
