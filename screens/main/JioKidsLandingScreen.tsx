@@ -75,32 +75,6 @@ export default function JioKidsLandingScreen() {
           </View>
           
           <View style={styles.headerRight}>
-            {/* Wishlist */}
-            <Pressable 
-              style={styles.headerIconBtn} 
-              hitSlop={10}
-              onPress={() => navigation.navigate('Wishlist' as never)}
-            >
-              <Feather name="heart" size={24} color="#FFFFFF" strokeWidth={1.5} />
-            </Pressable>
-            
-            {/* Notification */}
-            <Pressable style={styles.headerIconBtn} hitSlop={10}>
-              <Feather name="bell" size={24} color="#FFFFFF" strokeWidth={1.5} />
-              <View style={styles.notificationBadge}>
-                <View style={styles.badgeDot} />
-              </View>
-            </Pressable>
-
-            {/* Profile */}
-            <Pressable 
-              style={styles.headerIconBtn} 
-              hitSlop={10}
-              onPress={() => navigation.navigate('Profile' as never)}
-            >
-              <Feather name="user" size={24} color="#FFFFFF" strokeWidth={1.5} />
-            </Pressable>
-            
             {/* Cart */}
             <Pressable style={styles.headerIconBtn} hitSlop={10}>
               <Feather name="shopping-cart" size={24} color="#FFFFFF" strokeWidth={1.5} />
@@ -109,6 +83,32 @@ export default function JioKidsLandingScreen() {
                   <Text style={styles.cartBadgeText}>{cartCount}</Text>
                 </View>
               )}
+            </Pressable>
+            
+            {/* Profile */}
+            <Pressable 
+              style={styles.headerIconBtn} 
+              hitSlop={10}
+              onPress={() => navigation.navigate('Profile' as never)}
+            >
+              <Feather name="user" size={24} color="#FFFFFF" strokeWidth={1.5} />
+            </Pressable>
+
+            {/* Notification */}
+            <Pressable style={styles.headerIconBtn} hitSlop={10}>
+              <Feather name="bell" size={24} color="#FFFFFF" strokeWidth={1.5} />
+              <View style={styles.notificationBadge}>
+                <View style={styles.badgeDot} />
+              </View>
+            </Pressable>
+            
+            {/* Wishlist */}
+            <Pressable 
+              style={styles.headerIconBtn} 
+              hitSlop={10}
+              onPress={() => navigation.navigate('Wishlist' as never)}
+            >
+              <Feather name="heart" size={24} color="#FFFFFF" strokeWidth={1.5} />
             </Pressable>
           </View>
         </View>
