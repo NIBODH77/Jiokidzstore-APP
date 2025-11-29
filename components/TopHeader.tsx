@@ -123,7 +123,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 12,
-    backgroundColor: '#F5F5F5',
   },
   logo: {
     flex: 1,
