@@ -274,10 +274,23 @@ export default function JioKidsLandingScreen() {
         {/* TRENDING Store Section */}
         <View style={styles.trendingStoreSection}>
           <View style={styles.trendingStoreTitleRow}>
-            <Text style={styles.trendingStoreTitle}>
-              <Text style={styles.trendingText}>TRENDING</Text>
-              <Text style={styles.storeText}>Store</Text>
-            </Text>
+            {/* Decorative snowflakes */}
+            <Text style={styles.decorativeSnowflakeLeft}>❄</Text>
+            <View style={styles.trendingTitleContainer}>
+              <View style={styles.trendingLettersRow}>
+                <Text style={[styles.trendingLetter, { color: '#8B4513' }]}>T</Text>
+                <Text style={[styles.trendingLetter, { color: '#A0522D' }]}>R</Text>
+                <Text style={[styles.trendingLetter, { color: '#B8860B' }]}>E</Text>
+                <Text style={[styles.trendingLetter, { color: '#CD853F' }]}>N</Text>
+                <Text style={[styles.trendingLetter, { color: '#D2691E' }]}>D</Text>
+                <Text style={[styles.trendingLetter, { color: '#DEB887' }]}>I</Text>
+                <Text style={[styles.trendingLetter, { color: '#F4A460' }]}>N</Text>
+                <Text style={[styles.trendingLetter, { color: '#FFDAB9' }]}>G</Text>
+                <Text style={styles.storeText}>Store</Text>
+              </View>
+              <View style={styles.storeUnderline} />
+            </View>
+            <Text style={styles.decorativeSnowflakeRight}>❄</Text>
           </View>
           <ScrollView
             horizontal
@@ -669,27 +682,56 @@ const styles = StyleSheet.create({
     marginTop: -1,
   },
   trendingStoreSection: {
-    marginTop: 40,
-    paddingVertical: 24,
+    marginTop: 32,
+    paddingVertical: 20,
+    backgroundColor: '#FFFFFF',
   },
   trendingStoreTitleRow: {
+    flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 24,
+    justifyContent: 'center',
+    marginBottom: 20,
     paddingHorizontal: 16,
   },
-  trendingStoreTitle: {
-    fontSize: 28,
-    fontWeight: '800',
+  decorativeSnowflakeLeft: {
+    fontSize: 16,
+    color: '#87CEEB',
+    marginRight: 12,
+    opacity: 0.7,
   },
-  trendingText: {
-    color: '#FF6B35',
+  decorativeSnowflakeRight: {
+    fontSize: 16,
+    color: '#87CEEB',
+    marginLeft: 12,
+    opacity: 0.7,
+  },
+  trendingTitleContainer: {
+    alignItems: 'center',
+  },
+  trendingLettersRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+  },
+  trendingLetter: {
+    fontSize: 26,
     fontWeight: '800',
-    letterSpacing: 2,
+    letterSpacing: 1,
   },
   storeText: {
-    color: '#4A90A4',
-    fontWeight: '700',
+    fontSize: 26,
+    color: '#5BA4A4',
+    fontWeight: '500',
     fontStyle: 'italic',
+    marginLeft: 4,
+  },
+  storeUnderline: {
+    width: 60,
+    height: 2,
+    backgroundColor: '#5BA4A4',
+    marginTop: 2,
+    alignSelf: 'flex-end',
+    marginRight: 0,
+    borderRadius: 1,
   },
   trendingStoreScrollContent: {
     paddingHorizontal: 16,
