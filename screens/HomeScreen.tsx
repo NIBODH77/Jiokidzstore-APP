@@ -463,6 +463,124 @@ export default function HomeScreen() {
           </View>
         </View>
 
+        {/* Onesies Made for Winter Cuddles Section */}
+        <View style={styles.onesiesSection}>
+          <ThemedText style={styles.onesiesSectionTitle}>Onesies Made for Winter Cuddles</ThemedText>
+          
+          {/* Top Banner with Babies */}
+          <View style={styles.onesiesBanner}>
+            <Image 
+              source={require('../attached_assets/generated_images/baby_clothing_collection_banner.png')}
+              style={styles.onesiesBannerImage}
+              resizeMode="cover"
+            />
+            <View style={styles.onesiesBannerOverlay}>
+              <View style={styles.onesiesBannerLeft}>
+                <ThemedText style={styles.onesiesStartingText}>STARTING</ThemedText>
+                <ThemedText style={styles.onesiesPriceText}>₹199</ThemedText>
+                <Pressable style={styles.onesiesViewAllButton} onPress={() => navigation.navigate('AllProducts')}>
+                  <ThemedText style={styles.onesiesViewAllText}>View All ›</ThemedText>
+                </Pressable>
+              </View>
+              <View style={styles.onesiesBannerRight}>
+                <ThemedText style={styles.onesiesTaglineTop}>One</ThemedText>
+                <ThemedText style={styles.onesiesTaglineMiddle}>of a kind</ThemedText>
+                <ThemedText style={styles.onesiesTaglineBottom}>Shop onesies</ThemedText>
+                <ThemedText style={styles.onesiesTaglineBottom}>& Rompers</ThemedText>
+              </View>
+            </View>
+          </View>
+
+          {/* Scrollable Product Cards */}
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.onesiesCardsScroll}
+            scrollEnabled={true}
+            decelerationRate="fast"
+          >
+            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AllProducts')}>
+              <View style={styles.onesiesCardImageContainer}>
+                <Image 
+                  source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
+                  style={styles.onesiesCardImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.onesiesCardLabel}>
+                <ThemedText style={styles.onesiesCardText}>Onesies &</ThemedText>
+                <ThemedText style={styles.onesiesCardText}>Bodysuits›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AllProducts')}>
+              <View style={styles.onesiesCardImageContainer}>
+                <Image 
+                  source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
+                  style={styles.onesiesCardImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.onesiesCardLabel}>
+                <ThemedText style={styles.onesiesCardText}>Rompers›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AllProducts')}>
+              <View style={styles.onesiesCardImageContainer}>
+                <Image 
+                  source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
+                  style={styles.onesiesCardImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.onesiesCardLabel}>
+                <ThemedText style={styles.onesiesCardText}>Winter</ThemedText>
+                <ThemedText style={styles.onesiesCardText}>Onesies›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AllProducts')}>
+              <View style={styles.onesiesCardImageContainer}>
+                <Image 
+                  source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
+                  style={styles.onesiesCardImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.onesiesCardLabel}>
+                <ThemedText style={styles.onesiesCardText}>Jumpsuits›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AllProducts')}>
+              <View style={styles.onesiesCardImageContainer}>
+                <Image 
+                  source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
+                  style={styles.onesiesCardImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.onesiesCardLabel}>
+                <ThemedText style={styles.onesiesCardText}>Full Sleeves›</ThemedText>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AllProducts')}>
+              <View style={styles.onesiesCardImageContainer}>
+                <Image 
+                  source={require('../attached_assets/generated_images/baby_care_products.png')}
+                  style={styles.onesiesCardImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.onesiesCardLabel}>
+                <ThemedText style={styles.onesiesCardText}>Sleepwear›</ThemedText>
+              </View>
+            </Pressable>
+          </ScrollView>
+        </View>
+
         {/* Flash Sale Section */}
         <Pressable style={styles.flashSaleBanner} onPress={() => navigation.navigate('FlashSale')}>
           <LinearGradient
@@ -980,5 +1098,125 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '600',
     color: '#1A1A1A',
+  },
+  onesiesSection: {
+    marginTop: 0,
+    marginBottom: 24,
+    backgroundColor: '#FFFFFF',
+  },
+  onesiesSectionTitle: {
+    fontSize: 26,
+    fontWeight: '800',
+    color: '#1A1A1A',
+    paddingHorizontal: 16,
+    marginBottom: 16,
+  },
+  onesiesBanner: {
+    width: '100%',
+    height: 280,
+    position: 'relative',
+    marginBottom: 0,
+  },
+  onesiesBannerImage: {
+    width: '100%',
+    height: '100%',
+  },
+  onesiesBannerOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 24,
+  },
+  onesiesBannerLeft: {
+    alignItems: 'flex-start',
+  },
+  onesiesStartingText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#FFFFFF',
+    letterSpacing: 1,
+  },
+  onesiesPriceText: {
+    fontSize: 48,
+    fontWeight: '900',
+    color: '#FFFFFF',
+    lineHeight: 52,
+  },
+  onesiesViewAllButton: {
+    backgroundColor: '#F9E7A3',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    marginTop: 12,
+  },
+  onesiesViewAllText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#1A1A1A',
+  },
+  onesiesBannerRight: {
+    alignItems: 'flex-end',
+  },
+  onesiesTaglineTop: {
+    fontSize: 24,
+    fontWeight: '300',
+    color: '#FFFFFF',
+    textAlign: 'right',
+  },
+  onesiesTaglineMiddle: {
+    fontSize: 20,
+    fontWeight: '500',
+    color: '#FFFFFF',
+    textAlign: 'right',
+  },
+  onesiesTaglineBottom: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    textAlign: 'right',
+  },
+  onesiesCardsScroll: {
+    paddingHorizontal: 16,
+    paddingVertical: 20,
+    gap: 16,
+    backgroundColor: '#FFF9E6',
+  },
+  onesiesCard: {
+    width: 180,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  onesiesCardImageContainer: {
+    width: '100%',
+    height: 180,
+    backgroundColor: '#F5F5F5',
+  },
+  onesiesCardImage: {
+    width: '100%',
+    height: '100%',
+  },
+  onesiesCardLabel: {
+    backgroundColor: '#F9E7A3',
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    minHeight: 55,
+    justifyContent: 'center',
+  },
+  onesiesCardText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#1A1A1A',
+    textAlign: 'left',
   },
 });
