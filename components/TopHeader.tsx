@@ -43,12 +43,8 @@ export function TopHeader({ showBackButton = false }: TopHeaderProps) {
           resizeMode="contain"
         />
 
-        {/* Right - Search, Wishlist, Notification, Profile & Cart */}
+        {/* Right - Wishlist, Notification, Profile & Cart */}
         <View style={styles.rightSection}>
-          <Pressable style={styles.iconButton} hitSlop={8}>
-            <Feather name="search" size={24} color="#1F2937" strokeWidth={1} />
-          </Pressable>
-
           <Pressable 
             style={styles.iconButton} 
             hitSlop={8}
