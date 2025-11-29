@@ -1071,14 +1071,17 @@ const styles = StyleSheet.create({
   },
   coldWeatherLabelBox: {
     backgroundColor: '#FFFFFF',
-    paddingVertical: 2,
+    paddingVertical: 0,
     paddingHorizontal: 12,
     alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 28,
   },
   coldWeatherLabelText: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
     color: '#1A1A1A',
+    lineHeight: 16,
   },
   allCategoriesSection: {
     paddingHorizontal: 20,
