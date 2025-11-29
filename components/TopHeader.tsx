@@ -43,10 +43,18 @@ export function TopHeader({ showBackButton = false }: TopHeaderProps) {
           resizeMode="contain"
         />
 
-        {/* Right - Search, Notification, Wishlist, Profile & Cart */}
+        {/* Right - Search, Wishlist, Notification, Profile & Cart */}
         <View style={styles.rightSection}>
           <Pressable style={styles.iconButton} hitSlop={8}>
             <Feather name="search" size={24} color="#1F2937" strokeWidth={1} />
+          </Pressable>
+
+          <Pressable 
+            style={styles.iconButton} 
+            hitSlop={8}
+            onPress={() => navigation.navigate('Wishlist' as never)}
+          >
+            <Feather name="heart" size={24} color="#1F2937" strokeWidth={1} />
           </Pressable>
 
           <Pressable style={styles.iconButton} hitSlop={8}>
@@ -54,14 +62,6 @@ export function TopHeader({ showBackButton = false }: TopHeaderProps) {
             <View style={styles.notificationBadge}>
               <View style={styles.badgeDot} />
             </View>
-          </Pressable>
-          
-          <Pressable 
-            style={styles.iconButton} 
-            hitSlop={8}
-            onPress={() => navigation.navigate('Wishlist' as never)}
-          >
-            <Feather name="heart" size={24} color="#1F2937" strokeWidth={1} />
           </Pressable>
 
           <Pressable 

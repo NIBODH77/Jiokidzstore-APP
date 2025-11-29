@@ -15,7 +15,6 @@ import { Colors } from "@/constants/theme";
 export type MainTabParamList = {
   HomeTab: undefined;
   DealsTab: undefined;
-  WishlistTab: undefined;
   ProfileTab: undefined;
 };
 
@@ -73,16 +72,6 @@ export default function MainTabNavigator() {
           tabBarLabel: "Deals",
           tabBarIcon: ({ color, size }) => (
             <Feather name="zap" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="WishlistTab"
-        component={WishlistStackNavigator}
-        options={{
-          tabBarLabel: "Wishlist",
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="heart" size={size} color={color} />
           ),
         }}
       />

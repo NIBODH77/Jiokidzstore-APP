@@ -134,6 +134,7 @@ import OrderSummaryScreen from "@/screens/cart/OrderSummaryScreen";
 import OrderConfirmationScreen from "@/screens/cart/OrderConfirmationScreen";
 import CategoryAggregatorScreen from "@/screens/CategoryAggregatorScreen"; // Import new screen
 import AgeGroupDetailScreen from "@/screens/AgeGroupDetailScreen"; // Import age group detail screen
+import WishlistScreen from "@/screens/main/WishlistScreen";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
 import { getCommonScreenOptions } from "@/navigation/screenOptions";
@@ -153,7 +154,8 @@ export type HomeStackParamList = {
   CheckoutPayment: undefined;
   OrderSummary: undefined;
   OrderConfirmation: { orderId?: string };
-  CategoryAggregator: undefined; // Add new screen to param list
+  CategoryAggregator: undefined;
+  Wishlist: undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -299,6 +301,13 @@ export default function HomeStackNavigator() {
       <Stack.Screen
         name="OrderConfirmation"
         component={OrderConfirmationScreen}
+        options={{ headerShown: false }}
+      />
+
+      {/* WISHLIST */}
+      <Stack.Screen
+        name="Wishlist"
+        component={WishlistScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
