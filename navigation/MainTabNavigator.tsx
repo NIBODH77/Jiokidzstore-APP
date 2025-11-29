@@ -7,12 +7,16 @@ import { Platform, StyleSheet, View } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import HomeStackNavigator from "@/navigation/HomeStackNavigator";
 import WishlistStackNavigator from "@/navigation/WishlistStackNavigator";
+import ExploreStackNavigator from "@/navigation/ExploreStackNavigator";
+import ParentingStackNavigator from "@/navigation/ParentingStackNavigator";
 import { useTheme } from "@/hooks/useTheme";
 import { Colors } from "@/constants/theme";
 
 export type MainTabParamList = {
   ShoppingTab: undefined;
+  ExploreTab: undefined;
   WishlistTab: undefined;
+  ParentingTab: undefined;
 };
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
@@ -61,12 +65,32 @@ export default function MainTabNavigator() {
         }}
       />
       <Tab.Screen
+        name="ExploreTab"
+        component={ExploreStackNavigator}
+        options={{
+          tabBarLabel: "Explore",
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="compass" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="WishlistTab"
         component={WishlistStackNavigator}
         options={{
           tabBarLabel: "Wishlist",
           tabBarIcon: ({ color, size }) => (
             <Feather name="heart" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="ParentingTab"
+        component={ParentingStackNavigator}
+        options={{
+          tabBarLabel: "Parenting",
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="users" size={size} color={color} />
           ),
         }}
       />
