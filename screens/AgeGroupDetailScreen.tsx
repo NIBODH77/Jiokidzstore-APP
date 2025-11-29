@@ -411,8 +411,12 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.percentOff}>%Off</ThemedText>
             </View>
           </View>
-          <View style={styles.seasonGrid}>
-            <Pressable style={styles.seasonCard}>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.seasonScrollContent}
+          >
+            <Pressable style={styles.seasonCardSlide}>
               <Image 
                 source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
@@ -422,7 +426,7 @@ export default function AgeGroupDetailScreen() {
                 <ThemedText style={styles.seasonCardText}>Sweatshirts{'>'}</ThemedText>
               </View>
             </Pressable>
-            <Pressable style={styles.seasonCard}>
+            <Pressable style={styles.seasonCardSlide}>
               <Image 
                 source={{ uri: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
@@ -432,7 +436,7 @@ export default function AgeGroupDetailScreen() {
                 <ThemedText style={styles.seasonCardText}>Jackets{'>'}</ThemedText>
               </View>
             </Pressable>
-            <Pressable style={styles.seasonCard}>
+            <Pressable style={styles.seasonCardSlide}>
               <Image 
                 source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
@@ -442,7 +446,67 @@ export default function AgeGroupDetailScreen() {
                 <ThemedText style={styles.seasonCardText}>sweater sets{'>'}</ThemedText>
               </View>
             </Pressable>
-          </View>
+            <Pressable style={styles.seasonCardSlide}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=200&h=250&fit=crop' }}
+                style={styles.seasonCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.seasonCardLabel}>
+                <ThemedText style={styles.seasonCardText}>Rompers{'>'}</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={styles.seasonCardSlide}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=200&h=250&fit=crop' }}
+                style={styles.seasonCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.seasonCardLabel}>
+                <ThemedText style={styles.seasonCardText}>Thermals{'>'}</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={styles.seasonCardSlide}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=200&h=250&fit=crop' }}
+                style={styles.seasonCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.seasonCardLabel}>
+                <ThemedText style={styles.seasonCardText}>Party Wear{'>'}</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={styles.seasonCardSlide}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=200&h=250&fit=crop' }}
+                style={styles.seasonCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.seasonCardLabel}>
+                <ThemedText style={styles.seasonCardText}>Winter Caps{'>'}</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={styles.seasonCardSlide}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=200&h=250&fit=crop' }}
+                style={styles.seasonCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.seasonCardLabel}>
+                <ThemedText style={styles.seasonCardText}>Dresses{'>'}</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={styles.seasonCardSlide}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=200&h=250&fit=crop' }}
+                style={styles.seasonCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.seasonCardLabel}>
+                <ThemedText style={styles.seasonCardText}>Coats{'>'}</ThemedText>
+              </View>
+            </Pressable>
+          </ScrollView>
         </View>
 
         {/* Cold-Weather Essentials Section */}
@@ -1164,6 +1228,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#FF6B35',
     fontWeight: '600',
+  },
+  seasonScrollContent: {
+    paddingRight: 16,
+    gap: 10,
+  },
+  seasonCardSlide: {
+    width: 120,
+    height: 180,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#F5F5F5',
   },
   seasonGrid: {
     flexDirection: 'row',
