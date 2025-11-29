@@ -67,8 +67,52 @@ export default function JioKidsLandingScreen() {
         colors={['#FF6B9D', '#FF8FB3', '#FFB8D0']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        style={[styles.header, { paddingTop: insets.top + 16 }]}
+        style={[styles.header, { paddingTop: insets.top + 12 }]}
       >
+        <View style={styles.headerTop}>
+          <View style={styles.headerLeft}>
+            <Text style={styles.locationText}>Delhi, India</Text>
+          </View>
+          
+          <View style={styles.headerRight}>
+            {/* Notification */}
+            <Pressable style={styles.headerIconBtn} hitSlop={10}>
+              <Feather name="bell" size={24} color="#FFFFFF" strokeWidth={1.5} />
+              <View style={styles.notificationBadge}>
+                <View style={styles.badgeDot} />
+              </View>
+            </Pressable>
+            
+            {/* Wishlist */}
+            <Pressable 
+              style={styles.headerIconBtn} 
+              hitSlop={10}
+              onPress={() => navigation.navigate('Wishlist' as never)}
+            >
+              <Feather name="heart" size={24} color="#FFFFFF" strokeWidth={1.5} />
+            </Pressable>
+
+            {/* Profile */}
+            <Pressable 
+              style={styles.headerIconBtn} 
+              hitSlop={10}
+              onPress={() => navigation.navigate('Profile' as never)}
+            >
+              <Feather name="user" size={24} color="#FFFFFF" strokeWidth={1.5} />
+            </Pressable>
+            
+            {/* Cart */}
+            <Pressable style={styles.headerIconBtn} hitSlop={10}>
+              <Feather name="shopping-cart" size={24} color="#FFFFFF" strokeWidth={1.5} />
+              {cartCount > 0 && (
+                <View style={styles.cartBadge}>
+                  <Text style={styles.cartBadgeText}>{cartCount}</Text>
+                </View>
+              )}
+            </Pressable>
+          </View>
+        </View>
+
         <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
         <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
       </LinearGradient>
