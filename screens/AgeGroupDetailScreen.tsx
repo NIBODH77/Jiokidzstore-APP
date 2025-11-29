@@ -1407,9 +1407,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
+    paddingHorizontal: 0,
   },
   coldWeatherCard: {
-    width: (screenWidth - 48) / 3,
+    flex: 1,
+    minWidth: '31%',
+    maxWidth: '31%',
     borderRadius: 12,
     overflow: 'hidden',
     backgroundColor: '#FAFAFA',
