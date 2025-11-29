@@ -698,7 +698,7 @@ export default function AgeGroupDetailScreen() {
           <View style={styles.brandsGrid}>
             <Pressable style={[styles.brandCard, { backgroundColor: '#FFE4EC' }]}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=150&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
               />
@@ -708,7 +708,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#E8F5E9' }]}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=150&h=150&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
               />
@@ -718,7 +718,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#E3F2FD' }]}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=150&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
               />
@@ -728,7 +728,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#FFF3E0' }]}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=150&h=150&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
               />
@@ -738,7 +738,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#FCE4EC' }]}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=150&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
               />
@@ -748,7 +748,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#E8F5E9' }]}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=150&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
               />
@@ -758,7 +758,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#FFF8E1' }]}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=150&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
               />
@@ -768,7 +768,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#E3F2FD' }]}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=150&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
               />
@@ -778,7 +778,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#FFEBEE' }]}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=150&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
               />
@@ -799,7 +799,7 @@ export default function AgeGroupDetailScreen() {
                 style={styles.innerwearCardGradient}
               >
                 <Image 
-                  source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=150&fit=crop' }}
+                  source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=150&fit=crop' }}
                   style={styles.innerwearCardImage}
                   resizeMode="contain"
                 />
@@ -812,7 +812,7 @@ export default function AgeGroupDetailScreen() {
                 style={styles.innerwearCardGradient}
               >
                 <Image 
-                  source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=150&fit=crop' }}
+                  source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=150&fit=crop' }}
                   style={styles.innerwearCardImage}
                   resizeMode="contain"
                 />
@@ -838,7 +838,7 @@ export default function AgeGroupDetailScreen() {
                 style={styles.innerwearCardGradient}
               >
                 <Image 
-                  source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=150&fit=crop' }}
+                  source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=150&fit=crop' }}
                   style={styles.innerwearCardImage}
                   resizeMode="contain"
                 />
@@ -851,7 +851,7 @@ export default function AgeGroupDetailScreen() {
                 style={styles.innerwearCardGradient}
               >
                 <Image 
-                  source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=150&h=150&fit=crop' }}
+                  source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=150&fit=crop' }}
                   style={styles.innerwearCardImage}
                   resizeMode="contain"
                 />
