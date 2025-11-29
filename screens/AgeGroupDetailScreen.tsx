@@ -29,6 +29,15 @@ interface AdBanner {
   image?: any;
 }
 
+interface BoutiqueCard {
+  id: string;
+  image: any;
+  title: string;
+  subtitle: string;
+  hasTimer?: boolean;
+  timerText?: string;
+}
+
 const girlBannerImage = require('../attached_assets/generated_images/baby_girl_discount_banner.png');
 const boyBannerImage = require('../attached_assets/generated_images/baby_boy_winter_sale_banner.png');
 const megaSaleBannerImage = require('../attached_assets/generated_images/mega_kids_fashion_sale.png');
@@ -310,6 +319,88 @@ export default function AgeGroupDetailScreen() {
           ))}
         </View>
 
+        {/* FirstCry Boutiques - Winter Wonderland Section */}
+        <View style={styles.boutiquesSection}>
+          {/* Header Banner with Baby Image */}
+          <View style={styles.boutiquesHeader}>
+            <Image 
+              source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=200&h=150&fit=crop' }}
+              style={styles.boutiquesHeaderBabyImage}
+              resizeMode="cover"
+            />
+            <View style={styles.boutiquesHeaderTextContainer}>
+              <View style={styles.boutiquesLogoRow}>
+                <ThemedText style={styles.firstCryText}>first</ThemedText>
+                <ThemedText style={styles.cryText}>cry</ThemedText>
+                <ThemedText style={styles.boutiquesText}> BOUTIQUES</ThemedText>
+              </View>
+              <View style={styles.winterWonderlandRow}>
+                <ThemedText style={styles.winterText}>Winter</ThemedText>
+                <ThemedText style={styles.wonderlandText}>WONDERLAND</ThemedText>
+              </View>
+            </View>
+          </View>
+
+          {/* Promotional Cards Row */}
+          <View style={styles.boutiqueCardsRow}>
+            {/* Left Card - Fashion Sale */}
+            <View style={styles.boutiqueCardSmall}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=200&h=300&fit=crop' }}
+                style={styles.boutiqueCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.stocksLastBadge}>
+                <ThemedText style={styles.stocksLastText}>Until stocks last</ThemedText>
+              </View>
+              <Pressable style={styles.shopNowButton}>
+                <ThemedText style={styles.shopNowText}>SHOP NOW</ThemedText>
+              </Pressable>
+            </View>
+
+            {/* Right Card - Pantaloons */}
+            <View style={styles.boutiqueCardLarge}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=300&h=300&fit=crop' }}
+                style={styles.boutiqueCardImageLarge}
+                resizeMode="cover"
+              />
+              <View style={styles.pantaloonsOverlay}>
+                <ThemedText style={styles.turnUpText}>Turn Up the</ThemedText>
+                <ThemedText style={styles.warmthText}>WARMTH</ThemedText>
+                <View style={styles.pantaloonsRow}>
+                  <ThemedText style={styles.withText}>with </ThemedText>
+                  <ThemedText style={styles.pantaloonsLogo}>PANTALOONS</ThemedText>
+                </View>
+                <ThemedText style={styles.jeansJacketsText}>Jeans, Jackets &{'\n'}More</ThemedText>
+                <View style={styles.discountBadge}>
+                  <ThemedText style={styles.uptoText}>UPTO</ThemedText>
+                  <ThemedText style={styles.fiftyText}>50</ThemedText>
+                  <ThemedText style={styles.percentOffText}>%OFF{'>'}</ThemedText>
+                </View>
+              </View>
+              <View style={styles.timerBadge}>
+                <Feather name="clock" size={12} color="#666" />
+                <ThemedText style={styles.timerText}>1d</ThemedText>
+              </View>
+            </View>
+          </View>
+
+          {/* Effortless Looks Card */}
+          <View style={styles.effortlessCard}>
+            <ThemedText style={styles.effortlessTitle}>Effortless Looks, Endless Style</ThemedText>
+            <ThemedText style={styles.effortlessSubtitle}>Shop new-season favorites & more</ThemedText>
+            <Pressable style={styles.shopNowButtonOutline}>
+              <ThemedText style={styles.shopNowTextDark}>SHOP NOW</ThemedText>
+            </Pressable>
+          </View>
+
+          {/* View All Boutiques Button */}
+          <Pressable style={styles.viewAllBoutiquesButton}>
+            <ThemedText style={styles.viewAllBoutiquesText}>VIEW ALL BOUTIQUES {'>'}</ThemedText>
+          </Pressable>
+        </View>
+
         {/* Bottom Spacing */}
         <View style={{ height: 100 }} />
       </ScrollView>
@@ -494,5 +585,257 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: Colors.light.primary,
+  },
+  boutiquesSection: {
+    marginTop: 24,
+    marginBottom: 16,
+  },
+  boutiquesHeader: {
+    backgroundColor: '#2C3E50',
+    borderRadius: 12,
+    overflow: 'hidden',
+    flexDirection: 'row',
+    height: 120,
+    marginBottom: 12,
+  },
+  boutiquesHeaderBabyImage: {
+    width: 140,
+    height: '100%',
+  },
+  boutiquesHeaderTextContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    backgroundColor: '#34495E',
+  },
+  boutiquesLogoRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    marginBottom: 4,
+  },
+  firstCryText: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#E74C3C',
+    fontStyle: 'italic',
+  },
+  cryText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#E74C3C',
+  },
+  boutiquesText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    letterSpacing: 1,
+  },
+  winterWonderlandRow: {
+    alignItems: 'center',
+  },
+  winterText: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: '#3498DB',
+    fontStyle: 'italic',
+    textShadowColor: 'rgba(0,0,0,0.3)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
+  },
+  wonderlandText: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#F39C12',
+    letterSpacing: 2,
+  },
+  boutiqueCardsRow: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 12,
+  },
+  boutiqueCardSmall: {
+    flex: 1,
+    height: 200,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#F5F5F5',
+  },
+  boutiqueCardImage: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+  },
+  stocksLastBadge: {
+    position: 'absolute',
+    bottom: 50,
+    left: 8,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+  },
+  stocksLastText: {
+    color: '#FFFFFF',
+    fontSize: 10,
+    fontWeight: '600',
+  },
+  shopNowButton: {
+    position: 'absolute',
+    bottom: 12,
+    left: 8,
+    right: 8,
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 8,
+    borderRadius: 4,
+    alignItems: 'center',
+  },
+  shopNowText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#1F2937',
+  },
+  boutiqueCardLarge: {
+    flex: 1.5,
+    height: 200,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#E8E8E8',
+  },
+  boutiqueCardImageLarge: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+  },
+  pantaloonsOverlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: '55%',
+    height: '100%',
+    backgroundColor: 'rgba(255,255,255,0.95)',
+    padding: 10,
+    justifyContent: 'center',
+  },
+  turnUpText: {
+    fontSize: 10,
+    color: '#666',
+    fontWeight: '500',
+  },
+  warmthText: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#1F2937',
+    marginBottom: 2,
+  },
+  pantaloonsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  withText: {
+    fontSize: 10,
+    color: '#666',
+  },
+  pantaloonsLogo: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#E67E22',
+    backgroundColor: '#FFF3E0',
+    paddingHorizontal: 4,
+    paddingVertical: 2,
+    borderRadius: 2,
+  },
+  jeansJacketsText: {
+    fontSize: 10,
+    color: '#666',
+    marginBottom: 6,
+  },
+  discountBadge: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    backgroundColor: '#1F2937',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+    alignSelf: 'flex-start',
+  },
+  uptoText: {
+    fontSize: 8,
+    color: '#FFFFFF',
+    marginRight: 4,
+  },
+  fiftyText: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#F1C40F',
+  },
+  percentOffText: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  },
+  timerBadge: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+    gap: 4,
+  },
+  timerText: {
+    fontSize: 11,
+    color: '#666',
+    fontWeight: '600',
+  },
+  effortlessCard: {
+    backgroundColor: '#FAFAFA',
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'flex-start',
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  effortlessTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#1F2937',
+    marginBottom: 4,
+  },
+  effortlessSubtitle: {
+    fontSize: 12,
+    color: '#666',
+    marginBottom: 12,
+  },
+  shopNowButtonOutline: {
+    borderWidth: 1,
+    borderColor: '#1F2937',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 4,
+  },
+  shopNowTextDark: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#1F2937',
+  },
+  viewAllBoutiquesButton: {
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#1F2937',
+    paddingVertical: 14,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  viewAllBoutiquesText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#1F2937',
+    letterSpacing: 1,
   },
 });
