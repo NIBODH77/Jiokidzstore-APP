@@ -9,6 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ProductCard } from '@/components/ProductCard';
+import { TopHeader } from '@/components/TopHeader';
 import { ModernSearchBar } from '@/components/ModernSearchBar';
 import { ModernHeroSection } from '@/components/ModernHeroSection';
 import { BestSellersCarousel } from '@/components/BestSellersCarousel';
@@ -115,6 +116,8 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      <TopHeader showBackButton={false} />
+      
       {/* Scrollable Content with Header */}
       <ScreenScrollView contentContainerStyle={styles.scrollContent}>
         {/* Search Bar */}
