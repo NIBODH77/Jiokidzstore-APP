@@ -632,11 +632,11 @@ const styles = StyleSheet.create({
   parentingZoneSection: {
     marginHorizontal: 0,
     marginBottom: 24,
-    paddingHorizontal: 16,
+    paddingHorizontal: 0,
   },
   parentingZoneBanner: {
     width: '100%',
-    borderRadius: 16,
+    borderRadius: 0,
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -647,6 +647,6 @@ const styles = StyleSheet.create({
   },
   parentingZoneImage: {
     width: '100%',
-    height: 250,
+    height: 280,
   },
 });
