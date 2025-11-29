@@ -406,6 +406,98 @@ export default function JioKidsLandingScreen() {
           </View>
         </View>
 
+        {/* Cold-Weather Essentials Section */}
+        <View style={styles.coldWeatherSection}>
+          <View style={styles.coldWeatherHeader}>
+            <Text style={styles.coldWeatherTitle}>Cold-Weather Essentials</Text>
+            <Text style={styles.coldWeatherSubtitle}>From Head to Toe: Winter Must-Haves</Text>
+          </View>
+          
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.coldWeatherScrollContent}
+          >
+            <Pressable style={styles.coldWeatherCard} onPress={() => {}}>
+              <View style={styles.coldWeatherImageContainer}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=300&h=350&fit=crop' }}
+                  style={styles.coldWeatherImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.coldWeatherLabelBox}>
+                <Text style={styles.coldWeatherLabelText}>Hoodies›</Text>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => {}}>
+              <View style={styles.coldWeatherImageContainer}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=300&h=350&fit=crop' }}
+                  style={styles.coldWeatherImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.coldWeatherLabelBox}>
+                <Text style={styles.coldWeatherLabelText}>Sweatshirts›</Text>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => {}}>
+              <View style={styles.coldWeatherImageContainer}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1502451885777-c0cbbb49c990?w=300&h=350&fit=crop' }}
+                  style={styles.coldWeatherImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.coldWeatherLabelBox}>
+                <Text style={styles.coldWeatherLabelText}>Jackets›</Text>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => {}}>
+              <View style={styles.coldWeatherImageContainer}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?w=300&h=350&fit=crop' }}
+                  style={styles.coldWeatherImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.coldWeatherLabelBox}>
+                <Text style={styles.coldWeatherLabelText}>Sweaters›</Text>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => {}}>
+              <View style={styles.coldWeatherImageContainer}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=300&h=350&fit=crop' }}
+                  style={styles.coldWeatherImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.coldWeatherLabelBox}>
+                <Text style={styles.coldWeatherLabelText}>Winter Sets›</Text>
+              </View>
+            </Pressable>
+
+            <Pressable style={styles.coldWeatherCard} onPress={() => {}}>
+              <View style={styles.coldWeatherImageContainer}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=300&h=350&fit=crop' }}
+                  style={styles.coldWeatherImage}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.coldWeatherLabelBox}>
+                <Text style={styles.coldWeatherLabelText}>Thermals›</Text>
+              </View>
+            </Pressable>
+          </ScrollView>
+        </View>
+
         <View style={styles.allCategoriesSection}>
           <View style={styles.allCategoriesHeader}>
             <Text style={styles.allCategoriesTitle}>Shop by Category</Text>
@@ -937,6 +1029,56 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#1A1A1A',
     marginLeft: 2,
+  },
+  coldWeatherSection: {
+    marginTop: 30,
+    paddingLeft: 16,
+    backgroundColor: '#FFFFFF',
+  },
+  coldWeatherHeader: {
+    marginBottom: 16,
+    paddingRight: 16,
+  },
+  coldWeatherTitle: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#1A1A1A',
+    marginBottom: 4,
+  },
+  coldWeatherSubtitle: {
+    fontSize: 13,
+    color: '#666666',
+    fontWeight: '400',
+  },
+  coldWeatherScrollContent: {
+    paddingRight: 16,
+    gap: 12,
+  },
+  coldWeatherCard: {
+    width: 140,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  coldWeatherImageContainer: {
+    width: '100%',
+    height: 160,
+    backgroundColor: '#F5F5F5',
+  },
+  coldWeatherImage: {
+    width: '100%',
+    height: '100%',
+  },
+  coldWeatherLabelBox: {
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    alignItems: 'center',
+  },
+  coldWeatherLabelText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#1A1A1A',
   },
   allCategoriesSection: {
     paddingHorizontal: 20,
