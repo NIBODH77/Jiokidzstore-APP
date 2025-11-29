@@ -1062,7 +1062,7 @@ const styles = StyleSheet.create({
   },
   coldWeatherImageContainer: {
     width: '100%',
-    height: 220,
+    height: 250,
     backgroundColor: '#F5F5F5',
   },
   coldWeatherImage: {
@@ -1071,7 +1071,7 @@ const styles = StyleSheet.create({
   },
   coldWeatherLabelBox: {
     backgroundColor: '#FFFFFF',
-    paddingVertical: 5,
+    paddingVertical: 2,
     paddingHorizontal: 12,
     alignItems: 'center',
   },
