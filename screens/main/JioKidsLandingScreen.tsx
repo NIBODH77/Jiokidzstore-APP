@@ -422,16 +422,11 @@ const styles = StyleSheet.create({
   },
   featuredCard: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F9F9F9',
     paddingVertical: 20,
     paddingHorizontal: 12,
-    borderRadius: 14,
+    borderRadius: 12,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.04,
-    shadowRadius: 3,
-    elevation: 1,
   },
   featuredEmoji: {
     fontSize: 32,
