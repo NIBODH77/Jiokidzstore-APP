@@ -78,17 +78,17 @@ export function ModernSearchBar({
           </View>
         </View>
         <View style={styles.iconsContainer}>
-          <Pressable style={styles.headerIconBtn} onPress={onCartPress}>
-            <Feather name="shopping-cart" size={20} color="#FFFFFF" />
+          <Pressable style={styles.headerIconBtn} onPress={onWishlistPress}>
+            <Feather name="heart" size={20} color="#FFFFFF" />
           </Pressable>
           <Pressable style={styles.headerIconBtn} onPress={onNotificationPress}>
             <Feather name="bell" size={20} color="#FFFFFF" />
           </Pressable>
-          <Pressable style={styles.headerIconBtn} onPress={onWishlistPress}>
-            <Feather name="heart" size={20} color="#FFFFFF" />
-          </Pressable>
           <Pressable style={styles.headerIconBtn} onPress={onProfilePress}>
             <Feather name="user" size={20} color="#FFFFFF" />
+          </Pressable>
+          <Pressable style={styles.headerIconBtn} onPress={onCartPress}>
+            <Feather name="shopping-cart" size={20} color="#FFFFFF" />
           </Pressable>
         </View>
       </View>
