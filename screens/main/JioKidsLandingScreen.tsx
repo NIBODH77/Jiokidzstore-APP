@@ -67,39 +67,57 @@ export default function JioKidsLandingScreen() {
         colors={['#FF6B9D', '#FF8FB3', '#FFB8D0']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        style={[styles.header, { paddingTop: insets.top + 16 }]}
+        style={[styles.header, { paddingTop: insets.top }]}
       >
-        <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
-        <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
-        <Text style={styles.iconsSectionLabel}>Quick Access</Text>
-        
-        <View style={styles.headerIcons}>
-          <Pressable 
-            style={styles.headerIconButton} 
-            hitSlop={12}
-            onPress={() => navigation.navigate('Wishlist' as never)}
-          >
-            <Feather name="heart" size={28} color="#FF6B9D" strokeWidth={2} />
-          </Pressable>
-
-          <Pressable 
-            style={styles.headerIconButton} 
-            hitSlop={12}
-            onPress={() => navigation.navigate('Profile' as never)}
-          >
-            <Feather name="user" size={28} color="#FF6B9D" strokeWidth={2} />
-          </Pressable>
+        {/* Header Top Row - Location and Icons */}
+        <View style={styles.headerTop}>
+          <View style={styles.headerLeft}>
+            <Text style={styles.locationText}>Delhi, India</Text>
+          </View>
           
-          <Pressable style={styles.headerCartButton} hitSlop={12}>
-            <Feather name="shopping-cart" size={28} color="#FF6B9D" strokeWidth={2} />
-            {cartCount > 0 && (
-              <View style={styles.cartBadge}>
-                <View style={styles.cartCount}>
-                  <Text style={styles.cartCountText}>{cartCount}</Text>
-                </View>
+          <View style={styles.headerRight}>
+            {/* Notification */}
+            <Pressable style={styles.headerIconBtn} hitSlop={10}>
+              <Feather name="bell" size={24} color="#FFFFFF" strokeWidth={1.5} />
+              <View style={styles.notificationBadge}>
+                <View style={styles.badgeDot} />
               </View>
-            )}
-          </Pressable>
+            </Pressable>
+            
+            {/* Wishlist */}
+            <Pressable 
+              style={styles.headerIconBtn} 
+              hitSlop={10}
+              onPress={() => navigation.navigate('Wishlist' as never)}
+            >
+              <Feather name="heart" size={24} color="#FFFFFF" strokeWidth={1.5} />
+            </Pressable>
+
+            {/* Profile */}
+            <Pressable 
+              style={styles.headerIconBtn} 
+              hitSlop={10}
+              onPress={() => navigation.navigate('Profile' as never)}
+            >
+              <Feather name="user" size={24} color="#FFFFFF" strokeWidth={1.5} />
+            </Pressable>
+            
+            {/* Cart */}
+            <Pressable style={styles.headerIconBtn} hitSlop={10}>
+              <Feather name="shopping-cart" size={24} color="#FFFFFF" strokeWidth={1.5} />
+              {cartCount > 0 && (
+                <View style={styles.cartBadge}>
+                  <Text style={styles.cartBadgeText}>{cartCount}</Text>
+                </View>
+              )}
+            </Pressable>
+          </View>
+        </View>
+
+        {/* Welcome Title and Subtitle */}
+        <View style={styles.headerContent}>
+          <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
+          <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
         </View>
       </LinearGradient>
 
@@ -163,10 +181,78 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   header: {
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingHorizontal: 16,
+    paddingBottom: 16,
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
+  },
+  headerTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+    paddingHorizontal: 4,
+  },
+  headerLeft: {
+    flex: 1,
+  },
+  locationText: {
+    fontSize: 12,
+    color: '#FFFFFF',
+    opacity: 0.9,
+    fontWeight: '500',
+  },
+  headerRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 2,
+  },
+  headerIconBtn: {
+    width: 36,
+    height: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+  },
+  notificationBadge: {
+    position: 'absolute',
+    top: 2,
+    right: 2,
+    width: 16,
+    height: 16,
+    backgroundColor: '#FFE5D5',
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1.5,
+    borderColor: '#FFFFFF',
+  },
+  badgeDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#FF6B35',
+  },
+  cartBadge: {
+    position: 'absolute',
+    top: -4,
+    right: -4,
+    minWidth: 20,
+    height: 20,
+    backgroundColor: '#EF4444',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1.5,
+    borderColor: '#FFFFFF',
+  },
+  cartBadgeText: {
+    fontSize: 9,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  headerContent: {
+    paddingHorizontal: 4,
   },
   welcomeTitle: {
     fontSize: 26,
@@ -180,66 +266,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     opacity: 0.95,
     textAlign: 'left',
-    marginBottom: 16,
-  },
-  iconsSectionLabel: {
-    fontSize: 12,
-    color: '#FFFFFF',
-    opacity: 0.85,
-    fontWeight: '600',
-    marginBottom: 10,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-  },
-  headerIcons: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    justifyContent: 'flex-start',
-  },
-  headerIconButton: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 3,
-    elevation: 3,
-  },
-  headerCartButton: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 3,
-    elevation: 3,
-  },
-  cartBadge: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-  },
-  cartCount: {
-    width: 20,
-    height: 20,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  cartCountText: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: '#FF6B9D',
   },
   scrollView: {
     flex: 1,
