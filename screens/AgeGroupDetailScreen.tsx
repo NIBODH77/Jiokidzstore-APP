@@ -857,16 +857,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   carouselContainer: {
-    height: 200,
+    height: 260,
     backgroundColor: '#FFFFFF',
-    paddingVertical: 8,
+    paddingVertical: 0,
   },
   carouselContent: {
     paddingHorizontal: 8,
   },
   adBannerContainer: {
     width: screenWidth - 32,
-    height: 180,
+    height: 240,
     marginHorizontal: 8,
     borderRadius: 12,
     overflow: 'hidden',
@@ -922,7 +922,7 @@ const styles = StyleSheet.create({
   },
   headerTop: {
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingVertical: 1,
     backgroundColor: '#FFFFFF',
     borderBottomWidth: 1,
     borderBottomColor: '#F0F0F0',
