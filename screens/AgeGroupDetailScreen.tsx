@@ -587,7 +587,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1622290291468-a28f7a7dc338?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -595,7 +595,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1610539967537-0e4dc4f58c28?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1554062407-98eeb64c6a62?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -603,7 +603,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1524634126288-917f42bbd22f?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -611,7 +611,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1634744388435-d7e4aa30b7ef?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -619,7 +619,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1556821552-5282028c3c82?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -627,7 +627,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1539533057440-7db8326263b1?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -635,7 +635,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -643,7 +643,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1506629082632-33d318dd0f89?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -651,7 +651,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1520319518849-d2f89f1e4395?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -659,7 +659,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1590080876460-d34317fdf643?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -667,7 +667,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1578957861982-b0996f3051f5?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
