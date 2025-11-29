@@ -249,14 +249,30 @@ export default function JioKidsLandingScreen() {
             </Pressable>
           </View>
           <View style={styles.allCategoriesGrid}>
-            {COMPREHENSIVE_CATEGORIES.map((category) => (
-              <Pressable key={category.id} style={styles.allCategoryCard} onPress={() => {}}>
-                <Image 
-                  source={category.image}
-                  style={styles.allCategoryImage}
-                  resizeMode="cover"
-                />
-                <Text style={styles.allCategoryName}>{category.name}</Text>
+            {[
+              '👟 Footwear',
+              '👗 Fashion',
+              '🏰 Disney & Marvel',
+              '🎮 Toys & Gaming',
+              '🍼 Baby Gear',
+              '🧷 Diapering',
+              '🛁 Bath & Skin',
+              '🍴 Feeding',
+              '❤️ Health & Safety',
+              '🛏️ Nursery',
+              '🎨 Art & Hobbies',
+              '📚 Books',
+              '✏️ School Supplies',
+              '⚽ Sports',
+              '🏠 Home Living',
+              '🎁 Gifts',
+              '📱 Electronics',
+              '👶 Maternity',
+              '💄 Beauty Care',
+              '⭐ Special Deals'
+            ].map((category, idx) => (
+              <Pressable key={idx} style={styles.simpleCategoryCard} onPress={() => {}}>
+                <Text style={styles.simpleCategoryName}>{category}</Text>
               </Pressable>
             ))}
           </View>
@@ -589,25 +605,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: 12,
   },
-  allCategoryCard: {
+  simpleCategoryCard: {
     width: (SCREEN_WIDTH - 52) / 2.5,
-    aspectRatio: 1,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
     borderRadius: 12,
-    overflow: 'hidden',
-    backgroundColor: '#F5F5F5',
-    justifyContent: 'flex-end',
-    paddingBottom: 10,
+    backgroundColor: '#F9F9F9',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  allCategoryImage: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  allCategoryName: {
+  simpleCategoryName: {
     fontSize: 12,
     fontWeight: '600',
     color: '#1F2937',
     textAlign: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-    paddingVertical: 8,
-    zIndex: 1,
   },
 });
