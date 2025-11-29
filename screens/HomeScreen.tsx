@@ -722,15 +722,15 @@ const styles = StyleSheet.create({
   },
   trendingStoreScroll: {
     paddingHorizontal: 16,
-    gap: 14,
+    gap: 16,
   },
   trendingStoreCard: {
-    width: Dimensions.get('window').width * 0.42,
+    width: Dimensions.get('window').width - 32,
     alignItems: 'center',
   },
   trendingStoreCardImage: {
-    width: Dimensions.get('window').width * 0.40,
-    height: Dimensions.get('window').width * 0.36,
+    width: Dimensions.get('window').width - 48,
+    height: (Dimensions.get('window').width - 48) * 0.85,
     borderRadius: 20,
     marginBottom: 12,
   },
