@@ -13,7 +13,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { Colors } from "@/constants/theme";
 
 export type MainTabParamList = {
-  HomeTab: undefined;
+  ShoppingTab: undefined;
   DealsTab: undefined;
   ProfileTab: undefined;
 };
@@ -25,7 +25,7 @@ export default function MainTabNavigator() {
 
   return (
     <Tab.Navigator
-      initialRouteName="HomeTab"
+      initialRouteName="ShoppingTab"
       screenOptions={({ route }) => {
         const routeName = getFocusedRouteNameFromRoute(route) ?? "Profile";
         const isProfileTab = route.name === "ProfileTab";
@@ -56,12 +56,12 @@ export default function MainTabNavigator() {
       }}
     >
       <Tab.Screen
-        name="HomeTab"
+        name="ShoppingTab"
         component={HomeStackNavigator}
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: "Shopping",
           tabBarIcon: ({ color, size }) => (
-            <Feather name="home" size={size} color={color} />
+            <Feather name="shopping-bag" size={size} color={color} />
           ),
         }}
       />

@@ -1,4 +1,4 @@
 [x] 1. Install the required packages
 [x] 2. Restart the workflow to see if the project is working
-[ ] 3. Add Shopping tab to bottom bar navigation
+[x] 3. Add Shopping tab to bottom bar navigation
 [ ] 4. Complete project import
