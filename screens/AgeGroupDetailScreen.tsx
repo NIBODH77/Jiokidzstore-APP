@@ -1406,10 +1406,11 @@ const styles = StyleSheet.create({
   coldWeatherGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
+    gap: 6,
+    justifyContent: 'space-between',
   },
   coldWeatherCard: {
-    width: (screenWidth - 48) / 3,
+    width: (screenWidth - 48) / 3 - 4,
     borderRadius: 12,
     overflow: 'hidden',
     backgroundColor: '#FAFAFA',
