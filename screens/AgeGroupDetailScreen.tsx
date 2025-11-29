@@ -76,6 +76,8 @@ export default function AgeGroupDetailScreen() {
   const [expandedId, setExpandedId] = useState<string | null>('1');
   const carouselRef = useRef<FlatList>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const seasonScrollRef = useRef<ScrollView>(null);
+  const [seasonScrollIndex, setSeasonScrollIndex] = useState(0);
 
   const sections: Section[] = gender === 'girls' 
     ? [
