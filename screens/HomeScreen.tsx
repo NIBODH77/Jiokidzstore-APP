@@ -722,20 +722,20 @@ const styles = StyleSheet.create({
   },
   trendingStoreScroll: {
     paddingHorizontal: 16,
-    gap: 12,
+    gap: 14,
   },
   trendingStoreCard: {
-    width: 120,
+    width: Dimensions.get('window').width * 0.42,
     alignItems: 'center',
   },
   trendingStoreCardImage: {
-    width: 120,
-    height: 120,
-    borderRadius: 12,
-    marginBottom: 8,
+    width: Dimensions.get('window').width * 0.40,
+    height: Dimensions.get('window').width * 0.36,
+    borderRadius: 20,
+    marginBottom: 12,
   },
   trendingStoreCardTitle: {
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: '600',
     color: '#1F2937',
     textAlign: 'center',
