@@ -585,6 +585,102 @@ export default function AgeGroupDetailScreen() {
               />
               <ThemedText style={styles.coldWeatherCardText}>Caps & Gloves{'>'}</ThemedText>
             </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Jackets{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1520689564069-2cfee5c6052c?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Mittens{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1539671435995-90bbe6ffed96?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Booties{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1528987122490-c0e9ddceee08?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Scarves{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1520695917143-a1a6ac5eb4d5?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Sweatshirts{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1520706857378-af106a4cd819?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Coats{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1513076620552-46a46e3e34e6?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Socks Set{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Leggings{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Track Suits{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Cardigans{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Winter Gloves{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Thermal Sets{'>'}</ThemedText>
+            </Pressable>
           </View>
         </View>
 
