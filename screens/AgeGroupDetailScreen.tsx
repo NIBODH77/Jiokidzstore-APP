@@ -643,7 +643,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1544526096-fb3fc6f95f98?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -651,7 +651,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -659,7 +659,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1563707902-91c9ba9e4b67?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -667,7 +667,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
@@ -675,7 +675,7 @@ export default function AgeGroupDetailScreen() {
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=180&fit=crop' }}
+                source={{ uri: 'https://images.unsplash.com/photo-1562183241-bd70a528e92e?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
               />
