@@ -115,43 +115,6 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Header with Icons - RTL */}
-      <LinearGradient
-        colors={['#FF6B9D', '#FF8FB3', '#FFB8D0']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={[styles.headerGradient, { paddingTop: insets.top }]}
-      >
-        <View style={styles.headerContainer}>
-          <View style={styles.headerRight}>
-            <Pressable 
-              style={styles.headerIconBtn} 
-              hitSlop={12}
-              onPress={() => navigation.navigate('Wishlist' as never)}
-            >
-              <Feather name="heart" size={26} color="#FF6B9D" strokeWidth={2} />
-            </Pressable>
-
-            <Pressable 
-              style={styles.headerIconBtn} 
-              hitSlop={12}
-              onPress={() => navigation.navigate('Profile' as never)}
-            >
-              <Feather name="user" size={26} color="#FF6B9D" strokeWidth={2} />
-            </Pressable>
-            
-            <Pressable style={styles.headerIconBtn} hitSlop={12}>
-              <Feather name="shopping-cart" size={26} color="#FF6B9D" strokeWidth={2} />
-              {cartCount > 0 && (
-                <View style={styles.cartCountBadge}>
-                  <Text style={styles.cartCountBadgeText}>{cartCount}</Text>
-                </View>
-              )}
-            </Pressable>
-          </View>
-        </View>
-      </LinearGradient>
-
       {/* Scrollable Content with Header */}
       <ScreenScrollView contentContainerStyle={styles.scrollContent}>
         {/* Search Bar */}
