@@ -544,7 +544,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 0,
     paddingVertical: 30,
-    paddingHorizontal: 20,
+    paddingHorizontal: 0,
   },
   parentingZoneTitleBadge: {
     backgroundColor: '#FFFFFF',
@@ -571,6 +571,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     gap: 16,
+    paddingHorizontal: 16,
   },
   parentingZoneCard: {
     width: '100%',
