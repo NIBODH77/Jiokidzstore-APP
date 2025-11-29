@@ -401,6 +401,296 @@ export default function AgeGroupDetailScreen() {
           </Pressable>
         </View>
 
+        {/* Season's Favourite Section */}
+        <View style={styles.seasonSection}>
+          <View style={styles.seasonHeader}>
+            <ThemedText style={styles.seasonTitle}>Season's Favourite</ThemedText>
+            <View style={styles.discountTag}>
+              <ThemedText style={styles.uptoSmall}>Upto</ThemedText>
+              <ThemedText style={styles.discountPercent}>60</ThemedText>
+              <ThemedText style={styles.percentOff}>%Off</ThemedText>
+            </View>
+          </View>
+          <View style={styles.seasonGrid}>
+            <Pressable style={styles.seasonCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=200&h=250&fit=crop' }}
+                style={styles.seasonCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.seasonCardLabel}>
+                <ThemedText style={styles.seasonCardText}>Sweatshirts{'>'}</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={styles.seasonCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=200&h=250&fit=crop' }}
+                style={styles.seasonCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.seasonCardLabel}>
+                <ThemedText style={styles.seasonCardText}>Jackets{'>'}</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={styles.seasonCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=200&h=250&fit=crop' }}
+                style={styles.seasonCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.seasonCardLabel}>
+                <ThemedText style={styles.seasonCardText}>sweater sets{'>'}</ThemedText>
+              </View>
+            </Pressable>
+          </View>
+        </View>
+
+        {/* Cold-Weather Essentials Section */}
+        <View style={styles.coldWeatherSection}>
+          <ThemedText style={styles.coldWeatherTitle}>Cold-Weather Essentials</ThemedText>
+          <ThemedText style={styles.coldWeatherSubtitle}>From Head to Toe: Winter Must-Haves</ThemedText>
+          <View style={styles.coldWeatherGrid}>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Onesies & Rompers{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>sweaters{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Sets & suits{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Winterwear{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Thermals{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.coldWeatherCard}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=180&fit=crop' }}
+                style={styles.coldWeatherCardImage}
+                resizeMode="cover"
+              />
+              <ThemedText style={styles.coldWeatherCardText}>Caps & Gloves{'>'}</ThemedText>
+            </Pressable>
+          </View>
+        </View>
+
+        {/* Brands to Eye On Section */}
+        <View style={styles.brandsSection}>
+          <View style={styles.brandsHeader}>
+            <ThemedText style={styles.brandsTitle}>BRANDS TO EYE ON</ThemedText>
+            <View style={styles.discountTag}>
+              <ThemedText style={styles.uptoSmall}>Upto</ThemedText>
+              <ThemedText style={styles.discountPercent}>60</ThemedText>
+              <ThemedText style={styles.percentOff}>%Off</ThemedText>
+            </View>
+          </View>
+          <ThemedText style={styles.brandsSubtitle}>Winter's finest for your little wonders</ThemedText>
+          <View style={styles.brandsGrid}>
+            <Pressable style={[styles.brandCard, { backgroundColor: '#FFE4EC' }]}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=150&fit=crop' }}
+                style={styles.brandCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.brandLogoContainer}>
+                <ThemedText style={[styles.brandLogo, { backgroundColor: '#E91E63', color: '#FFF', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 4 }]}>babyhug</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={[styles.brandCard, { backgroundColor: '#E8F5E9' }]}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=150&h=150&fit=crop' }}
+                style={styles.brandCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.brandLogoContainer}>
+                <ThemedText style={[styles.brandLogo, { color: '#FFF', backgroundColor: '#8BC34A', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 4 }]}>babyoye</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={[styles.brandCard, { backgroundColor: '#E3F2FD' }]}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=150&fit=crop' }}
+                style={styles.brandCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.brandLogoContainer}>
+                <ThemedText style={[styles.brandLogo, { color: '#1976D2' }]}>carter's</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={[styles.brandCard, { backgroundColor: '#FFF3E0' }]}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=150&h=150&fit=crop' }}
+                style={styles.brandCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.brandLogoContainer}>
+                <ThemedText style={[styles.brandLogo, { color: '#E91E63' }]}>cutewalk</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={[styles.brandCard, { backgroundColor: '#FCE4EC' }]}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=150&fit=crop' }}
+                style={styles.brandCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.brandLogoContainer}>
+                <ThemedText style={[styles.brandLogo, { color: '#333' }]}>Disney | babyhug</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={[styles.brandCard, { backgroundColor: '#E8F5E9' }]}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=150&fit=crop' }}
+                style={styles.brandCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.brandLogoContainer}>
+                <ThemedText style={[styles.brandLogo, { color: '#4CAF50' }]}>Doodle Poodle</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={[styles.brandCard, { backgroundColor: '#FFF8E1' }]}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=150&fit=crop' }}
+                style={styles.brandCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.brandLogoContainer}>
+                <ThemedText style={[styles.brandLogo, { color: '#FF9800' }]}>MARK & MIA</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={[styles.brandCard, { backgroundColor: '#E3F2FD' }]}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=150&fit=crop' }}
+                style={styles.brandCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.brandLogoContainer}>
+                <ThemedText style={[styles.brandLogo, { color: '#333' }]}>Kookie Kids</ThemedText>
+              </View>
+            </Pressable>
+            <Pressable style={[styles.brandCard, { backgroundColor: '#FFEBEE' }]}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=150&fit=crop' }}
+                style={styles.brandCardImage}
+                resizeMode="cover"
+              />
+              <View style={styles.brandLogoContainer}>
+                <ThemedText style={[styles.brandLogo, { color: '#E91E63' }]}>TOFFYHOUSE</ThemedText>
+              </View>
+            </Pressable>
+          </View>
+        </View>
+
+        {/* Everyday Innerwear Section */}
+        <View style={styles.innerwearSection}>
+          <ThemedText style={styles.innerwearTitle}>Everday Innerwear</ThemedText>
+          <View style={styles.innerwearGrid}>
+            <Pressable style={styles.innerwearCard}>
+              <LinearGradient
+                colors={['#E8F5E9', '#B3E5FC']}
+                style={styles.innerwearCardGradient}
+              >
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=150&fit=crop' }}
+                  style={styles.innerwearCardImage}
+                  resizeMode="contain"
+                />
+              </LinearGradient>
+              <ThemedText style={styles.innerwearCardText}>Thermal{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.innerwearCard}>
+              <LinearGradient
+                colors={['#FFF9C4', '#FFECB3']}
+                style={styles.innerwearCardGradient}
+              >
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=150&fit=crop' }}
+                  style={styles.innerwearCardImage}
+                  resizeMode="contain"
+                />
+              </LinearGradient>
+              <ThemedText style={styles.innerwearCardText}>Jhablas{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.innerwearCard}>
+              <LinearGradient
+                colors={['#FCE4EC', '#F8BBD9']}
+                style={styles.innerwearCardGradient}
+              >
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=150&fit=crop' }}
+                  style={styles.innerwearCardImage}
+                  resizeMode="contain"
+                />
+              </LinearGradient>
+              <ThemedText style={styles.innerwearCardText}>Slips & Camisoles{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.innerwearCard}>
+              <LinearGradient
+                colors={['#FFCDD2', '#EF9A9A']}
+                style={styles.innerwearCardGradient}
+              >
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=150&fit=crop' }}
+                  style={styles.innerwearCardImage}
+                  resizeMode="contain"
+                />
+              </LinearGradient>
+              <ThemedText style={styles.innerwearCardText}>Innerwear sets{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.innerwearCard}>
+              <LinearGradient
+                colors={['#E1F5FE', '#B3E5FC']}
+                style={styles.innerwearCardGradient}
+              >
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=150&h=150&fit=crop' }}
+                  style={styles.innerwearCardImage}
+                  resizeMode="contain"
+                />
+              </LinearGradient>
+              <ThemedText style={styles.innerwearCardText}>Bloomers{'>'}</ThemedText>
+            </Pressable>
+            <Pressable style={styles.innerwearCard}>
+              <LinearGradient
+                colors={['#F3E5F5', '#E1BEE7']}
+                style={styles.innerwearCardGradient}
+              >
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=150&fit=crop' }}
+                  style={styles.innerwearCardImage}
+                  resizeMode="contain"
+                />
+              </LinearGradient>
+              <ThemedText style={styles.innerwearCardText}>Multi packs{'>'}</ThemedText>
+            </Pressable>
+          </View>
+        </View>
+
         {/* Bottom Spacing */}
         <View style={{ height: 100 }} />
       </ScrollView>
@@ -836,5 +1126,196 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1F2937',
     letterSpacing: 1,
+  },
+  seasonSection: {
+    marginTop: 24,
+    paddingHorizontal: 16,
+  },
+  seasonHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  seasonTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1F2937',
+    marginRight: 8,
+  },
+  discountTag: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    backgroundColor: '#FFF3E0',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+  },
+  uptoSmall: {
+    fontSize: 12,
+    color: '#666',
+    marginRight: 2,
+  },
+  discountPercent: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#FF6B35',
+  },
+  percentOff: {
+    fontSize: 12,
+    color: '#FF6B35',
+    fontWeight: '600',
+  },
+  seasonGrid: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  seasonCard: {
+    flex: 1,
+    height: 180,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#F5F5F5',
+  },
+  seasonCardImage: {
+    width: '100%',
+    height: '100%',
+  },
+  seasonCardLabel: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+  },
+  seasonCardText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  },
+  coldWeatherSection: {
+    marginTop: 24,
+    paddingHorizontal: 16,
+  },
+  coldWeatherTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1F2937',
+    marginBottom: 4,
+  },
+  coldWeatherSubtitle: {
+    fontSize: 13,
+    color: '#666',
+    marginBottom: 12,
+  },
+  coldWeatherGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  coldWeatherCard: {
+    width: (screenWidth - 48) / 3,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#FAFAFA',
+  },
+  coldWeatherCardImage: {
+    width: '100%',
+    height: 120,
+    backgroundColor: '#F0F0F0',
+  },
+  coldWeatherCardText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#1F2937',
+    paddingHorizontal: 6,
+    paddingVertical: 8,
+    textAlign: 'center',
+  },
+  brandsSection: {
+    marginTop: 24,
+    paddingHorizontal: 16,
+  },
+  brandsHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  brandsTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#1F2937',
+    marginRight: 8,
+  },
+  brandsSubtitle: {
+    fontSize: 13,
+    color: '#666',
+    marginBottom: 12,
+  },
+  brandsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  brandCard: {
+    width: (screenWidth - 48) / 3,
+    height: 140,
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  brandCardImage: {
+    width: '100%',
+    height: 100,
+  },
+  brandLogoContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 4,
+  },
+  brandLogo: {
+    fontSize: 10,
+    fontWeight: '700',
+    textAlign: 'center',
+  },
+  innerwearSection: {
+    marginTop: 24,
+    paddingHorizontal: 16,
+  },
+  innerwearTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1F2937',
+    marginBottom: 12,
+  },
+  innerwearGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  innerwearCard: {
+    width: (screenWidth - 48) / 3,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#FAFAFA',
+  },
+  innerwearCardGradient: {
+    width: '100%',
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  innerwearCardImage: {
+    width: '80%',
+    height: '80%',
+  },
+  innerwearCardText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#1F2937',
+    paddingHorizontal: 6,
+    paddingVertical: 8,
+    textAlign: 'center',
   },
 });
