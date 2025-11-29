@@ -630,8 +630,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   parentingZoneSection: {
-    marginHorizontal: 16,
+    marginHorizontal: 0,
     marginBottom: 24,
+    paddingHorizontal: 16,
   },
   parentingZoneBanner: {
     width: '100%',
@@ -646,6 +647,6 @@ const styles = StyleSheet.create({
   },
   parentingZoneImage: {
     width: '100%',
-    height: 200,
+    height: 250,
   },
 });
