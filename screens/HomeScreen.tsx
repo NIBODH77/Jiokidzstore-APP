@@ -378,6 +378,91 @@ export default function HomeScreen() {
           </ScrollView>
         </View>
 
+        {/* Season's Special Section */}
+        <View style={styles.seasonsSpecialSection}>
+          <View style={styles.seasonsSpecialHeader}>
+            <View style={styles.seasonsSpecialTitleContainer}>
+              <ThemedText style={styles.seasonsSpecialTitle}>Season's Special</ThemedText>
+              <ThemedText style={styles.seasonsSpecialSubtitle}>Pick Your Winter Wardrobe Refresh Pieces</ThemedText>
+            </View>
+            <View style={styles.startingPriceContainer}>
+              <ThemedText style={styles.startingText}>STARTING</ThemedText>
+              <ThemedText style={styles.priceText}>₹199</ThemedText>
+            </View>
+          </View>
+          
+          <View style={styles.seasonsSpecialGrid}>
+            <View style={styles.seasonsRow}>
+              <Pressable style={styles.seasonsCardLarge} onPress={() => navigation.navigate('AllProducts')}>
+                <Image 
+                  source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <ThemedText style={styles.seasonsCardText}>Hoodies›</ThemedText>
+                </View>
+              </Pressable>
+              <Pressable style={styles.seasonsCardSmall} onPress={() => navigation.navigate('AllProducts')}>
+                <Image 
+                  source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <ThemedText style={styles.seasonsCardText}>Sweatshirts›</ThemedText>
+                </View>
+              </Pressable>
+            </View>
+            
+            <View style={styles.seasonsRow}>
+              <Pressable style={styles.seasonsCardSmall} onPress={() => navigation.navigate('AllProducts')}>
+                <Image 
+                  source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <ThemedText style={styles.seasonsCardText}>Winter Sets›</ThemedText>
+                </View>
+              </Pressable>
+              <Pressable style={styles.seasonsCardLarge} onPress={() => navigation.navigate('AllProducts')}>
+                <Image 
+                  source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <ThemedText style={styles.seasonsCardText}>Pullovers›</ThemedText>
+                </View>
+              </Pressable>
+            </View>
+            
+            <View style={styles.seasonsRow}>
+              <Pressable style={styles.seasonsCardMedium} onPress={() => navigation.navigate('AllProducts')}>
+                <Image 
+                  source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <ThemedText style={styles.seasonsCardText}>Jackets›</ThemedText>
+                </View>
+              </Pressable>
+              <Pressable style={styles.seasonsCardMedium} onPress={() => navigation.navigate('AllProducts')}>
+                <Image 
+                  source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
+                  style={styles.seasonsCardImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.seasonsCardLabel}>
+                  <ThemedText style={styles.seasonsCardText}>Sweaters›</ThemedText>
+                </View>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+
         {/* Flash Sale Section */}
         <Pressable style={styles.flashSaleBanner} onPress={() => navigation.navigate('FlashSale')}>
           <LinearGradient
@@ -800,5 +885,100 @@ const styles = StyleSheet.create({
   trendingStoreCardImage: {
     width: '100%',
     height: '100%',
+  },
+  seasonsSpecialSection: {
+    marginTop: 24,
+    paddingHorizontal: 16,
+    backgroundColor: '#FFFFFF',
+    marginBottom: 16,
+  },
+  seasonsSpecialHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 16,
+  },
+  seasonsSpecialTitleContainer: {
+    flex: 1,
+  },
+  seasonsSpecialTitle: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#1A1A1A',
+    marginBottom: 4,
+  },
+  seasonsSpecialSubtitle: {
+    fontSize: 13,
+    color: '#666666',
+    fontWeight: '400',
+  },
+  startingPriceContainer: {
+    alignItems: 'flex-end',
+  },
+  startingText: {
+    fontSize: 11,
+    color: '#1A1A1A',
+    fontWeight: '600',
+    letterSpacing: 0.5,
+  },
+  priceText: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: '#1A237E',
+  },
+  seasonsSpecialGrid: {
+    gap: 10,
+  },
+  seasonsRow: {
+    flexDirection: 'row',
+    gap: 10,
+    marginBottom: 10,
+  },
+  seasonsCardLarge: {
+    flex: 1.2,
+    height: 200,
+    borderRadius: 16,
+    overflow: 'hidden',
+    position: 'relative',
+    backgroundColor: '#F5F5F5',
+  },
+  seasonsCardSmall: {
+    flex: 0.8,
+    height: 200,
+    borderRadius: 16,
+    overflow: 'hidden',
+    position: 'relative',
+    backgroundColor: '#F5F5F5',
+  },
+  seasonsCardMedium: {
+    flex: 1,
+    height: 200,
+    borderRadius: 16,
+    overflow: 'hidden',
+    position: 'relative',
+    backgroundColor: '#F5F5F5',
+  },
+  seasonsCardImage: {
+    width: '100%',
+    height: '100%',
+  },
+  seasonsCardLabel: {
+    position: 'absolute',
+    bottom: 12,
+    left: 12,
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  seasonsCardText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#1A1A1A',
   },
 });
