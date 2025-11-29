@@ -298,12 +298,33 @@ export default function HomeScreen() {
           </Pressable>
         </View>
 
-        {/* Trending Store Section */}
+        {/* TRENDING Store Section */}
         <View style={styles.trendingStoreSection}>
+          <View style={styles.trendingStoreTitleRow}>
+            <Text style={styles.decorativeSnowflakeLeft}>❄</Text>
+            <View style={styles.trendingTitleContainer}>
+              <View style={styles.trendingLettersRow}>
+                <Text style={[styles.trendingLetter, { color: '#87CEEB' }]}>T</Text>
+                <Text style={[styles.trendingLetter, { color: '#FFB6C1' }]}>R</Text>
+                <Text style={[styles.trendingLetter, { color: '#98D8C8' }]}>E</Text>
+                <Text style={[styles.trendingLetter, { color: '#F7CAC9' }]}>N</Text>
+                <Text style={[styles.trendingLetter, { color: '#FFD700' }]}>D</Text>
+                <Text style={[styles.trendingLetter, { color: '#DDA0DD' }]}>I</Text>
+                <Text style={[styles.trendingLetter, { color: '#F0E68C' }]}>N</Text>
+                <Text style={[styles.trendingLetter, { color: '#FFB347' }]}>G</Text>
+                <Text style={styles.storeText}>Store</Text>
+              </View>
+              <View style={styles.storeUnderline} />
+            </View>
+            <Text style={styles.decorativeSnowflakeRight}>❄</Text>
+          </View>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.trendingStoreScroll}
+            scrollEnabled={false}
+            decelerationRate="fast"
+            snapToInterval={Dimensions.get('window').width * 0.82 + 12}
           >
             <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
               <Image 
@@ -311,7 +332,6 @@ export default function HomeScreen() {
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
-              <ThemedText style={styles.trendingStoreCardTitle}>Birthday & Gifts</ThemedText>
             </Pressable>
             <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
               <Image 
@@ -319,7 +339,6 @@ export default function HomeScreen() {
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
-              <ThemedText style={styles.trendingStoreCardTitle}>Electronics & Tech</ThemedText>
             </Pressable>
             <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
               <Image 
@@ -327,7 +346,6 @@ export default function HomeScreen() {
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
-              <ThemedText style={styles.trendingStoreCardTitle}>Moms & Maternity</ThemedText>
             </Pressable>
             <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
               <Image 
@@ -335,7 +353,6 @@ export default function HomeScreen() {
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
-              <ThemedText style={styles.trendingStoreCardTitle}>Beauty & Care</ThemedText>
             </Pressable>
             <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
               <Image 
@@ -343,7 +360,6 @@ export default function HomeScreen() {
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
-              <ThemedText style={styles.trendingStoreCardTitle}>Special Deals</ThemedText>
             </Pressable>
             <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
               <Image 
@@ -351,7 +367,6 @@ export default function HomeScreen() {
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
-              <ThemedText style={styles.trendingStoreCardTitle}>Baby Gear</ThemedText>
             </Pressable>
             <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AllProducts')}>
               <Image 
@@ -359,7 +374,6 @@ export default function HomeScreen() {
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
-              <ThemedText style={styles.trendingStoreCardTitle}>Toys & Gaming</ThemedText>
             </Pressable>
           </ScrollView>
         </View>
@@ -715,29 +729,74 @@ const styles = StyleSheet.create({
     height: 280,
   },
   trendingStoreSection: {
-    marginTop: 2,
-    marginBottom: 24,
+    marginTop: 32,
+    paddingVertical: 20,
     backgroundColor: '#FFFFFF',
   },
-  trendingStoreScroll: {
-    paddingHorizontal: 0,
-    gap: 16,
+  trendingStoreTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    paddingHorizontal: 16,
   },
-  trendingStoreCard: {
-    width: Dimensions.get('window').width,
+  decorativeSnowflakeLeft: {
+    fontSize: 16,
+    color: '#87CEEB',
+    marginRight: 12,
+    opacity: 0.7,
+  },
+  decorativeSnowflakeRight: {
+    fontSize: 16,
+    color: '#87CEEB',
+    marginLeft: 12,
+    opacity: 0.7,
+  },
+  trendingTitleContainer: {
     alignItems: 'center',
   },
-  trendingStoreCardImage: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').width * 0.85,
-    borderRadius: 0,
-    marginBottom: 12,
+  trendingLettersRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
   },
-  trendingStoreCardTitle: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: '#1F2937',
-    textAlign: 'center',
-    lineHeight: 16,
+  trendingLetter: {
+    fontSize: 26,
+    fontWeight: '800',
+    letterSpacing: 1,
+  },
+  storeText: {
+    fontSize: 26,
+    color: '#5BA4A4',
+    fontWeight: '500',
+    fontStyle: 'italic',
+    marginLeft: 4,
+  },
+  storeUnderline: {
+    width: 60,
+    height: 2,
+    backgroundColor: '#5BA4A4',
+    marginTop: 2,
+    alignSelf: 'flex-end',
+    marginRight: 0,
+    borderRadius: 1,
+  },
+  trendingStoreScroll: {
+    paddingHorizontal: 16,
+    gap: 12,
+  },
+  trendingStoreCard: {
+    width: Dimensions.get('window').width * 0.82,
+    height: Dimensions.get('window').width * 1.1,
+    borderRadius: 20,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  trendingStoreCardImage: {
+    width: '100%',
+    height: '100%',
   },
 });
