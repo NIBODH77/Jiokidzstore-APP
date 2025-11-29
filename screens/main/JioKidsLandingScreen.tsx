@@ -175,10 +175,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
+    paddingTop: 8,
   },
   headerTextSection: {
     flex: 1,
-    paddingRight: 12,
+    paddingRight: 16,
   },
   welcomeTitle: {
     fontSize: 28,
@@ -196,7 +197,8 @@ const styles = StyleSheet.create({
   headerIcons: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 1,
+    gap: 3,
+    flexShrink: 0,
   },
   headerIconButton: {
     width: 40,
