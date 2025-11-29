@@ -319,7 +319,7 @@ export default function AgeGroupDetailScreen() {
           ))}
         </View>
 
-        {/* FirstCry Boutiques - Winter Wonderland Section */}
+        {/* JioKidz Boutiques - Winter Wonderland Section */}
         <View style={styles.boutiquesSection}>
           {/* Header Banner with Baby Image */}
           <View style={styles.boutiquesHeader}>
@@ -330,8 +330,8 @@ export default function AgeGroupDetailScreen() {
             />
             <View style={styles.boutiquesHeaderTextContainer}>
               <View style={styles.boutiquesLogoRow}>
-                <ThemedText style={styles.firstCryText}>first</ThemedText>
-                <ThemedText style={styles.cryText}>cry</ThemedText>
+                <ThemedText style={styles.jioText}>Jio</ThemedText>
+                <ThemedText style={styles.kidzText}>Kidz</ThemedText>
                 <ThemedText style={styles.boutiquesText}> BOUTIQUES</ThemedText>
               </View>
               <View style={styles.winterWonderlandRow}>
@@ -614,16 +614,15 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
     marginBottom: 4,
   },
-  firstCryText: {
-    fontSize: 16,
-    fontWeight: '400',
-    color: '#E74C3C',
-    fontStyle: 'italic',
-  },
-  cryText: {
-    fontSize: 16,
+  jioText: {
+    fontSize: 18,
     fontWeight: '700',
-    color: '#E74C3C',
+    color: '#FF6B35',
+  },
+  kidzText: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#FFD93D',
   },
   boutiquesText: {
     fontSize: 12,
