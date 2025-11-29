@@ -716,7 +716,7 @@ const styles = StyleSheet.create({
     height: 280,
   },
   trendingStoreSection: {
-    marginTop: 6,
+    marginTop: 1,
     marginBottom: 24,
     paddingVertical: 16,
     backgroundColor: '#FFFFFF',
