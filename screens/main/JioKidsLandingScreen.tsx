@@ -70,7 +70,7 @@ export default function JioKidsLandingScreen() {
         style={[styles.header, { paddingTop: insets.top + 16 }]}
       >
         <View style={styles.headerContent}>
-          <View>
+          <View style={styles.headerTextSection}>
             <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
             <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
           </View>
@@ -174,7 +174,11 @@ const styles = StyleSheet.create({
   headerContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+  },
+  headerTextSection: {
+    flex: 1,
+    paddingRight: 12,
   },
   welcomeTitle: {
     fontSize: 28,
