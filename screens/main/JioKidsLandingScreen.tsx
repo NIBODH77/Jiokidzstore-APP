@@ -209,8 +209,15 @@ export default function JioKidsLandingScreen() {
           </View>
         </View>
 
-        <View style={styles.parentingZoneContainer}>
-          <Text style={styles.parentingZoneTitle}>Parenting Zone</Text>
+        <LinearGradient
+          colors={['#A8E6E1', '#B8F0E8', '#C8F5ED']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.parentingZoneContainer}
+        >
+          <View style={styles.parentingZoneTitleBadge}>
+            <Text style={styles.parentingZoneTitle}>Parenting Zone</Text>
+          </View>
           <View style={styles.parentingZoneGrid}>
             <Pressable 
               style={[styles.parentingZoneCard, { backgroundColor: '#FFA500' }]}
@@ -239,7 +246,7 @@ export default function JioKidsLandingScreen() {
               <Text style={styles.parentingCardArrow}>›</Text>
             </Pressable>
           </View>
-        </View>
+        </LinearGradient>
 
         <View style={styles.allCategoriesSection}>
           <View style={styles.allCategoriesHeader}>
@@ -533,15 +540,31 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   parentingZoneContainer: {
-    paddingHorizontal: 20,
+    marginHorizontal: 0,
     marginTop: 30,
-    marginBottom: 40,
+    marginBottom: 0,
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+  },
+  parentingZoneTitleBadge: {
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    alignSelf: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2,
   },
   parentingZoneTitle: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: '700',
-    color: '#1F2937',
-    marginBottom: 18,
+    color: '#0B5B5E',
     textAlign: 'center',
   },
   parentingZoneGrid: {
@@ -551,30 +574,30 @@ const styles = StyleSheet.create({
   },
   parentingZoneCard: {
     flex: 1,
-    paddingVertical: 24,
-    paddingHorizontal: 14,
-    borderRadius: 20,
+    paddingVertical: 28,
+    paddingHorizontal: 12,
+    borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.12,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
     shadowRadius: 8,
-    elevation: 5,
+    elevation: 6,
   },
   parentingCardEmoji: {
-    fontSize: 42,
-    marginBottom: 10,
+    fontSize: 48,
+    marginBottom: 12,
   },
   parentingCardName: {
-    fontSize: 14,
+    fontSize: 15,
     color: '#FFFFFF',
     fontWeight: '700',
     textAlign: 'center',
     marginBottom: 8,
   },
   parentingCardArrow: {
-    fontSize: 20,
+    fontSize: 22,
     color: '#FFFFFF',
     fontWeight: '700',
   },
