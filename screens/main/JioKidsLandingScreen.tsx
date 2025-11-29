@@ -31,6 +31,16 @@ const localCategoryImages = {
   'Baby Care': require('../../attached_assets/generated_images/baby_care_products.png'),
 };
 
+const trendingStoreImages = [
+  { id: '1', image: require('../../attached_assets/generated_images/luxury_diaper_promotional_banner.png'), title: 'Luxury Diapers' },
+  { id: '2', image: require('../../attached_assets/generated_images/baby_skincare_products_banner.png'), title: 'Baby Skincare' },
+  { id: '3', image: require('../../attached_assets/generated_images/baby_toys_promotional_banner.png'), title: 'Baby Toys' },
+  { id: '4', image: require('../../attached_assets/generated_images/baby_clothing_collection_banner.png'), title: 'Baby Clothing' },
+  { id: '5', image: require('../../attached_assets/generated_images/baby_feeding_essentials_banner.png'), title: 'Feeding Essentials' },
+  { id: '6', image: require('../../attached_assets/generated_images/baby_bath_products_banner.png'), title: 'Bath Products' },
+  { id: '7', image: require('../../attached_assets/generated_images/baby_stroller_gear_banner.png'), title: 'Baby Gear' },
+];
+
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const STATS = [
@@ -260,6 +270,34 @@ export default function JioKidsLandingScreen() {
             </Pressable>
           </ScrollView>
         </LinearGradient>
+
+        {/* TRENDING Store Section */}
+        <View style={styles.trendingStoreSection}>
+          <View style={styles.trendingStoreTitleRow}>
+            <Text style={styles.trendingStoreTitle}>
+              <Text style={styles.trendingText}>TRENDING</Text>
+              <Text style={styles.storeText}>Store</Text>
+            </Text>
+          </View>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.trendingStoreScrollContent}
+            pagingEnabled={false}
+            decelerationRate="fast"
+            snapToInterval={SCREEN_WIDTH * 0.82 + 12}
+          >
+            {trendingStoreImages.map((item) => (
+              <Pressable key={item.id} style={styles.trendingStoreCard} onPress={() => {}}>
+                <Image
+                  source={item.image}
+                  style={styles.trendingStoreImage}
+                  resizeMode="cover"
+                />
+              </Pressable>
+            ))}
+          </ScrollView>
+        </View>
 
         <View style={styles.allCategoriesSection}>
           <View style={styles.allCategoriesHeader}>
@@ -629,6 +667,47 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '700',
     marginTop: -1,
+  },
+  trendingStoreSection: {
+    marginTop: 30,
+    paddingVertical: 20,
+  },
+  trendingStoreTitleRow: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  trendingStoreTitle: {
+    fontSize: 26,
+    fontWeight: '800',
+  },
+  trendingText: {
+    color: '#FF6B35',
+    fontWeight: '800',
+    letterSpacing: 1,
+  },
+  storeText: {
+    color: '#4A90A4',
+    fontWeight: '600',
+    fontStyle: 'italic',
+  },
+  trendingStoreScrollContent: {
+    paddingHorizontal: 16,
+    gap: 12,
+  },
+  trendingStoreCard: {
+    width: SCREEN_WIDTH * 0.82,
+    height: SCREEN_WIDTH * 1.1,
+    borderRadius: 20,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  trendingStoreImage: {
+    width: '100%',
+    height: '100%',
   },
   allCategoriesSection: {
     paddingHorizontal: 20,

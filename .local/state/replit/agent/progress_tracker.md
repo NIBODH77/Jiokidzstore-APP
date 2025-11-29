@@ -14,3 +14,4 @@
 [x] 14. Changed application to run on port 8080 as requested
 [x] 15. Made Parenting Zone card full width - background now extends edge to edge
 [x] 16. Redesigned Parenting Zone to horizontal scrollable cards like FirstCry - with colored image containers and label with arrow below
+[x] 17. Added TRENDING Store section with 7 HD promotional banner images in horizontal manual slider
