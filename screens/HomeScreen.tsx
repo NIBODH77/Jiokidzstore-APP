@@ -711,7 +711,7 @@ const styles = StyleSheet.create({
   },
   parentingZoneSection: {
     marginHorizontal: 0,
-    marginBottom: 12,
+    marginBottom: 0,
   },
   parentingZoneBanner: {
     width: '100%',
@@ -729,7 +729,7 @@ const styles = StyleSheet.create({
     height: 280,
   },
   trendingStoreSection: {
-    marginTop: 12,
+    marginTop: 0,
     marginBottom: 24,
     paddingVertical: 20,
     backgroundColor: '#FFFFFF',
