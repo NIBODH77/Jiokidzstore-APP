@@ -26,13 +26,16 @@ export default function MainTabNavigator() {
     <Tab.Navigator
       initialRouteName="ShoppingTab"
       screenOptions={({ route }) => {
-        const routeName = getFocusedRouteNameFromRoute(route) ?? "Wishlist";
+        const routeName = getFocusedRouteNameFromRoute(route) ?? route.name;
+        // Hide tab bar if we're on a nested screen (not the root screen of each tab)
+        const isRootScreen = routeName === route.name;
         
         return {
           tabBarActiveTintColor: theme.tabIconSelected,
           tabBarInactiveTintColor: theme.tabIconDefault,
           tabBarStyle: {
             position: "absolute",
+            display: isRootScreen ? "flex" : "none",
             backgroundColor: Platform.select({
               ios: "transparent",
               android: theme.backgroundRoot,
