@@ -866,7 +866,7 @@ const styles = StyleSheet.create({
   },
   adBannerContainer: {
     width: screenWidth - 32,
-    height: 260,
+    height: 180,
     marginHorizontal: 8,
     borderRadius: 12,
     overflow: 'hidden',
