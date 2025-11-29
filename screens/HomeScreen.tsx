@@ -283,53 +283,19 @@ export default function HomeScreen() {
 
         {/* Parenting Zone Section */}
         <View style={styles.parentingZoneSection}>
-          <View style={styles.parentingZoneHeader}>
-            <ThemedText style={styles.parentingZoneTitle}>Parenting Zone</ThemedText>
-          </View>
-          <View style={styles.parentingZoneContainer}>
-            <Pressable 
-              style={[styles.parentingZoneCard, { backgroundColor: '#FFE5B4' }]}
-              onPress={() => {}}
-            >
-              <View style={styles.parentingZoneIconContainer}>
-                <Image 
-                  source={require('../attached_assets/generated_images/newborn_boy_fashion.png')}
-                  style={styles.parentingZoneIcon}
-                  resizeMode="contain"
-                />
-              </View>
-              <ThemedText style={styles.parentingZoneCardTitle}>Baby Names</ThemedText>
-              <View style={styles.parentingZoneArrow}>
-                <Feather name="chevron-right" size={18} color="#FF6B9D" />
-              </View>
-            </Pressable>
-
-            <Pressable 
-              style={[styles.parentingZoneCard, { backgroundColor: '#B0E0E6' }]}
-              onPress={() => {}}
-            >
-              <View style={styles.parentingZoneIconContainer}>
-                <Feather name="award" size={40} color="#FFD700" />
-              </View>
-              <ThemedText style={styles.parentingZoneCardTitle}>Contests</ThemedText>
-              <View style={styles.parentingZoneArrow}>
-                <Feather name="chevron-right" size={18} color="#FF6B9D" />
-              </View>
-            </Pressable>
-
-            <Pressable 
-              style={[styles.parentingZoneCard, { backgroundColor: '#FFB6D9' }]}
-              onPress={() => {}}
-            >
-              <View style={styles.parentingZoneIconContainer}>
-                <Feather name="message-circle" size={40} color="#4169E1" />
-              </View>
-              <ThemedText style={styles.parentingZoneCardTitle}>Q&A</ThemedText>
-              <View style={styles.parentingZoneArrow}>
-                <Feather name="chevron-right" size={18} color="#FF6B9D" />
-              </View>
-            </Pressable>
-          </View>
+          <Pressable 
+            style={styles.parentingZoneBanner}
+            onPress={() => {
+              // Future navigation will be added here
+              console.log('Parenting Zone clicked - will navigate to parenting section');
+            }}
+          >
+            <Image 
+              source={require('../attached_assets/WhatsApp Image 2025-11-29 at 3.25.16 PM_1764410805074.jpeg')}
+              style={styles.parentingZoneImage}
+              resizeMode="cover"
+            />
+          </Pressable>
         </View>
 
         {/* Flash Sale Section */}
@@ -667,60 +633,19 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginBottom: 24,
   },
-  parentingZoneHeader: {
-    marginBottom: 16,
-  },
-  parentingZoneTitle: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#1F2937',
-    textAlign: 'center',
-  },
-  parentingZoneContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 12,
-  },
-  parentingZoneCard: {
-    flex: 1,
+  parentingZoneBanner: {
+    width: '100%',
     borderRadius: 16,
-    padding: 16,
-    alignItems: 'center',
+    overflow: 'hidden',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-    position: 'relative',
-    minHeight: 140,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 6,
+    backgroundColor: '#FFFFFF',
   },
-  parentingZoneIconContainer: {
-    width: 60,
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  parentingZoneIcon: {
-    width: 50,
-    height: 50,
-  },
-  parentingZoneCardTitle: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#1F2937',
-    textAlign: 'center',
-    marginTop: 4,
-  },
-  parentingZoneArrow: {
-    position: 'absolute',
-    bottom: 8,
-    right: 8,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    borderRadius: 12,
-    width: 24,
-    height: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
+  parentingZoneImage: {
+    width: '100%',
+    height: 200,
   },
 });
