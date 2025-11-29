@@ -43,10 +43,14 @@ export function TopHeader({ showBackButton = false }: TopHeaderProps) {
           resizeMode="contain"
         />
 
-        {/* Right - Notification, Wishlist, Profile & Cart */}
+        {/* Right - Search, Notification, Wishlist, Profile & Cart */}
         <View style={styles.rightSection}>
           <Pressable style={styles.iconButton} hitSlop={8}>
-            <Feather name="bell" size={28} color="#1F2937" strokeWidth={1.8} />
+            <Feather name="search" size={24} color="#1F2937" strokeWidth={1} />
+          </Pressable>
+
+          <Pressable style={styles.iconButton} hitSlop={8}>
+            <Feather name="bell" size={24} color="#1F2937" strokeWidth={1} />
             <View style={styles.notificationBadge}>
               <View style={styles.badgeDot} />
             </View>
@@ -57,7 +61,7 @@ export function TopHeader({ showBackButton = false }: TopHeaderProps) {
             hitSlop={8}
             onPress={() => navigation.navigate('Wishlist' as never)}
           >
-            <Feather name="heart" size={28} color="#1F2937" strokeWidth={1.8} />
+            <Feather name="heart" size={24} color="#1F2937" strokeWidth={1} />
           </Pressable>
 
           <Pressable 
@@ -65,11 +69,11 @@ export function TopHeader({ showBackButton = false }: TopHeaderProps) {
             hitSlop={8}
             onPress={() => navigation.navigate('Profile' as never)}
           >
-            <Feather name="user" size={28} color="#1F2937" strokeWidth={1.8} />
+            <Feather name="user" size={24} color="#1F2937" strokeWidth={1} />
           </Pressable>
           
           <Pressable style={styles.cartButton} hitSlop={8}>
-            <Feather name="shopping-cart" size={28} color="#1F2937" strokeWidth={1.8} />
+            <Feather name="shopping-cart" size={24} color="#1F2937" strokeWidth={1} />
             {cartCount > 0 && (
               <View style={styles.cartBadge}>
                 <View style={styles.cartCount}>
@@ -130,19 +134,19 @@ const styles = StyleSheet.create({
   rightSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: 6,
   },
   iconButton: {
-    width: 48,
-    height: 48,
+    width: 40,
+    height: 40,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
     borderRadius: 10,
   },
   cartButton: {
-    width: 48,
-    height: 48,
+    width: 40,
+    height: 40,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
