@@ -71,6 +71,7 @@ export default function JioKidsLandingScreen() {
       >
         <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
         <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
+        <Text style={styles.iconsSectionLabel}>Quick Access</Text>
         
         <View style={styles.headerIcons}>
           <Pressable 
@@ -78,7 +79,7 @@ export default function JioKidsLandingScreen() {
             hitSlop={12}
             onPress={() => navigation.navigate('Wishlist' as never)}
           >
-            <Feather name="heart" size={26} color="#FFFFFF" strokeWidth={1} />
+            <Feather name="heart" size={28} color="#FF6B9D" strokeWidth={2} />
           </Pressable>
 
           <Pressable 
@@ -86,11 +87,11 @@ export default function JioKidsLandingScreen() {
             hitSlop={12}
             onPress={() => navigation.navigate('Profile' as never)}
           >
-            <Feather name="user" size={26} color="#FFFFFF" strokeWidth={1} />
+            <Feather name="user" size={28} color="#FF6B9D" strokeWidth={2} />
           </Pressable>
           
           <Pressable style={styles.headerCartButton} hitSlop={12}>
-            <Feather name="shopping-cart" size={26} color="#FFFFFF" strokeWidth={1} />
+            <Feather name="shopping-cart" size={28} color="#FF6B9D" strokeWidth={2} />
             {cartCount > 0 && (
               <View style={styles.cartBadge}>
                 <View style={styles.cartCount}>
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 20,
-    paddingBottom: 28,
+    paddingVertical: 20,
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
   },
@@ -179,29 +180,48 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     opacity: 0.95,
     textAlign: 'left',
-    marginBottom: 18,
+    marginBottom: 16,
+  },
+  iconsSectionLabel: {
+    fontSize: 12,
+    color: '#FFFFFF',
+    opacity: 0.85,
+    fontWeight: '600',
+    marginBottom: 10,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   headerIcons: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: 12,
     justifyContent: 'flex-start',
   },
   headerIconButton: {
-    width: 46,
-    height: 46,
-    borderRadius: 23,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 3,
+    elevation: 3,
   },
   headerCartButton: {
-    width: 46,
-    height: 46,
-    borderRadius: 23,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 3,
+    elevation: 3,
   },
   cartBadge: {
     position: 'absolute',
