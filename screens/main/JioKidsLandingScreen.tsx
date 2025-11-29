@@ -71,36 +71,6 @@ export default function JioKidsLandingScreen() {
       >
         <Text style={styles.welcomeTitle}>Welcome to JioKids</Text>
         <Text style={styles.welcomeSubtitle}>Shop for Kids Products</Text>
-        <Text style={styles.iconsSectionLabel}>Quick Access</Text>
-        
-        <View style={styles.headerIcons}>
-          <Pressable 
-            style={styles.headerIconButton} 
-            hitSlop={12}
-            onPress={() => navigation.navigate('Wishlist' as never)}
-          >
-            <Feather name="heart" size={28} color="#FF6B9D" strokeWidth={2} />
-          </Pressable>
-
-          <Pressable 
-            style={styles.headerIconButton} 
-            hitSlop={12}
-            onPress={() => navigation.navigate('Profile' as never)}
-          >
-            <Feather name="user" size={28} color="#FF6B9D" strokeWidth={2} />
-          </Pressable>
-          
-          <Pressable style={styles.headerCartButton} hitSlop={12}>
-            <Feather name="shopping-cart" size={28} color="#FF6B9D" strokeWidth={2} />
-            {cartCount > 0 && (
-              <View style={styles.cartBadge}>
-                <View style={styles.cartCount}>
-                  <Text style={styles.cartCountText}>{cartCount}</Text>
-                </View>
-              </View>
-            )}
-          </Pressable>
-        </View>
       </LinearGradient>
 
       <ScrollView
