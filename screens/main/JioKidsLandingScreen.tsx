@@ -278,14 +278,14 @@ export default function JioKidsLandingScreen() {
             <Text style={styles.decorativeSnowflakeLeft}>❄</Text>
             <View style={styles.trendingTitleContainer}>
               <View style={styles.trendingLettersRow}>
-                <Text style={[styles.trendingLetter, { color: '#8B4513' }]}>T</Text>
-                <Text style={[styles.trendingLetter, { color: '#A0522D' }]}>R</Text>
-                <Text style={[styles.trendingLetter, { color: '#B8860B' }]}>E</Text>
-                <Text style={[styles.trendingLetter, { color: '#CD853F' }]}>N</Text>
-                <Text style={[styles.trendingLetter, { color: '#D2691E' }]}>D</Text>
-                <Text style={[styles.trendingLetter, { color: '#DEB887' }]}>I</Text>
-                <Text style={[styles.trendingLetter, { color: '#F4A460' }]}>N</Text>
-                <Text style={[styles.trendingLetter, { color: '#FFDAB9' }]}>G</Text>
+                <Text style={[styles.trendingLetter, { color: '#5D3A1A' }]}>T</Text>
+                <Text style={[styles.trendingLetter, { color: '#6B4423' }]}>R</Text>
+                <Text style={[styles.trendingLetter, { color: '#7A4E2C' }]}>E</Text>
+                <Text style={[styles.trendingLetter, { color: '#8B5A35' }]}>N</Text>
+                <Text style={[styles.trendingLetter, { color: '#9C663E' }]}>D</Text>
+                <Text style={[styles.trendingLetter, { color: '#AD7247' }]}>I</Text>
+                <Text style={[styles.trendingLetter, { color: '#BE7E50' }]}>N</Text>
+                <Text style={[styles.trendingLetter, { color: '#CF8A59' }]}>G</Text>
                 <Text style={styles.storeText}>Store</Text>
               </View>
               <View style={styles.storeUnderline} />
@@ -713,25 +713,25 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
   },
   trendingLetter: {
-    fontSize: 26,
-    fontWeight: '800',
-    letterSpacing: 1,
+    fontSize: 28,
+    fontWeight: '900',
+    letterSpacing: 0.5,
   },
   storeText: {
-    fontSize: 26,
-    color: '#5BA4A4',
-    fontWeight: '500',
+    fontSize: 28,
+    color: '#3D8B8B',
+    fontWeight: '600',
     fontStyle: 'italic',
     marginLeft: 4,
   },
   storeUnderline: {
-    width: 60,
-    height: 2,
-    backgroundColor: '#5BA4A4',
+    width: 65,
+    height: 3,
+    backgroundColor: '#3D8B8B',
     marginTop: 2,
     alignSelf: 'flex-end',
     marginRight: 0,
-    borderRadius: 1,
+    borderRadius: 1.5,
   },
   trendingStoreScrollContent: {
     paddingHorizontal: 16,
