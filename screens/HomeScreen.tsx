@@ -134,109 +134,134 @@ export default function HomeScreen() {
         </View>
 
 
-        {/* Baby Girls Fashion Row */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <ThemedText style={styles.sectionTitle}>👧 Baby Girls Fashion</ThemedText>
-            <Pressable onPress={() => navigation.navigate('AgeWise')}>
-              <ThemedText style={styles.seeAllText}>View All</ThemedText>
-            </Pressable>
-          </View>
-          <View style={styles.ageGroupGrid}>
-            {GIRLS_AGE_GROUPS.map((ageGroup) => (
-              <Pressable
-                key={ageGroup.id}
-                style={styles.ageGroupItem}
-                onPress={() => navigation.navigate('AgeGroupDetail', {
-                  ageRange: ageGroup.ageRange,
-                  gender: 'girls',
-                  color: ageGroup.color
-                })}
-              >
-                <View
-                  style={styles.ageGroupCard}
-                >
-                  {girlsImages[ageGroup.id] && (
-                    <Image
-                      source={girlsImages[ageGroup.id]}
-                      style={styles.ageGroupImage}
-                      resizeMode="contain"
-                    />
-                  )}
-                </View>
-                <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
-              </Pressable>
-            ))}
-          </View>
-        </View>
 
-        {/* Baby Boys Fashion Row */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <ThemedText style={styles.sectionTitle}>👦 Baby Boys Fashion</ThemedText>
-            <Pressable onPress={() => navigation.navigate('AgeWise')}>
-              <ThemedText style={styles.seeAllText}>View All</ThemedText>
-            </Pressable>
-          </View>
-          <View style={styles.ageGroupGrid}>
-            {BOYS_AGE_GROUPS.map((ageGroup) => (
-              <Pressable
-                key={ageGroup.id}
-                style={styles.ageGroupItem}
-                onPress={() => navigation.navigate('AgeGroupDetail', {
-                  ageRange: ageGroup.ageRange,
-                  gender: 'boys',
-                  color: ageGroup.color
-                })}
-              >
-                <View
-                  style={styles.ageGroupCard}
-                >
-                  {boysImages[ageGroup.id] && (
-                    <Image
-                      source={boysImages[ageGroup.id]}
-                      style={styles.ageGroupImage}
-                      resizeMode="contain"
-                    />
-                  )}
-                </View>
-                <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
-              </Pressable>
-            ))}
-          </View>
-        </View>
 
-        {/* Shop by Age - Combined Winter */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <ThemedText style={styles.sectionTitle}>❄️ Winter Essentials - All</ThemedText>
-            <Pressable onPress={() => navigation.navigate('AgeWise')}>
-              <ThemedText style={styles.seeAllText}>View All</ThemedText>
-            </Pressable>
-          </View>
-          <View style={styles.ageGroupGrid}>
-            {AGE_WISE_CATEGORIES.map((category) => (
-              <Pressable
-                key={category.id}
-                style={styles.ageGroupItem}
-                onPress={() => navigation.navigate('AgeWise')}
+        {/* BABY & KIDS FASHION – Clean Dynamic Section */}
+        {(() => {
+          // Row 1: Age Groups
+          const AGE_GROUPS = [
+            { img: girlsImages['g1'], label: "0–6\nMonths" },
+            { img: girlsImages['g2'], label: "6–24\nMonths" },
+            { img: girlsImages['g3'], label: "2–4\nYears" },
+            { img: girlsImages['g4'], label: "4–6\nYears" },
+            { img: girlsImages['g5'], label: "6–14\nYears" },
+          ];
+
+          // Row 2: Winter Top
+          const WINTER_TOP = [
+            { img: winterImages['1'], label: "Sweaters" },
+            { img: winterImages['2'], label: "Sweatshirts" },
+            { img: winterImages['3'], label: "Jackets" },
+            { img: winterImages['4'], label: "Thermals" },
+            { img: winterImages['5'], label: "Winter\nEssentials" },
+          ];
+
+          // Row 3: Winter Bottom
+          const WINTER_BOTTOM = [
+            { img: winterImages['1'], label: "Hoodies" },
+            { img: winterImages['2'], label: "Full Sleeves" },
+            { img: winterImages['3'], label: "Pullovers" },
+            { img: winterImages['4'], label: "Coats" },
+            { img: winterImages['5'], label: "Knits" },
+          ];
+
+          // Reusable Card Component
+          const FashionCard = ({ item }: { item: { img: any; label: string } }) => (
+            <Pressable
+              style={{
+                width: '18%',
+                backgroundColor: '#DFF2FF',
+                borderRadius: 18,
+                overflow: 'hidden',
+                alignItems: 'center',
+                paddingBottom: 10,
+              }}
+              onPress={() => console.log('Pressed:', item.label)}
+            >
+              <Image
+                source={item.img}
+                style={{
+                  width: '100%',
+                  height: 120,
+                  resizeMode: 'cover',
+                  borderTopLeftRadius: 18,
+                  borderTopRightRadius: 18,
+                }}
+              />
+              <Text
+                style={{
+                  marginTop: 8,
+                  textAlign: 'center',
+                  fontSize: 14,
+                  fontWeight: '700',
+                  color: '#1A1A1A',
+                  lineHeight: 18,
+                }}
               >
-                <View
-                  style={styles.ageGroupCard}
-                >
-                  {winterImages[category.id] && (
-                    <Image
-                      source={winterImages[category.id]}
-                      style={styles.ageGroupImage}
-                      resizeMode="contain"
-                    />
-                  )}
-                </View>
-                <ThemedText style={styles.ageGroupName}>{category.name}</ThemedText>
-              </Pressable>
-            ))}
-          </View>
-        </View>
+                {item.label}
+              </Text>
+            </Pressable>
+          );
+
+          return (
+            <View style={{ marginTop: 20, marginBottom: 30 }}>
+              {/* Heading */}
+              <Text
+                style={{
+                  fontSize: 26,
+                  fontWeight: '900',
+                  textAlign: 'center',
+                  marginBottom: 22,
+                  color: '#000',
+                }}
+              >
+                BABY & KIDS FASHION
+              </Text>
+
+              {/* ROW 1: Age Groups */}
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingHorizontal: 12,
+                  marginBottom: 22,
+                }}
+              >
+                {AGE_GROUPS.map((item, i) => (
+                  <FashionCard key={i} item={item} />
+                ))}
+              </View>
+
+              {/* ROW 2: Winter Top */}
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingHorizontal: 12,
+                  marginBottom: 22,
+                }}
+              >
+                {WINTER_TOP.map((item, i) => (
+                  <FashionCard key={i} item={item} />
+                ))}
+              </View>
+
+              {/* ROW 3: Winter Bottom */}
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingHorizontal: 12,
+                  marginBottom: 22,
+                }}
+              >
+                {WINTER_BOTTOM.map((item, i) => (
+                  <FashionCard key={i} item={item} />
+                ))}
+              </View>
+            </View>
+          );
+        })()}
 
         {/* Categories */}
         <View style={styles.section}>
