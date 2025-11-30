@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
   adBannerContainer: {
     width: '100%',
-    height: 200,
+    height: 280,
     backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
