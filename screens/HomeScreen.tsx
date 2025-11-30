@@ -142,32 +142,28 @@ export default function HomeScreen() {
               <ThemedText style={styles.seeAllText}>View All</ThemedText>
             </Pressable>
           </View>
-          <View style={styles.ageGroupGrid}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.newRowScroll}>
             {GIRLS_AGE_GROUPS.map((ageGroup) => (
               <Pressable
                 key={ageGroup.id}
-                style={styles.ageGroupItem}
+                style={styles.newCard}
                 onPress={() => navigation.navigate('AgeGroupDetail', {
                   ageRange: ageGroup.ageRange,
                   gender: 'girls',
                   color: ageGroup.color
                 })}
               >
-                <View
-                  style={styles.ageGroupCard}
-                >
-                  {girlsImages[ageGroup.id] && (
-                    <Image
-                      source={girlsImages[ageGroup.id]}
-                      style={styles.ageGroupImage}
-                      resizeMode="contain"
-                    />
-                  )}
-                </View>
-                <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
+                {girlsImages[ageGroup.id] && (
+                  <Image
+                    source={girlsImages[ageGroup.id]}
+                    style={styles.newCardImage}
+                    resizeMode="cover"
+                  />
+                )}
+                <ThemedText style={styles.newCardLabel}>{ageGroup.ageRange}</ThemedText>
               </Pressable>
             ))}
-          </View>
+          </ScrollView>
         </View>
 
         {/* Baby Boys Fashion Row */}
@@ -178,32 +174,28 @@ export default function HomeScreen() {
               <ThemedText style={styles.seeAllText}>View All</ThemedText>
             </Pressable>
           </View>
-          <View style={styles.ageGroupGrid}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.newRowScroll}>
             {BOYS_AGE_GROUPS.map((ageGroup) => (
               <Pressable
                 key={ageGroup.id}
-                style={styles.ageGroupItem}
+                style={styles.newCard}
                 onPress={() => navigation.navigate('AgeGroupDetail', {
                   ageRange: ageGroup.ageRange,
                   gender: 'boys',
                   color: ageGroup.color
                 })}
               >
-                <View
-                  style={styles.ageGroupCard}
-                >
-                  {boysImages[ageGroup.id] && (
-                    <Image
-                      source={boysImages[ageGroup.id]}
-                      style={styles.ageGroupImage}
-                      resizeMode="contain"
-                    />
-                  )}
-                </View>
-                <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
+                {boysImages[ageGroup.id] && (
+                  <Image
+                    source={boysImages[ageGroup.id]}
+                    style={styles.newCardImage}
+                    resizeMode="cover"
+                  />
+                )}
+                <ThemedText style={styles.newCardLabel}>{ageGroup.ageRange}</ThemedText>
               </Pressable>
             ))}
-          </View>
+          </ScrollView>
         </View>
 
         {/* Shop by Age - Combined Winter */}
@@ -214,28 +206,24 @@ export default function HomeScreen() {
               <ThemedText style={styles.seeAllText}>View All</ThemedText>
             </Pressable>
           </View>
-          <View style={styles.ageGroupGrid}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.newRowScroll}>
             {AGE_WISE_CATEGORIES.map((category) => (
               <Pressable
                 key={category.id}
-                style={styles.ageGroupItem}
+                style={styles.newCard}
                 onPress={() => navigation.navigate('AgeWise')}
               >
-                <View
-                  style={styles.ageGroupCard}
-                >
-                  {winterImages[category.id] && (
-                    <Image
-                      source={winterImages[category.id]}
-                      style={styles.ageGroupImage}
-                      resizeMode="contain"
-                    />
-                  )}
-                </View>
-                <ThemedText style={styles.ageGroupName}>{category.name}</ThemedText>
+                {winterImages[category.id] && (
+                  <Image
+                    source={winterImages[category.id]}
+                    style={styles.newCardImage}
+                    resizeMode="cover"
+                  />
+                )}
+                <ThemedText style={styles.newCardLabel}>{category.name}</ThemedText>
               </Pressable>
             ))}
-          </View>
+          </ScrollView>
         </View>
 
         {/* Categories */}
@@ -1262,6 +1250,32 @@ const styles = StyleSheet.create({
     color: '#1F2937',
     textAlign: 'center',
     width: '100%',
+  },
+  newRowScroll: {
+    paddingHorizontal: 12,
+    gap: 12,
+  },
+  newCard: {
+    width: 120,
+    backgroundColor: '#FFF',
+    borderRadius: 14,
+    overflow: 'hidden',
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  newCardImage: {
+    width: '100%',
+    height: 120,
+  },
+  newCardLabel: {
+    paddingVertical: 10,
+    fontSize: 13,
+    fontWeight: '700',
+    textAlign: 'center',
+    color: '#1A1A1A',
   },
   cozyCuteSection: {
     marginTop: 0,
