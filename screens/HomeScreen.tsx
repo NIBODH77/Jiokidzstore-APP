@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import Animated, { useSharedValue, useAnimatedScrollHandler } from 'react-native-reanimated';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ProductCard } from '@/components/ProductCard';
@@ -55,42 +56,26 @@ export default function HomeScreen() {
   const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
   const cartCount = useSelector((state: RootState) => selectCartTotalItems(state.cart));
 
-  // Refs for synchronized scrolling
-  const scrollViewRow1Ref = useRef<ScrollView>(null);
-  const scrollViewRow2Ref = useRef<ScrollView>(null);
-  const scrollPositionRef1 = useRef(0);
-  const isSyncingRef = useRef(false);
+  // Refs for synchronized scrolling with Reanimated
+  const scrollViewRow1Ref = useRef<Animated.ScrollView>(null);
+  const scrollViewRow2Ref = useRef<Animated.ScrollView>(null);
+  const scrollPositionRow1 = useSharedValue(0);
+  const scrollPositionRow2 = useSharedValue(0);
 
-  // Callbacks for Row 1-2 synchronization - ULTRA SMOOTH & INSTANT
-  const handleRow1Scroll = useCallback((e: any) => {
-    if (isSyncingRef.current) return;
-    
-    const scrollX = e.nativeEvent.contentOffset.x;
-    scrollPositionRef1.current = scrollX;
-    
-    isSyncingRef.current = true;
-    if (scrollViewRow2Ref.current) {
-      scrollViewRow2Ref.current.scrollTo({ x: scrollX, animated: false });
+  // Animated scroll handlers for true 60fps synchronization
+  const handleRow1ScrollAnimated = useAnimatedScrollHandler((e) => {
+    scrollPositionRow1.value = e.contentOffset.x;
+    if (Math.abs(e.contentOffset.x - scrollPositionRow2.value) > 1) {
+      scrollViewRow2Ref.current?.scrollTo({ x: e.contentOffset.x, animated: false });
     }
-    isSyncingRef.current = false;
-  }, []);
+  });
 
-  const handleRow2Scroll = useCallback((e: any) => {
-    if (isSyncingRef.current) return;
-    
-    const scrollX = e.nativeEvent.contentOffset.x;
-    const difference = Math.abs(scrollX - scrollPositionRef1.current);
-    
-    if (difference > 0.5) {
-      scrollPositionRef1.current = scrollX;
-      
-      isSyncingRef.current = true;
-      if (scrollViewRow1Ref.current) {
-        scrollViewRow1Ref.current.scrollTo({ x: scrollX, animated: false });
-      }
-      isSyncingRef.current = false;
+  const handleRow2ScrollAnimated = useAnimatedScrollHandler((e) => {
+    scrollPositionRow2.value = e.contentOffset.x;
+    if (Math.abs(e.contentOffset.x - scrollPositionRow1.value) > 1) {
+      scrollViewRow1Ref.current?.scrollTo({ x: e.contentOffset.x, animated: false });
     }
-  }, []);
+  });
 
   // Load wishlist on mount
   useEffect(() => {
@@ -1053,13 +1038,13 @@ export default function HomeScreen() {
           {/* Product Grid - Paired Rows with Synchronized Scrolling */}
           <View style={styles.cozyCuteProductGrid}>
             {/* Row 1 & 2 - Synchronized Scrolling */}
-            <ScrollView
+            <Animated.ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
               scrollEventThrottle={1}
               decelerationRate="fast"
-              onScroll={handleRow1Scroll}
+              onScroll={handleRow1ScrollAnimated}
               ref={scrollViewRow1Ref}
               scrollEnabled={true}
               nestedScrollEnabled={true}
@@ -1143,16 +1128,16 @@ export default function HomeScreen() {
                   </View>
                 </Pressable>
               </View>
-            </ScrollView>
+            </Animated.ScrollView>
 
-            <ScrollView
+            <Animated.ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
               scrollEventThrottle={1}
               decelerationRate="fast"
               scrollEnabled={true}
-              onScroll={handleRow2Scroll}
+              onScroll={handleRow2ScrollAnimated}
               ref={scrollViewRow2Ref}
               nestedScrollEnabled={true}
             >
@@ -1235,7 +1220,7 @@ export default function HomeScreen() {
                   </View>
                 </Pressable>
               </View>
-            </ScrollView>
+            </Animated.ScrollView>
           </View>
         </View>
 
