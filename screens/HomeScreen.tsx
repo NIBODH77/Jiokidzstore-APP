@@ -1510,7 +1510,7 @@ const styles = StyleSheet.create({
   },
   littleExplorersBannerImage: {
     width: '100%',
-    height: 360,
+    height: 420,
   },
   parentingZoneSection: {
     marginHorizontal: 0,
