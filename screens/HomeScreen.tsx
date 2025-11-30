@@ -1516,7 +1516,8 @@ const styles = StyleSheet.create({
   },
   premiumBanner: {
     marginHorizontal: 0,
-    marginVertical: 24,
+    marginTop: 24,
+    marginBottom: 64,
     paddingHorizontal: 24,
     paddingVertical: 40,
     minHeight: 280,
