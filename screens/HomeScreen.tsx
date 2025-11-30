@@ -1495,7 +1495,7 @@ const styles = StyleSheet.create({
   },
   coldWeatherPromoCard: {
     width: (Dimensions.get('window').width - 44) / 2.8,
-    height: 240,
+    height: 280,
     borderRadius: 24,
     overflow: 'hidden',
     position: 'relative',
@@ -1565,7 +1565,7 @@ const styles = StyleSheet.create({
   },
   coldWeatherCard: {
     width: (Dimensions.get('window').width - 44) / 2.8,
-    height: 180,
+    height: 220,
     borderRadius: 20,
     overflow: 'hidden',
     position: 'relative',
