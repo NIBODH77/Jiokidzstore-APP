@@ -1250,7 +1250,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     overflow: 'hidden',
     backgroundColor: '#87CEEB',
-    borderRadius: 8,
+    borderRadius: 4,
   },
   ageGroupImage: {
     width: '100%', // Changed from '85%'
