@@ -1013,188 +1013,176 @@ export default function HomeScreen() {
             </View>
           </View>
 
-          {/* Scrollable Product Grid - Rows 1 & 2 */}
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.cozyCuteScroll}
-            scrollEnabled={true}
-            decelerationRate="fast"
-            snapToInterval={Dimensions.get('window').width - 32}
-          >
-            <View style={styles.cozyCutePageContainer}>
-              {/* Row 1 */}
-              <View style={styles.cozyCuteRow}>
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Onesies›</ThemedText>
-                  </View>
-                </Pressable>
+          {/* Product Grid - All 4 Rows */}
+          <View style={styles.cozyCuteProductGrid}>
+            {/* Row 1 */}
+            <View style={styles.cozyCuteRow}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Onesies›</ThemedText>
+                </View>
+              </Pressable>
 
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Jhablas›</ThemedText>
-                  </View>
-                </Pressable>
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Jhablas›</ThemedText>
+                </View>
+              </Pressable>
 
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Diaper Leggings›</ThemedText>
-                  </View>
-                </Pressable>
-              </View>
-
-              {/* Row 2 */}
-              <View style={styles.cozyCuteRow}>
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Multipacks›</ThemedText>
-                  </View>
-                </Pressable>
-
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Sleep Suits›</ThemedText>
-                  </View>
-                </Pressable>
-
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/baby_care_products.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Fleece Bottoms›</ThemedText>
-                  </View>
-                </Pressable>
-              </View>
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Diaper Leggings›</ThemedText>
+                </View>
+              </Pressable>
             </View>
 
-            <View style={styles.cozyCutePageContainer}>
-              {/* Row 3 */}
-              <View style={styles.cozyCuteRow}>
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/baby_gear_products.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Winter Sets›</ThemedText>
-                  </View>
-                </Pressable>
+            {/* Row 2 */}
+            <View style={styles.cozyCuteRow}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Multipacks›</ThemedText>
+                </View>
+              </Pressable>
 
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/feeding_nursing_products.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Layering Tops›</ThemedText>
-                  </View>
-                </Pressable>
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Sleep Suits›</ThemedText>
+                </View>
+              </Pressable>
 
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/baby_nursery_furniture.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Blankets›</ThemedText>
-                  </View>
-                </Pressable>
-              </View>
-
-              {/* Row 4 */}
-              <View style={styles.cozyCuteRow}>
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/bath_skin_care_products.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Baby Lotions›</ThemedText>
-                  </View>
-                </Pressable>
-
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/health_safety_products.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Gift Sets›</ThemedText>
-                  </View>
-                </Pressable>
-
-                <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
-                  <View style={styles.cozyCuteCardImageContainer}>
-                    <Image 
-                      source={require('../attached_assets/generated_images/diapering_potty_products.png')}
-                      style={styles.cozyCuteCardImage}
-                      resizeMode="cover"
-                    />
-                  </View>
-                  <View style={styles.cozyCuteCardLabel}>
-                    <ThemedText style={styles.cozyCuteCardText}>Accessories›</ThemedText>
-                  </View>
-                </Pressable>
-              </View>
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/baby_care_products.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Fleece Bottoms›</ThemedText>
+                </View>
+              </Pressable>
             </View>
 
-            </ScrollView>
+            {/* Row 3 */}
+            <View style={styles.cozyCuteRow}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/baby_gear_products.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Winter Sets›</ThemedText>
+                </View>
+              </Pressable>
+
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/feeding_nursing_products.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Layering Tops›</ThemedText>
+                </View>
+              </Pressable>
+
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/baby_nursery_furniture.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Blankets›</ThemedText>
+                </View>
+              </Pressable>
+            </View>
+
+            {/* Row 4 */}
+            <View style={styles.cozyCuteRow}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/bath_skin_care_products.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Baby Lotions›</ThemedText>
+                </View>
+              </Pressable>
+
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/health_safety_products.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Gift Sets›</ThemedText>
+                </View>
+              </Pressable>
+
+              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
+                <View style={styles.cozyCuteCardImageContainer}>
+                  <Image 
+                    source={require('../attached_assets/generated_images/diapering_potty_products.png')}
+                    style={styles.cozyCuteCardImage}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.cozyCuteCardLabel}>
+                  <ThemedText style={styles.cozyCuteCardText}>Accessories›</ThemedText>
+                </View>
+              </Pressable>
+            </View>
+          </View>
         </View>
 
         {/* Flash Sale Section */}
@@ -1589,15 +1577,10 @@ const styles = StyleSheet.create({
     color: '#FFD700',
     lineHeight: 40,
   },
-  cozyCuteScroll: {
+  cozyCuteProductGrid: {
     paddingHorizontal: 16,
     paddingVertical: 20,
-    gap: 0,
     backgroundColor: '#F5E6D3',
-  },
-  cozyCutePageContainer: {
-    width: Dimensions.get('window').width - 32,
-    marginRight: 0,
   },
   cozyCuteRow: {
     flexDirection: 'row',
