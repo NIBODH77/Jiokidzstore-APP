@@ -1547,6 +1547,7 @@ const styles = StyleSheet.create({
   },
   cozyCuteRow: {
     flexDirection: 'row',
+    marginTop: 16,
     marginBottom: 16,
     gap: 12,
   },
