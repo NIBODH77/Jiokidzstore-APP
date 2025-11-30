@@ -1480,7 +1480,7 @@ const styles = StyleSheet.create({
   cozyCuteSection: {
     marginTop: 0,
     marginBottom: 24,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F5E6D3',
   },
   cozyCuteBanner: {
     width: '100%',
@@ -1893,7 +1893,7 @@ const styles = StyleSheet.create({
   coldWeatherSection: {
     marginTop: 0,
     marginBottom: 24,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F5E6D3',
   },
   coldWeatherHeader: {
     paddingHorizontal: 16,
