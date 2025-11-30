@@ -56,7 +56,7 @@ export default function AgeWiseScreen() {
     <Pressable
       style={styles.categoryItem}
       onPress={() => {
-        navigation.navigate('AllProducts');
+        navigation.navigate('CategoryAggregator');
       }}
     >
       <View
@@ -107,7 +107,7 @@ export default function AgeWiseScreen() {
               <Pressable
                 style={styles.categoryItem}
                 onPress={() => {
-                  navigation.navigate('AllProducts');
+                  navigation.navigate('CategoryAggregator');
                 }}
               >
                 <View
