@@ -27,21 +27,22 @@ export default function RootNavigator() {
     return <SimpleSplashScreen onFinish={() => setSplashFinished(true)} />;
   }
 
+  if (!user) {
+    return (
+      <Stack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName={hasSeenOnboarding ? 'Login' : 'Onboarding'}
+      >
+        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="OTP" component={OTPScreen} />
+      </Stack.Navigator>
+    );
+  }
+
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {!user ? (
-        <>
-          <Stack.Screen 
-            name="Onboarding" 
-            component={OnboardingScreen}
-            options={{ animationTypeForReplace: !user ? 'pop' : 'push' }}
-          />
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="OTP" component={OTPScreen} />
-        </>
-      ) : (
-        <Stack.Screen name="Main" component={MainTabNavigator} />
-      )}
+    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Main">
+      <Stack.Screen name="Main" component={MainTabNavigator} />
     </Stack.Navigator>
   );
 }

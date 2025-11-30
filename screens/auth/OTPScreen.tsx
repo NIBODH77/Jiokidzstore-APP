@@ -66,7 +66,7 @@ export default function OTPScreen() {
           name: route.params.name || 'User',
           phone: route.params.phone,
         });
-        // Navigation will be handled by RootNavigator based on user state
+        // RootNavigator will handle navigation to Main based on user state change
       } else {
         setErrorMessage('Invalid OTP. Please try again.');
       }

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { View, StyleSheet, Pressable, Image, Dimensions, FlatList, Platform, ScrollView, Text, ImageSourcePropType } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
