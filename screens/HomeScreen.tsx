@@ -3,7 +3,6 @@ import { View, StyleSheet, Pressable, Image, Dimensions, FlatList, Platform, Scr
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { useSharedValue, useAnimatedScrollHandler } from 'react-native-reanimated';
