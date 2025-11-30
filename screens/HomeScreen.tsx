@@ -56,26 +56,6 @@ export default function HomeScreen() {
   const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
   const cartCount = useSelector((state: RootState) => selectCartTotalItems(state.cart));
 
-  // Refs for synchronized scrolling with Reanimated
-  const scrollViewRow1Ref = useRef<Animated.ScrollView>(null);
-  const scrollViewRow2Ref = useRef<Animated.ScrollView>(null);
-  const scrollPositionRow1 = useSharedValue(0);
-  const scrollPositionRow2 = useSharedValue(0);
-
-  // Animated scroll handlers for true 60fps synchronization
-  const handleRow1ScrollAnimated = useAnimatedScrollHandler((e) => {
-    scrollPositionRow1.value = e.contentOffset.x;
-    if (Math.abs(e.contentOffset.x - scrollPositionRow2.value) > 1) {
-      scrollViewRow2Ref.current?.scrollTo({ x: e.contentOffset.x, animated: false });
-    }
-  });
-
-  const handleRow2ScrollAnimated = useAnimatedScrollHandler((e) => {
-    scrollPositionRow2.value = e.contentOffset.x;
-    if (Math.abs(e.contentOffset.x - scrollPositionRow1.value) > 1) {
-      scrollViewRow1Ref.current?.scrollTo({ x: e.contentOffset.x, animated: false });
-    }
-  });
 
   // Load wishlist on mount
   useEffect(() => {
@@ -1044,8 +1024,6 @@ export default function HomeScreen() {
               contentContainerStyle={styles.cozyCuteScrollContent}
               scrollEventThrottle={1}
               decelerationRate="fast"
-              onScroll={handleRow1ScrollAnimated}
-              ref={scrollViewRow1Ref}
               scrollEnabled={true}
               nestedScrollEnabled={true}
             >
@@ -1137,8 +1115,6 @@ export default function HomeScreen() {
               scrollEventThrottle={1}
               decelerationRate="fast"
               scrollEnabled={true}
-              onScroll={handleRow2ScrollAnimated}
-              ref={scrollViewRow2Ref}
               nestedScrollEnabled={true}
             >
               <View style={styles.cozyCuteRow}>
