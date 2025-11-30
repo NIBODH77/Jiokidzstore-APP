@@ -1124,6 +1124,12 @@ export default function HomeScreen() {
               scrollEventThrottle={4}
               decelerationRate="fast"
               scrollEnabled={true}
+              onScroll={(e) => {
+                const scrollX = e.nativeEvent.contentOffset.x;
+                if (scrollViewRow1Ref.current) {
+                  scrollViewRow1Ref.current.scrollTo({ x: scrollX, animated: false });
+                }
+              }}
               ref={scrollViewRow2Ref}
             >
               <View style={styles.cozyCuteRow}>
