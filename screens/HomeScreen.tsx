@@ -1026,13 +1026,8 @@ export default function HomeScreen() {
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
-              scrollEventThrottle={16}
-              onScroll={(e) => {
-                const scrollX = e.nativeEvent.contentOffset.x;
-                if (scrollViewRow2Ref.current) {
-                  scrollViewRow2Ref.current.scrollTo({ x: scrollX, animated: false });
-                }
-              }}
+              scrollEventThrottle={8}
+              decelerationRate="fast"
               ref={scrollViewRow1Ref}
             >
               <View style={styles.cozyCuteRow}>
@@ -1120,13 +1115,8 @@ export default function HomeScreen() {
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
-              scrollEventThrottle={16}
-              onScroll={(e) => {
-                const scrollX = e.nativeEvent.contentOffset.x;
-                if (scrollViewRow1Ref.current) {
-                  scrollViewRow1Ref.current.scrollTo({ x: scrollX, animated: false });
-                }
-              }}
+              scrollEventThrottle={8}
+              decelerationRate="fast"
               ref={scrollViewRow2Ref}
             >
               <View style={styles.cozyCuteRow}>
