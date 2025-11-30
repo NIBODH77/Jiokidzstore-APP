@@ -3,7 +3,7 @@
 const { spawnSync } = require('child_process');
 const path = require('path');
 
-// Run expo start with CORS disabled
+// Run expo start with web support
 const result = spawnSync('npx', [
   '--yes',
   'expo',
@@ -19,7 +19,6 @@ const result = spawnSync('npx', [
     NODE_ENV: 'development',
     EXPO_PUBLIC_URL: 'true',
     EXPO_SKIP_MANIFEST_VALIDATION: 'true',
-    // Bypass CORS checks
     EXPO_DEBUG: 'true'
   }
 });

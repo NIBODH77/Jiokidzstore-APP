@@ -26,7 +26,10 @@
     "web": {
       "output": "single",
       "favicon": "./assets/images/favicon.png",
-      "allowedHosts": true
+      "allowedHosts": true,
+      "dev": {
+        "ignoreCorsWarnings": true
+      }
     },
     "plugins": [
       [
