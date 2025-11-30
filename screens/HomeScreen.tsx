@@ -1254,7 +1254,8 @@ const styles = StyleSheet.create({
   },
   ageGroupCard: {
     width: '100%',
-    height: 110,
+    aspectRatio: 1,
+    minHeight: 100,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
