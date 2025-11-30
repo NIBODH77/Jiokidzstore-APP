@@ -154,10 +154,7 @@ export default function HomeScreen() {
                 })}
               >
                 <View 
-                  style={[
-                    styles.ageGroupCard, 
-                    { backgroundColor: ageGroup.color }
-                  ]}
+                  style={styles.ageGroupCard}
                 >
                   {girlsImages[ageGroup.id] && (
                     <Image 
@@ -193,10 +190,7 @@ export default function HomeScreen() {
                 })}
               >
                 <View 
-                  style={[
-                    styles.ageGroupCard, 
-                    { backgroundColor: ageGroup.color }
-                  ]}
+                  style={styles.ageGroupCard}
                 >
                   {boysImages[ageGroup.id] && (
                     <Image 
@@ -228,10 +222,7 @@ export default function HomeScreen() {
                 onPress={() => navigation.navigate('AgeWise')}
               >
                 <View 
-                  style={[
-                    styles.ageGroupCard, 
-                    { backgroundColor: category.color }
-                  ]}
+                  style={styles.ageGroupCard}
                 >
                   {winterImages[category.id] && (
                     <Image 
@@ -1261,6 +1252,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 6,
     overflow: 'hidden', // Added
+    backgroundColor: '#87CEEB', // Sky blue background
   },
   ageGroupImage: {
     width: '100%', // Changed from '85%'
