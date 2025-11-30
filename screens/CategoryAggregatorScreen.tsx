@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     marginHorizontal: -Spacing.md,
     paddingHorizontal: Spacing.md,
+    borderRadius: 0,
   },
   adBannerImage: {
     width: '100%',
