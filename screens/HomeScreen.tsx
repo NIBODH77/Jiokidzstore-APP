@@ -1145,6 +1145,33 @@ export default function HomeScreen() {
             </View>
           </Animated.ScrollView>
         </View>
+
+        {/* Premium Baby Kids Banner */}
+        <Pressable onPress={() => navigation.navigate('AllProducts')}>
+          <LinearGradient
+            colors={['#FFE5F1', '#FFF0F8', '#E8F4F8']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.premiumBanner}
+          >
+            <View style={styles.premiumBannerContent}>
+              <View style={styles.premiumBannerTextSection}>
+                <ThemedText style={styles.premiumBannerTag}>✨ EXCLUSIVE COLLECTION</ThemedText>
+                <ThemedText style={styles.premiumBannerTitle}>Discover Premium Quality</ThemedText>
+                <ThemedText style={styles.premiumBannerSubtitle}>Crafted with Love for Your Little Ones</ThemedText>
+                <ThemedText style={styles.premiumBannerDescription}>Soft, Safe & Stylish Baby Fashion</ThemedText>
+                <View style={styles.premiumBannerButton}>
+                  <ThemedText style={styles.premiumBannerButtonText}>Explore Now →</ThemedText>
+                </View>
+              </View>
+              <View style={styles.premiumBannerIconSection}>
+                <View style={styles.premiumBannerIconBox}>
+                  <ThemedText style={styles.premiumBannerIcon}>👶</ThemedText>
+                </View>
+              </View>
+            </View>
+          </LinearGradient>
+        </Pressable>
       </ScreenScrollView>
 
       {/* Floating Cart Button */}
@@ -1486,6 +1513,87 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1A1A1A',
     textAlign: 'center',
+  },
+  premiumBanner: {
+    marginHorizontal: 0,
+    marginVertical: 24,
+    paddingHorizontal: 24,
+    paddingVertical: 40,
+    minHeight: 280,
+  },
+  premiumBannerContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 20,
+  },
+  premiumBannerTextSection: {
+    flex: 1,
+  },
+  premiumBannerTag: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#E91E63',
+    letterSpacing: 2,
+    marginBottom: 12,
+  },
+  premiumBannerTitle: {
+    fontSize: 32,
+    fontWeight: '900',
+    color: '#1A1A1A',
+    lineHeight: 38,
+    marginBottom: 8,
+  },
+  premiumBannerSubtitle: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#6B7280',
+    lineHeight: 22,
+    marginBottom: 6,
+  },
+  premiumBannerDescription: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: '#9CA3AF',
+    lineHeight: 18,
+    marginBottom: 20,
+  },
+  premiumBannerButton: {
+    backgroundColor: '#FF6B9D',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 24,
+    alignSelf: 'flex-start',
+    shadowColor: '#FF6B9D',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  premiumBannerButtonText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  premiumBannerIconSection: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  premiumBannerIconBox: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.12,
+    shadowRadius: 16,
+    elevation: 8,
+  },
+  premiumBannerIcon: {
+    fontSize: 56,
   },
   parentingZoneSection: {
     marginHorizontal: 0,
