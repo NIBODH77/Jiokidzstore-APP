@@ -1031,8 +1031,6 @@ export default function HomeScreen() {
               onScroll={(e) => {
                 const scrollX = e.nativeEvent.contentOffset.x;
                 if (scrollViewRow2Ref.current) scrollViewRow2Ref.current.scrollTo({ x: scrollX, animated: false });
-                if (scrollViewRow3Ref.current) scrollViewRow3Ref.current.scrollTo({ x: scrollX, animated: false });
-                if (scrollViewRow4Ref.current) scrollViewRow4Ref.current.scrollTo({ x: scrollX, animated: false });
               }}
               ref={scrollViewRow1Ref}
             >
@@ -1127,8 +1125,6 @@ export default function HomeScreen() {
               onScroll={(e) => {
                 const scrollX = e.nativeEvent.contentOffset.x;
                 if (scrollViewRow1Ref.current) scrollViewRow1Ref.current.scrollTo({ x: scrollX, animated: false });
-                if (scrollViewRow3Ref.current) scrollViewRow3Ref.current.scrollTo({ x: scrollX, animated: false });
-                if (scrollViewRow4Ref.current) scrollViewRow4Ref.current.scrollTo({ x: scrollX, animated: false });
               }}
               ref={scrollViewRow2Ref}
             >
@@ -1222,8 +1218,6 @@ export default function HomeScreen() {
               decelerationRate="fast"
               onScroll={(e) => {
                 const scrollX = e.nativeEvent.contentOffset.x;
-                if (scrollViewRow1Ref.current) scrollViewRow1Ref.current.scrollTo({ x: scrollX, animated: false });
-                if (scrollViewRow2Ref.current) scrollViewRow2Ref.current.scrollTo({ x: scrollX, animated: false });
                 if (scrollViewRow4Ref.current) scrollViewRow4Ref.current.scrollTo({ x: scrollX, animated: false });
               }}
               ref={scrollViewRow3Ref}
@@ -1317,8 +1311,6 @@ export default function HomeScreen() {
               decelerationRate="fast"
               onScroll={(e) => {
                 const scrollX = e.nativeEvent.contentOffset.x;
-                if (scrollViewRow1Ref.current) scrollViewRow1Ref.current.scrollTo({ x: scrollX, animated: false });
-                if (scrollViewRow2Ref.current) scrollViewRow2Ref.current.scrollTo({ x: scrollX, animated: false });
                 if (scrollViewRow3Ref.current) scrollViewRow3Ref.current.scrollTo({ x: scrollX, animated: false });
               }}
               ref={scrollViewRow4Ref}
