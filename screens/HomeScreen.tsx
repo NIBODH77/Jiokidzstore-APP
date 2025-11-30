@@ -390,7 +390,7 @@ export default function HomeScreen() {
               <ThemedText style={styles.priceText}>₹199</ThemedText>
             </View>
           </View>
-          
+
           <View style={styles.seasonsSpecialGrid}>
             <View style={styles.seasonsRow}>
               <Pressable style={styles.seasonsCardLarge} onPress={() => navigation.navigate('AllProducts')}>
@@ -414,7 +414,7 @@ export default function HomeScreen() {
                 </View>
               </Pressable>
             </View>
-            
+
             <View style={styles.seasonsRow}>
               <Pressable style={styles.seasonsCardSmall} onPress={() => navigation.navigate('AllProducts')}>
                 <Image 
@@ -437,7 +437,7 @@ export default function HomeScreen() {
                 </View>
               </Pressable>
             </View>
-            
+
             <View style={styles.seasonsRow}>
               <Pressable style={styles.seasonsCardMedium} onPress={() => navigation.navigate('AllProducts')}>
                 <Image 
@@ -466,7 +466,7 @@ export default function HomeScreen() {
         {/* Onesies Made for Winter Cuddles Section */}
         <View style={styles.onesiesSection}>
           <ThemedText style={styles.onesiesSectionTitle}>Onesies Made for Winter Cuddles</ThemedText>
-          
+
           {/* Top Banner with Babies */}
           <View style={styles.onesiesBanner}>
             <Image 
@@ -1534,7 +1534,7 @@ const styles = StyleSheet.create({
   },
   cozyCuteBanner: {
     width: '100%',
-    height: 300,
+    height: 220,
     position: 'relative',
     marginBottom: 0,
     backgroundColor: '#F5E6D3',
