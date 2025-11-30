@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: Spacing.md,
+    marginBottom: Spacing.xs,
   },
   adBannerImage: {
     width: '100%',
@@ -126,12 +126,13 @@ const styles = StyleSheet.create({
   },
   categorySection: {
     marginBottom: Spacing.xl,
+    marginTop: -Spacing.md,
   },
   categoryTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     paddingHorizontal: Spacing.md,
-    marginBottom: Spacing.md,
+    marginBottom: Spacing.xs,
   },
   productGrid: {
     flexDirection: 'row',
