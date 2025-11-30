@@ -1806,7 +1806,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   cozyCuteCard: {
-    flex: 1,
+    width: 140,
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
     overflow: 'hidden',
@@ -1817,8 +1817,8 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   cozyCuteCardImageContainer: {
-    width: '100%',
-    aspectRatio: 1,
+    width: 140,
+    height: 140,
     backgroundColor: '#E8F4F8',
   },
   cozyCuteCardImage: {
