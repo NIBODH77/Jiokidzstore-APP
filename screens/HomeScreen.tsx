@@ -36,7 +36,7 @@ const winterImages: { [key: string]: any } = {
   '1': require('../attached_assets/generated_images/purple_kids_sweatshirt.png'),
   '2': require('../attached_assets/generated_images/navy_winter_pullover.png'),
   '3': require('../attached_assets/generated_images/red_kids_winter_jacket.png'),
-  '4': require('../attached_assets/generated_images/white_thermal_undershirt.png'),
+  '4': require('../attached_assets/generated_images/colorful_rainbow_kids_winter_coat.png'),
   '5': require('../attached_assets/generated_images/pink_comfortable_kids_hoodie.png'),
 };
 
