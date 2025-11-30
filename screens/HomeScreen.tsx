@@ -9,21 +9,14 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { useSharedValue, useAnimatedScrollHandler } from 'react-native-reanimated';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
-import { ProductCard } from '@/components/ProductCard';
 import { ModernSearchBar } from '@/components/ModernSearchBar';
 import { ModernHeroSection } from '@/components/ModernHeroSection';
-import { BestSellersCarousel } from '@/components/BestSellersCarousel';
-import { PersonalizedSection } from '@/components/PersonalizedSection';
-import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 import { PRODUCTS, CATEGORIES } from '@/data/mockData';
 import { GIRLS_AGE_GROUPS, BOYS_AGE_GROUPS, AGE_WISE_CATEGORIES } from '@/data/ageGroupData';
 import { wishlistStorage } from '@/utils/storage';
-import { selectCartTotalItems } from '@/store/cartSlice';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 import type { RootState } from '@/store/store';
-
-import { categoryImages } from '../data/mockData';
 
 const girlsImages: { [key: string]: any } = {
   'g1': require('../attached_assets/generated_images/newborn_girl_fashion.png'),
@@ -54,7 +47,6 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const [products, setProducts] = useState(PRODUCTS);
   const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
-  const cartCount = useSelector((state: RootState) => selectCartTotalItems(state.cart));
 
 
   // Load wishlist on mount
@@ -1219,16 +1211,6 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     overflow: 'hidden', // Added
   },
-  categoryImageContainer: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  categoryImage: {
-    width: '100%', // Changed from '80%'
-    height: '100%', // Changed from '80%'
-  },
   categoryName: {
     fontSize: 11,
     fontWeight: '600',
@@ -1272,105 +1254,6 @@ const styles = StyleSheet.create({
     color: '#1F2937',
     textAlign: 'center',
     width: '100%',
-  },
-  flashSaleBanner: {
-    marginHorizontal: 16,
-    marginBottom: 24,
-    borderRadius: 16,
-    overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
-  },
-  flashGradient: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-  },
-  flashLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
-  },
-  flashIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  flashTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#FFFFFF',
-  },
-  flashSubtitle: {
-    fontSize: 13,
-    color: '#FFFFFF',
-    opacity: 0.9,
-    marginTop: 2,
-  },
-  productsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingHorizontal: 0,
-    marginHorizontal: 0,
-  },
-  productGridItem: {
-    width: '50%',
-    paddingHorizontal: 4,
-  },
-  cartFAB: {
-    position: 'absolute',
-    bottom: 90,
-    right: Spacing.lg,
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    overflow: 'visible',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 12,
-    zIndex: 100,
-  },
-  cartFABGradient: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 32,
-  },
-  cartBadge: {
-    position: 'absolute',
-    top: -6,
-    right: -6,
-    minWidth: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: '#EF4444',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2.5,
-    borderColor: '#FFFFFF',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  cartBadgeText: {
-    fontSize: 13,
-    fontWeight: '900',
-    color: '#FFFFFF',
-    lineHeight: 18,
-    textAlign: 'center',
   },
   cozyCuteSection: {
     marginTop: 0,
