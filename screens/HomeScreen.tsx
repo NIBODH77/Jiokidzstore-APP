@@ -1520,7 +1520,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     paddingHorizontal: 24,
     paddingVertical: 40,
-    minHeight: 280,
+    minHeight: 340,
   },
   premiumBannerContent: {
     flexDirection: 'row',
