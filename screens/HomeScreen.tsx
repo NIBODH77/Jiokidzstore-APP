@@ -17,27 +17,27 @@ import { wishlistStorage } from '@/utils/storage';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 
 const girlsImages: { [key: string]: any } = {
-  'g1': require('../attached_assets/generated_images/newborn_girl_fashion.png'),
-  'g2': require('../attached_assets/generated_images/infant_girl_fashion.png'),
-  'g3': require('../attached_assets/generated_images/toddler_girl_fashion.png'),
-  'g4': require('../attached_assets/generated_images/preschool_girl_fashion.png'),
-  'g5': require('../attached_assets/generated_images/kids_girl_fashion.png'),
+  'g1': require('../attached_assets/generated_images/newborn_baby_girl_pink_onesie.png'),
+  'g2': require('../attached_assets/generated_images/infant_baby_girl_striped_pink_shirt.png'),
+  'g3': require('../attached_assets/generated_images/toddler_girl_purple_floral_dress.png'),
+  'g4': require('../attached_assets/generated_images/preschool_girl_pink_casual_outfit.png'),
+  'g5': require('../attached_assets/generated_images/school_girl_colorblock_dress.png'),
 };
 
 const boysImages: { [key: string]: any } = {
-  'b1': require('../attached_assets/generated_images/newborn_boy_fashion.png'),
-  'b2': require('../attached_assets/generated_images/infant_boy_fashion.png'),
-  'b3': require('../attached_assets/generated_images/toddler_boy_fashion.png'),
-  'b4': require('../attached_assets/generated_images/preschool_boy_fashion.png'),
-  'b5': require('../attached_assets/generated_images/kids_boy_fashion.png'),
+  'b1': require('../attached_assets/generated_images/newborn_baby_boy_blue_onesie.png'),
+  'b2': require('../attached_assets/generated_images/infant_baby_boy_blue_shirt.png'),
+  'b3': require('../attached_assets/generated_images/toddler_boy_navy_outfit.png'),
+  'b4': require('../attached_assets/generated_images/preschool_boy_blue_graphic_shirt.png'),
+  'b5': require('../attached_assets/generated_images/school_boy_blue_hoodie.png'),
 };
 
 const winterImages: { [key: string]: any } = {
-  '1': require('../attached_assets/generated_images/winter_sweater_kids.png'),
-  '2': require('../attached_assets/generated_images/winter_sweatshirt_kids.png'),
-  '3': require('../attached_assets/generated_images/winter_jacket_kids.png'),
-  '4': require('../attached_assets/generated_images/thermal_innerwear_kids.png'),
-  '5': require('../attached_assets/generated_images/winter_essentials_kids.png'),
+  '1': require('../attached_assets/generated_images/purple_kids_sweatshirt.png'),
+  '2': require('../attached_assets/generated_images/navy_winter_pullover.png'),
+  '3': require('../attached_assets/generated_images/red_kids_winter_jacket.png'),
+  '4': require('../attached_assets/generated_images/white_thermal_undershirt.png'),
+  '5': require('../attached_assets/generated_images/pink_comfortable_kids_hoodie.png'),
 };
 
 const categoryImages: { [key: string]: any } = {
