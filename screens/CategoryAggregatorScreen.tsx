@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: Spacing.xs,
+    marginHorizontal: -Spacing.md,
   },
   adBannerImage: {
     width: '100%',
