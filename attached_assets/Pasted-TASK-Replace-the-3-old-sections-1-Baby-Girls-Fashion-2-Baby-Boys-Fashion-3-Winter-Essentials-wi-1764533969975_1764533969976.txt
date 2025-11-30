@@ -1,0 +1,116 @@
+TASK:
+Replace the 3 old sections:
+1. Baby Girls Fashion
+2. Baby Boys Fashion
+3. Winter Essentials
+with ONE single combined section.
+
+The new section MUST match the exact UI style shown in the screenshot.
+
+SECTION STRUCTURE:
+-------------------
+
+1. Main Section Heading:
+   Text: “BABY & KIDS FASHION”
+   Style:
+     - fontSize: 24–26
+     - fontWeight: 800
+     - textAlign: 'center'
+     - marginBottom: 14
+     - color: '#000'
+
+2. Below the heading → Create EXACTLY 3 STATIC ROWS.
+   NO ScrollView must be used.
+   All three rows must be visible together.
+   All rows must be perfectly aligned in a 5-column layout.
+
+3. Each row will contain 5 cards:
+   TOTAL CARDS = 15
+
+ROWS DATA:
+----------
+
+ROW 1 (Age Groups – Use real age items):
+  1. 0–6 Months
+  2. 6–24 Months
+  3. 2–4 Years
+  4. 4–6 Years
+  5. 6–14 Years
+
+ROW 2 (Winter Clothing 1):
+  1. Sweaters
+  2. Sweatshirts
+  3. Jackets
+  4. Thermals
+  5. Winter Essentials
+
+ROW 3 (Winter Clothing 2):
+  1. (Choose any 5 relevant winter categories, like)
+     Hoodies
+     Full Sleeves
+     Pullovers
+     Coats
+     Knits
+  OR reuse categories from AGE_WISE_CATEGORIES
+
+CARD DESIGN:
+------------
+
+staticCard:
+  width: '18%'         // so exactly 5 cards fit in one line
+  backgroundColor: '#D9F3FF'  // sky blue tint like screenshot
+  borderRadius: 18
+  overflow: 'hidden'
+  alignItems: 'center'
+  justifyContent: 'flex-start'
+  paddingBottom: 10
+
+staticCardImage:
+  width: '100%'
+  height: 115–135
+  resizeMode: 'cover'
+  borderTopLeftRadius: 18
+  borderTopRightRadius: 18
+
+staticCardLabel:
+  fontSize: 13–15
+  fontWeight: '700'
+  color: '#1A1A1A'
+  marginTop: 6
+  textAlign: 'center'
+
+ROW STYLE:
+----------
+
+staticRow:
+  flexDirection: 'row'
+  justifyContent: 'space-between'
+  paddingHorizontal: 12
+  marginBottom: 18
+
+SECTION WRAPPER:
+----------------
+
+<View style={{ marginTop: 20, marginBottom: 25 }}>
+   <Text style={styles.mainHeading}>BABY & KIDS FASHION</Text>
+
+   {/* Row 1 → 5 cards */}
+   <View style={styles.staticRow}> ...5 cards... </View>
+
+   {/* Row 2 → 5 cards */}
+   <View style={styles.staticRow}> ...5 cards... </View>
+
+   {/* Row 3 → 5 cards */}
+   <View style={styles.staticRow}> ...5 cards... </View>
+</View>
+
+IMPORTANT:
+----------
+• Remove the original 3 sections completely.
+• Insert the new combined section at their place.
+• Use your existing images (girlsImages, boysImages, winterImages).
+• No horizontal scrolling anywhere.
+• Layout must match screenshot EXACTLY.
+• All cards must be equal width, equal height, equal spacing.
+• Sky blue background for all cards.
+
