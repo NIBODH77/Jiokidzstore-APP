@@ -142,34 +142,32 @@ export default function HomeScreen() {
               <ThemedText style={styles.seeAllText}>View All</ThemedText>
             </Pressable>
           </View>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={styles.ageGroupGrid}>
-              {GIRLS_AGE_GROUPS.map((ageGroup) => (
-                <Pressable
-                  key={ageGroup.id}
-                  style={styles.ageGroupItem}
-                  onPress={() => navigation.navigate('AgeGroupDetail', {
-                    ageRange: ageGroup.ageRange,
-                    gender: 'girls',
-                    color: ageGroup.color
-                  })}
+          <View style={styles.ageGroupGrid}>
+            {GIRLS_AGE_GROUPS.map((ageGroup) => (
+              <Pressable
+                key={ageGroup.id}
+                style={styles.ageGroupItem}
+                onPress={() => navigation.navigate('AgeGroupDetail', {
+                  ageRange: ageGroup.ageRange,
+                  gender: 'girls',
+                  color: ageGroup.color
+                })}
+              >
+                <View
+                  style={styles.ageGroupCard}
                 >
-                  <View
-                    style={styles.ageGroupCard}
-                  >
-                    {girlsImages[ageGroup.id] && (
-                      <Image
-                        source={girlsImages[ageGroup.id]}
-                        style={styles.ageGroupImage}
-                        resizeMode="contain"
-                      />
-                    )}
-                  </View>
-                  <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
-                </Pressable>
-              ))}
-            </View>
-          </ScrollView>
+                  {girlsImages[ageGroup.id] && (
+                    <Image
+                      source={girlsImages[ageGroup.id]}
+                      style={styles.ageGroupImage}
+                      resizeMode="contain"
+                    />
+                  )}
+                </View>
+                <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
+              </Pressable>
+            ))}
+          </View>
         </View>
 
         {/* Baby Boys Fashion Row */}
@@ -180,34 +178,32 @@ export default function HomeScreen() {
               <ThemedText style={styles.seeAllText}>View All</ThemedText>
             </Pressable>
           </View>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={styles.ageGroupGrid}>
-              {BOYS_AGE_GROUPS.map((ageGroup) => (
-                <Pressable
-                  key={ageGroup.id}
-                  style={styles.ageGroupItem}
-                  onPress={() => navigation.navigate('AgeGroupDetail', {
-                    ageRange: ageGroup.ageRange,
-                    gender: 'boys',
-                    color: ageGroup.color
-                  })}
+          <View style={styles.ageGroupGrid}>
+            {BOYS_AGE_GROUPS.map((ageGroup) => (
+              <Pressable
+                key={ageGroup.id}
+                style={styles.ageGroupItem}
+                onPress={() => navigation.navigate('AgeGroupDetail', {
+                  ageRange: ageGroup.ageRange,
+                  gender: 'boys',
+                  color: ageGroup.color
+                })}
+              >
+                <View
+                  style={styles.ageGroupCard}
                 >
-                  <View
-                    style={styles.ageGroupCard}
-                  >
-                    {boysImages[ageGroup.id] && (
-                      <Image
-                        source={boysImages[ageGroup.id]}
-                        style={styles.ageGroupImage}
-                        resizeMode="contain"
-                      />
-                    )}
-                  </View>
-                  <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
-                </Pressable>
-              ))}
-            </View>
-          </ScrollView>
+                  {boysImages[ageGroup.id] && (
+                    <Image
+                      source={boysImages[ageGroup.id]}
+                      style={styles.ageGroupImage}
+                      resizeMode="contain"
+                    />
+                  )}
+                </View>
+                <ThemedText style={styles.ageGroupName}>{ageGroup.ageRange}</ThemedText>
+              </Pressable>
+            ))}
+          </View>
         </View>
 
         {/* Shop by Age - Combined Winter */}
@@ -218,30 +214,28 @@ export default function HomeScreen() {
               <ThemedText style={styles.seeAllText}>View All</ThemedText>
             </Pressable>
           </View>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={styles.ageGroupGrid}>
-              {AGE_WISE_CATEGORIES.map((category) => (
-                <Pressable
-                  key={category.id}
-                  style={styles.ageGroupItem}
-                  onPress={() => navigation.navigate('AgeWise')}
+          <View style={styles.ageGroupGrid}>
+            {AGE_WISE_CATEGORIES.map((category) => (
+              <Pressable
+                key={category.id}
+                style={styles.ageGroupItem}
+                onPress={() => navigation.navigate('AgeWise')}
+              >
+                <View
+                  style={styles.ageGroupCard}
                 >
-                  <View
-                    style={styles.ageGroupCard}
-                  >
-                    {winterImages[category.id] && (
-                      <Image
-                        source={winterImages[category.id]}
-                        style={styles.ageGroupImage}
-                        resizeMode="contain"
-                      />
-                    )}
-                  </View>
-                  <ThemedText style={styles.ageGroupName}>{category.name}</ThemedText>
-                </Pressable>
-              ))}
-            </View>
-          </ScrollView>
+                  {winterImages[category.id] && (
+                    <Image
+                      source={winterImages[category.id]}
+                      style={styles.ageGroupImage}
+                      resizeMode="contain"
+                    />
+                  )}
+                </View>
+                <ThemedText style={styles.ageGroupName}>{category.name}</ThemedText>
+              </Pressable>
+            ))}
+          </View>
         </View>
 
         {/* Categories */}
@@ -1241,9 +1235,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 12,
     gap: 12,
+    justifyContent: 'space-between',
   },
   ageGroupItem: {
-    width: 100,
+    flex: 1,
     alignItems: 'center',
     marginBottom: 18,
   },
