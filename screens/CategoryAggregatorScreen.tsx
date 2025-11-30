@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: Spacing.xs,
+    marginBottom: 15,
     marginHorizontal: -Spacing.md,
   },
   adBannerImage: {
