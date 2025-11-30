@@ -15,7 +15,6 @@ import { PRODUCTS, CATEGORIES } from '@/data/mockData';
 import { GIRLS_AGE_GROUPS, BOYS_AGE_GROUPS, AGE_WISE_CATEGORIES } from '@/data/ageGroupData';
 import { wishlistStorage } from '@/utils/storage';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
-import type { RootState } from '@/store/store';
 
 const girlsImages: { [key: string]: any } = {
   'g1': require('../attached_assets/generated_images/newborn_girl_fashion.png'),
@@ -39,6 +38,15 @@ const winterImages: { [key: string]: any } = {
   '3': require('../attached_assets/generated_images/winter_jacket_kids.png'),
   '4': require('../attached_assets/generated_images/thermal_innerwear_kids.png'),
   '5': require('../attached_assets/generated_images/winter_essentials_kids.png'),
+};
+
+const categoryImages: { [key: string]: any } = {
+  'Diapers': require('../attached_assets/generated_images/baby_diapers_products.png'),
+  'Clothing': require('../attached_assets/generated_images/girls_fashion_clothing.png'),
+  'Toys': require('../attached_assets/generated_images/toys_gaming_collection.png'),
+  'Gear': require('../attached_assets/generated_images/baby_gear_products.png'),
+  'Feeding': require('../attached_assets/generated_images/feeding_nursing_products.png'),
+  'Bath': require('../attached_assets/generated_images/baby_skincare_products_banner.png'),
 };
 
 export default function HomeScreen() {
@@ -1209,6 +1217,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 6,
     overflow: 'hidden', // Added
+  },
+  categoryImageContainer: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  categoryImage: {
+    width: '100%',
+    height: '100%',
   },
   categoryName: {
     fontSize: 11,
