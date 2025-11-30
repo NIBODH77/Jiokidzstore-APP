@@ -1498,7 +1498,7 @@ const styles = StyleSheet.create({
   },
   littleExplorersBannerContainer: {
     marginHorizontal: 0,
-    marginTop: 12,
+    marginTop: 4,
     marginBottom: 0,
     borderRadius: 12,
     overflow: 'hidden',
