@@ -3,8 +3,8 @@
   "main": "index.js",
   "version": "1.0.0",
   "scripts": {
-    "dev": "npx --yes expo start --web --port 8080",
-    "start": "npx --yes expo start --port 8080",
+    "dev": "npx --yes expo start --web --port 5000",
+    "start": "npx --yes expo start --port 5000",
     "android": "npx expo start --android",
     "ios": "npx expo start --ios",
     "web": "npx expo start --web --port 5000",
