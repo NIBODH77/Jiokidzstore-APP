@@ -74,7 +74,7 @@ export default function HomeScreen() {
 
   const handleRow2Scroll = useCallback((e: any) => {
     const scrollX = e.nativeEvent.contentOffset.x;
-    if (Math.abs(scrollX - scrollPositionRef1.current) > 1) {
+    if (Math.abs(scrollX - scrollPositionRef1.current) > 2) {
       if (scrollViewRow1Ref.current) {
         scrollViewRow1Ref.current.scrollTo({ x: scrollX, animated: false });
       }
@@ -93,7 +93,7 @@ export default function HomeScreen() {
 
   const handleRow4Scroll = useCallback((e: any) => {
     const scrollX = e.nativeEvent.contentOffset.x;
-    if (Math.abs(scrollX - scrollPositionRef3.current) > 1) {
+    if (Math.abs(scrollX - scrollPositionRef3.current) > 2) {
       if (scrollViewRow3Ref.current) {
         scrollViewRow3Ref.current.scrollTo({ x: scrollX, animated: false });
       }
@@ -1066,10 +1066,11 @@ export default function HomeScreen() {
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
-              scrollEventThrottle={1}
+              scrollEventThrottle={16}
               decelerationRate="fast"
               onScroll={handleRow1Scroll}
               ref={scrollViewRow1Ref}
+              scrollEnabled={true}
             >
               <View style={styles.cozyCuteRow}>
                 <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
@@ -1156,7 +1157,7 @@ export default function HomeScreen() {
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
-              scrollEventThrottle={1}
+              scrollEventThrottle={16}
               decelerationRate="fast"
               scrollEnabled={true}
               onScroll={handleRow2Scroll}
@@ -1248,10 +1249,11 @@ export default function HomeScreen() {
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
-              scrollEventThrottle={1}
+              scrollEventThrottle={16}
               decelerationRate="fast"
               onScroll={handleRow3Scroll}
               ref={scrollViewRow3Ref}
+              scrollEnabled={true}
             >
               <View style={styles.cozyCuteRow}>
                 <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
@@ -1338,10 +1340,11 @@ export default function HomeScreen() {
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
-              scrollEventThrottle={1}
+              scrollEventThrottle={16}
               decelerationRate="fast"
               onScroll={handleRow4Scroll}
               ref={scrollViewRow4Ref}
+              scrollEnabled={true}
             >
               <View style={styles.cozyCuteRow}>
                 <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AllProducts')}>
