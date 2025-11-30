@@ -1013,14 +1013,14 @@ export default function HomeScreen() {
             </View>
           </View>
 
-          {/* Scrollable Product Grid - Rows 1 to 6 */}
+          {/* Scrollable Product Grid - Rows 1 & 2 */}
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.cozyCuteScroll}
             scrollEnabled={true}
             decelerationRate="fast"
-            pagingEnabled={false}
+            snapToInterval={Dimensions.get('window').width - 32}
           >
             <View style={styles.cozyCutePageContainer}>
               {/* Row 1 */}
@@ -1620,7 +1620,7 @@ const styles = StyleSheet.create({
   },
   cozyCuteBanner: {
     width: '100%',
-    height: 180,
+    height: 220,
     position: 'relative',
     marginBottom: 0,
     backgroundColor: '#F5E6D3',
