@@ -3,7 +3,7 @@
   "main": "index.js",
   "version": "1.0.0",
   "scripts": {
-    "dev": "NODE_ENV=development EXPO_PUBLIC_URL=true EXPO_ANDROID_NATIVE_DEBUG_SYMBOLS=false npx --yes expo start --web --port 8080 --clear",
+    "dev": "NODE_ENV=development EXPO_PUBLIC_URL=true node scripts/dev-server.js",
     "start": "npx --yes expo start --port 8080",
     "android": "npx expo start --android",
     "ios": "npx expo start --ios",
