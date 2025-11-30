@@ -1155,24 +1155,6 @@ export default function HomeScreen() {
           />
         </Pressable>
       </ScreenScrollView>
-
-      {/* Floating Cart Button */}
-      <Pressable
-        style={styles.cartFAB}
-        onPress={() => navigation.navigate('Cart')}
-      >
-        <LinearGradient
-          colors={['#FF6B9D', '#FF8FB3']}
-          style={styles.cartFABGradient}
-        >
-          <Feather name="shopping-cart" size={24} color="#FFFFFF" />
-          {cartCount > 0 && (
-            <View style={styles.cartBadge}>
-              <ThemedText style={styles.cartBadgeText}>{cartCount}</ThemedText>
-            </View>
-          )}
-        </LinearGradient>
-      </Pressable>
     </View>
   );
 }
