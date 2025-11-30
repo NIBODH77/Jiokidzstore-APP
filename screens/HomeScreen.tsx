@@ -147,13 +147,13 @@ export default function HomeScreen() {
             { img: girlsImages['g5'], label: "6–14\nYears" },
           ];
 
-          // Row 2: Winter Top
-          const WINTER_TOP = [
-            { img: winterImages['1'], label: "Sweaters" },
-            { img: winterImages['2'], label: "Sweatshirts" },
-            { img: winterImages['3'], label: "Jackets" },
-            { img: winterImages['4'], label: "Thermals" },
-            { img: winterImages['5'], label: "Winter\nEssentials" },
+          // Row 2: Boys Age Groups
+          const BOYS_AGE_GROUPS_ROW = [
+            { img: boysImages['b1'], label: "0–6\nMonths" },
+            { img: boysImages['b2'], label: "6–24\nMonths" },
+            { img: boysImages['b3'], label: "2–4\nYears" },
+            { img: boysImages['b4'], label: "4–6\nYears" },
+            { img: boysImages['b5'], label: "6–14\nYears" },
           ];
 
           // Row 3: Winter Bottom
@@ -232,7 +232,7 @@ export default function HomeScreen() {
                 ))}
               </View>
 
-              {/* ROW 2: Winter Top */}
+              {/* ROW 2: Boys Age Groups */}
               <View
                 style={{
                   flexDirection: 'row',
@@ -241,7 +241,7 @@ export default function HomeScreen() {
                   marginBottom: 22,
                 }}
               >
-                {WINTER_TOP.map((item, i) => (
+                {BOYS_AGE_GROUPS_ROW.map((item, i) => (
                   <FashionCard key={i} item={item} />
                 ))}
               </View>
