@@ -73,10 +73,17 @@ export default function SimpleSplashScreen({ onFinish }: { onFinish: () => void 
       mass: 1.2,
     });
 
-    // Set a timer to call onFinish after the animation duration
-    const timer = setTimeout(() => {
-      onFinish();
-    }, 3000); // Keep splash for 3 seconds
+    // Use requestAnimationFrame fallback for web compatibility
+    let timer: ReturnType<typeof setTimeout>;
+    const startTime = Date.now();
+    const checkTime = () => {
+      if (Date.now() - startTime >= 3000) {
+        onFinish();
+      } else {
+        timer = setTimeout(checkTime, 100);
+      }
+    };
+    timer = setTimeout(checkTime, 100);
 
     return () => clearTimeout(timer);
   }, [onFinish, opacityValue, scaleValue, rotateValue]);
