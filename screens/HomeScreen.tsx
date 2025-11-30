@@ -683,7 +683,7 @@ export default function HomeScreen() {
                 style={styles.coldWeatherPromoImage}
                 resizeMode="cover"
               />
-              <View style={styles.coldWeatherPromoOverlay}>
+              <View style={styles.coldWeatherPromoOverlayBlue}>
                 <ThemedText style={styles.coldWeatherPromoTitle}>JACKETS</ThemedText>
                 <ThemedText style={styles.coldWeatherPromoPrice}>STARTING</ThemedText>
                 <ThemedText style={styles.coldWeatherPromoPriceValue}>₹399</ThemedText>
@@ -763,7 +763,7 @@ export default function HomeScreen() {
                 style={styles.coldWeatherPromoImage}
                 resizeMode="cover"
               />
-              <View style={styles.coldWeatherPromoOverlay}>
+              <View style={styles.coldWeatherPromoOverlayMint}>
                 <ThemedText style={styles.coldWeatherPromoTitle}>THERMALS</ThemedText>
                 <ThemedText style={styles.coldWeatherPromoPrice}>STARTING</ThemedText>
                 <ThemedText style={styles.coldWeatherPromoPriceValue}>₹199</ThemedText>
@@ -1515,7 +1515,29 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 182, 193, 0.35)',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    padding: 16,
+  },
+  coldWeatherPromoOverlayBlue: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(135, 206, 250, 0.35)',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    padding: 16,
+  },
+  coldWeatherPromoOverlayMint: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(152, 251, 152, 0.35)',
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
     padding: 16,
