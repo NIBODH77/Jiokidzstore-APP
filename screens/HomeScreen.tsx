@@ -60,6 +60,46 @@ export default function HomeScreen() {
   const scrollViewRow2Ref = useRef<ScrollView>(null);
   const scrollViewRow3Ref = useRef<ScrollView>(null);
   const scrollViewRow4Ref = useRef<ScrollView>(null);
+  const scrollPositionRef1 = useRef(0);
+  const scrollPositionRef3 = useRef(0);
+
+  // Callbacks for Row 1-2 synchronization
+  const handleRow1Scroll = useCallback((e: any) => {
+    const scrollX = e.nativeEvent.contentOffset.x;
+    scrollPositionRef1.current = scrollX;
+    if (scrollViewRow2Ref.current) {
+      scrollViewRow2Ref.current.scrollTo({ x: scrollX, animated: false });
+    }
+  }, []);
+
+  const handleRow2Scroll = useCallback((e: any) => {
+    const scrollX = e.nativeEvent.contentOffset.x;
+    if (Math.abs(scrollX - scrollPositionRef1.current) > 1) {
+      if (scrollViewRow1Ref.current) {
+        scrollViewRow1Ref.current.scrollTo({ x: scrollX, animated: false });
+      }
+      scrollPositionRef1.current = scrollX;
+    }
+  }, []);
+
+  // Callbacks for Row 3-4 synchronization
+  const handleRow3Scroll = useCallback((e: any) => {
+    const scrollX = e.nativeEvent.contentOffset.x;
+    scrollPositionRef3.current = scrollX;
+    if (scrollViewRow4Ref.current) {
+      scrollViewRow4Ref.current.scrollTo({ x: scrollX, animated: false });
+    }
+  }, []);
+
+  const handleRow4Scroll = useCallback((e: any) => {
+    const scrollX = e.nativeEvent.contentOffset.x;
+    if (Math.abs(scrollX - scrollPositionRef3.current) > 1) {
+      if (scrollViewRow3Ref.current) {
+        scrollViewRow3Ref.current.scrollTo({ x: scrollX, animated: false });
+      }
+      scrollPositionRef3.current = scrollX;
+    }
+  }, []);
 
   // Load wishlist on mount
   useEffect(() => {
@@ -1026,12 +1066,9 @@ export default function HomeScreen() {
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
-              scrollEventThrottle={4}
+              scrollEventThrottle={1}
               decelerationRate="fast"
-              onScroll={(e) => {
-                const scrollX = e.nativeEvent.contentOffset.x;
-                if (scrollViewRow2Ref.current) scrollViewRow2Ref.current.scrollTo({ x: scrollX, animated: false });
-              }}
+              onScroll={handleRow1Scroll}
               ref={scrollViewRow1Ref}
             >
               <View style={styles.cozyCuteRow}>
@@ -1119,13 +1156,10 @@ export default function HomeScreen() {
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
-              scrollEventThrottle={4}
+              scrollEventThrottle={1}
               decelerationRate="fast"
               scrollEnabled={true}
-              onScroll={(e) => {
-                const scrollX = e.nativeEvent.contentOffset.x;
-                if (scrollViewRow1Ref.current) scrollViewRow1Ref.current.scrollTo({ x: scrollX, animated: false });
-              }}
+              onScroll={handleRow2Scroll}
               ref={scrollViewRow2Ref}
             >
               <View style={styles.cozyCuteRow}>
@@ -1214,12 +1248,9 @@ export default function HomeScreen() {
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
-              scrollEventThrottle={4}
+              scrollEventThrottle={1}
               decelerationRate="fast"
-              onScroll={(e) => {
-                const scrollX = e.nativeEvent.contentOffset.x;
-                if (scrollViewRow4Ref.current) scrollViewRow4Ref.current.scrollTo({ x: scrollX, animated: false });
-              }}
+              onScroll={handleRow3Scroll}
               ref={scrollViewRow3Ref}
             >
               <View style={styles.cozyCuteRow}>
@@ -1307,12 +1338,9 @@ export default function HomeScreen() {
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.cozyCuteScrollContent}
-              scrollEventThrottle={4}
+              scrollEventThrottle={1}
               decelerationRate="fast"
-              onScroll={(e) => {
-                const scrollX = e.nativeEvent.contentOffset.x;
-                if (scrollViewRow3Ref.current) scrollViewRow3Ref.current.scrollTo({ x: scrollX, animated: false });
-              }}
+              onScroll={handleRow4Scroll}
               ref={scrollViewRow4Ref}
             >
               <View style={styles.cozyCuteRow}>
