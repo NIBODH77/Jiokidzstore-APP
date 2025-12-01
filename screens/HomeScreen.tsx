@@ -143,7 +143,7 @@ export default function HomeScreen() {
         <View style={styles.heroContainer}>
           <ModernHeroSection
             onSlidePress={() => {}}
-            onButtonPress={() => navigation.navigate('FlashSale')}
+            onButtonPress={() => {}}
           />
         </View>
 
