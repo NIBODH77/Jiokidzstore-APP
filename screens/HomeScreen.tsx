@@ -333,7 +333,7 @@ export default function HomeScreen() {
           );
 
           return (
-            <View style={{ marginTop: 18, marginBottom: 30 }}>
+            <View style={{ marginTop: 17, marginBottom: 30 }}>
               {/* Heading */}
               <Text
                 style={{
