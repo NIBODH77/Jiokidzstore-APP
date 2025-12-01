@@ -152,6 +152,8 @@ export default function HomeScreen() {
 
       {/* Scrollable Content */}
       <ScreenScrollView contentContainerStyle={styles.scrollContent}>
+        {/* Spacer for fixed header */}
+        <View style={styles.headerSpacer} />
 
         <ChooseLocationModal
           visible={chooseLocationModalVisible}
@@ -1227,6 +1229,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+  },
+  headerSpacer: {
+    height: 180,
   },
   scrollContent: {
     flexGrow: 1,
