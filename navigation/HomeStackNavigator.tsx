@@ -101,8 +101,7 @@ export default function HomeStackNavigator() {
         name="Search"
         component={SearchScreen}
         options={{ 
-          headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          headerShown: false
         }}
       />
 
