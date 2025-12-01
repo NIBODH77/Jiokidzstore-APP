@@ -35,23 +35,23 @@ export default function SearchScreen() {
   };
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
-      {/* Search Input Box */}
-      <View style={styles.searchBox}>
+    <View style={styles.container}>
+      {/* Search Input Box - PROMINENT */}
+      <View style={styles.searchBoxWrapper}>
         <View style={styles.searchInputContainer}>
-          <Feather name="search" size={22} color={Colors.light.primary} />
+          <Feather name="search" size={24} color={Colors.light.primary} />
           <TextInput
             style={styles.searchInput}
             value={searchQuery}
             onChangeText={setSearchQuery}
-            placeholder="Search toys, clothes, diapers..."
+            placeholder="खिलौने, कपड़े, डायपर खोजें..."
             placeholderTextColor="#CCCCCC"
-            autoFocus
+            autoFocus={true}
             autoCapitalize="none"
           />
           {searchQuery.length > 0 && (
             <Pressable onPress={handleClearSearch}>
-              <Feather name="x-circle" size={20} color={Colors.light.textGray} />
+              <Feather name="x-circle" size={22} color={Colors.light.textGray} />
             </Pressable>
           )}
         </View>
@@ -132,22 +132,24 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  searchBox: {
-    paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.md,
-    paddingBottom: Spacing.lg,
+  searchBoxWrapper: {
+    paddingHorizontal: 16,
+    paddingVertical: 16,
     backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
+    zIndex: 100,
   },
   searchInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F8F8F8',
-    borderRadius: BorderRadius.md,
-    paddingHorizontal: Spacing.md,
-    height: 56,
-    gap: Spacing.md,
-    borderWidth: 1.5,
-    borderColor: '#E8E8E8',
+    backgroundColor: '#FF6B9D20',
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    height: 60,
+    gap: 12,
+    borderWidth: 2,
+    borderColor: '#FF6B9D',
   },
   searchInput: {
     flex: 1,
