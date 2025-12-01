@@ -39,7 +39,7 @@ export function TopHeader({
     : [styles.container, { paddingTop: insets.top }, nativeProps.options?.headerStyle];
 
   return (
-    <View style={headerStyle}>
+    <View style={[headerStyle, styles.fixedContainer]}>
       <View style={styles.content}>
         {/* Left - Back Button & Logo */}
         <View style={styles.leftSection}>
@@ -128,6 +128,13 @@ export function TopHeader({
 }
 
 const styles = StyleSheet.create({
+  fixedContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
+  },
   container: {
     backgroundColor: '#FFFFFF',
     borderBottomWidth: 1.5,

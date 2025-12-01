@@ -138,10 +138,8 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Scrollable Content with Header */}
-      <ScreenScrollView contentContainerStyle={styles.scrollContent}>
-        {/* Search Bar */}
-        <ModernSearchBar 
+      {/* Search Bar - Fixed at top */}
+      <ModernSearchBar 
           onSearch={() => navigation.navigate('Search')}
           onLocationPress={() => setChooseLocationModalVisible(true)}
           onNotificationPress={() => console.log('Notifications')}
@@ -151,6 +149,11 @@ export default function HomeScreen() {
           notificationCount={3}
           cartCount={2}
         />
+
+      {/* Scrollable Content */}
+      <ScreenScrollView contentContainerStyle={styles.scrollContent}>
+        {/* Spacer for fixed header */}
+        <View style={styles.headerSpacer} />
 
         <ChooseLocationModal
           visible={chooseLocationModalVisible}
@@ -1226,6 +1229,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+  },
+  headerSpacer: {
+    height: 180,
   },
   scrollContent: {
     flexGrow: 1,
