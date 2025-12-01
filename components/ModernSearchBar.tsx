@@ -75,13 +75,6 @@ export function ModernSearchBar({
             style={styles.logo}
             resizeMode="contain"
           />
-          <Pressable style={styles.locationRow} onPress={onLocationPress}>
-            <Feather name="map-pin" size={12} color="#666666" />
-            <View style={styles.locationTextContainer}>
-              <View style={styles.locationDot} />
-              <View style={styles.locationText} />
-            </View>
-          </Pressable>
         </View>
 
         <View style={styles.iconsContainer}>
@@ -116,6 +109,15 @@ export function ModernSearchBar({
           </Pressable>
         </View>
       </View>
+
+      {/* Full Width Location Box */}
+      <Pressable style={styles.locationBox} onPress={onLocationPress}>
+        <Feather name="map-pin" size={14} color="#666666" />
+        <View style={styles.locationTextContainer}>
+          <View style={styles.locationDot} />
+          <View style={styles.locationText} />
+        </View>
+      </Pressable>
 
       {/* Auto-scrolling Banners */}
       <View style={styles.bannersContainer}>
@@ -169,23 +171,28 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   logoSection: {
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   logo: {
     width: 90,
     height: 40,
   },
-  locationRow: {
+  locationBox: {
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
-    marginTop: 2,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 8,
+    marginBottom: 16,
+    gap: 8,
   },
   locationTextContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 6,
   },
   locationDot: {
     width: 4,
@@ -194,10 +201,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#666666',
   },
   locationText: {
-    width: 60,
-    height: 10,
-    backgroundColor: '#E0E0E0',
-    borderRadius: 2,
+    width: 120,
+    height: 12,
+    backgroundColor: '#D0D0D0',
+    borderRadius: 3,
   },
   iconsContainer: {
     flexDirection: 'row',
