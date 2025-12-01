@@ -68,6 +68,8 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const [products, setProducts] = useState(PRODUCTS);
   const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
+  const [notificationCount] = useState(3); // Mock notification count
+  const [cartCount] = useState(0); // Mock cart count - you can connect to Redux later
 
 
   // Load wishlist on mount
@@ -137,15 +139,17 @@ export default function HomeScreen() {
           onSearch={handleSearchPress}
           products={updatedProducts && updatedProducts.length > 0 ? updatedProducts : PRODUCTS}
           onProductSelect={handleProductPress}
+          onNotificationPress={() => console.log('Notifications')}
+          onCartPress={() => navigation.navigate('Cart')}
+          onWishlistPress={() => navigation.navigate('Wishlist')}
+          onProfilePress={() => console.log('Profile')}
+          onLocationPress={() => console.log('Change location')}
+          onMicPress={() => console.log('Voice search')}
+          notificationCount={notificationCount}
+          cartCount={cartCount}
         />
 
-        {/* Hero Section */}
-        <View style={styles.heroContainer}>
-          <ModernHeroSection
-            onSlidePress={() => {}}
-            onButtonPress={() => {}}
-          />
-        </View>
+        
 
 
 
@@ -1208,13 +1212,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: Colors.light.primary,
   },
-  heroContainer: {
-    paddingVertical: Spacing.lg,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
-    marginBottom: Spacing.lg,
-    backgroundColor: '#FFFFFF',
-  },
+  
   categoriesList: {
     paddingHorizontal: 16,
   },
