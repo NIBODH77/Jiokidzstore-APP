@@ -286,29 +286,37 @@ export default function HomeScreen() {
             </Pressable>
           </View>
           <View style={styles.categoriesGrid}>
-            {CATEGORIES.map((category) => (
-              <Pressable 
-                key={category.id}
-                onPress={handleCategoryPress}
-                style={styles.categoryItem}
-              >
-                <View 
-                  style={[
-                    styles.categoryCard, 
-                    { backgroundColor: category.color + '22' }
-                  ]}
+            {CATEGORIES.map((category) => {
+              const imageSource = categoryImages[category.name as keyof typeof categoryImages];
+              if (!imageSource) {
+                console.warn(`Image not found for category: ${category.name}`);
+              }
+              return (
+                <Pressable 
+                  key={category.id}
+                  onPress={handleCategoryPress}
+                  style={styles.categoryItem}
                 >
-                  <View style={styles.categoryImageContainer}>
-                    <Image 
-                      source={categoryImages[category.name as keyof typeof categoryImages]}
-                      style={styles.categoryImage}
-                      resizeMode="contain"
-                    />
+                  <View 
+                    style={[
+                      styles.categoryCard, 
+                      { backgroundColor: category.color + '22' }
+                    ]}
+                  >
+                    {imageSource && (
+                      <View style={styles.categoryImageContainer}>
+                        <Image 
+                          source={imageSource}
+                          style={styles.categoryImage}
+                          resizeMode="cover"
+                        />
+                      </View>
+                    )}
                   </View>
-                </View>
-                <ThemedText style={styles.categoryName}>{category.name}</ThemedText>
-              </Pressable>
-            ))}
+                  <ThemedText style={styles.categoryName}>{category.name}</ThemedText>
+                </Pressable>
+              );
+            })}
           </View>
         </View>
 
