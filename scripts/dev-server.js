@@ -3,10 +3,8 @@
 const { spawnSync } = require('child_process');
 const path = require('path');
 
-// Run expo start with web support
-const result = spawnSync('npx', [
-  '--yes',
-  'expo',
+// Run expo start with web support using local installation
+const result = spawnSync('node_modules/.bin/expo', [
   'start',
   '--web',
   '--port', '5000',
