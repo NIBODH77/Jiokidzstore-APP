@@ -337,7 +337,7 @@ export default function HomeScreen() {
               {/* Heading */}
               <Text
                 style={{
-                  fontSize: 26,
+                  fontSize: 22,
                   fontWeight: '900',
                   textAlign: 'center',
                   marginBottom: 22,
@@ -1305,7 +1305,7 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   autoScrollBannersContainer: {
-    height: 200,
+    height: 203,
     marginBottom: 16,
     backgroundColor: '#F5F5F5',
   },
@@ -1315,7 +1315,7 @@ const styles = StyleSheet.create({
   },
   autoBanner: {
     width: Dimensions.get('window').width - 32,
-    height: 200,
+    height: 203,
     marginRight: 0,
     borderRadius: 12,
     overflow: 'hidden',
