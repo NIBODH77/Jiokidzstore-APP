@@ -188,7 +188,7 @@ export default function HomeScreen() {
                 borderRadius: 18,
                 overflow: 'hidden',
                 alignItems: 'center',
-                paddingBottom: 10,
+                paddingBottom: 8,
               }}
               onPress={() => console.log('Pressed:', item.label)}
             >
@@ -196,7 +196,7 @@ export default function HomeScreen() {
                 source={item.img}
                 style={{
                   width: '100%',
-                  height: 120,
+                  height: 90,
                   resizeMode: 'cover',
                   borderTopLeftRadius: 18,
                   borderTopRightRadius: 18,
@@ -204,12 +204,12 @@ export default function HomeScreen() {
               />
               <Text
                 style={{
-                  marginTop: 8,
+                  marginTop: 6,
                   textAlign: 'center',
-                  fontSize: 14,
+                  fontSize: 12,
                   fontWeight: '700',
                   color: '#1A1A1A',
-                  lineHeight: 18,
+                  lineHeight: 16,
                 }}
               >
                 {item.label}
