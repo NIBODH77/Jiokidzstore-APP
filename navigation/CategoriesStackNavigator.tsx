@@ -5,8 +5,7 @@ import CategoryListingScreen from "@/screens/product/CategoryListingScreen";
 import ProductDetailScreen from "@/screens/product/ProductDetailScreen";
 import { useTheme } from "@/hooks/useTheme";
 import { getCommonScreenOptions } from "@/navigation/screenOptions";
-
-import { HeaderTitle } from "@/components/HeaderTitle";
+import { TopHeader } from "@/components/TopHeader";
 
 export type CategoriesStackParamList = {
   Categories: undefined;
@@ -28,14 +27,16 @@ export default function CategoriesStackNavigator() {
       <Stack.Screen
         name="Categories"
         component={CategoriesScreen}
-        options={{ headerTitle: () => <HeaderTitle title="Categories" /> }}
+        options={{ 
+          header: () => <TopHeader showBackButton={false} />
+        }}
       />
       <Stack.Screen
         name="CategoryListing"
         component={CategoryListingScreen}
-        options={({ route }) => ({
-          headerTitle: () => <HeaderTitle title={route.params.categoryName} />,
-        })}
+        options={{
+          header: () => <TopHeader showBackButton={true} />
+        }}
       />
       <Stack.Screen
         name="ProductDetail"

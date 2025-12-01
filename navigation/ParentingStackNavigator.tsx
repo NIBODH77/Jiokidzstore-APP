@@ -4,7 +4,7 @@ import ParentingScreen from '@/screens/main/ParentingScreen';
 import ProductDetailScreen from '@/screens/product/ProductDetailScreen';
 import { useTheme } from '@/hooks/useTheme';
 import { getCommonScreenOptions } from '@/navigation/screenOptions';
-import { HeaderTitle } from '@/components/HeaderTitle';
+import { TopHeader } from '@/components/TopHeader';
 
 export type ParentingStackParamList = {
   Parenting: undefined;
@@ -25,7 +25,9 @@ export default function ParentingStackNavigator() {
       <Stack.Screen
         name="Parenting"
         component={ParentingScreen}
-        options={{ headerShown: false }}
+        options={{ 
+          header: () => <TopHeader showBackButton={false} />
+        }}
       />
       <Stack.Screen
         name="ProductDetail"

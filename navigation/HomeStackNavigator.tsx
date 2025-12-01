@@ -60,7 +60,7 @@ export default function HomeStackNavigator() {
         name="AgeWise"
         component={AgeWiseScreen}
         options={{
-          headerShown: false,
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
 
@@ -69,7 +69,7 @@ export default function HomeStackNavigator() {
         name="AgeGroupDetail"
         component={AgeGroupDetailScreen}
         options={{
-          headerShown: false,
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
 
@@ -78,7 +78,7 @@ export default function HomeStackNavigator() {
         name="CategoryAggregator"
         component={CategoryAggregatorScreen}
         options={{
-          headerTitle: () => <HeaderTitle title="Categories" />, // A generic title for this aggregated view
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
 
@@ -103,7 +103,7 @@ export default function HomeStackNavigator() {
         name="Reviews"
         component={ReviewsScreen}
         options={{
-          headerTitle: () => <HeaderTitle title="Reviews & Ratings" />,
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
 
@@ -112,7 +112,7 @@ export default function HomeStackNavigator() {
         name="Cart"
         component={CartScreen}
         options={{
-          headerTitle: () => <HeaderTitle title="My Cart" />,
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
 
@@ -121,7 +121,7 @@ export default function HomeStackNavigator() {
         name="CheckoutAddress"
         component={CheckoutAddressScreen}
         options={{
-          headerTitle: () => <HeaderTitle title="Select Address" />,
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
 
@@ -129,13 +129,9 @@ export default function HomeStackNavigator() {
       <Stack.Screen
         name="AddEditAddress"
         component={AddEditAddressScreen}
-        options={({ route }) => ({
-          headerTitle: () => (
-            <HeaderTitle
-              title={route.params?.addressId ? "Edit Address" : "Add New Address"}
-            />
-          ),
-        })}
+        options={{
+          header: () => <TopHeader showBackButton={true} />
+        }}
       />
 
       {/* CHECKOUT PAYMENT */}
@@ -143,7 +139,7 @@ export default function HomeStackNavigator() {
         name="CheckoutPayment"
         component={CheckoutPaymentScreen}
         options={{
-          headerTitle: () => <HeaderTitle title="Payment Method" />,
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
 
@@ -152,7 +148,7 @@ export default function HomeStackNavigator() {
         name="OrderSummary"
         component={OrderSummaryScreen}
         options={{
-          headerTitle: () => <HeaderTitle title="Order Summary" />,
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
 

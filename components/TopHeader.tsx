@@ -11,9 +11,10 @@ const jiokidzLogo = require('../attached_assets/generated_images/jiokidz_logo_fi
 
 interface TopHeaderProps {
   showBackButton?: boolean;
+  hideRightIcons?: boolean;
 }
 
-export function TopHeader({ showBackButton = false }: TopHeaderProps) {
+export function TopHeader({ showBackButton = false, hideRightIcons = false }: TopHeaderProps) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const cartCount = useSelector((state: RootState) => selectCartTotalItems(state.cart));
@@ -23,7 +24,7 @@ export function TopHeader({ showBackButton = false }: TopHeaderProps) {
       <View style={styles.content}>
         {/* Left - Back Button */}
         <View style={styles.leftSection}>
-          {showBackButton ? (
+          {showBackButton && (
             <Pressable 
               onPress={() => navigation.goBack()}
               style={styles.backButton}
@@ -31,8 +32,6 @@ export function TopHeader({ showBackButton = false }: TopHeaderProps) {
             >
               <Feather name="chevron-left" size={32} color="#1F2937" strokeWidth={2.5} />
             </Pressable>
-          ) : (
-            <View style={styles.leftPlaceholder} />
           )}
         </View>
 
@@ -44,41 +43,47 @@ export function TopHeader({ showBackButton = false }: TopHeaderProps) {
         />
 
         {/* Right - Wishlist, Notification, Profile & Cart */}
-        <View style={styles.rightSection}>
-          <Pressable 
-            style={styles.iconButton} 
-            hitSlop={8}
-            onPress={() => navigation.navigate('Wishlist' as never)}
-          >
-            <Feather name="heart" size={24} color="#1F2937" strokeWidth={1} />
-          </Pressable>
+        {!hideRightIcons && (
+          <View style={styles.rightSection}>
+            <Pressable 
+              style={styles.iconButton} 
+              hitSlop={8}
+              onPress={() => navigation.navigate('Wishlist' as never)}
+            >
+              <Feather name="heart" size={24} color="#1F2937" strokeWidth={1} />
+            </Pressable>
 
-          <Pressable style={styles.iconButton} hitSlop={8}>
-            <Feather name="bell" size={24} color="#1F2937" strokeWidth={1} />
-            <View style={styles.notificationBadge}>
-              <View style={styles.badgeDot} />
-            </View>
-          </Pressable>
-
-          <Pressable 
-            style={styles.iconButton} 
-            hitSlop={8}
-            onPress={() => navigation.navigate('Profile' as never)}
-          >
-            <Feather name="user" size={24} color="#1F2937" strokeWidth={1} />
-          </Pressable>
-          
-          <Pressable style={styles.cartButton} hitSlop={8}>
-            <Feather name="shopping-cart" size={24} color="#1F2937" strokeWidth={1} />
-            {cartCount > 0 && (
-              <View style={styles.cartBadge}>
-                <View style={styles.cartCount}>
-                  <Feather name="shopping-cart" size={11} color="#FFFFFF" strokeWidth={2} />
-                </View>
+            <Pressable style={styles.iconButton} hitSlop={8}>
+              <Feather name="bell" size={24} color="#1F2937" strokeWidth={1} />
+              <View style={styles.notificationBadge}>
+                <View style={styles.badgeDot} />
               </View>
-            )}
-          </Pressable>
-        </View>
+            </Pressable>
+
+            <Pressable 
+              style={styles.iconButton} 
+              hitSlop={8}
+              onPress={() => navigation.navigate('Profile' as never)}
+            >
+              <Feather name="user" size={24} color="#1F2937" strokeWidth={1} />
+            </Pressable>
+            
+            <Pressable 
+              style={styles.cartButton} 
+              hitSlop={8}
+              onPress={() => navigation.navigate('Cart' as never)}
+            >
+              <Feather name="shopping-cart" size={24} color="#1F2937" strokeWidth={1} />
+              {cartCount > 0 && (
+                <View style={styles.cartBadge}>
+                  <View style={styles.cartCount}>
+                    <Feather name="shopping-cart" size={11} color="#FFFFFF" strokeWidth={2} />
+                  </View>
+                </View>
+              )}
+            </Pressable>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -107,11 +112,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     justifyContent: 'center',
-    alignItems: 'center',
-  },
-  leftPlaceholder: {
-    width: 48,
-    height: 48,
+    alignItems: 'flex-start',
   },
   backButton: {
     width: 48,

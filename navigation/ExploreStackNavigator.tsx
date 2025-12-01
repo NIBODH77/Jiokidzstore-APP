@@ -4,7 +4,7 @@ import ExploreScreen from '@/screens/main/ExploreScreen';
 import ProductDetailScreen from '@/screens/product/ProductDetailScreen';
 import { useTheme } from '@/hooks/useTheme';
 import { getCommonScreenOptions } from '@/navigation/screenOptions';
-import { HeaderTitle } from '@/components/HeaderTitle';
+import { TopHeader } from '@/components/TopHeader';
 
 export type ExploreStackParamList = {
   Explore: undefined;
@@ -25,7 +25,9 @@ export default function ExploreStackNavigator() {
       <Stack.Screen
         name="Explore"
         component={ExploreScreen}
-        options={{ headerShown: false }}
+        options={{ 
+          header: () => <TopHeader showBackButton={false} />
+        }}
       />
       <Stack.Screen
         name="ProductDetail"
