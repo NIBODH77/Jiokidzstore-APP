@@ -122,39 +122,6 @@ export function ModernSearchBar({
       </Pressable>
       </View>
       </View>
-
-      {/* Auto-scrolling Banners */}
-      <View style={styles.bannersContainer}>
-        <FlatList
-          ref={bannerScrollRef}
-          data={BANNERS}
-          renderItem={renderBanner}
-          keyExtractor={(item) => item.id}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled
-          snapToInterval={screenWidth - 32}
-          decelerationRate="fast"
-          scrollEventThrottle={16}
-          onMomentumScrollEnd={(e) => {
-            const index = Math.round(e.nativeEvent.contentOffset.x / (screenWidth - 32));
-            setCurrentBannerIndex(index);
-          }}
-        />
-
-        {/* Pagination Dots */}
-        <View style={styles.paginationDots}>
-          {BANNERS.map((_, index) => (
-            <View
-              key={index}
-              style={[
-                styles.dot,
-                currentBannerIndex === index && styles.dotActive,
-              ]}
-            />
-          ))}
-        </View>
-      </View>
     </View>
   );
 }
