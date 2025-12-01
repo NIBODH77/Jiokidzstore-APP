@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, Pressable, Image } from 'react-native';
+import { View, StyleSheet, Pressable, Image, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store/store';
 import { selectCartTotalItems } from '@/store/cartSlice';
+import type { NativeStackHeaderProps } from '@react-navigation/native-stack';
 
 const jiokidzLogo = require('../attached_assets/generated_images/jiokidz_logo_final.png');
 
-interface TopHeaderProps {
+interface TopHeaderProps extends Partial<NativeStackHeaderProps> {
   showBackButton?: boolean;
   hideRightIcons?: boolean;
   hideSearchIcon?: boolean;
@@ -26,14 +27,19 @@ export function TopHeader({
   hideWishlistIcon = false,
   hideNotificationIcon = false,
   hideProfileIcon = false,
-  hideCartIcon = false
+  hideCartIcon = false,
+  ...nativeProps
 }: TopHeaderProps) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const cartCount = useSelector((state: RootState) => selectCartTotalItems(state.cart));
 
+  const headerStyle = Platform.OS === 'web' 
+    ? [styles.container, { paddingTop: insets.top }]
+    : [styles.container, { paddingTop: insets.top }, nativeProps.options?.headerStyle];
+
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
+    <View style={headerStyle}>
       <View style={styles.content}>
         {/* Left - Back Button & Logo */}
         <View style={styles.leftSection}>

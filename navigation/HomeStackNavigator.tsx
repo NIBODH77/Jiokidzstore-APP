@@ -52,7 +52,8 @@ export default function HomeStackNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          headerShown: false,
+          headerShown: true,
+          header: (props) => <TopHeader {...props} showBackButton={false} />
         }}
       />
 
@@ -62,7 +63,7 @@ export default function HomeStackNavigator() {
         component={AgeWiseScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -72,7 +73,7 @@ export default function HomeStackNavigator() {
         component={AgeGroupDetailScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -82,7 +83,7 @@ export default function HomeStackNavigator() {
         component={CategoryAggregatorScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -92,7 +93,7 @@ export default function HomeStackNavigator() {
         component={ProductDetailScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -102,7 +103,7 @@ export default function HomeStackNavigator() {
         component={SearchScreen}
         options={{ 
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} hideSearchIcon={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} hideSearchIcon={true} />
         }}
       />
 
@@ -112,7 +113,7 @@ export default function HomeStackNavigator() {
         component={ReviewsScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -122,7 +123,7 @@ export default function HomeStackNavigator() {
         component={CartScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} hideCartIcon={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} hideCartIcon={true} />
         }}
       />
 
@@ -132,7 +133,7 @@ export default function HomeStackNavigator() {
         component={CheckoutAddressScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -142,7 +143,7 @@ export default function HomeStackNavigator() {
         component={AddEditAddressScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -152,7 +153,7 @@ export default function HomeStackNavigator() {
         component={CheckoutPaymentScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -162,7 +163,7 @@ export default function HomeStackNavigator() {
         component={OrderSummaryScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -172,7 +173,7 @@ export default function HomeStackNavigator() {
         component={OrderConfirmationScreen}
         options={{ 
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -182,7 +183,7 @@ export default function HomeStackNavigator() {
         component={WishlistScreen}
         options={{ 
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} hideWishlistIcon={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} hideWishlistIcon={true} />
         }}
       />
     </Stack.Navigator>

@@ -16,7 +16,7 @@ export const getCommonScreenOptions = ({
   isDark,
   transparent = true,
 }: ScreenOptionsParams): NativeStackNavigationOptions => ({
-  headerShown: false, // Headers are now hidden
+  headerShown: true,
   gestureEnabled: true,
   gestureDirection: "horizontal",
   fullScreenGestureEnabled: isLiquidGlassAvailable() ? false : true,

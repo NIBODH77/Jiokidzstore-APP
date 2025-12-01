@@ -29,7 +29,7 @@ export default function CategoriesStackNavigator() {
         component={CategoriesScreen}
         options={{ 
           headerShown: true,
-          header: () => <TopHeader showBackButton={false} />
+          header: (props) => <TopHeader {...props} showBackButton={false} />
         }}
       />
       <Stack.Screen
@@ -37,14 +37,15 @@ export default function CategoriesStackNavigator() {
         component={CategoryListingScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
       <Stack.Screen
         name="ProductDetail"
         component={ProductDetailScreen}
         options={{
-          headerShown: false,
+          headerShown: true,
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
     </Stack.Navigator>

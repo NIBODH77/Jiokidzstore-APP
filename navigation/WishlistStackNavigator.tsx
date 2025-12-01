@@ -27,7 +27,7 @@ export default function WishlistStackNavigator() {
         component={WishlistScreen}
         options={{ 
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} hideWishlistIcon={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} hideWishlistIcon={true} />
         }}
       />
       <Stack.Screen
@@ -35,7 +35,7 @@ export default function WishlistStackNavigator() {
         component={ProductDetailScreen}
         options={{ 
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
     </Stack.Navigator>
