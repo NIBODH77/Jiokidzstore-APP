@@ -1213,7 +1213,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: '700',
     color: '#1F2937',
   },
