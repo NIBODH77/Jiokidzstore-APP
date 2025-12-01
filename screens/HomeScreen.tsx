@@ -41,12 +41,26 @@ const winterImages: { [key: string]: any } = {
 };
 
 const categoryImages: { [key: string]: any } = {
-  'Diapers': require('../attached_assets/generated_images/baby_diapers_products.png'),
-  'Clothing': require('../attached_assets/generated_images/girls_fashion_clothing.png'),
-  'Toys': require('../attached_assets/generated_images/toys_gaming_collection.png'),
-  'Gear': require('../attached_assets/generated_images/baby_gear_products.png'),
-  'Feeding': require('../attached_assets/generated_images/feeding_nursing_products.png'),
-  'Bath': require('../attached_assets/generated_images/baby_skincare_products_banner.png'),
+  'Footwear': require('../attached_assets/generated_images/kids_footwear_shoes.png'),
+  'Fashion Accessories': require('../attached_assets/generated_images/kids_accessories_collection.png'),
+  'Disney & Marvel': require('../attached_assets/generated_images/disney_marvel_merchandise.png'),
+  'Toys & Gaming': require('../attached_assets/generated_images/colorful_kids_building_blocks.png'),
+  'Baby Gear': require('../attached_assets/generated_images/baby_stroller_gear_banner.png'),
+  'Diapering & Potty': require('../attached_assets/generated_images/diapering_potty_products.png'),
+  'Bath & Skin Care': require('../attached_assets/generated_images/bath_skin_care_products.png'),
+  'Feeding & Nursing': require('../attached_assets/generated_images/baby_feeding_essentials_banner.png'),
+  'Health & Safety': require('../attached_assets/generated_images/health_safety_products.png'),
+  'Baby Nursery': require('../attached_assets/generated_images/baby_nursery_furniture.png'),
+  'Art & Hobbies': require('../attached_assets/generated_images/art_hobbies_supplies.png'),
+  'Books': require('../attached_assets/generated_images/colorful_children_books.png'),
+  'School Supplies': require('../attached_assets/generated_images/school_supplies_collection.png'),
+  'Sports & Outdoor': require('../attached_assets/generated_images/sports_outdoor_gear.png'),
+  'Home & Living': require('../attached_assets/generated_images/home_living_decor.png'),
+  'Birthday & Gifts': require('../attached_assets/generated_images/birthday_gifts_items.png'),
+  'Electronics & Tech': require('../attached_assets/generated_images/electronics_tech_gadgets.png'),
+  'Moms & Maternity': require('../attached_assets/generated_images/moms_maternity_products.png'),
+  'Beauty & Care': require('../attached_assets/generated_images/beauty_care_products.png'),
+  'Special Deals': require('../attached_assets/generated_images/special_deals_sale.png'),
 };
 
 export default function HomeScreen() {
