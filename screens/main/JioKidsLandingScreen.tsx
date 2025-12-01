@@ -721,7 +721,7 @@ const styles = StyleSheet.create({
   },
   categoryCard: {
     width: (SCREEN_WIDTH - 52) / 2,
-    paddingVertical: 16,
+    paddingVertical: 21,
     paddingHorizontal: 14,
     borderRadius: 16,
     marginBottom: 4,
