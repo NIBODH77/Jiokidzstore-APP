@@ -28,6 +28,7 @@ export default function CategoriesStackNavigator() {
         name="Categories"
         component={CategoriesScreen}
         options={{ 
+          headerShown: true,
           header: () => <TopHeader showBackButton={false} />
         }}
       />

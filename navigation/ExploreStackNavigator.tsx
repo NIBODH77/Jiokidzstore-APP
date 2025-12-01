@@ -26,6 +26,7 @@ export default function ExploreStackNavigator() {
         name="Explore"
         component={ExploreScreen}
         options={{ 
+          headerShown: true,
           header: () => <TopHeader showBackButton={false} />
         }}
       />
@@ -34,8 +35,7 @@ export default function ExploreStackNavigator() {
         component={ProductDetailScreen}
         options={{ 
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />,
-          tabBarStyle: { display: 'none' },
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
     </Stack.Navigator>

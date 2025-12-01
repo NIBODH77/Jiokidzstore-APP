@@ -26,6 +26,7 @@ export default function ParentingStackNavigator() {
         name="Parenting"
         component={ParentingScreen}
         options={{ 
+          headerShown: true,
           header: () => <TopHeader showBackButton={false} />
         }}
       />
@@ -34,8 +35,7 @@ export default function ParentingStackNavigator() {
         component={ProductDetailScreen}
         options={{ 
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />,
-          tabBarStyle: { display: 'none' },
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
     </Stack.Navigator>
