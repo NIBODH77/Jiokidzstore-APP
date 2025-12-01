@@ -4,6 +4,7 @@ import WishlistScreen from "@/screens/main/WishlistScreen";
 import ProductDetailScreen from "@/screens/product/ProductDetailScreen";
 import { useTheme } from "@/hooks/useTheme";
 import { getCommonScreenOptions } from "@/navigation/screenOptions";
+import { TopHeader } from "@/components/TopHeader";
 
 export type WishlistStackParamList = {
   Wishlist: undefined;
@@ -25,15 +26,16 @@ export default function WishlistStackNavigator() {
         name="Wishlist"
         component={WishlistScreen}
         options={{ 
-          headerShown: false,
+          headerShown: true,
+          header: () => <TopHeader showBackButton={true} hideWishlistIcon={true} />
         }}
       />
       <Stack.Screen
         name="ProductDetail"
         component={ProductDetailScreen}
         options={{ 
-          headerShown: false,
-          tabBarStyle: { display: 'none' },
+          headerShown: true,
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
     </Stack.Navigator>
