@@ -12,9 +12,22 @@ const jiokidzLogo = require('../attached_assets/generated_images/jiokidz_logo_fi
 interface TopHeaderProps {
   showBackButton?: boolean;
   hideRightIcons?: boolean;
+  hideSearchIcon?: boolean;
+  hideWishlistIcon?: boolean;
+  hideNotificationIcon?: boolean;
+  hideProfileIcon?: boolean;
+  hideCartIcon?: boolean;
 }
 
-export function TopHeader({ showBackButton = false, hideRightIcons = false }: TopHeaderProps) {
+export function TopHeader({ 
+  showBackButton = false, 
+  hideRightIcons = false,
+  hideSearchIcon = false,
+  hideWishlistIcon = false,
+  hideNotificationIcon = false,
+  hideProfileIcon = false,
+  hideCartIcon = false
+}: TopHeaderProps) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const cartCount = useSelector((state: RootState) => selectCartTotalItems(state.cart));
@@ -45,51 +58,61 @@ export function TopHeader({ showBackButton = false, hideRightIcons = false }: To
         {/* Right - Search, Wishlist, Notification, Profile & Cart */}
         {!hideRightIcons && (
           <View style={styles.rightSection}>
-            <Pressable 
-              style={styles.iconButton} 
-              hitSlop={8}
-              onPress={() => navigation.navigate('Search' as never)}
-            >
-              <Feather name="search" size={24} color="#1F2937" strokeWidth={1} />
-            </Pressable>
+            {!hideSearchIcon && (
+              <Pressable 
+                style={styles.iconButton} 
+                hitSlop={8}
+                onPress={() => navigation.navigate('Search' as never)}
+              >
+                <Feather name="search" size={24} color="#1F2937" strokeWidth={1} />
+              </Pressable>
+            )}
 
-            <Pressable 
-              style={styles.iconButton} 
-              hitSlop={8}
-              onPress={() => navigation.navigate('Wishlist' as never)}
-            >
-              <Feather name="heart" size={24} color="#1F2937" strokeWidth={1} />
-            </Pressable>
+            {!hideWishlistIcon && (
+              <Pressable 
+                style={styles.iconButton} 
+                hitSlop={8}
+                onPress={() => navigation.navigate('Wishlist' as never)}
+              >
+                <Feather name="heart" size={24} color="#1F2937" strokeWidth={1} />
+              </Pressable>
+            )}
 
-            <Pressable style={styles.iconButton} hitSlop={8}>
-              <Feather name="bell" size={24} color="#1F2937" strokeWidth={1} />
-              <View style={styles.notificationBadge}>
-                <View style={styles.badgeDot} />
-              </View>
-            </Pressable>
-
-            <Pressable 
-              style={styles.iconButton} 
-              hitSlop={8}
-              onPress={() => navigation.navigate('Profile' as never)}
-            >
-              <Feather name="user" size={24} color="#1F2937" strokeWidth={1} />
-            </Pressable>
-            
-            <Pressable 
-              style={styles.cartButton} 
-              hitSlop={8}
-              onPress={() => navigation.navigate('Cart' as never)}
-            >
-              <Feather name="shopping-cart" size={24} color="#1F2937" strokeWidth={1} />
-              {cartCount > 0 && (
-                <View style={styles.cartBadge}>
-                  <View style={styles.cartCount}>
-                    <Feather name="shopping-cart" size={11} color="#FFFFFF" strokeWidth={2} />
-                  </View>
+            {!hideNotificationIcon && (
+              <Pressable style={styles.iconButton} hitSlop={8}>
+                <Feather name="bell" size={24} color="#1F2937" strokeWidth={1} />
+                <View style={styles.notificationBadge}>
+                  <View style={styles.badgeDot} />
                 </View>
-              )}
-            </Pressable>
+              </Pressable>
+            )}
+
+            {!hideProfileIcon && (
+              <Pressable 
+                style={styles.iconButton} 
+                hitSlop={8}
+                onPress={() => navigation.navigate('Profile' as never)}
+              >
+                <Feather name="user" size={24} color="#1F2937" strokeWidth={1} />
+              </Pressable>
+            )}
+            
+            {!hideCartIcon && (
+              <Pressable 
+                style={styles.cartButton} 
+                hitSlop={8}
+                onPress={() => navigation.navigate('Cart' as never)}
+              >
+                <Feather name="shopping-cart" size={24} color="#1F2937" strokeWidth={1} />
+                {cartCount > 0 && (
+                  <View style={styles.cartBadge}>
+                    <View style={styles.cartCount}>
+                      <Feather name="shopping-cart" size={11} color="#FFFFFF" strokeWidth={2} />
+                    </View>
+                  </View>
+                )}
+              </Pressable>
+            )}
           </View>
         )}
       </View>

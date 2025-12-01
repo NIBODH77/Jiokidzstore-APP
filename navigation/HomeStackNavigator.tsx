@@ -101,7 +101,8 @@ export default function HomeStackNavigator() {
         name="Search"
         component={SearchScreen}
         options={{ 
-          headerShown: false
+          headerShown: true,
+          header: () => <TopHeader showBackButton={true} hideSearchIcon={true} />
         }}
       />
 
@@ -121,7 +122,7 @@ export default function HomeStackNavigator() {
         component={CartScreen}
         options={{
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: () => <TopHeader showBackButton={true} hideCartIcon={true} />
         }}
       />
 
@@ -181,7 +182,7 @@ export default function HomeStackNavigator() {
         component={WishlistScreen}
         options={{ 
           headerShown: true,
-          header: () => <TopHeader showBackButton={true} />
+          header: () => <TopHeader showBackButton={true} hideWishlistIcon={true} />
         }}
       />
     </Stack.Navigator>
