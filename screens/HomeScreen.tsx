@@ -10,7 +10,9 @@ import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ModernSearchBar } from '@/components/ModernSearchBar';
 import { ModernHeroSection } from '@/components/ModernHeroSection';
-import { LocationAvailabilityModal } from '@/components/LocationAvailabilityModal';
+import { ChooseLocationModal } from '@/components/ChooseLocationModal';
+import { EnterPincodeModal } from '@/components/EnterPincodeModal';
+import { LocationPermissionModal } from '@/components/LocationPermissionModal';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 import { PRODUCTS, CATEGORIES } from '@/data/mockData';
 import { GIRLS_AGE_GROUPS, BOYS_AGE_GROUPS, AGE_WISE_CATEGORIES } from '@/data/ageGroupData';
@@ -71,7 +73,9 @@ export default function HomeScreen() {
   const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
   const [notificationCount] = useState(3); // Mock notification count
   const [cartCount] = useState(0); // Mock cart count - you can connect to Redux later
-  const [locationModalVisible, setLocationModalVisible] = useState(false);
+  const [chooseLocationModalVisible, setChooseLocationModalVisible] = useState(false);
+  const [pincodeModalVisible, setPincodeModalVisible] = useState(false);
+  const [permissionModalVisible, setPermissionModalVisible] = useState(false);
 
 
   // Load wishlist on mount
@@ -139,7 +143,7 @@ export default function HomeScreen() {
         {/* Search Bar */}
         <ModernSearchBar 
           onSearch={() => navigation.navigate('Search')}
-          onLocationPress={() => setLocationModalVisible(true)}
+          onLocationPress={() => setChooseLocationModalVisible(true)}
           onNotificationPress={() => console.log('Notifications')}
           onCartPress={() => navigation.navigate('Cart')}
           onWishlistPress={() => navigation.navigate('Wishlist')}
@@ -148,9 +152,40 @@ export default function HomeScreen() {
           cartCount={2}
         />
 
-        <LocationAvailabilityModal
-          visible={locationModalVisible}
-          onClose={() => setLocationModalVisible(false)}
+        <ChooseLocationModal
+          visible={chooseLocationModalVisible}
+          onClose={() => setChooseLocationModalVisible(false)}
+          onManageAddress={() => {
+            setChooseLocationModalVisible(false);
+            navigation.navigate('AddEditAddress', {});
+          }}
+          onPincodeEnter={() => {
+            setChooseLocationModalVisible(false);
+            setPincodeModalVisible(true);
+          }}
+          onCurrentLocation={() => {
+            setChooseLocationModalVisible(false);
+            setPermissionModalVisible(true);
+          }}
+        />
+
+        <EnterPincodeModal
+          visible={pincodeModalVisible}
+          onClose={() => setPincodeModalVisible(false)}
+          onApply={(pincode) => {
+            console.log('Pincode entered:', pincode);
+            setPincodeModalVisible(false);
+          }}
+        />
+
+        <LocationPermissionModal
+          visible={permissionModalVisible}
+          onClose={() => setPermissionModalVisible(false)}
+          onTurnOn={() => {
+            console.log('Location permission granted');
+            setPermissionModalVisible(false);
+            // Here you would actually request location permission
+          }}
         />
 
 
