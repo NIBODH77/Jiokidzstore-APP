@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput } from 'react-native';
+import { View, StyleSheet, TextInput, ScrollView, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { Colors, Spacing, BorderRadius, Typography } from '@/constants/theme';
 
@@ -13,7 +12,7 @@ export default function SearchScreen() {
   return (
     <View style={styles.container}>
       {/* Search Input */}
-      <View style={[styles.searchContainer, { paddingTop: insets.top + 10 }]}>
+      <View style={[styles.searchContainer, { marginTop: insets.top + 80 }]}>
         <Feather name="search" size={20} color={Colors.light.textGray} />
         <TextInput
           style={styles.searchInput}
@@ -31,12 +30,12 @@ export default function SearchScreen() {
       </View>
 
       {/* Scrollable Content */}
-      <ScreenScrollView>
+      <ScrollView style={styles.scrollView}>
         <View style={styles.content}>
           <ThemedText type="h3">Recent Searches</ThemedText>
           <ThemedText style={styles.placeholder}>Start typing to search...</ThemedText>
         </View>
-      </ScreenScrollView>
+      </ScrollView>
     </View>
   );
 }
@@ -54,7 +53,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.lg,
     height: 48,
     marginHorizontal: Spacing.lg,
+    marginBottom: Spacing.md,
     gap: Spacing.md,
+  },
+  scrollView: {
+    flex: 1,
   },
   searchInput: {
     flex: 1,
