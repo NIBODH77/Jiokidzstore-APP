@@ -91,7 +91,8 @@ export default function HomeStackNavigator() {
         name="ProductDetail"
         component={ProductDetailScreen}
         options={{
-          headerShown: false,
+          headerShown: true,
+          header: () => <TopHeader showBackButton={true} />
         }}
       />
 
@@ -99,7 +100,10 @@ export default function HomeStackNavigator() {
       <Stack.Screen
         name="Search"
         component={SearchScreen}
-        options={{ headerShown: false }}
+        options={{ 
+          headerShown: true,
+          header: () => <TopHeader showBackButton={true} />
+        }}
       />
 
       {/* REVIEWS */}
@@ -166,14 +170,20 @@ export default function HomeStackNavigator() {
       <Stack.Screen
         name="OrderConfirmation"
         component={OrderConfirmationScreen}
-        options={{ headerShown: false }}
+        options={{ 
+          headerShown: true,
+          header: () => <TopHeader showBackButton={true} />
+        }}
       />
 
       {/* WISHLIST */}
       <Stack.Screen
         name="Wishlist"
         component={WishlistScreen}
-        options={{ headerShown: false }}
+        options={{ 
+          headerShown: true,
+          header: () => <TopHeader showBackButton={true} />
+        }}
       />
     </Stack.Navigator>
   );

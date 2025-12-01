@@ -33,7 +33,8 @@ export default function ExploreStackNavigator() {
         name="ProductDetail"
         component={ProductDetailScreen}
         options={{ 
-          headerShown: false,
+          headerShown: true,
+          header: () => <TopHeader showBackButton={true} />,
           tabBarStyle: { display: 'none' },
         }}
       />
