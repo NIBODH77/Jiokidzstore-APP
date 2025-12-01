@@ -281,9 +281,6 @@ export default function HomeScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <ThemedText style={styles.sectionTitle}>Shop by Category</ThemedText>
-            <Pressable onPress={() => navigation.navigate('AgeWise')}>
-              <ThemedText style={styles.seeAllText}>View All</ThemedText>
-            </Pressable>
           </View>
           <View style={styles.categoriesGrid}>
             {CATEGORIES.map((category) => {
