@@ -10,7 +10,7 @@ export default function SearchScreen() {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
       {/* Search Input */}
       <View style={styles.searchContainer}>
         <Feather name="search" size={20} color={Colors.light.textGray} />
