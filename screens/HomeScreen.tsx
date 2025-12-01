@@ -153,6 +153,77 @@ export default function HomeScreen() {
       {/* Scrollable Content */}
       <ScreenScrollView contentContainerStyle={styles.scrollContent}>
 
+        {/* Auto-Scrolling Banners */}
+        <View style={styles.autoScrollBannersContainer}>
+          <ScrollView
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={16}
+            ref={(ref) => {
+              if (ref) {
+                let scrollIndex = 0;
+                setInterval(() => {
+                  scrollIndex = (scrollIndex + 1) % 6;
+                  ref.scrollTo({
+                    x: scrollIndex * (Dimensions.get('window').width - 32),
+                    animated: true,
+                  });
+                }, 3000);
+              }
+            }}
+            contentContainerStyle={styles.bannersScrollContent}
+          >
+            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 1')}>
+              <Image 
+                source={require('../attached_assets/generated_images/baby_girl_discount_banner.png')}
+                style={styles.autoBannerImage}
+                resizeMode="cover"
+              />
+            </Pressable>
+
+            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 2')}>
+              <Image 
+                source={require('../attached_assets/generated_images/baby_boy_winter_sale_banner.png')}
+                style={styles.autoBannerImage}
+                resizeMode="cover"
+              />
+            </Pressable>
+
+            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 3')}>
+              <Image 
+                source={require('../attached_assets/generated_images/mega_kids_fashion_sale.png')}
+                style={styles.autoBannerImage}
+                resizeMode="cover"
+              />
+            </Pressable>
+
+            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 4')}>
+              <Image 
+                source={require('../attached_assets/WhatsApp Image 2025-11-29 at 3.25.16 PM_1764410805074.jpeg')}
+                style={styles.autoBannerImage}
+                resizeMode="cover"
+              />
+            </Pressable>
+
+            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 5')}>
+              <Image 
+                source={require('../attached_assets/generated_images/baby_clothing_collection_banner.png')}
+                style={styles.autoBannerImage}
+                resizeMode="cover"
+              />
+            </Pressable>
+
+            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 6')}>
+              <Image 
+                source={require('../attached_assets/Gemini_Generated_Image_xgkpipxgkpipxgkp_1764517163310.png')}
+                style={styles.autoBannerImage}
+                resizeMode="cover"
+              />
+            </Pressable>
+          </ScrollView>
+        </View>
+
         <ChooseLocationModal
           visible={chooseLocationModalVisible}
           onClose={() => setChooseLocationModalVisible(false)}
@@ -1232,6 +1303,32 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingBottom: 120,
     paddingTop: 0,
+  },
+  autoScrollBannersContainer: {
+    height: 200,
+    marginBottom: 16,
+    backgroundColor: '#F5F5F5',
+  },
+  bannersScrollContent: {
+    paddingHorizontal: 16,
+    gap: 0,
+  },
+  autoBanner: {
+    width: Dimensions.get('window').width - 32,
+    height: 200,
+    marginRight: 0,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  autoBannerImage: {
+    width: '100%',
+    height: '100%',
   },
   section: {
     marginBottom: 24,
