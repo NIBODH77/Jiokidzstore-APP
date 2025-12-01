@@ -10,7 +10,7 @@ const result = spawnSync('npx', [
   'start',
   '--web',
   '--port', '5000',
-  '--host', 'lan',
+  '--host', '0.0.0.0',
   '--clear'
 ], {
   cwd: path.resolve(__dirname, '..'),
