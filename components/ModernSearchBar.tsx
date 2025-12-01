@@ -257,6 +257,7 @@ const styles = StyleSheet.create({
   bannersContainer: {
     height: 200,
     marginBottom: 8,
+    marginTop: 180,
   },
   bannerItem: {
     width: screenWidth - 32,
