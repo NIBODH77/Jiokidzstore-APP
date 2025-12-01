@@ -12,7 +12,7 @@ export default function SearchScreen() {
   return (
     <View style={styles.container}>
       {/* Search Input */}
-      <View style={[styles.searchContainer, { marginTop: insets.top + 80 }]}>
+      <View style={styles.searchContainer}>
         <Feather name="search" size={20} color={Colors.light.textGray} />
         <TextInput
           style={styles.searchInput}
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.lg,
     height: 48,
     marginHorizontal: Spacing.lg,
+    marginTop: Spacing.lg,
     marginBottom: Spacing.md,
     gap: Spacing.md,
   },

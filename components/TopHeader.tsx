@@ -123,10 +123,6 @@ export function TopHeader({
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
     backgroundColor: '#FFFFFF',
     borderBottomWidth: 1.5,
     borderBottomColor: '#E5E5E5',
@@ -135,7 +131,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 4,
     elevation: 5,
-    zIndex: 9999,
   },
   content: {
     flexDirection: 'row',

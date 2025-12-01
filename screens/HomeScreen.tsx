@@ -1230,6 +1230,7 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     paddingBottom: 120,
+    paddingTop: 0,
   },
   section: {
     marginBottom: 24,
