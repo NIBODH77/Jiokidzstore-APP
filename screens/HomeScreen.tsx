@@ -10,6 +10,7 @@ import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ModernSearchBar } from '@/components/ModernSearchBar';
 import { ModernHeroSection } from '@/components/ModernHeroSection';
+import { LocationAvailabilityModal } from '@/components/LocationAvailabilityModal';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 import { PRODUCTS, CATEGORIES } from '@/data/mockData';
 import { GIRLS_AGE_GROUPS, BOYS_AGE_GROUPS, AGE_WISE_CATEGORIES } from '@/data/ageGroupData';
@@ -70,6 +71,7 @@ export default function HomeScreen() {
   const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
   const [notificationCount] = useState(3); // Mock notification count
   const [cartCount] = useState(0); // Mock cart count - you can connect to Redux later
+  const [locationModalVisible, setLocationModalVisible] = useState(false);
 
 
   // Load wishlist on mount
@@ -136,20 +138,22 @@ export default function HomeScreen() {
       <ScreenScrollView contentContainerStyle={styles.scrollContent}>
         {/* Search Bar */}
         <ModernSearchBar 
-          onSearch={handleSearchPress}
-          products={updatedProducts && updatedProducts.length > 0 ? updatedProducts : PRODUCTS}
-          onProductSelect={handleProductPress}
+          onSearch={() => navigation.navigate('Search')}
+          onLocationPress={() => setLocationModalVisible(true)}
           onNotificationPress={() => console.log('Notifications')}
           onCartPress={() => navigation.navigate('Cart')}
           onWishlistPress={() => navigation.navigate('Wishlist')}
           onProfilePress={() => console.log('Profile')}
-          onLocationPress={() => console.log('Change location')}
-          onMicPress={() => console.log('Voice search')}
-          notificationCount={notificationCount}
-          cartCount={cartCount}
+          notificationCount={3}
+          cartCount={2}
         />
 
-        
+        <LocationAvailabilityModal
+          visible={locationModalVisible}
+          onClose={() => setLocationModalVisible(false)}
+        />
+
+
 
 
 
@@ -1212,7 +1216,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: Colors.light.primary,
   },
-  
+
   categoriesList: {
     paddingHorizontal: 16,
   },

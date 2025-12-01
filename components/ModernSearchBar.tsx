@@ -3,6 +3,7 @@ import { StyleSheet, View, Pressable, FlatList, Image, Dimensions } from 'react-
 import { Feather } from '@expo/vector-icons';
 import { Colors, Spacing } from '@/constants/theme';
 import { useNavigation } from '@react-navigation/native';
+import { ThemedText } from '@/components/ThemedText';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -113,10 +114,9 @@ export function ModernSearchBar({
       {/* Full Width Location Box */}
       <Pressable style={styles.locationBox} onPress={onLocationPress}>
         <Feather name="map-pin" size={14} color="#666666" />
-        <View style={styles.locationTextContainer}>
-          <View style={styles.locationDot} />
-          <View style={styles.locationText} />
-        </View>
+        <ThemedText style={styles.locationPlaceholder}>
+          Select delivery location
+        </ThemedText>
       </Pressable>
 
       {/* Auto-scrolling Banners */}
@@ -189,24 +189,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E8E8E8',
   },
-  locationTextContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  locationPlaceholder: {
+    fontSize: 14,
+    color: '#666666',
     flex: 1,
-  },
-  locationDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 2.5,
-    backgroundColor: '#666666',
-  },
-  locationText: {
-    flex: 1,
-    height: 14,
-    backgroundColor: '#D0D0D0',
-    borderRadius: 4,
-    maxWidth: 150,
   },
   iconsContainer: {
     flexDirection: 'row',
