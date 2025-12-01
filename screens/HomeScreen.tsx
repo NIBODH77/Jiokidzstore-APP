@@ -279,7 +279,7 @@ export default function HomeScreen() {
 
         {/* Categories */}
         <View style={styles.section}>
-          <View style={styles.sectionHeader}>
+          <View style={[styles.sectionHeader, { justifyContent: 'center' }]}>
             <ThemedText style={styles.sectionTitle}>Shop by Category</ThemedText>
           </View>
           <View style={styles.categoriesGrid}>
