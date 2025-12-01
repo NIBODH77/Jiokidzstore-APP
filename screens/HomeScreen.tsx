@@ -1227,12 +1227,12 @@ const styles = StyleSheet.create({
   },
   categoryCard: {
     width: '100%',
-    aspectRatio: 1,
+    height: 100,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 6,
-    overflow: 'hidden', // Added
+    overflow: 'hidden',
   },
   categoryImageContainer: {
     width: '100%',
