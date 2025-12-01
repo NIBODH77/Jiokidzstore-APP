@@ -44,7 +44,7 @@ export default function SearchScreen() {
             style={styles.searchInput}
             value={searchQuery}
             onChangeText={setSearchQuery}
-            placeholder="खिलौने, कपड़े, डायपर खोजें..."
+            placeholder="Search for toys, clothes, diapers..."
             placeholderTextColor="#CCCCCC"
             autoFocus={true}
             autoCapitalize="none"
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   searchInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FF6B9D20',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     paddingHorizontal: 14,
     height: 60,
