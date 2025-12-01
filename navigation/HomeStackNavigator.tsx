@@ -52,8 +52,7 @@ export default function HomeStackNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          headerShown: true,
-          header: (props) => <TopHeader {...props} showBackButton={false} />
+          headerShown: false,
         }}
       />
 
