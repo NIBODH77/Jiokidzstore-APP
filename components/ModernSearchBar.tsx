@@ -67,9 +67,7 @@ export function ModernSearchBar({
   );
 
   return (
-    <View style={styles.containerWrapper}>
-      <View style={styles.fixedHeader}>
-        <View style={styles.container}>
+    <View style={styles.headerContainer}>
       {/* Top Row: Logo and Icons */}
       <View style={styles.topRow}>
         <View style={styles.logoSection}>
@@ -120,34 +118,21 @@ export function ModernSearchBar({
           Select delivery location
         </ThemedText>
       </Pressable>
-      </View>
-      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  containerWrapper: {
+  headerContainer: {
     backgroundColor: '#FFFFFF',
-  },
-  fixedHeader: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 1000,
-    backgroundColor: '#FFFFFF',
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.md,
+    paddingBottom: Spacing.sm,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 5,
-  },
-  container: {
-    paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.md,
-    paddingBottom: Spacing.md,
-    backgroundColor: '#FFFFFF',
   },
   topRow: {
     flexDirection: 'row',
