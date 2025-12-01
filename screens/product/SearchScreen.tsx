@@ -35,7 +35,7 @@ export default function SearchScreen() {
   };
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top + 16 }]}>
+    <View style={[styles.container, { paddingTop: insets.top + 64 }]}>
       {/* Search Input Box - PROMINENT */}
       <View style={styles.searchBoxWrapper}>
         <View style={styles.searchInputContainer}>
