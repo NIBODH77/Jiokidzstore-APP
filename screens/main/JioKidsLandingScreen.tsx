@@ -501,9 +501,6 @@ export default function JioKidsLandingScreen() {
         <View style={styles.allCategoriesSection}>
           <View style={styles.allCategoriesHeader}>
             <Text style={styles.allCategoriesTitle}>Shop by Category</Text>
-            <Pressable>
-              <Text style={styles.viewAllLink}>View All</Text>
-            </Pressable>
           </View>
           <View style={styles.allCategoriesGrid}>
             {[
