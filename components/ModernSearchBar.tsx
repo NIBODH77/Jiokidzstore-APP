@@ -122,6 +122,16 @@ export function ModernSearchBar({
       </Pressable>
       </View>
       </View>
+
+      {/* Full Width Location Box */}
+      <Pressable style={styles.locationBox} onPress={onLocationPress}>
+        <Feather name="map-pin" size={14} color="#666666" />
+        <ThemedText style={styles.locationPlaceholder}>
+          Select delivery location
+        </ThemedText>
+      </Pressable>
+      </View>
+      </View>
     </View>
   );
 }
