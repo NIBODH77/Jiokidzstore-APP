@@ -14,6 +14,7 @@ import OrderConfirmationScreen from "@/screens/cart/OrderConfirmationScreen";
 import CategoryAggregatorScreen from "@/screens/CategoryAggregatorScreen"; // Import new screen
 import AgeGroupDetailScreen from "@/screens/AgeGroupDetailScreen"; // Import age group detail screen
 import WishlistScreen from "@/screens/main/WishlistScreen";
+import { TopHeader } from "@/components/TopHeader";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
 import { getCommonScreenOptions } from "@/navigation/screenOptions";
@@ -60,6 +61,7 @@ export default function HomeStackNavigator() {
         name="AgeWise"
         component={AgeWiseScreen}
         options={{
+          headerShown: true,
           header: () => <TopHeader showBackButton={true} />
         }}
       />
@@ -69,6 +71,7 @@ export default function HomeStackNavigator() {
         name="AgeGroupDetail"
         component={AgeGroupDetailScreen}
         options={{
+          headerShown: true,
           header: () => <TopHeader showBackButton={true} />
         }}
       />
@@ -78,6 +81,7 @@ export default function HomeStackNavigator() {
         name="CategoryAggregator"
         component={CategoryAggregatorScreen}
         options={{
+          headerShown: true,
           header: () => <TopHeader showBackButton={true} />
         }}
       />
@@ -103,6 +107,7 @@ export default function HomeStackNavigator() {
         name="Reviews"
         component={ReviewsScreen}
         options={{
+          headerShown: true,
           header: () => <TopHeader showBackButton={true} />
         }}
       />
@@ -112,6 +117,7 @@ export default function HomeStackNavigator() {
         name="Cart"
         component={CartScreen}
         options={{
+          headerShown: true,
           header: () => <TopHeader showBackButton={true} />
         }}
       />
@@ -121,6 +127,7 @@ export default function HomeStackNavigator() {
         name="CheckoutAddress"
         component={CheckoutAddressScreen}
         options={{
+          headerShown: true,
           header: () => <TopHeader showBackButton={true} />
         }}
       />
@@ -130,6 +137,7 @@ export default function HomeStackNavigator() {
         name="AddEditAddress"
         component={AddEditAddressScreen}
         options={{
+          headerShown: true,
           header: () => <TopHeader showBackButton={true} />
         }}
       />
@@ -139,6 +147,7 @@ export default function HomeStackNavigator() {
         name="CheckoutPayment"
         component={CheckoutPaymentScreen}
         options={{
+          headerShown: true,
           header: () => <TopHeader showBackButton={true} />
         }}
       />
@@ -148,6 +157,7 @@ export default function HomeStackNavigator() {
         name="OrderSummary"
         component={OrderSummaryScreen}
         options={{
+          headerShown: true,
           header: () => <TopHeader showBackButton={true} />
         }}
       />
