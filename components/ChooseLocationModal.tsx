@@ -43,7 +43,7 @@ export function ChooseLocationModal({
 
           {/* Manage Address Book */}
           <Pressable style={styles.manageAddressBox} onPress={onManageAddress}>
-            <ThemedText style={styles.manageAddressText}>Manage address book</ThemedText>
+            <ThemedText style={styles.manageAddressText}>+ Add New Address</ThemedText>
           </Pressable>
 
           {/* Enter a Pincode */}

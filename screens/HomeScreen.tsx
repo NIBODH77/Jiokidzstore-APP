@@ -157,7 +157,7 @@ export default function HomeScreen() {
           onClose={() => setChooseLocationModalVisible(false)}
           onManageAddress={() => {
             setChooseLocationModalVisible(false);
-            navigation.navigate('AddEditAddress', {});
+            navigation.navigate('AddEditAddress', { addressId: undefined });
           }}
           onPincodeEnter={() => {
             setChooseLocationModalVisible(false);
