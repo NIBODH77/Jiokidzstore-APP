@@ -35,7 +35,7 @@ export function TopHeader({
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.content}>
-        {/* Left - Back Button */}
+        {/* Left - Back Button & Logo */}
         <View style={styles.leftSection}>
           {showBackButton && (
             <Pressable 
@@ -46,14 +46,15 @@ export function TopHeader({
               <Feather name="chevron-left" size={32} color="#1F2937" strokeWidth={2.5} />
             </Pressable>
           )}
+          <Image
+            source={jiokidzLogo}
+            style={styles.logo}
+            resizeMode="contain"
+          />
         </View>
 
-        {/* Center - Logo */}
-        <Image
-          source={jiokidzLogo}
-          style={styles.logo}
-          resizeMode="contain"
-        />
+        {/* Center - Spacer */}
+        <View style={{ flex: 1 }} />
 
         {/* Right - Search, Wishlist, Notification, Profile & Cart */}
         {!hideRightIcons && (
@@ -122,6 +123,10 @@ export function TopHeader({
 
 const styles = StyleSheet.create({
   container: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
     backgroundColor: '#FFFFFF',
     borderBottomWidth: 1.5,
     borderBottomColor: '#E5E5E5',
@@ -130,6 +135,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 4,
     elevation: 3,
+    zIndex: 1000,
   },
   content: {
     flexDirection: 'row',
@@ -140,10 +146,10 @@ const styles = StyleSheet.create({
     minHeight: 70,
   },
   leftSection: {
-    width: 50,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    gap: 4,
   },
   backButton: {
     width: 48,
@@ -153,10 +159,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   logo: {
-    flex: 1,
-    width: 140,
-    height: 50,
-    marginHorizontal: 8,
+    width: 100,
+    height: 45,
+    marginLeft: 0,
   },
   rightSection: {
     flexDirection: 'row',
