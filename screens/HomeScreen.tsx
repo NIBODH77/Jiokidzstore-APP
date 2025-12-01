@@ -259,20 +259,6 @@ export default function HomeScreen() {
                   <FashionCard key={i} item={item} />
                 ))}
               </View>
-
-              {/* ROW 3: Winter Bottom */}
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  paddingHorizontal: 12,
-                  marginBottom: 22,
-                }}
-              >
-                {WINTER_BOTTOM.map((item, i) => (
-                  <FashionCard key={i} item={item} />
-                ))}
-              </View>
             </View>
           );
         })()}
