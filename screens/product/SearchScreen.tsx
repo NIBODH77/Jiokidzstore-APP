@@ -39,7 +39,7 @@ export default function SearchScreen() {
       {/* Search Input Box - PROMINENT */}
       <View style={styles.searchBoxWrapper}>
         <View style={styles.searchInputContainer}>
-          <Feather name="search" size={24} color={Colors.light.primary} />
+          <Feather name="search" size={24} color="#999999" />
           <TextInput
             style={styles.searchInput}
             value={searchQuery}
@@ -143,19 +143,19 @@ const styles = StyleSheet.create({
   searchInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    paddingHorizontal: 14,
-    height: 60,
+    backgroundColor: '#FAFAFA',
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    height: 50,
     gap: 12,
-    borderWidth: 2,
-    borderColor: '#FF6B9D',
+    borderWidth: 1,
+    borderColor: '#E8E8E8',
   },
   searchInput: {
     flex: 1,
-    fontSize: Typography.body.fontSize,
-    color: Colors.light.text,
-    fontWeight: '500',
+    fontSize: 16,
+    color: '#333333',
+    fontWeight: '400',
   },
   scrollView: {
     flex: 1,
@@ -175,8 +175,8 @@ const styles = StyleSheet.create({
     color: Colors.light.text,
   },
   clearButton: {
-    color: Colors.light.primary,
-    fontWeight: '600',
+    color: '#666666',
+    fontWeight: '500',
     fontSize: 14,
   },
   searchesList: {
@@ -223,12 +223,14 @@ const styles = StyleSheet.create({
   tag: {
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.lg,
-    backgroundColor: Colors.light.primary,
+    backgroundColor: '#F0F0F0',
     borderRadius: BorderRadius.md,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
   },
   tagText: {
-    color: '#FFFFFF',
-    fontWeight: '600',
+    color: '#555555',
+    fontWeight: '500',
     fontSize: 13,
   },
   searchResultsPlaceholder: {
