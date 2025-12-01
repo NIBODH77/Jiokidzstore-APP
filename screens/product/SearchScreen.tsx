@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, ScrollView, Pressable } from 'react-native';
+import { View, StyleSheet, TextInput, ScrollView, Pressable, FlatList } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
@@ -7,34 +7,121 @@ import { Colors, Spacing, BorderRadius, Typography } from '@/constants/theme';
 
 export default function SearchScreen() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [recentSearches, setRecentSearches] = useState([
+    'Toys',
+    'Baby Diapers',
+    'Winter Clothes',
+    'Shoes',
+  ]);
   const insets = useSafeAreaInsets();
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (query.trim() && !recentSearches.includes(query)) {
+      setRecentSearches([query, ...recentSearches.slice(0, 4)]);
+    }
+  };
+
+  const handleClearSearch = () => {
+    setSearchQuery('');
+  };
+
+  const handleRecentSearchPress = (search: string) => {
+    handleSearch(search);
+  };
+
+  const handleClearRecent = () => {
+    setRecentSearches([]);
+  };
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
-      {/* Search Input */}
-      <View style={styles.searchContainer}>
-        <Feather name="search" size={20} color={Colors.light.textGray} />
-        <TextInput
-          style={styles.searchInput}
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-          placeholder="Search products..."
-          placeholderTextColor={Colors.light.textGray}
-          autoFocus
-        />
-        {searchQuery.length > 0 && (
-          <Pressable onPress={() => setSearchQuery('')}>
-            <Feather name="x-circle" size={20} color={Colors.light.textGray} />
-          </Pressable>
-        )}
+      {/* Search Input Box */}
+      <View style={styles.searchBox}>
+        <View style={styles.searchInputContainer}>
+          <Feather name="search" size={22} color={Colors.light.primary} />
+          <TextInput
+            style={styles.searchInput}
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            placeholder="Search toys, clothes, diapers..."
+            placeholderTextColor="#CCCCCC"
+            autoFocus
+            autoCapitalize="none"
+          />
+          {searchQuery.length > 0 && (
+            <Pressable onPress={handleClearSearch}>
+              <Feather name="x-circle" size={20} color={Colors.light.textGray} />
+            </Pressable>
+          )}
+        </View>
       </View>
 
-      {/* Scrollable Content */}
-      <ScrollView style={styles.scrollView}>
-        <View style={styles.content}>
-          <ThemedText type="h3">Recent Searches</ThemedText>
-          <ThemedText style={styles.placeholder}>Start typing to search...</ThemedText>
-        </View>
+      {/* Content */}
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+        {searchQuery.length === 0 ? (
+          <View style={styles.content}>
+            {/* Recent Searches Header */}
+            <View style={styles.sectionHeader}>
+              <ThemedText type="h3" style={styles.sectionTitle}>Recent Searches</ThemedText>
+              {recentSearches.length > 0 && (
+                <Pressable onPress={handleClearRecent}>
+                  <ThemedText style={styles.clearButton}>Clear</ThemedText>
+                </Pressable>
+              )}
+            </View>
+
+            {/* Recent Searches List */}
+            {recentSearches.length > 0 ? (
+              <View style={styles.searchesList}>
+                {recentSearches.map((search, index) => (
+                  <Pressable
+                    key={index}
+                    style={styles.searchItem}
+                    onPress={() => handleRecentSearchPress(search)}
+                  >
+                    <Feather name="clock" size={16} color={Colors.light.textGray} />
+                    <ThemedText style={styles.searchItemText}>{search}</ThemedText>
+                    <Feather name="arrow-up-left" size={16} color={Colors.light.textGray} />
+                  </Pressable>
+                ))}
+              </View>
+            ) : (
+              <View style={styles.emptyState}>
+                <Feather name="search" size={48} color={Colors.light.backgroundSecondary} />
+                <ThemedText style={styles.emptyStateText}>No recent searches</ThemedText>
+                <ThemedText style={styles.emptyStateSubText}>
+                  Start searching for products
+                </ThemedText>
+              </View>
+            )}
+
+            {/* Popular Searches */}
+            <View style={styles.popularSection}>
+              <ThemedText type="h3" style={styles.sectionTitle}>Popular Searches</ThemedText>
+              <View style={styles.tagsContainer}>
+                {['Baby Toys', 'Diapers', 'Clothes', 'Shoes', 'Bottles', 'Strollers'].map((tag, index) => (
+                  <Pressable
+                    key={index}
+                    style={styles.tag}
+                    onPress={() => handleSearch(tag)}
+                  >
+                    <ThemedText style={styles.tagText}>{tag}</ThemedText>
+                  </Pressable>
+                ))}
+              </View>
+            </View>
+          </View>
+        ) : (
+          <View style={styles.content}>
+            <ThemedText style={styles.searchResultsPlaceholder}>
+              No products found for "{searchQuery}"
+            </ThemedText>
+            <ThemedText style={styles.searchResultsSubtext}>
+              Try different keywords or browse our categories
+            </ThemedText>
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -45,31 +132,114 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  searchContainer: {
+  searchBox: {
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.md,
+    paddingBottom: Spacing.lg,
+    backgroundColor: '#FFFFFF',
+  },
+  searchInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.light.backgroundSecondary,
-    borderRadius: BorderRadius.xs,
-    paddingHorizontal: Spacing.lg,
-    height: 48,
-    marginHorizontal: Spacing.lg,
-    marginTop: Spacing.lg,
-    marginBottom: Spacing.md,
+    backgroundColor: '#F8F8F8',
+    borderRadius: BorderRadius.md,
+    paddingHorizontal: Spacing.md,
+    height: 56,
     gap: Spacing.md,
-  },
-  scrollView: {
-    flex: 1,
+    borderWidth: 1.5,
+    borderColor: '#E8E8E8',
   },
   searchInput: {
     flex: 1,
     fontSize: Typography.body.fontSize,
     color: Colors.light.text,
+    fontWeight: '500',
+  },
+  scrollView: {
+    flex: 1,
   },
   content: {
-    padding: Spacing.lg
+    padding: Spacing.lg,
   },
-  placeholder: {
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: Spacing.lg,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: Colors.light.text,
+  },
+  clearButton: {
+    color: Colors.light.primary,
+    fontWeight: '600',
+    fontSize: 14,
+  },
+  searchesList: {
+    gap: Spacing.md,
+    marginBottom: Spacing.xl,
+  },
+  searchItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.md,
+    backgroundColor: '#F8F8F8',
+    borderRadius: BorderRadius.sm,
+    gap: Spacing.md,
+  },
+  searchItemText: {
+    flex: 1,
+    color: Colors.light.text,
+    fontWeight: '500',
+  },
+  emptyState: {
+    alignItems: 'center',
+    paddingVertical: Spacing.xl * 2,
+    gap: Spacing.md,
+  },
+  emptyStateText: {
+    fontSize: 16,
+    fontWeight: '600',
     color: Colors.light.textGray,
-    marginTop: Spacing.md
+  },
+  emptyStateSubText: {
+    fontSize: 14,
+    color: Colors.light.textGray,
+  },
+  popularSection: {
+    marginTop: Spacing.lg,
+  },
+  tagsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: Spacing.md,
+    marginTop: Spacing.md,
+  },
+  tag: {
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.lg,
+    backgroundColor: Colors.light.primary,
+    borderRadius: BorderRadius.md,
+  },
+  tagText: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+    fontSize: 13,
+  },
+  searchResultsPlaceholder: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: Colors.light.text,
+    marginBottom: Spacing.md,
+    textAlign: 'center',
+    marginTop: Spacing.xl,
+  },
+  searchResultsSubtext: {
+    fontSize: 14,
+    color: Colors.light.textGray,
+    textAlign: 'center',
   },
 });
