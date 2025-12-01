@@ -22,6 +22,7 @@ export default function AddEditAddressScreen() {
 
   return (
     <ScreenKeyboardAwareScrollView contentContainerStyle={styles.container}>
+      <ThemedText style={styles.heading}>— Add New Address</ThemedText>
       <View style={styles.field}>
         <TextInput
           style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
@@ -183,7 +184,13 @@ export default function AddEditAddressScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { padding: Spacing.lg },
+  container: { padding: Spacing.lg, paddingTop: Spacing.xl },
+  heading: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: Spacing.lg,
+  },
   field: { marginBottom: Spacing.md },
   input: {
     height: 48,
