@@ -8,7 +8,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { useSharedValue, useAnimatedScrollHandler } from 'react-native-reanimated';
 import { ScreenScrollView } from '@/components/ScreenScrollView';
 import { ThemedText } from '@/components/ThemedText';
-import { ModernSearchBar } from '@/components/ModernSearchBar';
 import { ModernHeroSection } from '@/components/ModernHeroSection';
 import { ChooseLocationModal } from '@/components/ChooseLocationModal';
 import { EnterPincodeModal } from '@/components/EnterPincodeModal';
@@ -140,17 +139,6 @@ export default function HomeScreen() {
     <View style={styles.container}>
       {/* Scrollable Content with Header */}
       <ScreenScrollView contentContainerStyle={styles.scrollContent}>
-        {/* Search Bar */}
-        <ModernSearchBar 
-          onSearch={() => navigation.navigate('Search')}
-          onLocationPress={() => setChooseLocationModalVisible(true)}
-          onNotificationPress={() => console.log('Notifications')}
-          onCartPress={() => navigation.navigate('Cart')}
-          onWishlistPress={() => navigation.navigate('Wishlist')}
-          onProfilePress={() => console.log('Profile')}
-          notificationCount={3}
-          cartCount={2}
-        />
 
         <ChooseLocationModal
           visible={chooseLocationModalVisible}
