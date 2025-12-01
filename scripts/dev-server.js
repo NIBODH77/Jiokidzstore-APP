@@ -1,17 +1,21 @@
 #!/usr/bin/env node
 
-const { spawnSync } = require('child_process');
+const { spawn } = require('child_process');
 const path = require('path');
 
+// Get the project root directory
+const projectRoot = path.resolve(__dirname, '..');
+const expoPath = path.join(projectRoot, 'node_modules', '.bin', 'expo');
+
 // Run expo start with web support using local installation
-const result = spawnSync('node_modules/.bin/expo', [
+const expoProcess = spawn(expoPath, [
   'start',
   '--web',
   '--port', '5000',
   '--host', 'lan',
   '--clear'
 ], {
-  cwd: path.resolve(__dirname, '..'),
+  cwd: projectRoot,
   stdio: 'inherit',
   env: {
     ...process.env,
@@ -22,4 +26,6 @@ const result = spawnSync('node_modules/.bin/expo', [
   }
 });
 
-process.exit(result.status || 0);
+expoProcess.on('exit', (code) => {
+  process.exit(code || 0);
+});
