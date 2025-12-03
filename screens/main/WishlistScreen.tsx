@@ -147,18 +147,9 @@ export default function WishlistScreen() {
   if (!loading && wishlist.length === 0) {
     return (
       <View style={styles.container}>
-        <LinearGradient
-          colors={['#FF6B9D', '#FFA8C5']}
-          style={[styles.header, { paddingTop: insets.top + 12 }]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-        >
-          <ThemedText style={styles.headerTitle}>My Wishlist</ThemedText>
-          <ThemedText style={styles.headerSubtitle}>0 items</ThemedText>
-        </LinearGradient>
-
-        <View style={styles.emptyContainer}>
-          <View style={styles.emptyIconContainer}>
+        <View style={[styles.contentWrapper, { paddingTop: Spacing.xl }]}>
+          <View style={styles.emptyContainer}>
+            <View style={styles.emptyIconContainer}>
             <LinearGradient
               colors={['#FFE5EE', '#FFFFFF']}
               style={styles.emptyIconGradient}
@@ -184,21 +175,23 @@ export default function WishlistScreen() {
               <Feather name="shopping-bag" size={20} color="#FFFFFF" />
               <ThemedText style={styles.shopNowText}>Start Shopping</ThemedText>
             </LinearGradient>
-          </Pressable>
-        </View>
+              </Pressable>
+            </View>
+          </View>
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
-      {/* Header with gradient */}
-      <LinearGradient
-        colors={['#FF6B9D', '#FFA8C5']}
-        style={[styles.header, { paddingTop: insets.top + 12 }]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-      >
+      <View style={[styles.contentWrapper, { paddingTop: Spacing.lg }]}>
+        {/* Custom Header Section */}
+        <LinearGradient
+          colors={['#FF6B9D', '#FFA8C5']}
+          style={styles.header}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+        >
         <View style={styles.headerContent}>
           <View>
             <ThemedText style={styles.headerTitle}>My Wishlist</ThemedText>
@@ -285,10 +278,10 @@ export default function WishlistScreen() {
             ))}
           </View>
         )}
-      </LinearGradient>
+        </LinearGradient>
 
-      {/* Products Grid */}
-      <ScreenFlatList
+        {/* Products Grid */}
+        <ScreenFlatList
         data={filteredAndSortedWishlist}
         numColumns={2}
         keyExtractor={(item) => item.id}
@@ -368,7 +361,8 @@ export default function WishlistScreen() {
             </Pressable>
           </View>
         ) : null}
-      />
+        />
+      </View>
 
       {/* Share Modal */}
       <Modal
@@ -433,11 +427,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.light.backgroundDefault,
   },
+  contentWrapper: {
+    flex: 1,
+    paddingHorizontal: Spacing.sm,
+  },
   header: {
+    marginHorizontal: Spacing.sm,
     paddingHorizontal: Spacing.lg,
-    paddingBottom: Spacing.lg,
-    borderBottomLeftRadius: BorderRadius.xl,
-    borderBottomRightRadius: BorderRadius.xl,
+    paddingVertical: Spacing.lg,
+    borderRadius: BorderRadius.xl,
+    marginBottom: Spacing.lg,
     ...Shadows.medium,
   },
   headerContent: {
