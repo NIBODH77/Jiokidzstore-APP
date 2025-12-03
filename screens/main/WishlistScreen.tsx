@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { View, StyleSheet, Pressable, Animated, RefreshControl, TextInput, ScrollView } from 'react-native';
+import { View, StyleSheet, Pressable, Animated, RefreshControl, TextInput, ScrollView, Modal, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Feather } from '@expo/vector-icons';
@@ -24,6 +24,7 @@ export default function WishlistScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<SortOption>('date');
   const [showSortMenu, setShowSortMenu] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
 
   useEffect(() => {
     loadWishlist();
@@ -70,10 +71,31 @@ export default function WishlistScreen() {
   };
 
   const handleClearAll = async () => {
-    for (const item of wishlist) {
-      await wishlistStorage.removeFromWishlist(item.id);
+    Alert.alert(
+      'Clear Wishlist',
+      'Are you sure you want to remove all items from your wishlist?',
+      [
+        { text: 'Cancel', onPress: () => {}, style: 'cancel' },
+        {
+          text: 'Clear All',
+          onPress: async () => {
+            for (const item of wishlist) {
+              await wishlistStorage.removeFromWishlist(item.id);
+            }
+            setWishlist([]);
+          },
+          style: 'destructive',
+        },
+      ]
+    );
+  };
+
+  const handleShareWishlist = () => {
+    if (wishlist.length === 0) {
+      Alert.alert('Empty Wishlist', 'Add items to your wishlist before sharing');
+      return;
     }
-    setWishlist([]);
+    setShowShareModal(true);
   };
 
   const filteredAndSortedWishlist = useMemo(() => {
@@ -107,9 +129,9 @@ export default function WishlistScreen() {
     return filteredAndSortedWishlist.reduce((sum, item) => sum + item.price, 0);
   }, [filteredAndSortedWishlist]);
 
-  const handleAddToCart = (product: Product) => {
-    console.log('Add to cart:', product.name);
-  };
+  const averagePrice = useMemo(() => {
+    return filteredAndSortedWishlist.length > 0 ? totalPrice / filteredAndSortedWishlist.length : 0;
+  }, [filteredAndSortedWishlist, totalPrice]);
 
   const getSortLabel = () => {
     switch (sortBy) {
@@ -121,10 +143,10 @@ export default function WishlistScreen() {
     }
   };
 
+  // Empty state
   if (!loading && wishlist.length === 0) {
     return (
       <View style={styles.container}>
-        {/* Header with gradient */}
         <LinearGradient
           colors={['#FF6B9D', '#FFA8C5']}
           style={[styles.header, { paddingTop: insets.top + 12 }]}
@@ -135,7 +157,6 @@ export default function WishlistScreen() {
           <ThemedText style={styles.headerSubtitle}>0 items</ThemedText>
         </LinearGradient>
 
-        {/* Empty state content */}
         <View style={styles.emptyContainer}>
           <View style={styles.emptyIconContainer}>
             <LinearGradient
@@ -185,12 +206,18 @@ export default function WishlistScreen() {
               {wishlist.length} {wishlist.length === 1 ? 'item' : 'items'} saved
             </ThemedText>
           </View>
-          {wishlist.length > 0 && (
-            <Pressable onPress={handleClearAll} style={styles.clearButton}>
-              <Feather name="trash-2" size={18} color="#FFFFFF" />
-              <ThemedText style={styles.clearText}>Clear All</ThemedText>
-            </Pressable>
-          )}
+          <View style={styles.headerActions}>
+            {wishlist.length > 0 && (
+              <>
+                <Pressable onPress={handleShareWishlist} style={styles.iconButton}>
+                  <Feather name="share-2" size={18} color="#FFFFFF" />
+                </Pressable>
+                <Pressable onPress={handleClearAll} style={[styles.iconButton, styles.clearIconButton]}>
+                  <Feather name="trash-2" size={18} color="#FFFFFF" />
+                </Pressable>
+              </>
+            )}
+          </View>
         </View>
 
         {/* Search Bar */}
@@ -198,7 +225,7 @@ export default function WishlistScreen() {
           <Feather name="search" size={18} color={Colors.light.textGray} style={styles.searchIcon} />
           <TextInput
             style={styles.searchInput}
-            placeholder="Search in wishlist..."
+            placeholder="Search wishlist..."
             placeholderTextColor="rgba(255,255,255,0.6)"
             value={searchQuery}
             onChangeText={setSearchQuery}
@@ -296,19 +323,34 @@ export default function WishlistScreen() {
         )}
         ListFooterComponent={() => filteredAndSortedWishlist.length > 0 ? (
           <View style={styles.footer}>
-            <View style={styles.statsCard}>
+            {/* Summary Stats Card */}
+            <View style={styles.summaryCard}>
               <LinearGradient
                 colors={['#FFE5EE', '#FFFFFF']}
-                style={styles.statsGradient}
+                style={styles.summaryGradient}
               >
-                <Feather name="heart" size={24} color={Colors.light.primary} />
-                <View style={styles.statsTextContainer}>
-                  <ThemedText style={styles.statsText}>
-                    {filteredAndSortedWishlist.length} {filteredAndSortedWishlist.length === 1 ? 'item' : 'items'} in wishlist
-                  </ThemedText>
-                  <ThemedText style={styles.statsSubtext}>
-                    Total value: ₹{totalPrice.toLocaleString()}
-                  </ThemedText>
+                <View style={styles.summaryRow}>
+                  <View style={styles.summaryItem}>
+                    <Feather name="heart" size={20} color={Colors.light.primary} />
+                    <ThemedText style={styles.summaryLabel}>Items</ThemedText>
+                    <ThemedText style={styles.summaryValue}>{filteredAndSortedWishlist.length}</ThemedText>
+                  </View>
+
+                  <View style={styles.divider} />
+
+                  <View style={styles.summaryItem}>
+                    <Feather name="tag" size={20} color={Colors.light.primary} />
+                    <ThemedText style={styles.summaryLabel}>Total</ThemedText>
+                    <ThemedText style={styles.summaryValue}>₹{totalPrice.toLocaleString()}</ThemedText>
+                  </View>
+
+                  <View style={styles.divider} />
+
+                  <View style={styles.summaryItem}>
+                    <Feather name="trending-down" size={20} color={Colors.light.primary} />
+                    <ThemedText style={styles.summaryLabel}>Average</ThemedText>
+                    <ThemedText style={styles.summaryValue}>₹{Math.round(averagePrice).toLocaleString()}</ThemedText>
+                  </View>
                 </View>
               </LinearGradient>
             </View>
@@ -327,6 +369,61 @@ export default function WishlistScreen() {
           </View>
         ) : null}
       />
+
+      {/* Share Modal */}
+      <Modal
+        visible={showShareModal}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowShareModal(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.shareModal}>
+            <View style={styles.shareHeader}>
+              <ThemedText style={styles.shareTitle}>Share Wishlist</ThemedText>
+              <Pressable onPress={() => setShowShareModal(false)}>
+                <Feather name="x" size={24} color={Colors.light.text} />
+              </Pressable>
+            </View>
+
+            <View style={styles.shareOptions}>
+              <Pressable style={styles.shareOption}>
+                <LinearGradient
+                  colors={['#FF6B9D', '#FF8FB3']}
+                  style={styles.shareOptionGradient}
+                >
+                  <Feather name="message-circle" size={24} color="#FFFFFF" />
+                  <ThemedText style={styles.shareOptionText}>Message</ThemedText>
+                </LinearGradient>
+              </Pressable>
+
+              <Pressable style={styles.shareOption}>
+                <LinearGradient
+                  colors={['#3498DB', '#5DADE2']}
+                  style={styles.shareOptionGradient}
+                >
+                  <Feather name="share-2" size={24} color="#FFFFFF" />
+                  <ThemedText style={styles.shareOptionText}>Share</ThemedText>
+                </LinearGradient>
+              </Pressable>
+
+              <Pressable style={styles.shareOption}>
+                <LinearGradient
+                  colors={['#27AE60', '#52BE80']}
+                  style={styles.shareOptionGradient}
+                >
+                  <Feather name="copy" size={24} color="#FFFFFF" />
+                  <ThemedText style={styles.shareOptionText}>Copy Link</ThemedText>
+                </LinearGradient>
+              </Pressable>
+            </View>
+
+            <Pressable onPress={() => setShowShareModal(false)} style={styles.closeButton}>
+              <ThemedText style={styles.closeButtonText}>Close</ThemedText>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -348,6 +445,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  headerActions: {
+    flexDirection: 'row',
+    gap: Spacing.sm,
+  },
   headerTitle: {
     fontSize: 24,
     fontWeight: '700',
@@ -359,19 +460,16 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     opacity: 0.9,
   },
-  clearButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  iconButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
-    borderRadius: BorderRadius.sm,
-    gap: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  clearText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: '600',
+  clearIconButton: {
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
   },
   grid: {
     padding: Spacing.sm,
@@ -439,30 +537,40 @@ const styles = StyleSheet.create({
     gap: Spacing.lg,
     marginTop: Spacing.md,
   },
-  statsCard: {
+  summaryCard: {
     borderRadius: BorderRadius.md,
     overflow: 'hidden',
     ...Shadows.small,
   },
-  statsGradient: {
+  summaryGradient: {
+    paddingVertical: Spacing.lg,
+    paddingHorizontal: Spacing.md,
+  },
+  summaryRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: Spacing.lg,
-    gap: Spacing.md,
+    justifyContent: 'space-around',
   },
-  statsTextContainer: {
+  summaryItem: {
+    alignItems: 'center',
     flex: 1,
   },
-  statsText: {
-    fontSize: 15,
-    color: Colors.light.text,
-    fontWeight: '600',
-    marginBottom: 4,
-  },
-  statsSubtext: {
-    fontSize: 13,
+  summaryLabel: {
+    fontSize: 12,
     color: Colors.light.textGray,
-    fontWeight: '400',
+    marginTop: Spacing.xs,
+    fontWeight: '500',
+  },
+  summaryValue: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: Colors.light.primary,
+    marginTop: Spacing.xs,
+  },
+  divider: {
+    width: 1,
+    height: 40,
+    backgroundColor: Colors.light.border,
   },
   continueButton: {
     borderRadius: BorderRadius.sm,
@@ -600,6 +708,65 @@ const styles = StyleSheet.create({
   clearFiltersText: {
     color: '#FFFFFF',
     fontSize: 15,
+    fontWeight: '600',
+  },
+
+  // Share Modal Styles
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'flex-end',
+  },
+  shareModal: {
+    backgroundColor: '#FFFFFF',
+    borderTopLeftRadius: BorderRadius.xl,
+    borderTopRightRadius: BorderRadius.xl,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.lg,
+    paddingBottom: Spacing.xxl,
+  },
+  shareHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: Spacing.xl,
+  },
+  shareTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: Colors.light.text,
+  },
+  shareOptions: {
+    flexDirection: 'row',
+    gap: Spacing.md,
+    marginBottom: Spacing.xl,
+  },
+  shareOption: {
+    flex: 1,
+    height: 100,
+    borderRadius: BorderRadius.md,
+    overflow: 'hidden',
+  },
+  shareOptionGradient: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: Spacing.sm,
+  },
+  shareOptionText: {
+    color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  closeButton: {
+    paddingVertical: Spacing.md,
+    borderRadius: BorderRadius.sm,
+    backgroundColor: Colors.light.backgroundDefault,
+  },
+  closeButtonText: {
+    textAlign: 'center',
+    color: Colors.light.text,
+    fontSize: 16,
     fontWeight: '600',
   },
 });
