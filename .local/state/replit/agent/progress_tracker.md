@@ -40,6 +40,15 @@
   - Set correct padding from TopHeader (Spacing.lg)
   - Gradient header now appears below navigation header with professional margins
   - Content no longer hidden behind header (2024-12-03)
+- [x] Created professional NotificationsScreen page:
+  - OFFERS and ORDERS tabs with active/inactive states
+  - Professional empty state with bell icon
+  - "Continue Shopping" button with gradient styling
+  - Pink/coral gradient theme matching JioKidz branding
+  - Proper spacing and margins (Spacing.lg from header)
+  - Notification icon in header navigates to this page
+  - hideNotificationIcon prop prevents double icon on notifications page
+  - Added Notifications route to HomeStackNavigator (2024-12-03)
 
 ## Technical Notes
 - **Web Timer Fix**: react-native-reanimated's setTimeout doesn't work reliably on web. Used polling-based timer with Date.now() for web compatibility.

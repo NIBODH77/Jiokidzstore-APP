@@ -86,7 +86,11 @@ export function TopHeader({
             )}
 
             {!hideNotificationIcon && (
-              <Pressable style={styles.iconButton} hitSlop={8}>
+              <Pressable 
+                style={styles.iconButton} 
+                hitSlop={8}
+                onPress={() => navigation.navigate('Notifications' as never)}
+              >
                 <Feather name="bell" size={24} color="#1F2937" strokeWidth={1} />
                 <View style={styles.notificationBadge}>
                   <View style={styles.badgeDot} />
