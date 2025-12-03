@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, Pressable, Animated, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -52,7 +53,7 @@ const Sparkle = ({ delay }: { delay: number }) => {
   );
 };
 
-export default function NotificationsScreen() {
+const NotificationsScreen = () => {
   const navigation = useNavigation();
   const [activeTab, setActiveTab] = useState<TabType>('offers');
 
@@ -110,7 +111,7 @@ export default function NotificationsScreen() {
   const handleContinueShopping = () => {
     const parentNav = navigation.getParent();
     if (parentNav) {
-      (parentNav as any).navigate('HomeTab');
+      (parentNav as any).navigate('Home');
     } else {
       (navigation as any).navigate('Home');
     }
@@ -226,7 +227,9 @@ export default function NotificationsScreen() {
       </View>
     </View>
   );
-}
+};
+
+export default NotificationsScreen;
 
 const styles = StyleSheet.create({
   container: {
