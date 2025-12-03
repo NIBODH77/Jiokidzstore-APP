@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, Pressable, Animated } from 'react-native';
+import { View, StyleSheet, Pressable, Animated, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ThemedText } from '@/components/ThemedText';
 import { Spacing, BorderRadius } from '@/constants/theme';
 
 type TabType = 'offers' | 'orders';
+
+const FIXED_HEADER_HEIGHT = 70;
 
 const Sparkle = ({ style }: { style: any }) => {
   const opacityRef = useRef(new Animated.Value(0.6)).current;
@@ -37,7 +40,10 @@ const Sparkle = ({ style }: { style: any }) => {
 
 export default function NotificationsScreen() {
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<TabType>('offers');
+  
+  const topPadding = Platform.OS === 'web' ? FIXED_HEADER_HEIGHT : insets.top + FIXED_HEADER_HEIGHT;
 
   const handleContinueShopping = () => {
     const parentNav = navigation.getParent();
@@ -51,7 +57,7 @@ export default function NotificationsScreen() {
   return (
     <View style={styles.container}>
       {/* Tab Section */}
-      <View style={styles.tabContainer}>
+      <View style={[styles.tabContainer, { marginTop: topPadding }]}>
         <Pressable
           onPress={() => setActiveTab('offers')}
           style={[styles.tab, activeTab === 'offers' && styles.tabActive]}
