@@ -1,9 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Pressable, Animated, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
 import { Colors, Spacing, BorderRadius, Shadows } from '@/constants/theme';
 
@@ -54,7 +53,7 @@ const Sparkle = ({ delay }: { delay: number }) => {
   );
 };
 
-const EmptyState = () => (
+const EmptyState = ({ onContinueShopping }: { onContinueShopping: () => void }) => (
   <View style={styles.emptyContainer}>
     {/* Bell Icon with Sparkles */}
     <View style={styles.iconWrapper}>
@@ -72,6 +71,11 @@ const EmptyState = () => (
 
     {/* No Notifications Text */}
     <ThemedText style={styles.emptyTitle}>No new Notifications</ThemedText>
+
+    {/* Continue Shopping Button */}
+    <Pressable style={styles.continueButton} onPress={onContinueShopping}>
+      <ThemedText style={styles.continueButtonText}>Continue Shopping</ThemedText>
+    </Pressable>
   </View>
 );
 
@@ -118,7 +122,6 @@ const OrderCard = ({ order }: { order: Order }) => (
 
 export default function NotificationsScreen() {
   const navigation = useNavigation();
-  const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<TabType>('offers');
 
   const offers: Offer[] = [
@@ -175,7 +178,7 @@ export default function NotificationsScreen() {
   const handleContinueShopping = () => {
     const parentNav = navigation.getParent();
     if (parentNav) {
-      (parentNav as any).navigate('HomeTab');
+      (parentNav as any).navigate('Home');
     } else {
       (navigation as any).navigate('Home');
     }
@@ -230,7 +233,7 @@ export default function NotificationsScreen() {
                   ))}
                 </View>
               ) : (
-                <EmptyState />
+                <EmptyState onContinueShopping={handleContinueShopping} />
               )}
             </View>
           ) : (
@@ -242,7 +245,7 @@ export default function NotificationsScreen() {
                   ))}
                 </View>
               ) : (
-                <EmptyState />
+                <EmptyState onContinueShopping={handleContinueShopping} />
               )}
             </View>
           )}
@@ -263,6 +266,7 @@ const styles = StyleSheet.create({
   },
   tabContainer: {
     flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
     borderBottomWidth: 1,
     borderBottomColor: '#F3F4F6',
     marginBottom: Spacing.lg,
@@ -273,7 +277,7 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.md,
     alignItems: 'center',
     justifyContent: 'center',
-    borderBottomWidth: 4,
+    borderBottomWidth: 3,
     borderBottomColor: 'transparent',
   },
   tabActive: {
@@ -282,8 +286,8 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#9CA3AF',
-    letterSpacing: 0.5,
+    color: '#BDBDBD',
+    letterSpacing: 1,
   },
   tabTextActive: {
     color: '#FF6B9D',
@@ -317,13 +321,13 @@ const styles = StyleSheet.create({
   },
   sparkle: {
     position: 'absolute',
-    width: 10,
-    height: 10,
+    width: 12,
+    height: 12,
   },
   sparkleInner: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#C084FC',
+    backgroundColor: '#E1BEE7',
     transform: [{ rotate: '45deg' }],
     borderRadius: 2,
   },
@@ -331,17 +335,29 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
     borderRadius: 80,
-    backgroundColor: '#E0F2FE',
+    backgroundColor: 'rgba(224, 242, 241, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
     ...Shadows.medium,
   },
   emptyTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: Colors.light.text,
-    marginBottom: Spacing.lg,
+    fontSize: 22,
+    fontWeight: '500',
+    color: '#424242',
+    marginBottom: Spacing.xl,
     textAlign: 'center',
+  },
+  continueButton: {
+    backgroundColor: '#FF6B9D',
+    paddingHorizontal: 50,
+    paddingVertical: 16,
+    borderRadius: 8,
+    ...Shadows.small,
+  },
+  continueButtonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '600',
   },
   notificationCard: {
     flexDirection: 'row',
