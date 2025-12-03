@@ -86,29 +86,55 @@ export default function NotificationsScreen() {
         colors={['#FFF0F3', '#FFFFFF']}
         style={styles.contentArea}
       >
-        <View style={styles.emptyContainer}>
-          {/* Bell Icon with Sparkles */}
-          <View style={styles.iconWrapper}>
-            {/* Sparkles at corners */}
-            <Sparkle style={styles.sparkleTopLeft} />
-            <Sparkle style={styles.sparkleTopRight} />
-            <Sparkle style={styles.sparkleBottomLeft} />
-            <Sparkle style={styles.sparkleBottomRight} />
+        {activeTab === 'offers' ? (
+          <View style={styles.emptyContainer}>
+            {/* Bell Icon with Sparkles */}
+            <View style={styles.iconWrapper}>
+              {/* Sparkles at corners */}
+              <Sparkle style={styles.sparkleTopLeft} />
+              <Sparkle style={styles.sparkleTopRight} />
+              <Sparkle style={styles.sparkleBottomLeft} />
+              <Sparkle style={styles.sparkleBottomRight} />
 
-            {/* Bell Icon Container */}
-            <View style={styles.iconBg}>
-              <Feather name="bell" size={72} color="#9CA3AF" strokeWidth={1} />
+              {/* Bell Icon Container */}
+              <View style={styles.iconBg}>
+                <Feather name="bell" size={72} color="#9CA3AF" strokeWidth={1} />
+              </View>
             </View>
+
+            {/* No Offers Text */}
+            <ThemedText style={styles.emptyTitle}>No new Offers</ThemedText>
+
+            {/* Continue Shopping Button */}
+            <Pressable style={styles.continueButton} onPress={handleContinueShopping}>
+              <ThemedText style={styles.continueButtonText}>Continue Shopping</ThemedText>
+            </Pressable>
           </View>
+        ) : (
+          <View style={styles.emptyContainer}>
+            {/* Bell Icon with Sparkles */}
+            <View style={styles.iconWrapper}>
+              {/* Sparkles at corners */}
+              <Sparkle style={styles.sparkleTopLeft} />
+              <Sparkle style={styles.sparkleTopRight} />
+              <Sparkle style={styles.sparkleBottomLeft} />
+              <Sparkle style={styles.sparkleBottomRight} />
 
-          {/* No Notifications Text */}
-          <ThemedText style={styles.emptyTitle}>No new Notifications</ThemedText>
+              {/* Bell Icon Container */}
+              <View style={styles.iconBg}>
+                <Feather name="bell" size={72} color="#9CA3AF" strokeWidth={1} />
+              </View>
+            </View>
 
-          {/* Continue Shopping Button */}
-          <Pressable style={styles.continueButton} onPress={handleContinueShopping}>
-            <ThemedText style={styles.continueButtonText}>Continue Shopping</ThemedText>
-          </Pressable>
-        </View>
+            {/* No Orders Text */}
+            <ThemedText style={styles.emptyTitle}>No new Orders</ThemedText>
+
+            {/* Continue Shopping Button */}
+            <Pressable style={styles.continueButton} onPress={handleContinueShopping}>
+              <ThemedText style={styles.continueButtonText}>Continue Shopping</ThemedText>
+            </Pressable>
+          </View>
+        )}
       </LinearGradient>
     </View>
   );
