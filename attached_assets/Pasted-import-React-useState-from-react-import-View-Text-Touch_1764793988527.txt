@@ -1,0 +1,202 @@
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+
+const NotificationPage = () => {
+  const [activeTab, setActiveTab] = useState('offers');
+
+  return (
+    <View style={styles.container}>
+      {/* Tab Navigation */}
+      <View style={styles.tabContainer}>
+        <TouchableOpacity
+          style={[styles.tab, activeTab === 'offers' && styles.activeTab]}
+          onPress={() => setActiveTab('offers')}
+        >
+          <Text style={[styles.tabText, activeTab === 'offers' && styles.activeTabText]}>
+            OFFERS
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.tab, activeTab === 'orders' && styles.activeTab]}
+          onPress={() => setActiveTab('orders')}
+        >
+          <Text style={[styles.tabText, activeTab === 'orders' && styles.activeTabText]}>
+            ORDERS
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Content Area */}
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        {/* Bell Icon with Background */}
+        <View style={styles.iconContainer}>
+          <View style={styles.iconCircle}>
+            <View style={styles.bellIcon}>
+              <View style={styles.bellTop} />
+              <View style={styles.bellBody} />
+              <View style={styles.bellBottom} />
+            </View>
+          </View>
+          {/* Sparkles */}
+          <View style={[styles.sparkle, styles.sparkle1]} />
+          <View style={[styles.sparkle, styles.sparkle2]} />
+          <View style={[styles.sparkle, styles.sparkle3]} />
+          <View style={[styles.sparkle, styles.sparkle4]} />
+        </View>
+
+        {/* No Notifications Text */}
+        <Text style={styles.noNotificationText}>No new Notifications</Text>
+
+        {/* Continue Shopping Button */}
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Continue Shopping</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFF5F5',
+  },
+  tabContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
+  },
+  tab: {
+    flex: 1,
+    paddingVertical: 16,
+    alignItems: 'center',
+    borderBottomWidth: 3,
+    borderBottomColor: 'transparent',
+  },
+  activeTab: {
+    borderBottomColor: '#FF7043',
+  },
+  tabText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#BDBDBD',
+    letterSpacing: 1,
+  },
+  activeTabText: {
+    color: '#FF7043',
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+  },
+  iconContainer: {
+    position: 'relative',
+    marginBottom: 30,
+  },
+  iconCircle: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    backgroundColor: 'rgba(224, 242, 241, 0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bellIcon: {
+    position: 'relative',
+    width: 80,
+    height: 80,
+  },
+  bellTop: {
+    position: 'absolute',
+    top: 0,
+    left: '50%',
+    transform: [{ translateX: -6 }],
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: '#9E9E9E',
+  },
+  bellBody: {
+    position: 'absolute',
+    top: 10,
+    left: '50%',
+    transform: [{ translateX: -30 }],
+    width: 60,
+    height: 55,
+    borderWidth: 4,
+    borderColor: '#9E9E9E',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: 'transparent',
+  },
+  bellBottom: {
+    position: 'absolute',
+    bottom: 8,
+    left: '50%',
+    transform: [{ translateX: -15 }],
+    width: 30,
+    height: 15,
+    borderWidth: 4,
+    borderColor: '#9E9E9E',
+    borderTopWidth: 0,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    backgroundColor: 'transparent',
+  },
+  sparkle: {
+    position: 'absolute',
+    width: 12,
+    height: 12,
+  },
+  sparkle1: {
+    top: 30,
+    left: 20,
+    backgroundColor: '#E1BEE7',
+    transform: [{ rotate: '45deg' }],
+  },
+  sparkle2: {
+    top: 30,
+    right: 20,
+    backgroundColor: '#E1BEE7',
+    transform: [{ rotate: '45deg' }],
+  },
+  sparkle3: {
+    bottom: 50,
+    left: 10,
+    backgroundColor: '#E1BEE7',
+    transform: [{ rotate: '45deg' }],
+  },
+  sparkle4: {
+    bottom: 50,
+    right: 10,
+    backgroundColor: '#E1BEE7',
+    transform: [{ rotate: '45deg' }],
+  },
+  noNotificationText: {
+    fontSize: 22,
+    fontWeight: '500',
+    color: '#424242',
+    marginBottom: 40,
+  },
+  button: {
+    backgroundColor: '#FF7043',
+    paddingHorizontal: 50,
+    paddingVertical: 16,
+    borderRadius: 8,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '600',
+  },
+});
+
+export default NotificationPage;
