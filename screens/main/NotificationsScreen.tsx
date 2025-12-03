@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { ThemedText } from '@/components/ThemedText';
 import { Colors, Spacing, BorderRadius, Shadows } from '@/constants/theme';
+import ModernHeader from '@/components/ModernHeader';
 
 type TabType = 'offers' | 'orders';
 
@@ -186,6 +187,13 @@ export default function NotificationsScreen() {
 
   return (
     <View style={styles.container}>
+      {/* Header */}
+      <ModernHeader 
+        showBackButton={true}
+        onBackPress={() => navigation.goBack()}
+        title="Notifications"
+      />
+      
       <View style={styles.contentWrapper}>
         {/* Tab Section */}
         <View style={styles.tabContainer}>
@@ -258,11 +266,11 @@ export default function NotificationsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.backgroundDefault,
+    backgroundColor: '#FFFFFF',
   },
   contentWrapper: {
     flex: 1,
-    paddingHorizontal: Spacing.sm,
+    backgroundColor: Colors.light.backgroundDefault,
   },
   tabContainer: {
     flexDirection: 'row',
@@ -270,7 +278,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#F3F4F6',
     marginBottom: Spacing.lg,
-    paddingTop: Spacing.lg,
+    paddingHorizontal: Spacing.sm,
   },
   tab: {
     flex: 1,
