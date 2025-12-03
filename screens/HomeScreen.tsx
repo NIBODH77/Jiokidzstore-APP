@@ -142,7 +142,7 @@ export default function HomeScreen() {
       <ModernSearchBar 
           onSearch={() => navigation.navigate('Search')}
           onLocationPress={() => setChooseLocationModalVisible(true)}
-          onNotificationPress={() => console.log('Notifications')}
+          onNotificationPress={() => navigation.navigate('Notifications')}
           onCartPress={() => navigation.navigate('Cart')}
           onWishlistPress={() => navigation.navigate('Wishlist')}
           onProfilePress={() => console.log('Profile')}

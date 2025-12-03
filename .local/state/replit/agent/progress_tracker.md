@@ -49,6 +49,10 @@
   - Notification icon in header navigates to this page
   - hideNotificationIcon prop prevents double icon on notifications page
   - Added Notifications route to HomeStackNavigator (2024-12-03)
+- [x] Fixed notification icon navigation on home page:
+  - Changed HomeScreen's ModernSearchBar onNotificationPress from console.log to navigation.navigate
+  - Bell icon now correctly opens NotificationsScreen when clicked from home page
+  - Navigation working seamlessly (2024-12-03)
 
 ## Technical Notes
 - **Web Timer Fix**: react-native-reanimated's setTimeout doesn't work reliably on web. Used polling-based timer with Date.now() for web compatibility.
