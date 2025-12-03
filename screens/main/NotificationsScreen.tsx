@@ -1,14 +1,41 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Pressable } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, Pressable, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
-import { Button } from '@/components/Button';
 import { Colors, Spacing, BorderRadius, Shadows } from '@/constants/theme';
 
 type TabType = 'offers' | 'orders';
+
+const Sparkle = ({ delay }: { delay: number }) => {
+  const opacity = new Animated.Value(0);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(opacity, {
+          toValue: 1,
+          duration: 600,
+          useNativeDriver: true,
+          delay,
+        }),
+        Animated.timing(opacity, {
+          toValue: 0,
+          duration: 600,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, [opacity, delay]);
+
+  return (
+    <Animated.View style={[styles.sparkle, { opacity }]}>
+      <View style={styles.sparkleInner} />
+    </Animated.View>
+  );
+};
 
 export default function NotificationsScreen() {
   const navigation = useNavigation();
@@ -27,30 +54,35 @@ export default function NotificationsScreen() {
   const renderEmptyState = () => (
     <View style={styles.contentWrapper}>
       <View style={styles.emptyContainer}>
-        <View style={styles.emptyIconContainer}>
-          <LinearGradient
-            colors={['#FFE5EE', '#FFFFFF']}
-            style={styles.emptyIconGradient}
-          >
-            <Feather name="bell" size={60} color="#FF6B9D" strokeWidth={0.5} />
-          </LinearGradient>
+        {/* Bell Icon with Sparkles */}
+        <View style={styles.iconWrapper}>
+          {/* Sparkles */}
+          <Sparkle delay={0} />
+          <Sparkle delay={150} />
+          <Sparkle delay={300} />
+          <Sparkle delay={450} />
+
+          {/* Bell Icon Container */}
+          <View style={styles.iconBg}>
+            <Feather name="bell" size={80} color="#FF6B9D" strokeWidth={0.8} />
+          </View>
         </View>
 
+        {/* No Notifications Text */}
         <ThemedText style={styles.emptyTitle}>No new Notifications</ThemedText>
-        <ThemedText style={styles.emptySubtitle}>
-          {activeTab === 'offers' 
-            ? "We'll notify you about amazing deals and special offers"
-            : 'Your orders will appear here'}
-        </ThemedText>
 
-        <Pressable onPress={handleContinueShopping} style={{ marginTop: Spacing.xl }}>
+        {/* Continue Shopping Button */}
+        <Pressable 
+          onPress={handleContinueShopping} 
+          style={{ marginTop: Spacing.xl, width: '100%' }}
+        >
           <LinearGradient
             colors={['#FF6B9D', '#FF8FB3']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.continueButton}
           >
-            <Feather name="shopping-bag" size={20} color="#FFFFFF" />
+            <Feather name="shopping-bag" size={22} color="#FFFFFF" strokeWidth={1.5} />
             <ThemedText style={styles.continueButtonText}>Continue Shopping</ThemedText>
           </LinearGradient>
         </Pressable>
@@ -110,7 +142,7 @@ const styles = StyleSheet.create({
   },
   tabContainer: {
     flexDirection: 'row',
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     borderBottomColor: '#F3F4F6',
     marginBottom: Spacing.xl,
   },
@@ -119,14 +151,14 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.md,
     alignItems: 'center',
     justifyContent: 'center',
+    borderBottomWidth: 4,
+    borderBottomColor: 'transparent',
   },
   tabActive: {
-    borderBottomWidth: 3,
     borderBottomColor: '#FF6B9D',
-    marginBottom: -2,
   },
   tabText: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '600',
     color: '#9CA3AF',
     letterSpacing: 0.5,
@@ -140,43 +172,55 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: Spacing.lg,
   },
-  emptyIconContainer: {
-    marginBottom: Spacing.xl,
-  },
-  emptyIconGradient: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
+  iconWrapper: {
+    width: 200,
+    height: 200,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: Spacing.xl,
+    position: 'relative',
+  },
+  sparkle: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+  },
+  sparkleInner: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#C084FC',
+    transform: [{ rotate: '45deg' }],
+    borderRadius: 2,
+  },
+  iconBg: {
+    width: 160,
+    height: 160,
+    borderRadius: 80,
+    backgroundColor: '#E0F2FE',
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...Shadows.medium,
   },
   emptyTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '600',
     color: Colors.light.text,
-    marginBottom: Spacing.sm,
+    marginBottom: Spacing.lg,
     textAlign: 'center',
-  },
-  emptySubtitle: {
-    fontSize: 14,
-    color: '#6B7280',
-    textAlign: 'center',
-    lineHeight: 20,
-    paddingHorizontal: Spacing.md,
   },
   continueButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: Spacing.md,
+    paddingVertical: 16,
     paddingHorizontal: Spacing.xl,
     borderRadius: BorderRadius.lg,
     ...Shadows.medium,
-    gap: Spacing.sm,
+    gap: Spacing.md,
   },
   continueButtonText: {
-    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
+    color: '#FFFFFF',
   },
 });
