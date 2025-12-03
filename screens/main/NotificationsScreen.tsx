@@ -1,11 +1,9 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, Pressable, Animated, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { ThemedText } from '@/components/ThemedText';
 import { Colors, Spacing, BorderRadius, Shadows } from '@/constants/theme';
-import ModernHeader from '@/components/ModernHeader';
 
 type TabType = 'offers' | 'orders';
 
@@ -27,99 +25,32 @@ interface Order {
 }
 
 const Sparkle = ({ delay }: { delay: number }) => {
-  const opacity = new Animated.Value(0);
+  const opacityRef = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(opacity, {
+        Animated.timing(opacityRef, {
           toValue: 1,
           duration: 600,
           useNativeDriver: true,
           delay,
         }),
-        Animated.timing(opacity, {
+        Animated.timing(opacityRef, {
           toValue: 0,
           duration: 600,
           useNativeDriver: true,
         }),
       ])
     ).start();
-  }, [opacity, delay]);
+  }, [delay, opacityRef]);
 
   return (
-    <Animated.View style={[styles.sparkle, { opacity }]}>
+    <Animated.View style={[styles.sparkle, { opacity: opacityRef }]}>
       <View style={styles.sparkleInner} />
     </Animated.View>
   );
 };
-
-const EmptyState = ({ onContinueShopping }: { onContinueShopping: () => void }) => (
-  <View style={styles.emptyContainer}>
-    {/* Bell Icon with Sparkles */}
-    <View style={styles.iconWrapper}>
-      {/* Sparkles */}
-      <Sparkle delay={0} />
-      <Sparkle delay={150} />
-      <Sparkle delay={300} />
-      <Sparkle delay={450} />
-
-      {/* Bell Icon Container */}
-      <View style={styles.iconBg}>
-        <Feather name="bell" size={80} color="#FF6B9D" strokeWidth={0.8} />
-      </View>
-    </View>
-
-    {/* No Notifications Text */}
-    <ThemedText style={styles.emptyTitle}>No new Notifications</ThemedText>
-
-    {/* Continue Shopping Button */}
-    <Pressable style={styles.continueButton} onPress={onContinueShopping}>
-      <ThemedText style={styles.continueButtonText}>Continue Shopping</ThemedText>
-    </Pressable>
-  </View>
-);
-
-const OfferCard = ({ offer }: { offer: Offer }) => (
-  <View style={styles.notificationCard}>
-    <View style={styles.cardLeft}>
-      <View style={styles.discountBadge}>
-        <ThemedText style={styles.discountText}>{offer.discount}</ThemedText>
-      </View>
-    </View>
-    <View style={styles.cardContent}>
-      <ThemedText style={styles.cardTitle}>{offer.title}</ThemedText>
-      <ThemedText style={styles.cardDescription}>{offer.description}</ThemedText>
-      <ThemedText style={styles.validTill}>Valid till: {offer.validTill}</ThemedText>
-    </View>
-    <Pressable style={styles.cardAction}>
-      <Feather name="chevron-right" size={24} color="#FF6B9D" />
-    </Pressable>
-  </View>
-);
-
-const OrderCard = ({ order }: { order: Order }) => (
-  <View style={styles.notificationCard}>
-    <View style={styles.orderIcon}>
-      <View style={[styles.iconCircle, order.status === 'Delivered' ? styles.deliveredIcon : styles.processingIcon]}>
-        <Feather name={order.icon as any} size={24} color="#FFFFFF" strokeWidth={1.5} />
-      </View>
-    </View>
-    <View style={styles.cardContent}>
-      <ThemedText style={styles.orderNo}>Order #{order.orderNo}</ThemedText>
-      <ThemedText style={[styles.orderStatus, order.status === 'Delivered' ? styles.statusDelivered : styles.statusProcessing]}>
-        {order.status}
-      </ThemedText>
-      <View style={styles.orderFooter}>
-        <ThemedText style={styles.orderDate}>{order.date}</ThemedText>
-        <ThemedText style={styles.orderAmount}>{order.amount}</ThemedText>
-      </View>
-    </View>
-    <Pressable style={styles.cardAction}>
-      <Feather name="chevron-right" size={24} color="#FF6B9D" />
-    </Pressable>
-  </View>
-);
 
 export default function NotificationsScreen() {
   const navigation = useNavigation();
@@ -179,21 +110,18 @@ export default function NotificationsScreen() {
   const handleContinueShopping = () => {
     const parentNav = navigation.getParent();
     if (parentNav) {
-      (parentNav as any).navigate('Home');
+      (parentNav as any).navigate('HomeTab');
     } else {
       (navigation as any).navigate('Home');
     }
   };
 
+  const isOffersEmpty = offers.length === 0;
+  const isOrdersEmpty = orders.length === 0;
+  const isEmpty = activeTab === 'offers' ? isOffersEmpty : isOrdersEmpty;
+
   return (
     <View style={styles.container}>
-      {/* Header */}
-      <ModernHeader 
-        showBackButton={true}
-        onBackPress={() => navigation.goBack()}
-        title="Notifications"
-      />
-      
       <View style={styles.contentWrapper}>
         {/* Tab Section */}
         <View style={styles.tabContainer}>
@@ -232,28 +160,65 @@ export default function NotificationsScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          {activeTab === 'offers' ? (
-            <View style={styles.listContainer}>
-              {offers.length > 0 ? (
-                <View style={styles.listContent}>
-                  {offers.map(offer => (
-                    <OfferCard key={offer.id} offer={offer} />
-                  ))}
+          {isEmpty ? (
+            <View style={styles.emptyContainer}>
+              <View style={styles.iconWrapper}>
+                <Sparkle delay={0} />
+                <Sparkle delay={150} />
+                <Sparkle delay={300} />
+                <Sparkle delay={450} />
+                <View style={styles.iconBg}>
+                  <Feather name="bell" size={80} color="#FF6B9D" strokeWidth={0.8} />
                 </View>
-              ) : (
-                <EmptyState onContinueShopping={handleContinueShopping} />
-              )}
+              </View>
+              <ThemedText style={styles.emptyTitle}>No new Notifications</ThemedText>
+              <Pressable style={styles.continueButton} onPress={handleContinueShopping}>
+                <ThemedText style={styles.continueButtonText}>Continue Shopping</ThemedText>
+              </Pressable>
             </View>
           ) : (
-            <View style={styles.listContainer}>
-              {orders.length > 0 ? (
-                <View style={styles.listContent}>
-                  {orders.map(order => (
-                    <OrderCard key={order.id} order={order} />
-                  ))}
-                </View>
+            <View style={styles.listContent}>
+              {activeTab === 'offers' ? (
+                offers.map(offer => (
+                  <View key={offer.id} style={styles.notificationCard}>
+                    <View style={styles.cardLeft}>
+                      <View style={styles.discountBadge}>
+                        <ThemedText style={styles.discountText}>{offer.discount}</ThemedText>
+                      </View>
+                    </View>
+                    <View style={styles.cardContent}>
+                      <ThemedText style={styles.cardTitle}>{offer.title}</ThemedText>
+                      <ThemedText style={styles.cardDescription}>{offer.description}</ThemedText>
+                      <ThemedText style={styles.validTill}>Valid till: {offer.validTill}</ThemedText>
+                    </View>
+                    <Pressable style={styles.cardAction}>
+                      <Feather name="chevron-right" size={24} color="#FF6B9D" />
+                    </Pressable>
+                  </View>
+                ))
               ) : (
-                <EmptyState onContinueShopping={handleContinueShopping} />
+                orders.map(order => (
+                  <View key={order.id} style={styles.notificationCard}>
+                    <View style={styles.orderIcon}>
+                      <View style={[styles.iconCircle, order.status === 'Delivered' ? styles.deliveredIcon : styles.processingIcon]}>
+                        <Feather name={order.icon as any} size={24} color="#FFFFFF" strokeWidth={1.5} />
+                      </View>
+                    </View>
+                    <View style={styles.cardContent}>
+                      <ThemedText style={styles.orderNo}>Order #{order.orderNo}</ThemedText>
+                      <ThemedText style={[styles.orderStatus, order.status === 'Delivered' ? styles.statusDelivered : styles.statusProcessing]}>
+                        {order.status}
+                      </ThemedText>
+                      <View style={styles.orderFooter}>
+                        <ThemedText style={styles.orderDate}>{order.date}</ThemedText>
+                        <ThemedText style={styles.orderAmount}>{order.amount}</ThemedText>
+                      </View>
+                    </View>
+                    <Pressable style={styles.cardAction}>
+                      <Feather name="chevron-right" size={24} color="#FF6B9D" />
+                    </Pressable>
+                  </View>
+                ))
               )}
             </View>
           )}
@@ -266,26 +231,25 @@ export default function NotificationsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.light.backgroundDefault,
   },
   contentWrapper: {
     flex: 1,
-    backgroundColor: Colors.light.backgroundDefault,
+    paddingHorizontal: Spacing.sm,
   },
   tabContainer: {
     flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
     borderBottomWidth: 1,
     borderBottomColor: '#F3F4F6',
     marginBottom: Spacing.lg,
-    paddingHorizontal: Spacing.sm,
+    paddingTop: Spacing.lg,
   },
   tab: {
     flex: 1,
     paddingVertical: Spacing.md,
     alignItems: 'center',
     justifyContent: 'center',
-    borderBottomWidth: 3,
+    borderBottomWidth: 4,
     borderBottomColor: 'transparent',
   },
   tabActive: {
@@ -294,8 +258,8 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#BDBDBD',
-    letterSpacing: 1,
+    color: '#9CA3AF',
+    letterSpacing: 0.5,
   },
   tabTextActive: {
     color: '#FF6B9D',
@@ -305,9 +269,6 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingBottom: Spacing.xl,
-  },
-  listContainer: {
-    flex: 1,
   },
   listContent: {
     paddingHorizontal: Spacing.xs,
@@ -329,13 +290,13 @@ const styles = StyleSheet.create({
   },
   sparkle: {
     position: 'absolute',
-    width: 12,
-    height: 12,
+    width: 10,
+    height: 10,
   },
   sparkleInner: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#E1BEE7',
+    backgroundColor: '#C084FC',
     transform: [{ rotate: '45deg' }],
     borderRadius: 2,
   },
@@ -343,29 +304,30 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
     borderRadius: 80,
-    backgroundColor: 'rgba(224, 242, 241, 0.5)',
+    backgroundColor: '#E0F2FE',
     justifyContent: 'center',
     alignItems: 'center',
     ...Shadows.medium,
   },
   emptyTitle: {
-    fontSize: 22,
-    fontWeight: '500',
-    color: '#424242',
-    marginBottom: Spacing.xl,
+    fontSize: 20,
+    fontWeight: '600',
+    color: Colors.light.text,
+    marginBottom: Spacing.lg,
     textAlign: 'center',
   },
   continueButton: {
     backgroundColor: '#FF6B9D',
-    paddingHorizontal: 50,
     paddingVertical: 16,
-    borderRadius: 8,
-    ...Shadows.small,
+    paddingHorizontal: Spacing.xl,
+    borderRadius: BorderRadius.lg,
+    ...Shadows.medium,
   },
   continueButtonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
+    color: '#FFFFFF',
+    textAlign: 'center',
   },
   notificationCard: {
     flexDirection: 'row',
