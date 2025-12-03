@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, Pressable, Animated } from 'react-native';
+import { View, StyleSheet, Pressable, Animated, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -7,6 +8,83 @@ import { ThemedText } from '@/components/ThemedText';
 import { Spacing, BorderRadius } from '@/constants/theme';
 
 type TabType = 'offers' | 'orders';
+
+interface NotificationItem {
+  id: string;
+  title: string;
+  description: string;
+  time: string;
+  isRead: boolean;
+  icon: keyof typeof Feather.glyphMap;
+  iconColor: string;
+  backgroundColor: string;
+}
+
+const OFFERS_DATA: NotificationItem[] = [
+  {
+    id: '1',
+    title: '🎉 Mega Sale Alert!',
+    description: 'Get up to 50% OFF on all Kids Fashion. Limited time offer!',
+    time: '2 hours ago',
+    isRead: false,
+    icon: 'tag',
+    iconColor: '#F97316',
+    backgroundColor: '#FFF7ED',
+  },
+  {
+    id: '2',
+    title: '💝 Special Discount for You',
+    description: 'Use code KIDS20 to get extra 20% off on your next purchase',
+    time: '5 hours ago',
+    isRead: false,
+    icon: 'gift',
+    iconColor: '#EC4899',
+    backgroundColor: '#FDF2F8',
+  },
+  {
+    id: '3',
+    title: '🚀 New Arrivals',
+    description: 'Check out our latest collection of Winter Wear for kids',
+    time: '1 day ago',
+    isRead: true,
+    icon: 'star',
+    iconColor: '#8B5CF6',
+    backgroundColor: '#F5F3FF',
+  },
+];
+
+const ORDERS_DATA: NotificationItem[] = [
+  {
+    id: '1',
+    title: '📦 Order Delivered',
+    description: 'Your order #12345 has been delivered successfully',
+    time: '3 hours ago',
+    isRead: false,
+    icon: 'check-circle',
+    iconColor: '#10B981',
+    backgroundColor: '#ECFDF5',
+  },
+  {
+    id: '2',
+    title: '🚚 Out for Delivery',
+    description: 'Your order #12344 is out for delivery and will reach you soon',
+    time: '1 day ago',
+    isRead: false,
+    icon: 'truck',
+    iconColor: '#3B82F6',
+    backgroundColor: '#EFF6FF',
+  },
+  {
+    id: '3',
+    title: '✅ Order Confirmed',
+    description: 'Your order #12343 has been confirmed and will be shipped soon',
+    time: '2 days ago',
+    isRead: true,
+    icon: 'package',
+    iconColor: '#F59E0B',
+    backgroundColor: '#FFFBEB',
+  },
+];
 
 const Sparkle = ({ style }: { style: any }) => {
   const opacityRef = useRef(new Animated.Value(0.6)).current;
@@ -35,18 +113,71 @@ const Sparkle = ({ style }: { style: any }) => {
   );
 };
 
-export default function NotificationsScreen() {
+const NotificationCard = ({ item, onPress }: { item: NotificationItem; onPress: () => void }) => {
+  return (
+    <Pressable 
+      style={[styles.notificationCard, !item.isRead && styles.unreadCard]} 
+      onPress={onPress}
+    >
+      <View style={[styles.iconWrapper, { backgroundColor: item.backgroundColor }]}>
+        <Feather name={item.icon} size={24} color={item.iconColor} />
+      </View>
+      <View style={styles.contentWrapper}>
+        <View style={styles.headerRow}>
+          <ThemedText style={styles.cardTitle} numberOfLines={1}>
+            {item.title}
+          </ThemedText>
+          {!item.isRead && <View style={styles.unreadDot} />}
+        </View>
+        <ThemedText style={styles.cardDescription} numberOfLines={2}>
+          {item.description}
+        </ThemedText>
+        <ThemedText style={styles.cardTime}>{item.time}</ThemedText>
+      </View>
+    </Pressable>
+  );
+};
+
+const EmptyState = ({ onContinueShopping }: { onContinueShopping: () => void }) => {
+  return (
+    <View style={styles.emptyContainer}>
+      <View style={styles.iconWrapperEmpty}>
+        <Sparkle style={styles.sparkleTopLeft} />
+        <Sparkle style={styles.sparkleTopRight} />
+        <Sparkle style={styles.sparkleBottomLeft} />
+        <Sparkle style={styles.sparkleBottomRight} />
+        <View style={styles.iconBg}>
+          <Feather name="bell" size={72} color="#9CA3AF" strokeWidth={1} />
+        </View>
+      </View>
+      <ThemedText style={styles.emptyTitle}>No new Notifications</ThemedText>
+      <Pressable style={styles.continueButton} onPress={onContinueShopping}>
+        <ThemedText style={styles.continueButtonText}>Continue Shopping</ThemedText>
+      </Pressable>
+    </View>
+  );
+};
+
+const NotificationsScreen = () => {
   const navigation = useNavigation();
   const [activeTab, setActiveTab] = useState<TabType>('offers');
 
   const handleContinueShopping = () => {
     const parentNav = navigation.getParent();
     if (parentNav) {
-      (parentNav as any).navigate('HomeTab');
+      (parentNav as any).navigate('Home');
     } else {
       (navigation as any).navigate('Home');
     }
   };
+
+  const handleNotificationPress = (item: NotificationItem) => {
+    console.log('Notification clicked:', item.id);
+    // You can add navigation logic here based on notification type
+  };
+
+  const currentData = activeTab === 'offers' ? OFFERS_DATA : ORDERS_DATA;
+  const hasNotifications = currentData.length > 0;
 
   return (
     <View style={styles.container}>
@@ -86,33 +217,28 @@ export default function NotificationsScreen() {
         colors={['#FFF0F3', '#FFFFFF']}
         style={styles.contentArea}
       >
-        <View style={styles.emptyContainer}>
-          {/* Bell Icon with Sparkles */}
-          <View style={styles.iconWrapper}>
-            {/* Sparkles at corners */}
-            <Sparkle style={styles.sparkleTopLeft} />
-            <Sparkle style={styles.sparkleTopRight} />
-            <Sparkle style={styles.sparkleBottomLeft} />
-            <Sparkle style={styles.sparkleBottomRight} />
-
-            {/* Bell Icon Container */}
-            <View style={styles.iconBg}>
-              <Feather name="bell" size={72} color="#9CA3AF" strokeWidth={1} />
-            </View>
-          </View>
-
-          {/* No Notifications Text */}
-          <ThemedText style={styles.emptyTitle}>No new Notifications</ThemedText>
-
-          {/* Continue Shopping Button */}
-          <Pressable style={styles.continueButton} onPress={handleContinueShopping}>
-            <ThemedText style={styles.continueButtonText}>Continue Shopping</ThemedText>
-          </Pressable>
-        </View>
+        {hasNotifications ? (
+          <ScrollView 
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+          >
+            {currentData.map((item) => (
+              <NotificationCard 
+                key={item.id} 
+                item={item}
+                onPress={() => handleNotificationPress(item)}
+              />
+            ))}
+          </ScrollView>
+        ) : (
+          <EmptyState onContinueShopping={handleContinueShopping} />
+        )}
       </LinearGradient>
     </View>
   );
-}
+};
+
+export default NotificationsScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -148,6 +274,68 @@ const styles = StyleSheet.create({
   contentArea: {
     flex: 1,
   },
+  scrollContent: {
+    padding: Spacing.md,
+    paddingBottom: 100,
+  },
+  notificationCard: {
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
+    borderRadius: BorderRadius.md,
+    padding: Spacing.md,
+    marginBottom: Spacing.md,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#F3F4F6',
+  },
+  unreadCard: {
+    backgroundColor: '#FFFBEB',
+    borderColor: '#FEF3C7',
+  },
+  iconWrapper: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: Spacing.md,
+  },
+  contentWrapper: {
+    flex: 1,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 4,
+  },
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1F2937',
+    flex: 1,
+  },
+  unreadDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#F97316',
+    marginLeft: 8,
+  },
+  cardDescription: {
+    fontSize: 14,
+    color: '#6B7280',
+    marginBottom: 8,
+    lineHeight: 20,
+  },
+  cardTime: {
+    fontSize: 12,
+    color: '#9CA3AF',
+  },
   emptyContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -155,7 +343,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.xl,
     paddingBottom: 80,
   },
-  iconWrapper: {
+  iconWrapperEmpty: {
     width: 220,
     height: 220,
     justifyContent: 'center',
