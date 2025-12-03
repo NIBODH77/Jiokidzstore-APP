@@ -87,49 +87,49 @@ export default function NotificationsScreen() {
         style={styles.contentArea}
       >
         {activeTab === 'offers' ? (
+          // OFFERS TAB CONTENT
           <View style={styles.emptyContainer}>
             {/* Bell Icon with Sparkles */}
             <View style={styles.iconWrapper}>
-              {/* Sparkles at corners */}
               <Sparkle style={styles.sparkleTopLeft} />
               <Sparkle style={styles.sparkleTopRight} />
               <Sparkle style={styles.sparkleBottomLeft} />
               <Sparkle style={styles.sparkleBottomRight} />
 
-              {/* Bell Icon Container */}
               <View style={styles.iconBg}>
                 <Feather name="bell" size={72} color="#9CA3AF" strokeWidth={1} />
               </View>
             </View>
 
-            {/* No Offers Text */}
             <ThemedText style={styles.emptyTitle}>No new Offers</ThemedText>
+            <ThemedText style={styles.emptySubtitle}>
+              Check back later for exciting deals and offers!
+            </ThemedText>
 
-            {/* Continue Shopping Button */}
             <Pressable style={styles.continueButton} onPress={handleContinueShopping}>
               <ThemedText style={styles.continueButtonText}>Continue Shopping</ThemedText>
             </Pressable>
           </View>
         ) : (
+          // ORDERS TAB CONTENT
           <View style={styles.emptyContainer}>
-            {/* Bell Icon with Sparkles */}
+            {/* Package Icon with Sparkles */}
             <View style={styles.iconWrapper}>
-              {/* Sparkles at corners */}
               <Sparkle style={styles.sparkleTopLeft} />
               <Sparkle style={styles.sparkleTopRight} />
               <Sparkle style={styles.sparkleBottomLeft} />
               <Sparkle style={styles.sparkleBottomRight} />
 
-              {/* Bell Icon Container */}
-              <View style={styles.iconBg}>
-                <Feather name="bell" size={72} color="#9CA3AF" strokeWidth={1} />
+              <View style={[styles.iconBg, { backgroundColor: '#FFF0E6' }]}>
+                <Feather name="package" size={72} color="#9CA3AF" strokeWidth={1} />
               </View>
             </View>
 
-            {/* No Orders Text */}
-            <ThemedText style={styles.emptyTitle}>No new Orders</ThemedText>
+            <ThemedText style={styles.emptyTitle}>No Order Updates</ThemedText>
+            <ThemedText style={styles.emptySubtitle}>
+              Your order notifications will appear here
+            </ThemedText>
 
-            {/* Continue Shopping Button */}
             <Pressable style={styles.continueButton} onPress={handleContinueShopping}>
               <ThemedText style={styles.continueButtonText}>Continue Shopping</ThemedText>
             </Pressable>
@@ -228,8 +228,16 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '500',
     color: '#374151',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  emptySubtitle: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: '#6B7280',
     marginBottom: 32,
     textAlign: 'center',
+    paddingHorizontal: 40,
   },
   continueButton: {
     backgroundColor: '#F97316',
