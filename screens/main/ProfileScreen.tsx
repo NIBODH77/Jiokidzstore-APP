@@ -84,9 +84,14 @@ export default function ProfileScreen() {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const [showClubCashPage, setShowClubCashPage] = useState(false); // State to control Club Cash page visibility
+  const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null); // State to control FAQ expansion
 
   const toggleMenu = (menuTitle: string) => {
     setExpandedMenu(expandedMenu === menuTitle ? null : menuTitle);
+  };
+
+  const toggleFAQ = (index: number) => {
+    setExpandedFAQ(expandedFAQ === index ? null : index);
   };
 
   const ProfileContent = () => (
@@ -377,6 +382,65 @@ export default function ProfileScreen() {
                   <Text style={styles.stepIcon}>{step.icon}</Text>
                 </View>
                 <Text style={styles.stepText}>{step.text}</Text>
+              </View>
+            ))}
+          </View>
+
+          {/* FAQ Section */}
+          <View style={styles.faqSection}>
+            <Text style={styles.sectionTitleClub}>Frequently asked questions</Text>
+            {[
+              {
+                question: 'What is the Club Cash Program on products?',
+                answer: 'The Club Cash Program allows Club members to earn cashback on eligible products which can be used for future purchases on JioKids.',
+              },
+              {
+                question: 'How do I earn Club Cash on products?',
+                answer: 'Go to Firstcry.com, become a Club member, and search for your favourite products. You will see the Club Cash available against the eligible products. On purchasing the product, the club cash for the product will be automatically added to your account within 48 hours of being successfully delivered to you. If you are purchasing at a FirstCry store, the store receipt will explicitly mention the Club Cash earned by you for that purchase. Club Cash is credited to your account within 24 hours of purchase. Note that in case of purchases at the FirstCry store, Club Cash earned by you is recorded against your mobile number if you are a club member. Please ensure you share the correct mobile number which has an active club membership at the time of purchase.',
+              },
+              {
+                question: 'How is my Club Cash Calculated on products?',
+                answer: 'Club Cash is calculated based on the value of eligible products purchased and your membership plan. Higher tier plans offer better Club Cash rates.',
+              },
+              {
+                question: 'How do I redeem my Club Cash?',
+                answer: 'You can redeem your Club Cash during checkout. A minimum balance of ₹100 is required to use Club Cash for payment.',
+              },
+              {
+                question: 'What happens if I return/cancel my order?',
+                answer: 'If you return or cancel your order, the Club Cash earned on that order will be deducted from your account.',
+              },
+              {
+                question: "Will my Club Cash expire if I don't use it?",
+                answer: 'Club Cash has a validity period. Please check your account for specific expiry dates.',
+              },
+              {
+                question: 'Can I redeem Club cash earned on the FirstCry website at the FirstCry Stores and vice-versa?',
+                answer: 'Yes, you can redeem Club Cash earned on the website at FirstCry stores and vice-versa.',
+              },
+              {
+                question: 'Can I Earn club cash if I am not a club member?',
+                answer: 'No, Club Cash benefits are exclusive to Club members only. Join Club to start earning.',
+              },
+            ].map((faq, index) => (
+              <View key={index} style={styles.faqItem}>
+                <TouchableOpacity
+                  style={styles.faqQuestion}
+                  onPress={() => toggleFAQ(index)}
+                  activeOpacity={0.7}
+                >
+                  <Text style={styles.faqQuestionText}>{faq.question}</Text>
+                  <Ionicons 
+                    name={expandedFAQ === index ? 'chevron-up' : 'chevron-down'} 
+                    size={24} 
+                    color="#666" 
+                  />
+                </TouchableOpacity>
+                {expandedFAQ === index && (
+                  <View style={styles.faqAnswer}>
+                    <Text style={styles.faqAnswerText}>{faq.answer}</Text>
+                  </View>
+                )}
               </View>
             ))}
           </View>
@@ -1036,5 +1100,43 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#555',
     lineHeight: 20,
+  },
+  faqSection: {
+    backgroundColor: '#fff',
+    margin: 16,
+    marginTop: 0,
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  faqItem: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
+    marginBottom: 8,
+  },
+  faqQuestion: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 16,
+    paddingRight: 8,
+  },
+  faqQuestionText: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#333',
+    lineHeight: 22,
+    paddingRight: 12,
+  },
+  faqAnswer: {
+    paddingBottom: 16,
+    paddingRight: 8,
+  },
+  faqAnswerText: {
+    fontSize: 14,
+    color: '#666',
+    lineHeight: 22,
   },
 });
