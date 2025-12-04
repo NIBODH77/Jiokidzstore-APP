@@ -82,6 +82,7 @@ export default function ProfileScreen() {
   const [activeTab, setActiveTab] = useState<'profile' | 'menu'>('profile');
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
+  const [showClubCashPage, setShowClubCashPage] = useState(false); // State to control Club Cash page visibility
 
   const toggleMenu = (menuTitle: string) => {
     setExpandedMenu(expandedMenu === menuTitle ? null : menuTitle);
@@ -242,18 +243,24 @@ export default function ProfileScreen() {
 
             {/* Sub Menus */}
             {item.hasExpand && expandedMenu === item.title && item.subMenus && (
-              <View style={styles.subMenuContainer}>
-                {item.subMenus.map((subMenu, subIndex) => (
-                  <TouchableOpacity 
-                    key={subIndex} 
-                    style={styles.subMenuItem}
-                    activeOpacity={0.7}
-                  >
-                    <Text style={styles.subMenuText}>{subMenu}</Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            )}
+                  <View style={styles.subMenuContainer}>
+                    {item.subMenus.map((subMenu, subIndex) => (
+                      <TouchableOpacity 
+                        key={subIndex} 
+                        style={styles.subMenuItem}
+                        activeOpacity={0.7}
+                        onPress={() => {
+                          if (subMenu === 'Club Cash') {
+                            setShowClubCashPage(true);
+                            setShowAccountMenu(false);
+                          }
+                        }}
+                      >
+                        <Text style={styles.subMenuText}>{subMenu}</Text>
+                      </TouchableOpacity>
+                    ))}
+                  </View>
+                )}
           </View>
         ))}
 
@@ -266,6 +273,17 @@ export default function ProfileScreen() {
       </ScrollView>
     </View>
   );
+
+  // Render Club Cash Page if showClubCashPage is true
+  if (showClubCashPage) {
+    // Replace this with your actual Club Cash page component
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Club Cash Page</Text>
+        <Button title="Go Back" onPress={() => setShowClubCashPage(false)} />
+      </View>
+    );
+  }
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
