@@ -277,11 +277,112 @@ export default function ProfileScreen() {
 
   // Render Club Cash Page if showClubCashPage is true
   if (showClubCashPage) {
-    // Replace this with your actual Club Cash page component
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Club Cash Page</Text>
-        <Button title="Go Back" onPress={() => setShowClubCashPage(false)} />
+      <View style={[styles.overlay, { paddingTop: insets.top }]}>
+        {/* Header */}
+        <View style={styles.overlayHeader}>
+          <TouchableOpacity onPress={() => setShowClubCashPage(false)} style={styles.backBtn}>
+            <Ionicons name="arrow-back" size={28} color="#333" />
+          </TouchableOpacity>
+          <Text style={styles.overlayTitle}>Club Cash</Text>
+          <View style={{ width: 40 }} />
+        </View>
+
+        <ScrollView style={styles.clubCashScrollView} showsVerticalScrollIndicator={false}>
+          {/* Current Balance Card */}
+          <View style={styles.balanceCard}>
+            <Text style={styles.balanceLabel}>Current Balance</Text>
+            <Text style={styles.balanceAmount}>₹ 0</Text>
+            <TouchableOpacity style={styles.shopNowButton}>
+              <Text style={styles.shopNowButtonText}>SHOP NOW</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Join Club Section */}
+          <View style={styles.joinClubSection}>
+            <View style={styles.joinClubHeader}>
+              <View style={styles.clubIconSmall} />
+              <Text style={styles.joinClubHeaderText}>
+                Join Club & Earn Club Cash Benefit On Products
+              </Text>
+            </View>
+
+            {/* Plans */}
+            <View style={styles.plansRow}>
+              {/* 3 Months Plan */}
+              <View style={styles.planCard}>
+                <Text style={styles.planTitle}>3 Months</Text>
+                <Text style={styles.planPrice}>₹ 267.33</Text>
+                <Text style={styles.planOldPrice}>₹ 399</Text>
+                <Text style={styles.planDiscount}>33% OFF</Text>
+                <TouchableOpacity style={styles.addNowButton}>
+                  <Text style={styles.addNowButtonText}>ADD NOW</Text>
+                </TouchableOpacity>
+              </View>
+
+              {/* 12 Months Plan */}
+              <View style={styles.planCard}>
+                <Text style={styles.planTitle}>12 Months</Text>
+                <Text style={styles.planPrice}>₹ 941.97</Text>
+                <Text style={styles.planOldPrice}>₹ 1599</Text>
+                <Text style={styles.planDiscount}>41.09% OFF</Text>
+                <TouchableOpacity style={styles.addNowButton}>
+                  <Text style={styles.addNowButtonText}>ADD NOW</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+
+          {/* How To Earn Club Cash */}
+          <View style={styles.howToEarnSection}>
+            <Text style={styles.sectionTitleClub}>How To Earn Club Cash?</Text>
+            <View style={styles.earnDescription}>
+              <View style={styles.earnIconCircle}>
+                <Text style={styles.earnIconText}>C</Text>
+              </View>
+              <Text style={styles.earnDescriptionText}>
+                Join Club membership & earn club cash on purchase of eligible products.
+              </Text>
+            </View>
+
+            <View style={styles.planDetailsCard}>
+              <Text style={styles.planDetailsTitle}>▶ 3 Months Plan & 6 Months Plan:</Text>
+              <Text style={styles.planDetailsText}>
+                Customers receive Club Cash as per the Club cash allocation logic of Firstcry.com
+              </Text>
+            </View>
+
+            <View style={styles.planDetailsCard}>
+              <Text style={styles.planDetailsTitle}>▶ 12 Months Plan:</Text>
+              <Text style={styles.planDetailsText}>
+                Customers receive 2 X of 3 Months Club Cash.
+              </Text>
+            </View>
+          </View>
+
+          {/* How shop & earn Works */}
+          <View style={styles.howShopWorksSection}>
+            <Text style={styles.sectionTitleClub}>How shop & earn Works?</Text>
+            {[
+              { icon: '📱', text: 'Join Club' },
+              { icon: '❤️', text: 'Select your favourite products on JioKids.' },
+              { icon: '💰', text: 'Club Cash to be earned is mentioned against each eligible product' },
+              { icon: '🎯', text: 'Earn Club Cash on your purchase' },
+              { icon: '📦', text: 'Once product is successfully delivered, earned Club Cash would show in your account' },
+              { icon: '💳', text: 'Accumulate a minimum of ₹ 100 Club Cash' },
+              { icon: '💸', text: 'Pay for your order with the Club Cash earned' },
+            ].map((step, index) => (
+              <View key={index} style={styles.stepContainer}>
+                <View style={styles.stepIconCircle}>
+                  <Text style={styles.stepIcon}>{step.icon}</Text>
+                </View>
+                <Text style={styles.stepText}>{step.text}</Text>
+              </View>
+            ))}
+          </View>
+
+          <View style={{ height: 40 }} />
+        </ScrollView>
       </View>
     );
   }
@@ -729,5 +830,211 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  clubCashScrollView: {
+    flex: 1,
+  },
+  balanceCard: {
+    backgroundColor: '#2196F3',
+    margin: 16,
+    borderRadius: 12,
+    padding: 24,
+    alignItems: 'center',
+  },
+  balanceLabel: {
+    color: '#fff',
+    fontSize: 16,
+    marginBottom: 8,
+  },
+  balanceAmount: {
+    color: '#fff',
+    fontSize: 40,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  shopNowButton: {
+    backgroundColor: '#fff',
+    paddingHorizontal: 32,
+    paddingVertical: 12,
+    borderRadius: 24,
+  },
+  shopNowButtonText: {
+    color: '#2196F3',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  joinClubSection: {
+    backgroundColor: '#fff',
+    margin: 16,
+    marginTop: 0,
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  joinClubHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  clubIconSmall: {
+    width: 32,
+    height: 32,
+    backgroundColor: '#2196F3',
+    borderRadius: 16,
+    marginRight: 12,
+  },
+  joinClubHeaderText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#333',
+    flex: 1,
+  },
+  plansRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  planCard: {
+    flex: 1,
+    backgroundColor: '#F9F9F9',
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  planTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 8,
+  },
+  planPrice: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FF6B00',
+    marginBottom: 4,
+  },
+  planOldPrice: {
+    fontSize: 14,
+    color: '#999',
+    textDecorationLine: 'line-through',
+    marginBottom: 4,
+  },
+  planDiscount: {
+    fontSize: 12,
+    color: '#22C55E',
+    fontWeight: 'bold',
+    marginBottom: 12,
+  },
+  addNowButton: {
+    backgroundColor: '#FF6B00',
+    paddingHorizontal: 24,
+    paddingVertical: 10,
+    borderRadius: 24,
+    width: '100%',
+    alignItems: 'center',
+  },
+  addNowButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  howToEarnSection: {
+    backgroundColor: '#fff',
+    margin: 16,
+    marginTop: 0,
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  sectionTitleClub: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 16,
+  },
+  earnDescription: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    backgroundColor: '#F0F8FF',
+    padding: 12,
+    borderRadius: 8,
+  },
+  earnIconCircle: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#2196F3',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  earnIconText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  earnDescriptionText: {
+    flex: 1,
+    fontSize: 14,
+    color: '#555',
+    lineHeight: 20,
+  },
+  planDetailsCard: {
+    backgroundColor: '#FFF9E6',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 12,
+    borderLeftWidth: 4,
+    borderLeftColor: '#FFC107',
+  },
+  planDetailsTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 4,
+  },
+  planDetailsText: {
+    fontSize: 13,
+    color: '#666',
+    lineHeight: 18,
+  },
+  howShopWorksSection: {
+    backgroundColor: '#fff',
+    margin: 16,
+    marginTop: 0,
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  stepContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
+  },
+  stepIconCircle: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#F0F8FF',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  stepIcon: {
+    fontSize: 20,
+  },
+  stepText: {
+    flex: 1,
+    fontSize: 14,
+    color: '#555',
+    lineHeight: 20,
   },
 });
