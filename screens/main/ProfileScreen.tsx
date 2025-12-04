@@ -41,7 +41,7 @@ const accountMenuItems = [
   { 
     title: 'Cash In My Account', 
     hasExpand: true,
-    subMenus: ['Cash Refund', 'Cash Coupons']
+    subMenus: ['Cash Refund', 'Cash Coupons', 'Club Cash']
   },
   { title: 'Cashback Codes', hasExpand: false },
   { title: 'My Refunds', hasExpand: false },
