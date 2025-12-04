@@ -15,6 +15,7 @@ import CategoryAggregatorScreen from "@/screens/CategoryAggregatorScreen"; // Im
 import AgeGroupDetailScreen from "@/screens/AgeGroupDetailScreen"; // Import age group detail screen
 import WishlistScreen from "@/screens/main/WishlistScreen";
 import NotificationsScreen from "@/screens/main/NotificationsScreen";
+import ProfileScreen from "@/screens/main/ProfileScreen";
 import { TopHeader } from "@/components/TopHeader";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
@@ -36,6 +37,7 @@ export type HomeStackParamList = {
   CategoryAggregator: undefined;
   Wishlist: undefined;
   Notifications: undefined;
+  Profile: undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -195,6 +197,16 @@ export default function HomeStackNavigator() {
         options={{ 
           headerShown: true,
           header: (props) => <TopHeader {...props} showBackButton={true} hideNotificationIcon={true} />
+        }}
+      />
+
+      {/* PROFILE */}
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ 
+          headerShown: true,
+          header: (props) => <TopHeader {...props} showBackButton={true} hideProfileIcon={true} />
         }}
       />
     </Stack.Navigator>

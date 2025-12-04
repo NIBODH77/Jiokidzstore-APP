@@ -145,7 +145,7 @@ export default function HomeScreen() {
           onNotificationPress={() => navigation.navigate('Notifications')}
           onCartPress={() => navigation.navigate('Cart')}
           onWishlistPress={() => navigation.navigate('Wishlist')}
-          onProfilePress={() => console.log('Profile')}
+          onProfilePress={() => navigation.navigate('Profile')}
           notificationCount={3}
           cartCount={2}
         />
