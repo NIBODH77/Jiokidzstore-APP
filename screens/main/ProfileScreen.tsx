@@ -14,6 +14,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Spacing } from '@/constants/theme';
+import CashRefundPage from '@/screens/product/CashRefundPage';
+import CashCouponsPage from '@/screens/product/CashCouponsPage';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -84,6 +86,8 @@ export default function ProfileScreen() {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const [showClubCashPage, setShowClubCashPage] = useState(false); // State to control Club Cash page visibility
+  const [showCashRefundPage, setShowCashRefundPage] = useState(false); // State to control Cash Refund page visibility
+  const [showCashCouponsPage, setShowCashCouponsPage] = useState(false); // State to control Cash Coupons page visibility
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null); // State to control FAQ expansion
 
   const toggleMenu = (menuTitle: string) => {
@@ -259,6 +263,12 @@ export default function ProfileScreen() {
                           if (subMenu === 'Club Cash') {
                             setShowClubCashPage(true);
                             setShowAccountMenu(false);
+                          } else if (subMenu === 'Cash Refund') {
+                            setShowCashRefundPage(true);
+                            setShowAccountMenu(false);
+                          } else if (subMenu === 'Cash Coupons') {
+                            setShowCashCouponsPage(true);
+                            setShowAccountMenu(false);
                           }
                         }}
                       >
@@ -279,6 +289,24 @@ export default function ProfileScreen() {
       </ScrollView>
     </View>
   );
+
+  // Render Cash Refund Page if showCashRefundPage is true
+  if (showCashRefundPage) {
+    return (
+      <View style={[styles.overlay, { paddingTop: insets.top }]}>
+        <CashRefundPage onBack={() => setShowCashRefundPage(false)} />
+      </View>
+    );
+  }
+
+  // Render Cash Coupons Page if showCashCouponsPage is true
+  if (showCashCouponsPage) {
+    return (
+      <View style={[styles.overlay, { paddingTop: insets.top }]}>
+        <CashCouponsPage onBack={() => setShowCashCouponsPage(false)} />
+      </View>
+    );
+  }
 
   // Render Club Cash Page if showClubCashPage is true
   if (showClubCashPage) {
