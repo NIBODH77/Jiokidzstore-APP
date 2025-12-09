@@ -1,0 +1,165 @@
+import React from 'react';
+
+const CashRefundPage = () => {
+  return (
+    <div style={styles.container}>
+      {/* Header */}
+      <div style={styles.header}>
+        <button onClick={() => window.history.back()} style={styles.backButton}>
+          ←
+        </button>
+        <h1 style={styles.headerTitle}>CASH REFUND</h1>
+        <div style={styles.headerSpacer} />
+      </div>
+
+      {/* Content */}
+      <div style={styles.content}>
+        {/* Balance Card */}
+        <div style={styles.yellowCard}>
+          <p style={styles.balanceText}>You have ₹ 0.00 Cash Refund</p>
+          <button style={styles.shopNowButton}>
+            <span style={styles.shopNowText}>Shop Now</span>
+          </button>
+        </div>
+
+        {/* Balance Amount Card */}
+        <div style={styles.greyCard}>
+          <p style={styles.balanceAmountText}>Balance Amount: ₹ 0.00</p>
+        </div>
+
+        {/* Refund Button */}
+        <button style={styles.refundButton} disabled>
+          <span style={styles.refundButtonText}>REFUND AMOUNT BACK TO ME</span>
+        </button>
+
+        {/* Info Message */}
+        <div style={styles.infoCard}>
+          <p style={styles.infoText}>
+            You have insufficient balance to initiate cash refund.{' '}
+            <span style={styles.refundPolicyLink}>Refund Policy</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const styles = {
+  container: {
+    minHeight: '100vh',
+    backgroundColor: '#FFFFFF',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '16px',
+    borderBottom: '1px solid #E0E0E0',
+    backgroundColor: '#FFFFFF',
+    position: 'sticky',
+    top: 0,
+    zIndex: 10,
+  },
+  backButton: {
+    fontSize: '28px',
+    color: '#666',
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    padding: '8px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerTitle: {
+    fontSize: '18px',
+    fontWeight: '600',
+    color: '#333',
+    margin: 0,
+    textTransform: 'uppercase',
+  },
+  headerSpacer: {
+    width: '44px',
+  },
+  content: {
+    padding: '16px',
+    maxWidth: '600px',
+    margin: '0 auto',
+  },
+  yellowCard: {
+    backgroundColor: '#FFFBF0',
+    borderRadius: '8px',
+    padding: '20px',
+    marginBottom: '16px',
+    border: '1px solid #FFE4A3',
+  },
+  balanceText: {
+    fontSize: '16px',
+    color: '#333',
+    margin: '0 0 12px 0',
+    fontWeight: '400',
+  },
+  shopNowButton: {
+    background: 'none',
+    border: 'none',
+    padding: 0,
+    cursor: 'pointer',
+  },
+  shopNowText: {
+    color: '#2196F3',
+    fontSize: '16px',
+    fontWeight: '600',
+    textDecoration: 'none',
+  },
+  greyCard: {
+    backgroundColor: '#F5F5F5',
+    borderRadius: '8px',
+    padding: '20px',
+    marginBottom: '16px',
+    border: '1px solid #E8E8E8',
+  },
+  balanceAmountText: {
+    fontSize: '16px',
+    color: '#333',
+    margin: 0,
+    fontWeight: '500',
+  },
+  refundButton: {
+    backgroundColor: '#9E9E9E',
+    borderRadius: '8px',
+    padding: '16px',
+    width: '100%',
+    border: 'none',
+    marginBottom: '16px',
+    cursor: 'not-allowed',
+    opacity: 0.7,
+  },
+  refundButtonText: {
+    color: '#FFFFFF',
+    fontSize: '15px',
+    fontWeight: '700',
+    letterSpacing: '0.5px',
+  },
+  infoCard: {
+    backgroundColor: '#F0F0F0',
+    borderRadius: '8px',
+    padding: '16px',
+    border: '1px solid #E0E0E0',
+  },
+  infoText: {
+    fontSize: '14px',
+    color: '#666',
+    lineHeight: '20px',
+    margin: 0,
+  },
+  refundPolicyLink: {
+    color: '#2196F3',
+    textDecoration: 'underline',
+    cursor: 'pointer',
+    fontWeight: '500',
+  },
+};
+
+export default CashRefundPage;

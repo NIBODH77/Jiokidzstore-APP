@@ -1,0 +1,236 @@
+import React, { useState } from 'react';
+
+const CashCouponsPage = () => {
+  const [expandedCoupon, setExpandedCoupon] = useState(null);
+
+  const coupons = [
+    {
+      id: 1,
+      code: 'FCRY1900BGEAR',
+      description: 'Flat ₹ 1900 OFF* on Baby Gear orders worth ₹ 4999 & above',
+      validTill: '15-Dec-2025 (5 Days left)',
+      amount: '1900',
+      terms: [
+        'Limited Period Offer.',
+        'User will get flat ₹ 1900 OFF on Baby Gear orders worth ₹ 4999 & above.',
+        'Coupon code is valid on Baby Gear Range except on brands Fisher Price by Tiffany, Jane, Joie, Masilo, Melissa & Doug, Shumee, Vaux, Baybee. For more T & C\'s, Click Here.',
+        'Coupon is not applicable with any other coupon.',
+        'Coupon is applicable only on the MRP of products.',
+        'Prices inclusive of all taxes. Please refer Terms of Use for full details.',
+        'Coupon code can\'t be used for purchase of FirstCry Club Membership.',
+      ],
+    },
+    {
+      id: 2,
+      code: 'FCRY300DP',
+      description: 'Flat ₹ 300 OFF on Diapers orders worth ₹ 1099 & above',
+      validTill: '15-Dec-2025 (5 Days left)',
+      amount: '300',
+      terms: [
+        'Limited Period Offer.',
+        'User will get flat ₹ 300 OFF on Diapers orders worth ₹ 1099 & above.',
+        'Coupon code is valid on Diapers Range.',
+        'Coupon is not applicable with any other coupon.',
+        'Coupon is applicable only on the MRP of products.',
+      ],
+    },
+  ];
+
+  const toggleCoupon = (couponId) => {
+    setExpandedCoupon(expandedCoupon === couponId ? null : couponId);
+  };
+
+  return (
+    <div style={styles.container}>
+      {/* Header */}
+      <div style={styles.header}>
+        <button onClick={() => window.history.back()} style={styles.backButton}>
+          ←
+        </button>
+        <h1 style={styles.headerTitle}>CASH COUPONS</h1>
+        <div style={styles.headerSpacer} />
+      </div>
+
+      {/* Content */}
+      <div style={styles.content}>
+        {/* Total Coupons Card */}
+        <div style={styles.totalCard}>
+          <p style={styles.totalText}>You have ₹ 4500 worth of Cash Coupons.</p>
+        </div>
+
+        {/* Coupon Cards */}
+        {coupons.map((coupon) => (
+          <div key={coupon.id} style={styles.couponCard}>
+            {/* Coupon Details */}
+            <div style={styles.couponRow}>
+              <span style={styles.label}>Coupon Code</span>
+              <span style={styles.value}>: {coupon.code}</span>
+            </div>
+            <div style={styles.couponRow}>
+              <span style={styles.label}>Description</span>
+              <span style={styles.value}>: {coupon.description}</span>
+            </div>
+            <div style={styles.couponRow}>
+              <span style={styles.label}>Valid Till</span>
+              <span style={styles.value}>: {coupon.validTill}</span>
+            </div>
+            <div style={styles.couponRow}>
+              <span style={styles.label}>Amount (₹)</span>
+              <span style={styles.value}>: {coupon.amount}</span>
+            </div>
+
+            {/* View/Close Details Button */}
+            <button
+              style={styles.detailsButton}
+              onClick={() => toggleCoupon(coupon.id)}
+            >
+              <span style={styles.detailsButtonText}>
+                {expandedCoupon === coupon.id ? 'Close Details' : 'View Details'}
+              </span>
+            </button>
+
+            {/* Terms of Use - Expanded */}
+            {expandedCoupon === coupon.id && (
+              <div style={styles.termsSection}>
+                <p style={styles.termsTitle}>Terms of Use : {coupon.code}</p>
+                <div style={styles.termsList}>
+                  {coupon.terms.map((term, index) => (
+                    <p key={index} style={styles.termItem}>
+                      {index + 1}. {term}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const styles = {
+  container: {
+    minHeight: '100vh',
+    backgroundColor: '#FFFFFF',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '16px',
+    borderBottom: '1px solid #E0E0E0',
+    backgroundColor: '#FFFFFF',
+    position: 'sticky',
+    top: 0,
+    zIndex: 10,
+  },
+  backButton: {
+    fontSize: '28px',
+    color: '#666',
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    padding: '8px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerTitle: {
+    fontSize: '18px',
+    fontWeight: '600',
+    color: '#333',
+    margin: 0,
+    textTransform: 'uppercase',
+  },
+  headerSpacer: {
+    width: '44px',
+  },
+  content: {
+    padding: '16px',
+    maxWidth: '600px',
+    margin: '0 auto',
+  },
+  totalCard: {
+    backgroundColor: '#FFFBF0',
+    borderRadius: '8px',
+    padding: '16px',
+    marginBottom: '20px',
+    border: '1px solid #FFE4A3',
+  },
+  totalText: {
+    fontSize: '16px',
+    color: '#333',
+    margin: 0,
+    fontWeight: '500',
+  },
+  couponCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: '8px',
+    padding: '16px',
+    marginBottom: '16px',
+    border: '1px solid #E0E0E0',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.08)',
+  },
+  couponRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: '12px',
+    alignItems: 'flex-start',
+  },
+  label: {
+    fontSize: '14px',
+    color: '#666',
+    width: '110px',
+    flexShrink: 0,
+    fontWeight: '500',
+  },
+  value: {
+    fontSize: '14px',
+    color: '#333',
+    flex: 1,
+    lineHeight: '20px',
+  },
+  detailsButton: {
+    backgroundColor: '#FFFBF0',
+    borderRadius: '6px',
+    padding: '12px',
+    width: '100%',
+    border: '1px solid #FFE4A3',
+    cursor: 'pointer',
+    marginTop: '8px',
+    transition: 'all 0.2s ease',
+  },
+  detailsButtonText: {
+    color: '#333',
+    fontSize: '14px',
+    fontWeight: '600',
+  },
+  termsSection: {
+    backgroundColor: '#F9F9F9',
+    borderRadius: '8px',
+    padding: '16px',
+    marginTop: '16px',
+    border: '1px solid #E8E8E8',
+  },
+  termsTitle: {
+    fontSize: '14px',
+    fontWeight: '700',
+    color: '#333',
+    marginBottom: '12px',
+    marginTop: 0,
+  },
+  termsList: {
+    margin: 0,
+  },
+  termItem: {
+    fontSize: '13px',
+    color: '#666',
+    lineHeight: '22px',
+    margin: '0 0 8px 0',
+  },
+};
+
+export default CashCouponsPage;
