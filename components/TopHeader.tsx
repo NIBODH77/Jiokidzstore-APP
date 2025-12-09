@@ -38,6 +38,11 @@ export function TopHeader({
     ? [styles.container, { paddingTop: insets.top }]
     : [styles.container, { paddingTop: insets.top }, nativeProps.options?.headerStyle];
 
+  const handleBack = () => {
+    // Always go back in the navigation stack
+    navigation.goBack();
+  };
+
   return (
     <View style={[headerStyle, styles.fixedContainer]}>
       <View style={styles.content}>
@@ -45,7 +50,7 @@ export function TopHeader({
         <View style={styles.leftSection}>
           {showBackButton && (
             <Pressable 
-              onPress={() => navigation.goBack()}
+              onPress={handleBack}
               style={styles.backButton}
               hitSlop={10}
             >
@@ -107,7 +112,7 @@ export function TopHeader({
                 <Feather name="user" size={24} color="#1F2937" strokeWidth={1} />
               </Pressable>
             )}
-            
+
             {!hideCartIcon && (
               <Pressable 
                 style={styles.cartButton} 

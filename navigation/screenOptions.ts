@@ -19,6 +19,7 @@ export const getCommonScreenOptions = ({
   headerShown: true,
   gestureEnabled: true,
   gestureDirection: "horizontal",
+  animation: "slide_from_right",
   fullScreenGestureEnabled: isLiquidGlassAvailable() ? false : true,
   contentStyle: {
     backgroundColor: theme.backgroundRoot,

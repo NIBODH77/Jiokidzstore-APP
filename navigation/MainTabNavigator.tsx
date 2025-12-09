@@ -27,21 +27,24 @@ export default function MainTabNavigator() {
       initialRouteName="ShoppingTab"
       screenOptions={({ route }) => {
         const routeName = getFocusedRouteNameFromRoute(route) ?? route.name;
-        // Hide tab bar if we're on a nested screen (not the root screen of each tab)
-        const isRootScreen = routeName === route.name;
+        
+        // Define screens where tab bar should be visible (root screens)
+        const tabBarVisibleScreens = ['Home', 'Explore', 'Parenting'];
+        const shouldShowTabBar = tabBarVisibleScreens.includes(routeName);
         
         return {
           tabBarActiveTintColor: theme.tabIconSelected,
           tabBarInactiveTintColor: theme.tabIconDefault,
-          tabBarStyle: {
+          tabBarStyle: shouldShowTabBar ? {
             position: "absolute",
-            display: isRootScreen ? "flex" : "none",
             backgroundColor: Platform.select({
               ios: "transparent",
               android: theme.backgroundRoot,
             }),
             borderTopWidth: 0,
             elevation: 0,
+          } : {
+            display: "none"
           },
           tabBarBackground: () =>
             Platform.OS === "ios" ? (
