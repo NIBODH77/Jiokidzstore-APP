@@ -7,23 +7,14 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { TopHeader } from '@/components/TopHeader';
 
-interface CashRefundPageProps {
-  onBack: () => void;
-}
+export default function CashRefundPage() {
+  const navigation = useNavigation();
 
-export default function CashRefundPage({ onBack }: CashRefundPageProps) {
   return (
     <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={onBack} style={styles.backBtn}>
-          <Ionicons name="arrow-back" size={28} color="#333" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>CASH REFUND</Text>
-        <View style={styles.headerSpacer} />
-      </View>
 
       {/* Content */}
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>

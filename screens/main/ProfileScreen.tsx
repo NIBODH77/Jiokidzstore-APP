@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { 
-  View, 
-  StyleSheet, 
-  ScrollView, 
-  Pressable, 
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  Pressable,
   Text,
   Image,
   Dimensions,
@@ -41,27 +41,27 @@ const menuItems: MenuItem[] = [
 ];
 
 const accountMenuItems = [
-  { 
-    title: 'Cash In My Account', 
+  {
+    title: 'Cash In My Account',
     hasExpand: true,
     subMenus: ['Cash Refund', 'Cash Coupons', 'Club Cash']
   },
   { title: 'Cashback Codes', hasExpand: false },
   { title: 'My Refunds', hasExpand: false },
-  { 
-    title: 'My Orders', 
+  {
+    title: 'My Orders',
     hasExpand: true,
     subMenus: ['Order History', 'Track Order']
   },
-  { 
-    title: 'My Profile', 
+  {
+    title: 'My Profile',
     hasExpand: true,
     subMenus: ['Contact Details', 'Personal Details', 'Child Details']
   },
   { title: 'Address Book', hasExpand: false },
   { title: 'My payment details', hasExpand: false },
-  { 
-    title: 'Intelli Education Subscription', 
+  {
+    title: 'Intelli Education Subscription',
     hasExpand: true,
     subMenus: ['Intelibaby Subscription', 'Intelikit Subscription']
   },
@@ -96,6 +96,14 @@ export default function ProfileScreen() {
 
   const toggleFAQ = (index: number) => {
     setExpandedFAQ(expandedFAQ === index ? null : index);
+  };
+
+  const handleCashRefundPress = () => {
+    navigation.navigate('CashRefund' as never);
+  };
+
+  const handleCashCouponsPress = () => {
+    navigation.navigate('CashCoupons' as never);
   };
 
   const ProfileContent = () => (
@@ -133,10 +141,10 @@ export default function ProfileScreen() {
           { icon: '👤', title: 'Account', action: () => setShowAccountMenu(true) },
           { icon: '📦', title: 'Order History', action: () => {} },
           { icon: '🚚', title: 'Track order', action: () => {} },
-          { icon: '💰', title: 'Cash Refund', action: () => {} },
+          { icon: '💰', title: 'Cash Refund', action: handleCashRefundPress },
         ].map((item, index) => (
-          <Pressable 
-            key={index} 
+          <Pressable
+            key={index}
             style={styles.shoppingCard}
             onPress={item.action}
           >
@@ -150,16 +158,16 @@ export default function ProfileScreen() {
 
       {/* Recently Viewed Products */}
       <Text style={styles.sectionTitle}>Your Recently Viewed Products</Text>
-      <ScrollView 
-        horizontal 
+      <ScrollView
+        horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.recentlyViewedScroll}
       >
         {recentProducts.map((product, index) => (
           <View key={index} style={styles.productCard}>
             <View style={styles.productImageContainer}>
-              <Image 
-                source={{ uri: product.img }} 
+              <Image
+                source={{ uri: product.img }}
                 style={styles.productImage}
                 resizeMode="cover"
               />
@@ -255,8 +263,8 @@ export default function ProfileScreen() {
             {item.hasExpand && expandedMenu === item.title && item.subMenus && (
                   <View style={styles.subMenuContainer}>
                     {item.subMenus.map((subMenu, subIndex) => (
-                      <TouchableOpacity 
-                        key={subIndex} 
+                      <TouchableOpacity
+                        key={subIndex}
                         style={styles.subMenuItem}
                         activeOpacity={0.7}
                         onPress={() => {
@@ -264,10 +272,10 @@ export default function ProfileScreen() {
                             setShowClubCashPage(true);
                             setShowAccountMenu(false);
                           } else if (subMenu === 'Cash Refund') {
-                            setShowCashRefundPage(true);
+                            handleCashRefundPress();
                             setShowAccountMenu(false);
                           } else if (subMenu === 'Cash Coupons') {
-                            setShowCashCouponsPage(true);
+                            handleCashCouponsPress();
                             setShowAccountMenu(false);
                           }
                         }}
@@ -458,10 +466,10 @@ export default function ProfileScreen() {
                   activeOpacity={0.7}
                 >
                   <Text style={styles.faqQuestionText}>{faq.question}</Text>
-                  <Ionicons 
-                    name={expandedFAQ === index ? 'chevron-up' : 'chevron-down'} 
-                    size={24} 
-                    color="#666" 
+                  <Ionicons
+                    name={expandedFAQ === index ? 'chevron-up' : 'chevron-down'}
+                    size={24}
+                    color="#666"
                   />
                 </TouchableOpacity>
                 {expandedFAQ === index && (
@@ -483,8 +491,8 @@ export default function ProfileScreen() {
     <View style={[styles.container, { paddingTop: insets.top }]}>
       {/* Header with Back Button */}
       <View style={styles.header}>
-        <TouchableOpacity 
-          onPress={() => navigation.goBack()} 
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
           style={styles.headerBackBtn}
         >
           <Ionicons name="arrow-back" size={24} color="#333" />
@@ -493,7 +501,7 @@ export default function ProfileScreen() {
         <View style={{ width: 40 }} />
       </View>
 
-      <ScrollView 
+      <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}

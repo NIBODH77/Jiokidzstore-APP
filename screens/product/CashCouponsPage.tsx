@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   View,
@@ -6,12 +5,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  TextInput,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-
-interface CashCouponsPageProps {
-  onBack: () => void;
-}
 
 interface Coupon {
   id: number;
@@ -22,7 +19,9 @@ interface Coupon {
   terms: string[];
 }
 
-export default function CashCouponsPage({ onBack }: CashCouponsPageProps) {
+export default function CashCouponsPage() {
+  const [couponCode, setCouponCode] = useState('');
+  const navigation = useNavigation();
   const [expandedCoupon, setExpandedCoupon] = useState<number | null>(null);
 
   const coupons: Coupon[] = [
@@ -62,11 +61,15 @@ export default function CashCouponsPage({ onBack }: CashCouponsPageProps) {
     setExpandedCoupon(expandedCoupon === couponId ? null : couponId);
   };
 
+  const handleBack = () => {
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={onBack} style={styles.backBtn}>
+        <TouchableOpacity onPress={handleBack} style={styles.backBtn}>
           <Ionicons name="arrow-back" size={28} color="#333" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>CASH COUPONS</Text>
