@@ -1,21 +1,26 @@
-
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import { Platform } from "react-native";
+import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
+import { isLiquidGlassAvailable } from "expo-glass-effect";
 
 interface ScreenOptionsParams {
-  theme: any;
+  theme: {
+    backgroundRoot: string;
+    text: string;
+  };
   isDark: boolean;
+  transparent?: boolean;
 }
 
-export function getCommonScreenOptions({
+export const getCommonScreenOptions = ({
   theme,
   isDark,
-}: ScreenOptionsParams): NativeStackNavigationOptions {
-  return {
-    headerShown: false,
-    gestureEnabled: true,
-    animation: 'slide_from_right',
-    contentStyle: {
-      backgroundColor: theme.backgroundRoot,
-    },
-  };
-}
+  transparent = true,
+}: ScreenOptionsParams): NativeStackNavigationOptions => ({
+  headerShown: true,
+  gestureEnabled: true,
+  gestureDirection: "horizontal",
+  fullScreenGestureEnabled: isLiquidGlassAvailable() ? false : true,
+  contentStyle: {
+    backgroundColor: theme.backgroundRoot,
+  },
+});

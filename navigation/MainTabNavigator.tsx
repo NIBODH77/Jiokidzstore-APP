@@ -27,22 +27,15 @@ export default function MainTabNavigator() {
       initialRouteName="ShoppingTab"
       screenOptions={({ route }) => {
         const routeName = getFocusedRouteNameFromRoute(route) ?? route.name;
-        
-        // List of screens where tab bar should be hidden
-        const hideTabBarScreens = [
-          'ProductDetail', 'Search', 'Reviews', 'Cart', 
-          'CheckoutAddress', 'AddEditAddress', 'CheckoutPayment',
-          'OrderSummary', 'OrderConfirmation', 'AgeGroupDetail',
-          'CategoryAggregator', 'Wishlist', 'Notifications', 'Profile'
-        ];
-        
-        const shouldHideTabBar = hideTabBarScreens.includes(routeName);
+        // Hide tab bar if we're on a nested screen (not the root screen of each tab)
+        const isRootScreen = routeName === route.name;
         
         return {
           tabBarActiveTintColor: theme.tabIconSelected,
           tabBarInactiveTintColor: theme.tabIconDefault,
-          tabBarStyle: shouldHideTabBar ? { display: "none" } : {
+          tabBarStyle: {
             position: "absolute",
+            display: isRootScreen ? "flex" : "none",
             backgroundColor: Platform.select({
               ios: "transparent",
               android: theme.backgroundRoot,

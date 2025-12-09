@@ -20,8 +20,6 @@ export default function ExploreStackNavigator() {
     <Stack.Navigator
       screenOptions={{
         ...getCommonScreenOptions({ theme, isDark }),
-        gestureEnabled: true,
-        animation: 'slide_from_right',
       }}
     >
       <Stack.Screen
