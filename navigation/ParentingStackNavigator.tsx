@@ -20,6 +20,8 @@ export default function ParentingStackNavigator() {
     <Stack.Navigator
       screenOptions={{
         ...getCommonScreenOptions({ theme, isDark }),
+        gestureEnabled: true,
+        animation: 'slide_from_right',
       }}
     >
       <Stack.Screen
