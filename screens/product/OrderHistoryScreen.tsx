@@ -224,7 +224,6 @@ export default function OrderHistoryScreen() {
             </TouchableOpacity>
           ))
         )}
-        <View style={{ height: 8 }} />
       </ScrollView>
     </View>
   );
@@ -234,6 +233,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F9FAFB',
+    paddingTop: 0,
   },
   filterContainer: {
     backgroundColor: '#FFFFFF',
@@ -241,6 +241,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#E5E7EB',
+    marginTop: 0,
   },
   filterButton: {
     paddingHorizontal: 20,

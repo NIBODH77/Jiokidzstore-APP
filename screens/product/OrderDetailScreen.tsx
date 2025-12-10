@@ -64,7 +64,6 @@ export default function OrderDetailScreen() {
       <ScrollView 
         style={styles.scrollView} 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 8 }}
       >
         {/* Order Status Card */}
         <View style={styles.statusCard}>
@@ -183,6 +182,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F9FAFB',
+    paddingTop: 0,
   },
   scrollView: {
     flex: 1,
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   statusCard: {
     backgroundColor: '#FFFFFF',
     marginHorizontal: 12,
-    marginTop: 8,
+    marginTop: 0,
     marginBottom: 8,
     borderRadius: 12,
     padding: 12,

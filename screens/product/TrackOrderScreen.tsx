@@ -85,7 +85,6 @@ export default function TrackOrderScreen() {
       <ScrollView 
         style={styles.scrollView} 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 8 }}
       >
         {/* Order Info Card */}
         <View style={styles.orderInfoCard}>
@@ -194,6 +193,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F9FAFB',
+    paddingTop: 0,
   },
   scrollView: {
     flex: 1,
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
   orderInfoCard: {
     backgroundColor: '#FFFFFF',
     marginHorizontal: 12,
-    marginTop: 8,
+    marginTop: 0,
     marginBottom: 8,
     borderRadius: 12,
     padding: 12,
