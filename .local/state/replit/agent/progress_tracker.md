@@ -82,6 +82,22 @@
   - Added navigation routes for ContactDetails, PersonalDetails, ChildDetails in HomeStackNavigator
   - Connected Profile submenu items to navigate to respective screens when clicked
   - Successfully bundled with Metro (1255 modules)
+- [x] Enhanced Personal Details and Child Details pages (2024-12-10):
+  - **Dynamic Role Selection in Personal Details**:
+    - MOM/DAD selected: Shows "I am expecting another child" checkbox + Due Date picker
+    - TRYING TO CONCEIVE selected: Shows "Are You" section with FEMALE/MALE checkboxes (no due date)
+    - EXPECTING selected: Shows "I am an.." section with EXPECTING MOTHER/FATHER checkboxes + Due Date
+    - Avatar changes based on role (illustrated face for MOM/DAD, default grey icon for others)
+  - **Saved Child Cards in Child Details**:
+    - After saving, child appears as a card with avatar (green shirt for boy), "Enrolled In FPL" pink text
+    - Card shows child name with edit/delete icons, Date of Birth (DD-Mon-YYYY format), Gender
+    - Edit button allows modifying existing child details
+    - Delete button shows confirmation alert before removing
+    - Below saved cards, form appears for adding new children
+  - **Functional Calendar Pickers**:
+    - All calendar icons now open proper date picker modal dialogs
+    - Date picker shows Day, Month, Year columns with scroll selection
+    - Orange confirm button saves selected date in DD-Mon-YYYY format
 
 ## Technical Notes
 - **Web Timer Fix**: react-native-reanimated's setTimeout doesn't work reliably on web. Used polling-based timer with Date.now() for web compatibility.

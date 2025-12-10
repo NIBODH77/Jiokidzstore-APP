@@ -3,6 +3,7 @@ modules = ["web", "nodejs-22"]
 
 [nix]
 channel = "stable-25_05"
+packages = ["openssh"]
 
 [[ports]]
 localPort = 5000
@@ -15,6 +16,10 @@ externalPort = 5000
 [[ports]]
 localPort = 33423
 externalPort = 3002
+
+[[ports]]
+localPort = 35211
+externalPort = 6800
 
 [[ports]]
 localPort = 36029
