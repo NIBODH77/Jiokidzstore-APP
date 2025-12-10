@@ -282,7 +282,7 @@ export default function HomeStackNavigator() {
         component={ContactDetailsScreen}
         options={{ 
           headerShown: true,
-          header: (props) => <TopHeader {...props} showBackButton={true} hideRightIcons={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -292,7 +292,7 @@ export default function HomeStackNavigator() {
         component={PersonalDetailsScreen}
         options={{ 
           headerShown: true,
-          header: (props) => <TopHeader {...props} showBackButton={true} hideRightIcons={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
 
@@ -302,7 +302,7 @@ export default function HomeStackNavigator() {
         component={ChildDetailsScreen}
         options={{ 
           headerShown: true,
-          header: (props) => <TopHeader {...props} showBackButton={true} hideRightIcons={true} />
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
     </Stack.Navigator>
