@@ -61,7 +61,7 @@ const accountMenuItems = [
   {
     title: 'My payment details',
     hasExpand: true,
-    subMenus: ['Saved Cards', 'UPI', 'Wallets', 'Net Banking']
+    subMenus: ['Saved Cards', 'Add Bank Account']
   },
   {
     title: 'Intelli Education Subscription',
