@@ -693,7 +693,7 @@ const ProfileMenuPage: React.FC = () => {
                 subMenus: ["Intelibaby Subscription", "Intelikit Subscription"],
               },
               { title: "Gift Certificate", hasExpand: false },
-              { title: "My Reviews", hasExpand: false },
+              { title: "My Reviews", hasExpand: false, route: "MyReviews" },
               { title: "Invites and Credits", hasExpand: false },
               { title: "Notify Me", hasExpand: false },
               { title: "My Shortlist", hasExpand: false },
@@ -702,7 +702,13 @@ const ProfileMenuPage: React.FC = () => {
               <View key={index}>
                 <TouchableOpacity
                   style={styles.accountMenuItem}
-                  onPress={() => item.hasExpand && toggleMenu(item.title)}
+                  onPress={() => {
+                    if (item.hasExpand) {
+                      toggleMenu(item.title);
+                    } else if ((item as any).route) {
+                      (navigation as any).push((item as any).route);
+                    }
+                  }}
                 >
                   <Text style={styles.accountMenuItemText}>{item.title}</Text>
                   {item.hasExpand && (
