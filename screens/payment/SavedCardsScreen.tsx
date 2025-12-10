@@ -130,7 +130,7 @@ export default function SavedCardsScreen() {
     <View style={styles.container}>
       <TopHeader 
         showBackButton={true}
-        hideRightIcons={true}
+        hideProfileIcon={true}
       />
       
       <ScrollView style={[styles.content, { marginTop: 90 }]} showsVerticalScrollIndicator={false}>
