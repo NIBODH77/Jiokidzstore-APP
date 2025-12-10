@@ -23,7 +23,14 @@ interface Child {
 export default function ChildDetailsScreen() {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
-  const [savedChildren, setSavedChildren] = useState<Child[]>([]);
+  const [savedChildren, setSavedChildren] = useState<Child[]>([
+    {
+      id: '1',
+      name: 'Sample Child',
+      dob: '01-Jan-2020',
+      gender: 'BOY',
+    },
+  ]);
   const [isEditing, setIsEditing] = useState(false);
   const [editingChildId, setEditingChildId] = useState<string | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
