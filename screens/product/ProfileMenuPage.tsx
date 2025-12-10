@@ -707,11 +707,11 @@ const ProfileMenuPage: React.FC = () => {
                 <TouchableOpacity
                   style={styles.accountMenuItem}
                   onPress={() => {
-                    if (item.hasExpand) {
-                      toggleMenu(item.title);
-                    } else if (item.title === "My Reviews") {
+                    if (item.title === "My Reviews") {
                       setShowAccountMenu(false);
                       navigation.navigate('MyReviews');
+                    } else if (item.hasExpand) {
+                      toggleMenu(item.title);
                     }
                   }}
                 >
