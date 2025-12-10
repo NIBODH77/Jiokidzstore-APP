@@ -23,12 +23,10 @@ interface Child {
 export default function ChildDetailsScreen() {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
-  const [savedChildren, setSavedChildren] = useState<Child[]>([
-    { id: '1', name: 'lolu', dob: '03-Dec-2025', gender: 'BOY' }
-  ]);
+  const [savedChildren, setSavedChildren] = useState<Child[]>([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editingChildId, setEditingChildId] = useState<string | null>(null);
-  const [showAddForm, setShowAddForm] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(true);
   
   const [formName, setFormName] = useState('');
   const [formDob, setFormDob] = useState('');
@@ -113,7 +111,7 @@ export default function ChildDetailsScreen() {
     setFormGender('BOY');
     setIsEditing(false);
     setEditingChildId(null);
-    setShowAddForm(false);
+    setShowAddForm(savedChildren.length === 0);
   };
 
   const handleAddChild = () => {
