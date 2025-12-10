@@ -9,6 +9,7 @@ import {
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { Spacing } from '@/constants/theme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface RouteParams {
   orderNumber: string;
@@ -26,6 +27,7 @@ interface TrackingStep {
 export default function TrackOrderScreen() {
   const route = useRoute<RouteProp<{ params: RouteParams }, 'params'>>();
   const { orderNumber } = route.params;
+  const insets = useSafeAreaInsets();
 
   const trackingSteps: TrackingStep[] = [
     {
@@ -80,7 +82,11 @@ export default function TrackOrderScreen() {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+      <ScrollView 
+        style={styles.scrollView} 
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: insets.bottom + 40 }}
+      >
         {/* Order Info Card */}
         <View style={styles.orderInfoCard}>
           <View style={styles.orderInfoRow}>
@@ -179,7 +185,6 @@ export default function TrackOrderScreen() {
           </View>
         </View>
 
-        <View style={{ height: 40 }} />
       </ScrollView>
     </View>
   );

@@ -213,7 +213,10 @@ export default function OrderHistoryScreen() {
                   <Text style={styles.totalLabel}>Total Amount</Text>
                   <Text style={styles.totalAmount}>{order.totalAmount}</Text>
                 </View>
-                <TouchableOpacity style={styles.viewDetailsButton}>
+                <TouchableOpacity 
+                  style={styles.viewDetailsButton}
+                  onPress={() => handleOrderPress(order)}
+                >
                   <Text style={styles.viewDetailsText}>View Details</Text>
                   <Ionicons name="chevron-forward" size={16} color="#FF6B00" />
                 </TouchableOpacity>

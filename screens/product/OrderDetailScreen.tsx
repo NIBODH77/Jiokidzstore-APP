@@ -11,6 +11,7 @@ import {
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { Spacing } from '@/constants/theme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface RouteParams {
   orderId: string;
@@ -34,6 +35,7 @@ export default function OrderDetailScreen() {
   const route = useRoute<RouteProp<{ params: RouteParams }, 'params'>>();
   const navigation = useNavigation();
   const { order } = route.params;
+  const insets = useSafeAreaInsets();
 
   const deliveryAddress = {
     name: 'John Doe',
@@ -59,7 +61,11 @@ export default function OrderDetailScreen() {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+      <ScrollView 
+        style={styles.scrollView} 
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: insets.bottom + 40 }}
+      >
         {/* Order Status Card */}
         <View style={styles.statusCard}>
           <View style={styles.statusHeader}>
@@ -168,7 +174,6 @@ export default function OrderDetailScreen() {
           </View>
         )}
 
-        <View style={{ height: 40 }} />
       </ScrollView>
     </View>
   );
