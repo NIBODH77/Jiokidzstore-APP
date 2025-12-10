@@ -85,7 +85,7 @@ export default function TrackOrderScreen() {
       <ScrollView 
         style={styles.scrollView} 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: insets.bottom + 40 }}
+        contentContainerStyle={{ paddingBottom: 8 }}
       >
         {/* Order Info Card */}
         <View style={styles.orderInfoCard}>
@@ -200,9 +200,11 @@ const styles = StyleSheet.create({
   },
   orderInfoCard: {
     backgroundColor: '#FFFFFF',
-    margin: 16,
+    marginHorizontal: 12,
+    marginTop: 8,
+    marginBottom: 8,
     borderRadius: 12,
-    padding: 16,
+    padding: 12,
     borderWidth: 1,
     borderColor: '#E5E7EB',
   },
@@ -223,10 +225,10 @@ const styles = StyleSheet.create({
   },
   currentStatusCard: {
     backgroundColor: '#FFF7ED',
-    marginHorizontal: 16,
-    marginBottom: 16,
+    marginHorizontal: 12,
+    marginBottom: 8,
     borderRadius: 12,
-    padding: 20,
+    padding: 16,
     alignItems: 'center',
     borderWidth: 2,
     borderColor: '#FDBA74',
@@ -262,10 +264,10 @@ const styles = StyleSheet.create({
   },
   timelineSection: {
     backgroundColor: '#FFFFFF',
-    marginHorizontal: 16,
-    marginBottom: 16,
+    marginHorizontal: 12,
+    marginBottom: 8,
     borderRadius: 12,
-    padding: 16,
+    padding: 12,
     borderWidth: 1,
     borderColor: '#E5E7EB',
   },
@@ -343,10 +345,10 @@ const styles = StyleSheet.create({
   },
   deliveryPartnerCard: {
     backgroundColor: '#FFFFFF',
-    marginHorizontal: 16,
-    marginBottom: 16,
+    marginHorizontal: 12,
+    marginBottom: 8,
     borderRadius: 12,
-    padding: 16,
+    padding: 12,
     borderWidth: 1,
     borderColor: '#E5E7EB',
   },

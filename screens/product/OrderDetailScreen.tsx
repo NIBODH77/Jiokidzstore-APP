@@ -64,7 +64,7 @@ export default function OrderDetailScreen() {
       <ScrollView 
         style={styles.scrollView} 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: insets.bottom + 40 }}
+        contentContainerStyle={{ paddingBottom: 8 }}
       >
         {/* Order Status Card */}
         <View style={styles.statusCard}>
@@ -189,9 +189,11 @@ const styles = StyleSheet.create({
   },
   statusCard: {
     backgroundColor: '#FFFFFF',
-    margin: 16,
+    marginHorizontal: 12,
+    marginTop: 8,
+    marginBottom: 8,
     borderRadius: 12,
-    padding: 16,
+    padding: 12,
     borderWidth: 1,
     borderColor: '#E5E7EB',
   },
@@ -236,10 +238,10 @@ const styles = StyleSheet.create({
   },
   section: {
     backgroundColor: '#FFFFFF',
-    marginHorizontal: 16,
-    marginBottom: 16,
+    marginHorizontal: 12,
+    marginBottom: 8,
     borderRadius: 12,
-    padding: 16,
+    padding: 12,
     borderWidth: 1,
     borderColor: '#E5E7EB',
   },
@@ -346,8 +348,8 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   actionButtons: {
-    marginHorizontal: 16,
-    marginBottom: 16,
+    marginHorizontal: 12,
+    marginBottom: 8,
   },
   actionButton: {
     backgroundColor: '#FF6B00',
