@@ -26,7 +26,7 @@ export default function ChildDetailsScreen() {
   const [savedChildren, setSavedChildren] = useState<Child[]>([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editingChildId, setEditingChildId] = useState<string | null>(null);
-  const [showAddForm, setShowAddForm] = useState(true);
+  const [showAddForm, setShowAddForm] = useState(false);
   
   const [formName, setFormName] = useState('');
   const [formDob, setFormDob] = useState('');
@@ -111,7 +111,7 @@ export default function ChildDetailsScreen() {
     setFormGender('BOY');
     setIsEditing(false);
     setEditingChildId(null);
-    setShowAddForm(savedChildren.length === 0);
+    setShowAddForm(false);
   };
 
   const handleAddChild = () => {
