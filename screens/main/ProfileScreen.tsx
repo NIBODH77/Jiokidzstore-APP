@@ -303,6 +303,15 @@ export default function ProfileScreen() {
                           } else if (subMenu === 'Track Order') {
                             handleMenuPress('TrackOrder');
                             setShowAccountMenu(false);
+                          } else if (subMenu === 'Contact Details') {
+                            (navigation as any).push('ContactDetails');
+                            setShowAccountMenu(false);
+                          } else if (subMenu === 'Personal Details') {
+                            (navigation as any).push('PersonalDetails');
+                            setShowAccountMenu(false);
+                          } else if (subMenu === 'Child Details') {
+                            (navigation as any).push('ChildDetails');
+                            setShowAccountMenu(false);
                           }
                         }}
                       >
