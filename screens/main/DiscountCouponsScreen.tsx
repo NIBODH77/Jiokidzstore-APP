@@ -138,9 +138,9 @@ export default function DiscountCouponsScreen() {
     const matchesSearch = coupon.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          coupon.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          coupon.description.toLowerCase().includes(searchQuery.toLowerCase());
-    
+
     const matchesFilter = activeFilter === 'all' || coupon.type === activeFilter;
-    
+
     return matchesSearch && matchesFilter;
   });
 
@@ -180,7 +180,7 @@ export default function DiscountCouponsScreen() {
       <View style={styles.headerBanner}>
         <View style={styles.headerBannerContent}>
           <View style={styles.headerIconContainer}>
-            <Ionicons name="gift" size={28} color="#fff" />
+            <Ionicons name="gift" size={20} color="#fff" />
           </View>
           <Text style={styles.headerBannerText}>Apply these coupons to get discounts on your orders</Text>
         </View>
