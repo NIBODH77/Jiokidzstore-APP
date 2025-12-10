@@ -17,7 +17,6 @@ import WishlistScreen from "@/screens/main/WishlistScreen";
 import NotificationsScreen from "@/screens/main/NotificationsScreen";
 import ProfileScreen from "@/screens/main/ProfileScreen";
 import CashRefundPage from "@/screens/product/CashRefundPage";
-import CashCouponsPage from "@/screens/product/CashCouponsPage";
 import { TopHeader } from "@/components/TopHeader";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
@@ -41,7 +40,6 @@ export type HomeStackParamList = {
   Notifications: undefined;
   Profile: undefined;
   CashRefund: undefined;
-  CashCoupons: undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -218,16 +216,6 @@ export default function HomeStackNavigator() {
       <Stack.Screen
         name="CashRefund"
         component={CashRefundPage}
-        options={{ 
-          headerShown: true,
-          header: (props) => <TopHeader {...props} showBackButton={true} />
-        }}
-      />
-
-      {/* CASH COUPONS */}
-      <Stack.Screen
-        name="CashCoupons"
-        component={CashCouponsPage}
         options={{ 
           headerShown: true,
           header: (props) => <TopHeader {...props} showBackButton={true} />

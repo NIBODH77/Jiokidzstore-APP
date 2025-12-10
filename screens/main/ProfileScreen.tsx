@@ -44,7 +44,7 @@ const accountMenuItems = [
   {
     title: 'Cash In My Account',
     hasExpand: true,
-    subMenus: ['Cash Refund', 'Cash Coupons', 'Club Cash']
+    subMenus: ['Cash Refund', 'Club Cash']
   },
   { title: 'Cashback Codes', hasExpand: false },
   { title: 'My Refunds', hasExpand: false },
@@ -284,9 +284,6 @@ export default function ProfileScreen() {
                             setShowAccountMenu(false);
                           } else if (subMenu === 'Cash Refund') {
                             handleMenuPress('CashRefund');
-                            setShowAccountMenu(false);
-                          } else if (subMenu === 'Cash Coupons') {
-                            handleMenuPress('CashCoupons');
                             setShowAccountMenu(false);
                           }
                         }}
