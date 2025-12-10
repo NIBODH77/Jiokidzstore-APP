@@ -103,6 +103,8 @@ export default function ProfileScreen() {
       (navigation as any).push('CashRefund');
     } else if (screenName === 'CashCoupons') {
       (navigation as any).push('CashCoupons');
+    } else if (screenName === 'MyRefunds') {
+      (navigation as any).push('MyRefunds');
     }
   };
 
@@ -257,7 +259,14 @@ export default function ProfileScreen() {
         {accountMenuItems.map((item, index) => (
           <View key={index}>
             <TouchableOpacity
-              onPress={() => item.hasExpand && toggleMenu(item.title)}
+              onPress={() => {
+                if (item.title === 'My Refunds') {
+                  handleMenuPress('MyRefunds');
+                  setShowAccountMenu(false);
+                } else if (item.hasExpand) {
+                  toggleMenu(item.title);
+                }
+              }}
               style={styles.accountMenuItem}
               activeOpacity={0.7}
             >
