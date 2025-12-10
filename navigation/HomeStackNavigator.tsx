@@ -26,6 +26,7 @@ import PersonalDetailsScreen from "@/screens/main/PersonalDetailsScreen";
 import ChildDetailsScreen from "@/screens/main/ChildDetailsScreen";
 import MyPaymentDetailsScreen from "@/screens/payment/MyPaymentDetailsScreen";
 import SavedCardsScreen from "@/screens/payment/SavedCardsScreen";
+import AddBankAccountScreen from "@/screens/payment/AddBankAccountScreen";
 import UPIScreen from "@/screens/payment/UPIScreen";
 import WalletsScreen from "@/screens/payment/WalletsScreen";
 import NetBankingScreen from "@/screens/payment/NetBankingScreen";
@@ -340,6 +341,15 @@ export default function HomeStackNavigator() {
       <Stack.Screen
         name="SavedCards"
         component={SavedCardsScreen}
+        options={{ 
+          headerShown: false
+        }}
+      />
+
+      {/* ADD BANK ACCOUNT */}
+      <Stack.Screen
+        name="AddBankAccount"
+        component={AddBankAccountScreen}
         options={{ 
           headerShown: false
         }}
