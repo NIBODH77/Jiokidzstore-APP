@@ -114,13 +114,13 @@ export default function MyPaymentDetailsScreen() {
           <View style={styles.infoItem}>
             <Ionicons name="checkmark-circle" size={18} color={ORANGE_PRIMARY} />
             <Text style={styles.infoText}>
-              Link UPI for instant payments
+              Link your bank account for secure payments
             </Text>
           </View>
           <View style={styles.infoItem}>
             <Ionicons name="checkmark-circle" size={18} color={ORANGE_PRIMARY} />
             <Text style={styles.infoText}>
-              Use wallets for exclusive cashback offers
+              All payment information is encrypted
             </Text>
           </View>
         </View>
