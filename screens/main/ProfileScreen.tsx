@@ -69,7 +69,7 @@ const accountMenuItems = [
     subMenus: ['Intelibaby Subscription', 'Intelikit Subscription']
   },
   { title: 'Gift Certificate', hasExpand: false },
-  { title: 'My Reviews', hasExpand: false },
+  { title: 'My Reviews', hasExpand: false, navigateTo: 'MyReviews' },
   { title: 'Invites and Credits', hasExpand: false },
   { title: 'Notify Me', hasExpand: false },
   { title: 'My Shortlist', hasExpand: false },
