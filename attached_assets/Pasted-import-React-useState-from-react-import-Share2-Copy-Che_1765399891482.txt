@@ -1,0 +1,248 @@
+import React, { useState } from 'react';
+import { Share2, Copy, Check, Gift, UserPlus, Award, Users, TrendingUp, Link2 } from 'lucide-react';
+
+const ReferralInvitePage: React.FC = () => {
+  const [copied, setCopied] = useState(false);
+  const referralCode = 'INVITE2025';
+  const referralLink = 'https://yourapp.com/ref/INVITE2025';
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(referralLink);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Join me on this amazing app!',
+          text: `Use my referral code ${referralCode} and get exciting rewards!`,
+          url: referralLink,
+        });
+      } catch (err) {
+        console.log('Share cancelled');
+      }
+    } else {
+      handleCopy();
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <div className="bg-gradient-to-br from-orange-50 to-orange-100 px-6 py-8 rounded-b-3xl">
+        <div className="max-w-md mx-auto">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Invite & Earn{' '}
+            <span className="text-orange-600 bg-orange-100 px-3 py-1 rounded-lg">Rewards</span>
+          </h1>
+          <p className="text-gray-600 text-base">Share the joy and get rewarded together!</p>
+        </div>
+      </div>
+
+      <div className="max-w-md mx-auto px-6 py-6 space-y-6">
+        {/* Main Info Card */}
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-6 shadow-xl">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex-1">
+              <h2 className="text-white text-xl font-bold mb-2">Share & Earn Together</h2>
+              <p className="text-orange-50 text-sm leading-relaxed">
+                Share your referral link and earn rewards when your friends join our platform!
+              </p>
+            </div>
+          </div>
+
+          {/* Illustration */}
+          <div className="bg-white bg-opacity-20 rounded-2xl p-6 backdrop-blur-sm mt-4">
+            <div className="flex items-center justify-center gap-4">
+              <div className="bg-white rounded-full p-4 shadow-lg">
+                <Users className="w-8 h-8 text-orange-600" />
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="flex gap-1 mb-2">
+                  {[1, 2, 3].map((i) => (
+                    <div
+                      key={i}
+                      className="w-2 h-2 bg-white rounded-full animate-pulse"
+                      style={{ animationDelay: `${i * 0.2}s` }}
+                    />
+                  ))}
+                </div>
+                <Link2 className="w-6 h-6 text-white" />
+              </div>
+              <div className="bg-white rounded-full p-4 shadow-lg">
+                <Gift className="w-8 h-8 text-orange-600" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Referral Code Card */}
+        <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-orange-100">
+          <p className="text-gray-600 text-sm font-semibold mb-3 uppercase tracking-wide">
+            Your Referral Code
+          </p>
+          <div className="bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl p-4 mb-4">
+            <div className="flex items-center justify-between">
+              <div className="flex-1">
+                <p className="text-2xl font-bold text-orange-600 tracking-wider mb-1">
+                  {referralCode}
+                </p>
+                <p className="text-xs text-gray-600 truncate">{referralLink}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex gap-3">
+            <button
+              onClick={handleCopy}
+              className="flex-1 bg-white border-2 border-orange-500 text-orange-600 px-4 py-3 rounded-xl font-semibold transition-all hover:bg-orange-50 active:scale-95 flex items-center justify-center gap-2"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-5 h-5" />
+                  Copied!
+                </>
+              ) : (
+                <>
+                  <Copy className="w-5 h-5" />
+                  Copy
+                </>
+              )}
+            </button>
+            <button
+              onClick={handleShare}
+              className="flex-1 bg-orange-500 text-white px-4 py-3 rounded-xl font-semibold transition-all hover:bg-orange-600 active:scale-95 flex items-center justify-center gap-2 shadow-lg"
+            >
+              <Share2 className="w-5 h-5" />
+              Share
+            </button>
+          </div>
+        </div>
+
+        {/* Invite Friends Button */}
+        <button
+          onClick={handleShare}
+          className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-5 rounded-2xl font-bold text-lg transition-all hover:shadow-2xl active:scale-95 shadow-xl flex items-center justify-center gap-3"
+        >
+          <UserPlus className="w-6 h-6" />
+          Invite Friends Now
+        </button>
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-5 text-center">
+            <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 shadow-md">
+              <TrendingUp className="w-6 h-6 text-orange-600" />
+            </div>
+            <p className="text-3xl font-bold text-orange-600 mb-1">0</p>
+            <p className="text-gray-600 text-sm font-medium">Total Invites</p>
+          </div>
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-5 text-center">
+            <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 shadow-md">
+              <Award className="w-6 h-6 text-orange-600" />
+            </div>
+            <p className="text-3xl font-bold text-orange-600 mb-1">₹0</p>
+            <p className="text-gray-600 text-sm font-medium">Rewards Earned</p>
+          </div>
+        </div>
+
+        {/* How It Works Section */}
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-6 border border-gray-200">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+            How It <span className="text-orange-600">Works</span>
+          </h3>
+
+          <div className="space-y-5">
+            {/* Step 1 */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl w-14 h-14 flex items-center justify-center shadow-lg">
+                  <Share2 className="w-7 h-7 text-white" />
+                </div>
+              </div>
+              <div className="flex-1 pt-1">
+                <h4 className="text-lg font-bold text-gray-900 mb-1">Share Your Link</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Share your unique referral link with friends via WhatsApp, email, or social media
+                </p>
+              </div>
+            </div>
+
+            {/* Connector Line */}
+            <div className="ml-7 border-l-2 border-dashed border-orange-300 h-6"></div>
+
+            {/* Step 2 */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl w-14 h-14 flex items-center justify-center shadow-lg">
+                  <UserPlus className="w-7 h-7 text-white" />
+                </div>
+              </div>
+              <div className="flex-1 pt-1">
+                <h4 className="text-lg font-bold text-gray-900 mb-1">Friend Signs Up</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Your friend downloads the app and creates an account using your referral code
+                </p>
+              </div>
+            </div>
+
+            {/* Connector Line */}
+            <div className="ml-7 border-l-2 border-dashed border-orange-300 h-6"></div>
+
+            {/* Step 3 */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl w-14 h-14 flex items-center justify-center shadow-lg">
+                  <Gift className="w-7 h-7 text-white" />
+                </div>
+              </div>
+              <div className="flex-1 pt-1">
+                <h4 className="text-lg font-bold text-gray-900 mb-1">You Both Earn Rewards</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Get instant rewards credited to your wallet once your friend completes their first order
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Benefits Banner */}
+        <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-6 text-center shadow-xl">
+          <Gift className="w-12 h-12 text-white mx-auto mb-3" />
+          <h3 className="text-white text-xl font-bold mb-2">Unlimited Earning Potential!</h3>
+          <p className="text-orange-50 text-sm">
+            Refer more friends and earn more rewards. There's no limit to how much you can earn!
+          </p>
+        </div>
+
+        {/* Terms & Conditions */}
+        <div className="bg-gray-50 rounded-2xl p-5 border border-gray-200">
+          <h4 className="text-sm font-bold text-gray-900 mb-3">Terms & Conditions</h4>
+          <ul className="space-y-2 text-xs text-gray-600">
+            <li className="flex items-start gap-2">
+              <span className="text-orange-600 mt-0.5">•</span>
+              <span>Reward will be credited after friend's first successful order</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-orange-600 mt-0.5">•</span>
+              <span>Both referrer and referee must be new or active users</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-orange-600 mt-0.5">•</span>
+              <span>Rewards cannot be transferred or exchanged for cash</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-orange-600 mt-0.5">•</span>
+              <span>Company reserves the right to modify terms at any time</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ReferralInvitePage;
