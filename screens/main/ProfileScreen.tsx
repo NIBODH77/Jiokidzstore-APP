@@ -63,12 +63,8 @@ const accountMenuItems = [
     hasExpand: true,
     subMenus: ['Saved Cards', 'Add Bank Account']
   },
-  {
-    title: 'Intelli Education Subscription',
-    hasExpand: true,
-    subMenus: ['Intelibaby Subscription', 'Intelikit Subscription']
-  },
-  { title: 'Gift Certificate', hasExpand: false },
+
+  { title: 'Discount Coupons', hasExpand: false, navigateTo: 'DiscountCoupons' },
   { title: 'My Reviews', hasExpand: false, navigateTo: 'MyReviews' },
   { title: 'Invites and Credits', hasExpand: false },
   { title: 'Notify Me', hasExpand: false },

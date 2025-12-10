@@ -31,6 +31,7 @@ import UPIScreen from "@/screens/payment/UPIScreen";
 import WalletsScreen from "@/screens/payment/WalletsScreen";
 import NetBankingScreen from "@/screens/payment/NetBankingScreen";
 import MyReviewsScreen from '@/screens/product/MyReviewsScreen';
+import DiscountCouponsScreen from '@/screens/main/DiscountCouponsScreen';
 import { TopHeader } from "@/components/TopHeader";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
@@ -68,6 +69,7 @@ export type HomeStackParamList = {
   Wallets: undefined;
   NetBanking: undefined;
   MyReviews: undefined;
+  DiscountCoupons: undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -389,8 +391,16 @@ export default function HomeStackNavigator() {
         name="MyReviews"
         component={MyReviewsScreen}
         options={{ 
-          headerShown: true,
-          header: (props) => <TopHeader {...props} showBackButton={true} title="My Reviews" />
+          headerShown: false
+        }}
+      />
+
+      {/* DISCOUNT COUPONS */}
+      <Stack.Screen
+        name="DiscountCoupons"
+        component={DiscountCouponsScreen}
+        options={{ 
+          headerShown: false
         }}
       />
     </Stack.Navigator>
