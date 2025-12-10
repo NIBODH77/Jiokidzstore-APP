@@ -18,10 +18,14 @@ export default function CheckoutAddressScreen() {
     navigation.navigate('CheckoutPayment');
   };
 
+  const handleAddAddress = () => {
+    navigation.navigate('AddEditAddress');
+  };
+
   return (
     <ScreenScrollView>
       <View style={[styles.container, { marginTop: Spacing.lg }]}>
-        <Pressable style={styles.addCard}>
+        <Pressable style={styles.addCard} onPress={handleAddAddress}>
           <Feather name="plus-circle" size={24} color={Colors.light.primary} />
           <ThemedText style={styles.addText}>Add New Address</ThemedText>
         </Pressable>

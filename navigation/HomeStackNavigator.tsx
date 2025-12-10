@@ -54,6 +54,7 @@ export type HomeStackParamList = {
   ContactDetails: undefined;
   PersonalDetails: undefined;
   ChildDetails: undefined;
+  AddressBook: undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -303,6 +304,16 @@ export default function HomeStackNavigator() {
         options={{ 
           headerShown: true,
           header: (props) => <TopHeader {...props} showBackButton={true} hideProfileIcon={true} />
+        }}
+      />
+
+      {/* ADDRESS BOOK */}
+      <Stack.Screen
+        name="AddressBook"
+        component={CheckoutAddressScreen}
+        options={{ 
+          headerShown: true,
+          header: (props) => <TopHeader {...props} showBackButton={true} hideProfileIcon={true} title="Address Book" />
         }}
       />
     </Stack.Navigator>

@@ -46,7 +46,7 @@ const accountMenuItems = [
     hasExpand: true,
     subMenus: ['Cash Refund', 'Club Cash']
   },
-  { title: 'My Refunds', hasExpand: false },
+  { title: 'My Refunds', hasExpand: false, navigateTo: 'MyRefunds' },
   {
     title: 'My Orders',
     hasExpand: true,
@@ -57,7 +57,7 @@ const accountMenuItems = [
     hasExpand: true,
     subMenus: ['Contact Details', 'Personal Details', 'Child Details']
   },
-  { title: 'Address Book', hasExpand: false },
+  { title: 'Address Book', hasExpand: false, navigateTo: 'AddressBook' },
   { title: 'My payment details', hasExpand: false },
   {
     title: 'Intelli Education Subscription',
@@ -264,8 +264,8 @@ export default function ProfileScreen() {
           <View key={index}>
             <TouchableOpacity
               onPress={() => {
-                if (item.title === 'My Refunds') {
-                  handleMenuPress('MyRefunds');
+                if (item.navigateTo) {
+                  (navigation as any).push(item.navigateTo);
                   setShowAccountMenu(false);
                 } else if (item.hasExpand) {
                   toggleMenu(item.title);

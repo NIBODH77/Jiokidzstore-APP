@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { ScreenKeyboardAwareScrollView } from '@/components/ScreenKeyboardAwareScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { Button } from '@/components/Button';
@@ -7,6 +8,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { Colors, Spacing, BorderRadius, Typography } from '@/constants/theme';
 
 export default function AddEditAddressScreen() {
+  const navigation = useNavigation();
   const { theme } = useTheme();
   const [name, setName] = useState('');
   const [flatNo, setFlatNo] = useState('');
@@ -19,6 +21,16 @@ export default function AddEditAddressScreen() {
   const [stdCode, setStdCode] = useState('');
   const [landline, setLandline] = useState('');
   const [addressType, setAddressType] = useState<'home' | 'office'>('home');
+
+  const handleCancel = () => {
+    navigation.goBack();
+  };
+
+  const handleSave = () => {
+    // TODO: Save address logic here
+    console.log('Saving address...');
+    navigation.goBack();
+  };
 
   return (
     <ScreenKeyboardAwareScrollView contentContainerStyle={styles.container}>
@@ -173,10 +185,10 @@ export default function AddEditAddressScreen() {
 
       <View style={styles.buttonRow}>
         <View style={styles.buttonWrapper}>
-          <Button title="CANCEL" onPress={() => {}} />
+          <Button title="CANCEL" onPress={handleCancel} />
         </View>
         <View style={styles.buttonWrapper}>
-          <Button title="SAVE" onPress={() => {}} />
+          <Button title="SAVE" onPress={handleSave} />
         </View>
       </View>
     </ScreenKeyboardAwareScrollView>
