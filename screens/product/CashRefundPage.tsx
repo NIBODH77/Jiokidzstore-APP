@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   View,
@@ -7,50 +6,31 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { TopHeader } from '@/components/TopHeader';
+
+// No custom back handling needed - TopHeader handles it properly
 
 export default function CashRefundPage() {
   const navigation = useNavigation();
-  const cashRefundAmount = 0.00;
-  const balanceAmount = 0.00;
-
-  const scrollViewRef = React.useRef<ScrollView>(null);
-
-  const scrollToTop = () => {
-    scrollViewRef.current?.scrollTo({ y: 0, animated: true });
-  };
 
   return (
     <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <Ionicons name="arrow-back" size={28} color="#1F2937" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>CASH REFUND</Text>
-        <View style={styles.headerSpacer} />
-      </View>
+      <TopHeader title="Cash Refund" />
 
       {/* Content */}
-      <ScrollView 
-        ref={scrollViewRef}
-        style={styles.content} 
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Cash Refund Amount */}
-        <View style={styles.cashRefundSection}>
-          <Text style={styles.cashRefundText}>
-            You have ₹{cashRefundAmount.toFixed(2)} Cash Refund{' '}
-            <Text style={styles.shopNowLink}>Shop Now</Text>
-          </Text>
+      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+        {/* Balance Card */}
+        <View style={styles.yellowCard}>
+          <Text style={styles.balanceText}>You have ₹ 0.00 Cash Refund</Text>
+          <TouchableOpacity style={styles.shopNowButton}>
+            <Text style={styles.shopNowText}>Shop Now</Text>
+          </TouchableOpacity>
         </View>
 
-        {/* Balance Amount */}
-        <View style={styles.balanceSection}>
-          <Text style={styles.balanceText}>
-            Balance Amount: ₹{balanceAmount.toFixed(2)}
-          </Text>
+        {/* Balance Amount Card */}
+        <View style={styles.greyCard}>
+          <Text style={styles.balanceAmountText}>Balance Amount: ₹ 0.00</Text>
         </View>
 
         {/* Refund Button */}
@@ -58,7 +38,7 @@ export default function CashRefundPage() {
           <Text style={styles.refundButtonText}>REFUND AMOUNT BACK TO ME</Text>
         </TouchableOpacity>
 
-        {/* Insufficient Balance Message */}
+        {/* Info Message */}
         <View style={styles.infoCard}>
           <Text style={styles.infoText}>
             You have insufficient balance to initiate cash refund.{' '}
@@ -66,18 +46,8 @@ export default function CashRefundPage() {
           </Text>
         </View>
 
-        <View style={{ height: 100 }} />
+        <View style={{ height: 40 }} />
       </ScrollView>
-
-      {/* Scroll to Top Button */}
-      <TouchableOpacity 
-        style={styles.scrollToTopButton}
-        onPress={scrollToTop}
-        activeOpacity={0.8}
-      >
-        <Ionicons name="arrow-up" size={24} color="#1F2937" />
-        <Text style={styles.scrollToTopText}>TOP</Text>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -85,7 +55,7 @@ export default function CashRefundPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#FFFFFF',
   },
   header: {
     flexDirection: 'row',
@@ -93,98 +63,89 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 16,
-    backgroundColor: '#FCD34D',
     borderBottomWidth: 1,
-    borderBottomColor: '#F59E0B',
+    borderBottomColor: '#E0E0E0',
+    backgroundColor: '#FFFFFF',
   },
   backBtn: {
     padding: 4,
   },
   headerTitle: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#1F2937',
-    letterSpacing: 0.5,
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#333',
+    textTransform: 'uppercase',
   },
   headerSpacer: {
     width: 44,
   },
   content: {
     flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 32,
+    padding: 16,
   },
-  cashRefundSection: {
-    marginBottom: 24,
-  },
-  cashRefundText: {
-    fontSize: 18,
-    color: '#374151',
-    lineHeight: 28,
-  },
-  shopNowLink: {
-    color: '#3B82F6',
-    textDecorationLine: 'underline',
-    fontWeight: '500',
-  },
-  balanceSection: {
-    marginBottom: 32,
+  yellowCard: {
+    backgroundColor: '#FFFBF0',
+    borderRadius: 8,
+    padding: 20,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#FFE4A3',
   },
   balanceText: {
-    fontSize: 20,
-    color: '#1F2937',
-    textAlign: 'center',
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 12,
+  },
+  shopNowButton: {
+    alignSelf: 'flex-start',
+  },
+  shopNowText: {
+    color: '#2196F3',
+    fontSize: 16,
     fontWeight: '600',
   },
+  greyCard: {
+    backgroundColor: '#F5F5F5',
+    borderRadius: 8,
+    padding: 20,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#E8E8E8',
+  },
+  balanceAmountText: {
+    fontSize: 16,
+    color: '#333',
+    fontWeight: '500',
+  },
   refundButton: {
-    backgroundColor: '#9CA3AF',
+    backgroundColor: '#9E9E9E',
     borderRadius: 8,
     padding: 16,
-    marginBottom: 24,
+    marginBottom: 16,
     opacity: 0.7,
   },
   refundButtonText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '700',
     textAlign: 'center',
     letterSpacing: 0.5,
   },
   infoCard: {
-    backgroundColor: '#F3F4F6',
+    backgroundColor: '#F0F0F0',
     borderRadius: 8,
     padding: 16,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
   },
   infoText: {
-    fontSize: 15,
-    color: '#6B7280',
-    lineHeight: 22,
+    fontSize: 14,
+    color: '#666',
+    lineHeight: 20,
   },
   refundPolicyLink: {
-    color: '#3B82F6',
+    color: '#2196F3',
     textDecorationLine: 'underline',
     fontWeight: '500',
-  },
-  scrollToTopButton: {
-    position: 'absolute',
-    bottom: 24,
-    right: 24,
-    backgroundColor: '#FCD34D',
-    paddingVertical: 16,
-    paddingHorizontal: 24,
-    borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  scrollToTopText: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: '#1F2937',
-    marginTop: 4,
   },
 });
