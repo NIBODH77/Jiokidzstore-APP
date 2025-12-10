@@ -64,7 +64,7 @@ const accountMenuItems = [
     subMenus: ['Saved Cards', 'Add Bank Account']
   },
 
-  { title: 'Gift Certificate', hasExpand: false, navigateTo: 'DiscountCoupons' },
+  { title: 'Discount Coupons', hasExpand: false, navigateTo: 'DiscountCoupons' },
   { title: 'My Reviews', hasExpand: false, navigateTo: 'MyReviews' },
   { title: 'Invites and Credits', hasExpand: false },
   { title: 'Notify Me', hasExpand: false },
