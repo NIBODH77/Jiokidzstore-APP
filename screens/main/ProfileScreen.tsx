@@ -319,14 +319,8 @@ export default function ProfileScreen() {
                           } else if (subMenu === 'Saved Cards') {
                             (navigation as any).push('SavedCards');
                             setShowAccountMenu(false);
-                          } else if (subMenu === 'UPI') {
-                            (navigation as any).push('UPI');
-                            setShowAccountMenu(false);
-                          } else if (subMenu === 'Wallets') {
-                            (navigation as any).push('Wallets');
-                            setShowAccountMenu(false);
-                          } else if (subMenu === 'Net Banking') {
-                            (navigation as any).push('NetBanking');
+                          } else if (subMenu === 'Add Bank Account') {
+                            (navigation as any).push('AddBankAccount');
                             setShowAccountMenu(false);
                           }
                         }}
