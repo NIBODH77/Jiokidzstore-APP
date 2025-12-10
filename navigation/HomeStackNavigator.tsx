@@ -18,6 +18,9 @@ import NotificationsScreen from "@/screens/main/NotificationsScreen";
 import ProfileScreen from "@/screens/main/ProfileScreen";
 import CashRefundPage from "@/screens/product/CashRefundPage";
 import MyRefundsPage from "@/screens/product/MyRefundsPage";
+import OrderHistoryScreen from "@/screens/product/OrderHistoryScreen";
+import OrderDetailScreen from "@/screens/product/OrderDetailScreen";
+import TrackOrderScreen from "@/screens/product/TrackOrderScreen";
 import { TopHeader } from "@/components/TopHeader";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
@@ -42,6 +45,9 @@ export type HomeStackParamList = {
   Profile: undefined;
   CashRefund: undefined;
   MyRefunds: undefined;
+  OrderHistory: undefined;
+  OrderDetail: { orderId: string; order: any };
+  TrackOrder: { orderNumber: string };
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -231,6 +237,36 @@ export default function HomeStackNavigator() {
         options={{ 
           headerShown: true,
           header: (props) => <TopHeader {...props} showBackButton={true} title="My Refunds" />
+        }}
+      />
+
+      {/* ORDER HISTORY */}
+      <Stack.Screen
+        name="OrderHistory"
+        component={OrderHistoryScreen}
+        options={{ 
+          headerShown: true,
+          header: (props) => <TopHeader {...props} showBackButton={true} title="Order History" />
+        }}
+      />
+
+      {/* ORDER DETAIL */}
+      <Stack.Screen
+        name="OrderDetail"
+        component={OrderDetailScreen}
+        options={{ 
+          headerShown: true,
+          header: (props) => <TopHeader {...props} showBackButton={true} title="Order Details" />
+        }}
+      />
+
+      {/* TRACK ORDER */}
+      <Stack.Screen
+        name="TrackOrder"
+        component={TrackOrderScreen}
+        options={{ 
+          headerShown: true,
+          header: (props) => <TopHeader {...props} showBackButton={true} title="Track Order" />
         }}
       />
     </Stack.Navigator>

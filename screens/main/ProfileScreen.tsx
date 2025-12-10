@@ -105,6 +105,10 @@ export default function ProfileScreen() {
       (navigation as any).push('CashCoupons');
     } else if (screenName === 'MyRefunds') {
       (navigation as any).push('MyRefunds');
+    } else if (screenName === 'OrderHistory') {
+      (navigation as any).push('OrderHistory');
+    } else if (screenName === 'TrackOrder') {
+      (navigation as any).push('TrackOrder', { orderNumber: 'ORD123456' });
     }
   };
 
@@ -292,6 +296,12 @@ export default function ProfileScreen() {
                             setShowAccountMenu(false);
                           } else if (subMenu === 'Cash Refund') {
                             handleMenuPress('CashRefund');
+                            setShowAccountMenu(false);
+                          } else if (subMenu === 'Order History') {
+                            handleMenuPress('OrderHistory');
+                            setShowAccountMenu(false);
+                          } else if (subMenu === 'Track Order') {
+                            handleMenuPress('TrackOrder');
                             setShowAccountMenu(false);
                           }
                         }}
