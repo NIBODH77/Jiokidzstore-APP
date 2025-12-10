@@ -640,7 +640,7 @@ const styles = StyleSheet.create({
   applyBtn: {
     backgroundColor: '#FF6B35',
     borderRadius: 14,
-    paddingVertical: 8,
+    paddingVertical: 12,
     alignItems: 'center',
   },
   applyBtnApplied: {
