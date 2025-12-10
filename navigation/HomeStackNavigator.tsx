@@ -24,6 +24,11 @@ import TrackOrderScreen from "@/screens/product/TrackOrderScreen";
 import ContactDetailsScreen from "@/screens/main/ContactDetailsScreen";
 import PersonalDetailsScreen from "@/screens/main/PersonalDetailsScreen";
 import ChildDetailsScreen from "@/screens/main/ChildDetailsScreen";
+import MyPaymentDetailsScreen from "@/screens/payment/MyPaymentDetailsScreen";
+import SavedCardsScreen from "@/screens/payment/SavedCardsScreen";
+import UPIScreen from "@/screens/payment/UPIScreen";
+import WalletsScreen from "@/screens/payment/WalletsScreen";
+import NetBankingScreen from "@/screens/payment/NetBankingScreen";
 import { TopHeader } from "@/components/TopHeader";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
@@ -55,6 +60,11 @@ export type HomeStackParamList = {
   PersonalDetails: undefined;
   ChildDetails: undefined;
   AddressBook: undefined;
+  MyPaymentDetails: undefined;
+  SavedCards: undefined;
+  UPI: undefined;
+  Wallets: undefined;
+  NetBanking: undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -314,6 +324,51 @@ export default function HomeStackNavigator() {
         options={{ 
           headerShown: true,
           header: (props) => <TopHeader {...props} showBackButton={true} hideProfileIcon={true} title="Address Book" />
+        }}
+      />
+
+      {/* MY PAYMENT DETAILS */}
+      <Stack.Screen
+        name="MyPaymentDetails"
+        component={MyPaymentDetailsScreen}
+        options={{ 
+          headerShown: false
+        }}
+      />
+
+      {/* SAVED CARDS */}
+      <Stack.Screen
+        name="SavedCards"
+        component={SavedCardsScreen}
+        options={{ 
+          headerShown: false
+        }}
+      />
+
+      {/* UPI */}
+      <Stack.Screen
+        name="UPI"
+        component={UPIScreen}
+        options={{ 
+          headerShown: false
+        }}
+      />
+
+      {/* WALLETS */}
+      <Stack.Screen
+        name="Wallets"
+        component={WalletsScreen}
+        options={{ 
+          headerShown: false
+        }}
+      />
+
+      {/* NET BANKING */}
+      <Stack.Screen
+        name="NetBanking"
+        component={NetBankingScreen}
+        options={{ 
+          headerShown: false
         }}
       />
     </Stack.Navigator>

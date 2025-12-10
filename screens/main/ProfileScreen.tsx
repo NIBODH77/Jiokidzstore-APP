@@ -58,7 +58,11 @@ const accountMenuItems = [
     subMenus: ['Contact Details', 'Personal Details', 'Child Details']
   },
   { title: 'Address Book', hasExpand: false, navigateTo: 'AddressBook' },
-  { title: 'My payment details', hasExpand: false },
+  {
+    title: 'My payment details',
+    hasExpand: true,
+    subMenus: ['Saved Cards', 'UPI', 'Wallets', 'Net Banking']
+  },
   {
     title: 'Intelli Education Subscription',
     hasExpand: true,
@@ -311,6 +315,18 @@ export default function ProfileScreen() {
                             setShowAccountMenu(false);
                           } else if (subMenu === 'Child Details') {
                             (navigation as any).push('ChildDetails');
+                            setShowAccountMenu(false);
+                          } else if (subMenu === 'Saved Cards') {
+                            (navigation as any).push('SavedCards');
+                            setShowAccountMenu(false);
+                          } else if (subMenu === 'UPI') {
+                            (navigation as any).push('UPI');
+                            setShowAccountMenu(false);
+                          } else if (subMenu === 'Wallets') {
+                            (navigation as any).push('Wallets');
+                            setShowAccountMenu(false);
+                          } else if (subMenu === 'Net Banking') {
+                            (navigation as any).push('NetBanking');
                             setShowAccountMenu(false);
                           }
                         }}
