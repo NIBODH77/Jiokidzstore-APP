@@ -483,7 +483,7 @@ const styles = StyleSheet.create({
   couponCard: {
     backgroundColor: '#fff',
     borderRadius: 20,
-    marginBottom: 16,
+    marginBottom: 12,
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -512,12 +512,12 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   couponContent: {
-    padding: 20,
+    padding: 14,
   },
   couponHeader: {
     flexDirection: 'row',
-    gap: 12,
-    marginBottom: 16,
+    gap: 10,
+    marginBottom: 10,
     paddingRight: 80,
   },
   couponIconContainer: {
@@ -551,8 +551,8 @@ const styles = StyleSheet.create({
     borderColor: '#FFD6C4',
     borderStyle: 'dashed',
     borderRadius: 14,
-    padding: 16,
-    marginBottom: 12,
+    padding: 12,
+    marginBottom: 8,
   },
   codeBoxLeft: {
     flex: 1,
@@ -590,7 +590,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    marginBottom: 12,
+    marginBottom: 8,
   },
   validityText: {
     fontSize: 13,
@@ -601,7 +601,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    marginBottom: 16,
+    marginBottom: 10,
   },
   detailsBtnText: {
     color: '#FF6B35',
@@ -611,8 +611,8 @@ const styles = StyleSheet.create({
   termsContainer: {
     backgroundColor: '#F9FAFB',
     borderRadius: 12,
-    padding: 16,
-    marginBottom: 16,
+    padding: 12,
+    marginBottom: 10,
     borderWidth: 1,
     borderColor: '#E5E7EB',
   },
@@ -640,7 +640,7 @@ const styles = StyleSheet.create({
   applyBtn: {
     backgroundColor: '#FF6B35',
     borderRadius: 14,
-    paddingVertical: 16,
+    paddingVertical: 12,
     alignItems: 'center',
   },
   applyBtnApplied: {
