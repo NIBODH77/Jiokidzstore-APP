@@ -40,7 +40,9 @@ export function TopHeader({
 
   const handleBack = () => {
     // Always go back in the navigation stack
-    navigation.goBack();
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    }
   };
 
   return (

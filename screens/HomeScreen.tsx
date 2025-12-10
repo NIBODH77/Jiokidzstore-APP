@@ -99,7 +99,7 @@ export default function HomeScreen() {
 
   // Callback: Product press with navigation
   const handleProductPress = useCallback((productId: string) => {
-    navigation.navigate('ProductDetail', { productId });
+    (navigation as any).push('ProductDetail', { productId });
   }, [navigation]);
 
   // Callback: Wishlist toggle with storage sync
@@ -128,24 +128,24 @@ export default function HomeScreen() {
 
   // Callback: Category navigation
   const handleCategoryPress = useCallback(() => {
-    navigation.navigate('CategoryAggregator');
+    (navigation as any).push('CategoryAggregator');
   }, [navigation]);
 
   // Callback: Search navigation
   const handleSearchPress = useCallback(() => {
-    navigation.navigate('Search');
+    (navigation as any).push('Search');
   }, [navigation]);
 
   return (
     <View style={styles.container}>
       {/* Search Bar - Fixed at top */}
       <ModernSearchBar 
-          onSearch={() => navigation.navigate('Search')}
+          onSearch={() => (navigation as any).push('Search')}
           onLocationPress={() => setChooseLocationModalVisible(true)}
-          onNotificationPress={() => navigation.navigate('Notifications')}
-          onCartPress={() => navigation.navigate('Cart')}
-          onWishlistPress={() => navigation.navigate('Wishlist')}
-          onProfilePress={() => navigation.navigate('Profile')}
+          onNotificationPress={() => (navigation as any).push('Notifications')}
+          onCartPress={() => (navigation as any).push('Cart')}
+          onWishlistPress={() => (navigation as any).push('Wishlist')}
+          onProfilePress={() => (navigation as any).push('Profile')}
           notificationCount={3}
           cartCount={2}
         />
@@ -229,7 +229,7 @@ export default function HomeScreen() {
           onClose={() => setChooseLocationModalVisible(false)}
           onManageAddress={() => {
             setChooseLocationModalVisible(false);
-            navigation.navigate('AddEditAddress', { addressId: undefined });
+            (navigation as any).push('AddEditAddress', { addressId: undefined });
           }}
           onPincodeEnter={() => {
             setChooseLocationModalVisible(false);
@@ -392,7 +392,7 @@ export default function HomeScreen() {
               return (
                 <Pressable 
                   key={category.id}
-                  onPress={handleCategoryPress}
+                  onPress={() => (navigation as any).push('CategoryAggregator')}
                   style={styles.categoryItem}
                 >
                   <View 
@@ -463,49 +463,49 @@ export default function HomeScreen() {
             decelerationRate="fast"
             snapToInterval={Dimensions.get('window').width}
           >
-            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.trendingStoreCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/birthday_gifts_items.png')}
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
             </Pressable>
-            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.trendingStoreCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/electronics_tech_gadgets.png')}
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
             </Pressable>
-            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.trendingStoreCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/moms_maternity_products.png')}
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
             </Pressable>
-            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.trendingStoreCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/beauty_care_products.png')}
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
             </Pressable>
-            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.trendingStoreCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/special_deals_sale.png')}
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
             </Pressable>
-            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.trendingStoreCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/baby_gear_products.png')}
                 style={styles.trendingStoreCardImage}
                 resizeMode="cover"
               />
             </Pressable>
-            <Pressable style={styles.trendingStoreCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.trendingStoreCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/toys_gaming_collection.png')}
                 style={styles.trendingStoreCardImage}
@@ -530,7 +530,7 @@ export default function HomeScreen() {
 
           <View style={styles.seasonsSpecialGrid}>
             <View style={styles.seasonsRow}>
-              <Pressable style={styles.seasonsCardLarge} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.seasonsCardLarge} onPress={() => (navigation as any).push('AgeWise')}>
                 <Image 
                   source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
                   style={styles.seasonsCardImage}
@@ -540,7 +540,7 @@ export default function HomeScreen() {
                   <ThemedText style={styles.seasonsCardText}>Hoodies›</ThemedText>
                 </View>
               </Pressable>
-              <Pressable style={styles.seasonsCardSmall} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.seasonsCardSmall} onPress={() => (navigation as any).push('AgeWise')}>
                 <Image 
                   source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
                   style={styles.seasonsCardImage}
@@ -553,7 +553,7 @@ export default function HomeScreen() {
             </View>
 
             <View style={styles.seasonsRow}>
-              <Pressable style={styles.seasonsCardSmall} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.seasonsCardSmall} onPress={() => (navigation as any).push('AgeWise')}>
                 <Image 
                   source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
                   style={styles.seasonsCardImage}
@@ -563,7 +563,7 @@ export default function HomeScreen() {
                   <ThemedText style={styles.seasonsCardText}>Winter Sets›</ThemedText>
                 </View>
               </Pressable>
-              <Pressable style={styles.seasonsCardLarge} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.seasonsCardLarge} onPress={() => (navigation as any).push('AgeWise')}>
                 <Image 
                   source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
                   style={styles.seasonsCardImage}
@@ -576,7 +576,7 @@ export default function HomeScreen() {
             </View>
 
             <View style={styles.seasonsRow}>
-              <Pressable style={styles.seasonsCardMedium} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.seasonsCardMedium} onPress={() => (navigation as any).push('AgeWise')}>
                 <Image 
                   source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
                   style={styles.seasonsCardImage}
@@ -586,7 +586,7 @@ export default function HomeScreen() {
                   <ThemedText style={styles.seasonsCardText}>Jackets›</ThemedText>
                 </View>
               </Pressable>
-              <Pressable style={styles.seasonsCardMedium} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.seasonsCardMedium} onPress={() => (navigation as any).push('AgeWise')}>
                 <Image 
                   source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
                   style={styles.seasonsCardImage}
@@ -615,7 +615,7 @@ export default function HomeScreen() {
               <View style={styles.onesiesBannerLeft}>
                 <ThemedText style={styles.onesiesStartingText}>STARTING</ThemedText>
                 <ThemedText style={styles.onesiesPriceText}>₹199</ThemedText>
-                <Pressable style={styles.onesiesViewAllButton} onPress={() => navigation.navigate('AgeWise')}>
+                <Pressable style={styles.onesiesViewAllButton} onPress={() => (navigation as any).push('AgeWise')}>
                   <ThemedText style={styles.onesiesViewAllText}>View All ›</ThemedText>
                 </Pressable>
               </View>
@@ -636,7 +636,7 @@ export default function HomeScreen() {
             scrollEnabled={true}
             decelerationRate="fast"
           >
-            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.onesiesCard} onPress={() => (navigation as any).push('AgeWise')}>
               <View style={styles.onesiesCardImageContainer}>
                 <Image 
                   source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
@@ -650,7 +650,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.onesiesCard} onPress={() => (navigation as any).push('AgeWise')}>
               <View style={styles.onesiesCardImageContainer}>
                 <Image 
                   source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
@@ -663,7 +663,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.onesiesCard} onPress={() => (navigation as any).push('AgeWise')}>
               <View style={styles.onesiesCardImageContainer}>
                 <Image 
                   source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
@@ -677,7 +677,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.onesiesCard} onPress={() => (navigation as any).push('AgeWise')}>
               <View style={styles.onesiesCardImageContainer}>
                 <Image 
                   source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
@@ -690,7 +690,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.onesiesCard} onPress={() => (navigation as any).push('AgeWise')}>
               <View style={styles.onesiesCardImageContainer}>
                 <Image 
                   source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
@@ -703,7 +703,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.onesiesCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.onesiesCard} onPress={() => (navigation as any).push('AgeWise')}>
               <View style={styles.onesiesCardImageContainer}>
                 <Image 
                   source={require('../attached_assets/generated_images/baby_care_products.png')}
@@ -733,7 +733,7 @@ export default function HomeScreen() {
             scrollEnabled={true}
             decelerationRate="fast"
           >
-            <Pressable style={styles.coldWeatherPromoCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherPromoCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
                 style={styles.coldWeatherPromoImage}
@@ -750,7 +750,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -761,7 +761,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -772,7 +772,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -783,7 +783,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -794,7 +794,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/baby_care_products.png')}
                 style={styles.coldWeatherCardImage}
@@ -814,7 +814,7 @@ export default function HomeScreen() {
             scrollEnabled={true}
             decelerationRate="fast"
           >
-            <Pressable style={styles.coldWeatherPromoCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherPromoCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
                 style={styles.coldWeatherPromoImage}
@@ -830,7 +830,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -841,7 +841,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -852,7 +852,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -863,7 +863,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -874,7 +874,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/baby_care_products.png')}
                 style={styles.coldWeatherCardImage}
@@ -894,7 +894,7 @@ export default function HomeScreen() {
             scrollEnabled={true}
             decelerationRate="fast"
           >
-            <Pressable style={styles.coldWeatherPromoCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherPromoCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
                 style={styles.coldWeatherPromoImage}
@@ -910,7 +910,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -921,7 +921,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -932,7 +932,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -943,7 +943,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -954,7 +954,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/baby_care_products.png')}
                 style={styles.coldWeatherCardImage}
@@ -974,7 +974,7 @@ export default function HomeScreen() {
             scrollEnabled={true}
             decelerationRate="fast"
           >
-            <Pressable style={styles.coldWeatherPromoCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherPromoCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
                 style={styles.coldWeatherPromoImage}
@@ -991,7 +991,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/baby_care_products.png')}
                 style={styles.coldWeatherCardImage}
@@ -1002,7 +1002,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -1013,7 +1013,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -1024,7 +1024,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -1035,7 +1035,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -1055,7 +1055,7 @@ export default function HomeScreen() {
             scrollEnabled={true}
             decelerationRate="fast"
           >
-            <Pressable style={styles.coldWeatherPromoCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherPromoCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
                 style={styles.coldWeatherPromoImage}
@@ -1071,7 +1071,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/baby_care_products.png')}
                 style={styles.coldWeatherCardImage}
@@ -1082,7 +1082,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -1093,7 +1093,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -1104,7 +1104,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -1115,7 +1115,7 @@ export default function HomeScreen() {
               </View>
             </Pressable>
 
-            <Pressable style={styles.coldWeatherCard} onPress={() => navigation.navigate('AgeWise')}>
+            <Pressable style={styles.coldWeatherCard} onPress={() => (navigation as any).push('AgeWise')}>
               <Image 
                 source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
                 style={styles.coldWeatherCardImage}
@@ -1161,7 +1161,7 @@ export default function HomeScreen() {
             nestedScrollEnabled={true}
           >
             <View style={styles.cozyCuteRow}>
-              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => (navigation as any).push('AgeWise')}>
                 <View style={styles.cozyCuteCardImageContainer}>
                   <Image 
                     source={require('../attached_assets/generated_images/winter_sweater_kids.png')}
@@ -1174,7 +1174,7 @@ export default function HomeScreen() {
                 </View>
               </Pressable>
 
-              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => (navigation as any).push('AgeWise')}>
                 <View style={styles.cozyCuteCardImageContainer}>
                   <Image 
                     source={require('../attached_assets/generated_images/winter_sweatshirt_kids.png')}
@@ -1187,7 +1187,7 @@ export default function HomeScreen() {
                 </View>
               </Pressable>
 
-              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => (navigation as any).push('AgeWise')}>
                 <View style={styles.cozyCuteCardImageContainer}>
                   <Image 
                     source={require('../attached_assets/generated_images/thermal_innerwear_kids.png')}
@@ -1200,7 +1200,7 @@ export default function HomeScreen() {
                 </View>
               </Pressable>
 
-              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => (navigation as any).push('AgeWise')}>
                 <View style={styles.cozyCuteCardImageContainer}>
                   <Image 
                     source={require('../attached_assets/generated_images/winter_essentials_kids.png')}
@@ -1213,7 +1213,7 @@ export default function HomeScreen() {
                 </View>
               </Pressable>
 
-              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => (navigation as any).push('AgeWise')}>
                 <View style={styles.cozyCuteCardImageContainer}>
                   <Image 
                     source={require('../attached_assets/generated_images/winter_jacket_kids.png')}
@@ -1226,7 +1226,7 @@ export default function HomeScreen() {
                 </View>
               </Pressable>
 
-              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => (navigation as any).push('AgeWise')}>
                 <View style={styles.cozyCuteCardImageContainer}>
                   <Image 
                     source={require('../attached_assets/generated_images/baby_care_products.png')}
@@ -1239,7 +1239,7 @@ export default function HomeScreen() {
                 </View>
               </Pressable>
 
-              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => (navigation as any).push('AgeWise')}>
                 <View style={styles.cozyCuteCardImageContainer}>
                   <Image 
                     source={require('../attached_assets/generated_images/baby_gear_products.png')}
@@ -1252,7 +1252,7 @@ export default function HomeScreen() {
                 </View>
               </Pressable>
 
-              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => (navigation as any).push('AgeWise')}>
                 <View style={styles.cozyCuteCardImageContainer}>
                   <Image 
                     source={require('../attached_assets/generated_images/feeding_nursing_products.png')}
@@ -1265,7 +1265,7 @@ export default function HomeScreen() {
                 </View>
               </Pressable>
 
-              <Pressable style={styles.cozyCuteCard} onPress={() => navigation.navigate('AgeWise')}>
+              <Pressable style={styles.cozyCuteCard} onPress={() => (navigation as any).push('AgeWise')}>
                 <View style={styles.cozyCuteCardImageContainer}>
                   <Image 
                     source={require('../attached_assets/generated_images/baby_nursery_furniture.png')}
@@ -1282,7 +1282,7 @@ export default function HomeScreen() {
         </View>
 
         {/* Little Explorers Banner */}
-        <Pressable onPress={() => navigation.navigate('AgeWise')} style={styles.littleExplorersBannerContainer}>
+        <Pressable onPress={() => (navigation as any).push('AgeWise')} style={styles.littleExplorersBannerContainer}>
           <Image 
             source={require('../attached_assets/Gemini_Generated_Image_xgkpipxgkpipxgkp_1764517163310.png')}
             style={styles.littleExplorersBannerImage}

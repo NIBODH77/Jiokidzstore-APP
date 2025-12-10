@@ -98,12 +98,23 @@ export default function ProfileScreen() {
     setExpandedFAQ(expandedFAQ === index ? null : index);
   };
 
+  const handleMenuPress = (screenName: string) => {
+    // Use push instead of navigate to maintain proper navigation stack
+    if (screenName === 'CashRefund') {
+      (navigation as any).push('CashRefund');
+    } else if (screenName === 'CashCoupons') {
+      (navigation as any).push('CashCoupons');
+    }
+  };
+
   const handleCashRefundPress = () => {
-    navigation.navigate('CashRefund' as never);
+    // navigation.navigate('CashRefund' as never);
+    setShowCashRefundPage(true);
   };
 
   const handleCashCouponsPress = () => {
-    navigation.navigate('CashCoupons' as never);
+    // navigation.navigate('CashCoupons' as never);
+    setShowCashCouponsPage(true);
   };
 
   const ProfileContent = () => (
@@ -272,10 +283,10 @@ export default function ProfileScreen() {
                             setShowClubCashPage(true);
                             setShowAccountMenu(false);
                           } else if (subMenu === 'Cash Refund') {
-                            handleCashRefundPress();
+                            handleMenuPress('CashRefund');
                             setShowAccountMenu(false);
                           } else if (subMenu === 'Cash Coupons') {
-                            handleCashCouponsPress();
+                            handleMenuPress('CashCoupons');
                             setShowAccountMenu(false);
                           }
                         }}
@@ -657,7 +668,7 @@ const styles = StyleSheet.create({
   clubIconContainer: {
     width: 40,
     height: 40,
-    backgroundColor: '#1E40AF',
+    backgroundColor: '#1A1A1A',
     borderRadius: 20,
     marginRight: 12,
   },

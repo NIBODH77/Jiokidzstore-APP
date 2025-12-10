@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   View,
@@ -10,11 +9,14 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { TopHeader } from '@/components/TopHeader';
 
+// No custom back handling needed - TopHeader handles it properly
+
 export default function CashRefundPage() {
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
+      <TopHeader title="Cash Refund" />
 
       {/* Content */}
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
