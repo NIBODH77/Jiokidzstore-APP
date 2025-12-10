@@ -517,7 +517,7 @@ const styles = StyleSheet.create({
   couponHeader: {
     flexDirection: 'row',
     gap: 10,
-    marginBottom: 10,
+    marginBottom: 5,
     paddingRight: 80,
   },
   couponIconContainer: {
@@ -640,7 +640,7 @@ const styles = StyleSheet.create({
   applyBtn: {
     backgroundColor: '#FF6B35',
     borderRadius: 14,
-    paddingVertical: 12,
+    paddingVertical: 8,
     alignItems: 'center',
   },
   applyBtnApplied: {
