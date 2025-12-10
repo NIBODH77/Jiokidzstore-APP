@@ -53,12 +53,7 @@ export default function PersonalDetailsScreen() {
   };
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>My Profile</Text>
-      </View>
-      <View style={styles.headerLine} />
-
+    <View style={[styles.container, { paddingTop: 90 }]}>
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.avatarSection}>
           <View style={[styles.avatar, (selectedRole === 'MOM' || selectedRole === 'DAD') ? styles.avatarWithImage : styles.avatarPlain]}>
@@ -313,20 +308,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  header: {
-    backgroundColor: '#F5C518',
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
-  },
-  headerLine: {
-    height: 4,
-    backgroundColor: '#E5A500',
   },
   content: {
     flex: 1,
