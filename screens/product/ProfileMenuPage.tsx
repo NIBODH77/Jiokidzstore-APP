@@ -341,8 +341,12 @@ import {
   SafeAreaView,
   StatusBar,
 } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 
 const ProfileMenuPage: React.FC = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const [activeTab, setActiveTab] = useState<"profile" | "menu">("profile");
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
@@ -693,7 +697,7 @@ const ProfileMenuPage: React.FC = () => {
                 subMenus: ["Intelibaby Subscription", "Intelikit Subscription"],
               },
               { title: "Gift Certificate", hasExpand: false },
-              { title: "My Reviews", hasExpand: false, route: "MyReviews" },
+              { title: "My Reviews", hasExpand: false },
               { title: "Invites and Credits", hasExpand: false },
               { title: "Notify Me", hasExpand: false },
               { title: "My Shortlist", hasExpand: false },
@@ -705,8 +709,9 @@ const ProfileMenuPage: React.FC = () => {
                   onPress={() => {
                     if (item.hasExpand) {
                       toggleMenu(item.title);
-                    } else if ((item as any).route) {
-                      (navigation as any).push((item as any).route);
+                    } else if (item.title === "My Reviews") {
+                      setShowAccountMenu(false);
+                      navigation.navigate('MyReviews');
                     }
                   }}
                 >
