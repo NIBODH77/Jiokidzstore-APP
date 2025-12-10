@@ -238,7 +238,7 @@ export default function DiscountCouponsScreen() {
         {filteredCoupons.length === 0 ? (
           <View style={styles.emptyState}>
             <View style={styles.emptyIconContainer}>
-              <Ionicons name="bag-handle-outline" size={48} color="#FF6B9D" />
+              <Ionicons name="bag-handle-outline" size={48} color="#FF6B35" />
             </View>
             <Text style={styles.emptyTitle}>No Coupons Found</Text>
             <Text style={styles.emptyText}>Try adjusting your search or filter to find available coupons</Text>
@@ -263,7 +263,7 @@ export default function DiscountCouponsScreen() {
                 <View style={styles.couponContent}>
                   <View style={styles.couponHeader}>
                     <View style={styles.couponIconContainer}>
-                      <Ionicons name={getIconName(coupon.icon)} size={24} color="#FF6B9D" />
+                      <Ionicons name={getIconName(coupon.icon)} size={24} color="#FF6B35" />
                     </View>
                     <View style={styles.couponInfo}>
                       <Text style={styles.couponTitle}>{coupon.title}</Text>
@@ -281,7 +281,7 @@ export default function DiscountCouponsScreen() {
                       onPress={() => handleCopyCode(coupon.code)}
                       style={styles.copyBtn}
                     >
-                      <Ionicons name={isCopied ? "checkmark" : "copy-outline"} size={18} color="#FF6B9D" />
+                      <Ionicons name={isCopied ? "checkmark" : "copy-outline"} size={18} color="#FF6B35" />
                       <Text style={styles.copyBtnText}>{isCopied ? 'Copied' : 'Copy'}</Text>
                     </TouchableOpacity>
                   </View>
@@ -297,7 +297,7 @@ export default function DiscountCouponsScreen() {
                     onPress={() => setExpandedCoupon(isExpanded ? null : coupon.id)}
                     style={styles.detailsBtn}
                   >
-                    <Ionicons name="information-circle-outline" size={18} color="#FF6B9D" />
+                    <Ionicons name="information-circle-outline" size={18} color="#FF6B35" />
                     <Text style={styles.detailsBtnText}>
                       {isExpanded ? 'Hide Details' : 'View Details'}
                     </Text>
@@ -340,7 +340,7 @@ export default function DiscountCouponsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF5F7',
+    backgroundColor: '#FFF8F5',
   },
   header: {
     flexDirection: 'row',
@@ -348,7 +348,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 16,
-    backgroundColor: '#FF6B9D',
+    backgroundColor: '#FF6B35',
   },
   backBtn: {
     padding: 8,
@@ -359,7 +359,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   headerBanner: {
-    backgroundColor: '#FF6B9D',
+    backgroundColor: '#FF6B35',
     paddingHorizontal: 16,
     paddingBottom: 24,
   },
@@ -433,7 +433,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   filterTabActive: {
-    backgroundColor: '#FF6B9D',
+    backgroundColor: '#FF6B35',
   },
   filterTabExpiring: {
     backgroundColor: '#F97316',
@@ -464,7 +464,7 @@ const styles = StyleSheet.create({
     width: 96,
     height: 96,
     borderRadius: 48,
-    backgroundColor: '#FFF0F3',
+    backgroundColor: '#FFF0E8',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 16,
@@ -500,7 +500,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
-    backgroundColor: '#FF6B9D',
+    backgroundColor: '#FF6B35',
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderBottomLeftRadius: 16,
@@ -524,7 +524,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 14,
-    backgroundColor: '#FFF0F3',
+    backgroundColor: '#FFF0E8',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -546,9 +546,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#FFF0F3',
+    backgroundColor: '#FFF0E8',
     borderWidth: 2,
-    borderColor: '#FFD6E0',
+    borderColor: '#FFD6C4',
     borderStyle: 'dashed',
     borderRadius: 14,
     padding: 16,
@@ -567,7 +567,7 @@ const styles = StyleSheet.create({
   codeText: {
     fontSize: 22,
     fontWeight: '800',
-    color: '#FF6B9D',
+    color: '#FF6B35',
     letterSpacing: 2,
   },
   copyBtn: {
@@ -579,10 +579,10 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#FFD6E0',
+    borderColor: '#FFD6C4',
   },
   copyBtnText: {
-    color: '#FF6B9D',
+    color: '#FF6B35',
     fontWeight: '600',
     fontSize: 13,
   },
@@ -604,7 +604,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   detailsBtnText: {
-    color: '#FF6B9D',
+    color: '#FF6B35',
     fontWeight: '600',
     fontSize: 14,
   },
@@ -638,7 +638,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   applyBtn: {
-    backgroundColor: '#FF6B9D',
+    backgroundColor: '#FF6B35',
     borderRadius: 14,
     paddingVertical: 16,
     alignItems: 'center',
