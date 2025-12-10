@@ -604,7 +604,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     borderTopWidth: 1,
     borderTopColor: '#E0E0E0',
-    marginBottom: 20,
+    marginBottom: 25,
   },
   addChildText: {
     fontSize: 16,
