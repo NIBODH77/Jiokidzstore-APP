@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F9FAFB',
-    paddingTop: 10,
+    paddingTop: 20,
   },
   filterContainer: {
     backgroundColor: '#FFFFFF',
