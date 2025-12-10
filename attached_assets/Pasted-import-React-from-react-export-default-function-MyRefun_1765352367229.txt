@@ -1,0 +1,94 @@
+import React from 'react';
+
+export default function MyRefundsPage() {
+  const refunds = [
+    {
+      id: 'REF123456',
+      orderNumber: 'ORD789012',
+      date: '15 Nov 2024',
+      amount: '₹1,299',
+      status: 'Processing',
+      statusColor: 'bg-yellow-100 text-yellow-800',
+      productName: 'Wireless Bluetooth Headphones',
+      reason: 'Product damaged'
+    },
+    {
+      id: 'REF123457',
+      orderNumber: 'ORD789013',
+      date: '10 Nov 2024',
+      amount: '₹599',
+      status: 'Approved',
+      statusColor: 'bg-green-100 text-green-800',
+      productName: 'Mobile Phone Case',
+      reason: 'Wrong item received'
+    },
+    {
+      id: 'REF123458',
+      orderNumber: 'ORD789014',
+      date: '5 Nov 2024',
+      amount: '₹2,499',
+      status: 'Completed',
+      statusColor: 'bg-blue-100 text-blue-800',
+      productName: 'Smart Watch Band',
+      reason: 'Product not as described'
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-300 px-4 py-4">
+        <h1 className="text-2xl font-semibold text-gray-800">My Refunds</h1>
+      </div>
+
+      {/* Refund Details Section */}
+      <div className="bg-white m-4 p-6 rounded shadow-sm mb-4">
+        <h2 className="text-xl font-semibold text-gray-700 mb-4">
+          Refund Details
+        </h2>
+        
+        <div className="space-y-4">
+          {refunds.map((refund) => (
+            <div key={refund.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <div className="flex justify-between items-start mb-3">
+                <div>
+                  <h3 className="font-semibold text-gray-800">{refund.productName}</h3>
+                  <p className="text-sm text-gray-500">Refund ID: {refund.id}</p>
+                  <p className="text-sm text-gray-500">Order: {refund.orderNumber}</p>
+                </div>
+                <span className={`px-3 py-1 rounded-full text-sm font-medium ${refund.statusColor}`}>
+                  {refund.status}
+                </span>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4 mt-3 pt-3 border-t border-gray-100">
+                <div>
+                  <p className="text-xs text-gray-500">Refund Amount</p>
+                  <p className="text-lg font-semibold text-gray-800">{refund.amount}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500">Request Date</p>
+                  <p className="text-sm text-gray-700">{refund.date}</p>
+                </div>
+              </div>
+              
+              <div className="mt-3 pt-3 border-t border-gray-100">
+                <p className="text-xs text-gray-500">Reason</p>
+                <p className="text-sm text-gray-700">{refund.reason}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Help Section */}
+      <div className="bg-blue-50 m-4 p-4 rounded border border-blue-200">
+        <p className="text-sm text-gray-700">
+          Need help with your refund? Contact our customer support at{' '}
+          <span className="text-blue-600 font-medium">support@example.com</span> or call{' '}
+          <span className="text-blue-600 font-medium">1800-123-4567</span>
+        </p>
+      </div>
+    </div>
+  );
+}
