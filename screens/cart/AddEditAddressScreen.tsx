@@ -34,225 +34,265 @@ export default function AddEditAddressScreen() {
 
   return (
     <ScreenKeyboardAwareScrollView contentContainerStyle={styles.container}>
-      <ThemedText style={styles.heading}>— Add New Address</ThemedText>
+      <ThemedText style={styles.heading}>Add New Address</ThemedText>
       <View style={styles.field}>
+        <ThemedText style={styles.label}>Full Name *</ThemedText>
         <TextInput
-          style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
+          style={styles.input}
           value={name}
           onChangeText={setName}
           placeholder="Enter your Name"
-          placeholderTextColor="#999"
+          placeholderTextColor="#9CA3AF"
         />
       </View>
       
       <View style={styles.field}>
+        <ThemedText style={styles.label}>Flat No. / House / Building *</ThemedText>
         <TextInput
-          style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
+          style={styles.input}
           value={flatNo}
           onChangeText={setFlatNo}
-          placeholder="Flat No.House/Building"
-          placeholderTextColor="#999"
+          placeholder="e.g., A-101"
+          placeholderTextColor="#9CA3AF"
         />
       </View>
 
       <View style={styles.field}>
+        <ThemedText style={styles.label}>Street Address / Colony *</ThemedText>
         <TextInput
-          style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
+          style={styles.input}
           value={street}
           onChangeText={setStreet}
-          placeholder="Street Adress/Colony"
-          placeholderTextColor="#999"
+          placeholder="e.g., MG Road"
+          placeholderTextColor="#9CA3AF"
         />
       </View>
 
       <View style={styles.field}>
+        <ThemedText style={styles.label}>Landmark (Optional)</ThemedText>
         <TextInput
-          style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
+          style={styles.input}
           value={landmark}
           onChangeText={setLandmark}
-          placeholder="Landmark"
-          placeholderTextColor="#999"
+          placeholder="e.g., Near City Mall"
+          placeholderTextColor="#9CA3AF"
         />
       </View>
 
       <View style={styles.field}>
+        <ThemedText style={styles.label}>Pincode *</ThemedText>
         <TextInput
-          style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
+          style={styles.input}
           value={pincode}
           onChangeText={setPincode}
-          placeholder="Pincode"
-          placeholderTextColor="#999"
+          placeholder="e.g., 400001"
+          placeholderTextColor="#9CA3AF"
           keyboardType="number-pad"
           maxLength={6}
         />
       </View>
 
       <View style={styles.field}>
+        <ThemedText style={styles.label}>City *</ThemedText>
         <TextInput
-          style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
+          style={styles.input}
           value={city}
           onChangeText={setCity}
-          placeholder="City"
-          placeholderTextColor="#999"
+          placeholder="e.g., Mumbai"
+          placeholderTextColor="#9CA3AF"
         />
       </View>
 
       <View style={styles.field}>
+        <ThemedText style={styles.label}>State *</ThemedText>
         <TextInput
-          style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
+          style={styles.input}
           value={state}
           onChangeText={setState}
-          placeholder="State"
-          placeholderTextColor="#999"
+          placeholder="e.g., Maharashtra"
+          placeholderTextColor="#9CA3AF"
         />
       </View>
 
-      <View style={styles.row}>
-        <View style={styles.codeField}>
-          <TextInput
-            style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
-            value="+91"
-            editable={false}
-            placeholderTextColor="#999"
-          />
-        </View>
-        <View style={styles.flexField}>
-          <TextInput
-            style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
-            value={mobileNo}
-            onChangeText={setMobileNo}
-            placeholder="Mobile No."
-            placeholderTextColor="#999"
-            keyboardType="phone-pad"
-          />
+      <View style={styles.field}>
+        <ThemedText style={styles.label}>Mobile Number *</ThemedText>
+        <View style={styles.row}>
+          <View style={styles.codeField}>
+            <TextInput
+              style={styles.input}
+              value="+91"
+              editable={false}
+              placeholderTextColor="#9CA3AF"
+            />
+          </View>
+          <View style={styles.flexField}>
+            <TextInput
+              style={styles.input}
+              value={mobileNo}
+              onChangeText={setMobileNo}
+              placeholder="9876543210"
+              placeholderTextColor="#9CA3AF"
+              keyboardType="phone-pad"
+            />
+          </View>
         </View>
       </View>
 
-      <View style={styles.row}>
-        <View style={styles.codeField}>
-          <TextInput
-            style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
-            value="+91"
-            editable={false}
-            placeholderTextColor="#999"
-          />
-        </View>
-        <View style={styles.smallField}>
-          <TextInput
-            style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
-            value={stdCode}
-            onChangeText={setStdCode}
-            placeholder="STD Code"
-            placeholderTextColor="#999"
-            keyboardType="number-pad"
-          />
-        </View>
-        <View style={styles.flexField}>
-          <TextInput
-            style={[styles.input, { color: theme.text, backgroundColor: theme.backgroundDefault }]}
-            value={landline}
-            onChangeText={setLandline}
-            placeholder="Landline No."
-            placeholderTextColor="#999"
-            keyboardType="phone-pad"
-          />
+      <View style={styles.field}>
+        <ThemedText style={styles.label}>Landline (Optional)</ThemedText>
+        <View style={styles.row}>
+          <View style={styles.codeField}>
+            <TextInput
+              style={styles.input}
+              value="+91"
+              editable={false}
+              placeholderTextColor="#9CA3AF"
+            />
+          </View>
+          <View style={styles.smallField}>
+            <TextInput
+              style={styles.input}
+              value={stdCode}
+              onChangeText={setStdCode}
+              placeholder="022"
+              placeholderTextColor="#9CA3AF"
+              keyboardType="number-pad"
+            />
+          </View>
+          <View style={styles.flexField}>
+            <TextInput
+              style={styles.input}
+              value={landline}
+              onChangeText={setLandline}
+              placeholder="12345678"
+              placeholderTextColor="#9CA3AF"
+              keyboardType="phone-pad"
+            />
+          </View>
         </View>
       </View>
 
       <View style={styles.addressTypeContainer}>
-        <ThemedText style={styles.addressTypeLabel}>Address Type:</ThemedText>
+        <ThemedText style={styles.addressTypeLabel}>Address Type *</ThemedText>
         <View style={styles.radioGroup}>
           <Pressable 
-            style={styles.radioOption} 
+            style={[styles.radioOption, addressType === 'home' && styles.radioOptionSelected]} 
             onPress={() => setAddressType('home')}
           >
-            <View style={styles.radioCircle}>
+            <View style={[styles.radioCircle, addressType === 'home' && styles.radioCircleActive]}>
               {addressType === 'home' && <View style={styles.radioCircleSelected} />}
             </View>
-            <ThemedText style={styles.radioLabel}>Home</ThemedText>
+            <ThemedText style={[styles.radioLabel, addressType === 'home' && styles.radioLabelActive]}>Home</ThemedText>
           </Pressable>
           <Pressable 
-            style={styles.radioOption} 
+            style={[styles.radioOption, addressType === 'office' && styles.radioOptionSelected]} 
             onPress={() => setAddressType('office')}
           >
-            <View style={styles.radioCircle}>
+            <View style={[styles.radioCircle, addressType === 'office' && styles.radioCircleActive]}>
               {addressType === 'office' && <View style={styles.radioCircleSelected} />}
             </View>
-            <ThemedText style={styles.radioLabel}>Office</ThemedText>
+            <ThemedText style={[styles.radioLabel, addressType === 'office' && styles.radioLabelActive]}>Office</ThemedText>
           </Pressable>
         </View>
       </View>
 
       <View style={styles.buttonRow}>
-        <View style={styles.buttonWrapper}>
-          <Button title="CANCEL" onPress={handleCancel} />
-        </View>
-        <View style={styles.buttonWrapper}>
-          <Button title="SAVE" onPress={handleSave} />
-        </View>
+        <Pressable style={styles.cancelButton} onPress={handleCancel}>
+          <ThemedText style={styles.cancelButtonText}>CANCEL</ThemedText>
+        </Pressable>
+        <Pressable style={styles.saveButton} onPress={handleSave}>
+          <ThemedText style={styles.saveButtonText}>SAVE ADDRESS</ThemedText>
+        </Pressable>
       </View>
     </ScreenKeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { padding: Spacing.lg, paddingTop: Spacing.xl },
-  heading: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#333',
-    marginBottom: Spacing.lg,
+  container: { 
+    padding: 20,
+    paddingTop: 20,
+    backgroundColor: '#FFFFFF',
   },
-  field: { marginBottom: Spacing.md },
+  heading: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1F2937',
+    marginBottom: 24,
+  },
+  field: { 
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#4B5563',
+    marginBottom: 8,
+  },
   input: {
     height: 48,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
-    paddingHorizontal: 0,
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
+    borderRadius: 8,
+    paddingHorizontal: 14,
     fontSize: 15,
-    color: '#333',
+    color: '#1F2937',
+    backgroundColor: '#FFFFFF',
   },
   row: {
     flexDirection: 'row',
-    gap: Spacing.md,
-    marginBottom: Spacing.md,
+    gap: 10,
   },
   codeField: {
-    width: 60,
+    width: 70,
   },
   smallField: {
-    flex: 0.4,
+    flex: 0.35,
   },
   flexField: {
     flex: 1,
   },
   addressTypeContainer: {
-    marginTop: Spacing.lg,
-    marginBottom: Spacing.xl,
+    marginTop: 8,
+    marginBottom: 32,
   },
   addressTypeLabel: {
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#333',
-    marginBottom: Spacing.md,
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#4B5563',
+    marginBottom: 12,
   },
   radioGroup: {
     flexDirection: 'row',
-    gap: Spacing.xl,
+    gap: 12,
   },
   radioOption: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.sm,
+    gap: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
+    backgroundColor: '#FFFFFF',
+    flex: 1,
+  },
+  radioOptionSelected: {
+    borderColor: '#FF6B35',
+    backgroundColor: '#FFF5F0',
   },
   radioCircle: {
     width: 20,
     height: 20,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: '#999',
+    borderColor: '#D1D5DB',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  radioCircleActive: {
+    borderColor: '#FF6B35',
   },
   radioCircleSelected: {
     width: 10,
@@ -262,14 +302,44 @@ const styles = StyleSheet.create({
   },
   radioLabel: {
     fontSize: 15,
-    color: '#333',
+    fontWeight: '500',
+    color: '#6B7280',
+  },
+  radioLabelActive: {
+    color: '#FF6B35',
   },
   buttonRow: {
     flexDirection: 'row',
-    gap: Spacing.md,
-    marginTop: Spacing.xl,
+    gap: 12,
+    marginTop: 8,
+    marginBottom: 20,
   },
-  buttonWrapper: {
+  cancelButton: {
     flex: 1,
+    paddingVertical: 16,
+    borderRadius: 12,
+    borderWidth: 1.5,
+    borderColor: '#E5E7EB',
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cancelButtonText: {
+    color: '#6B7280',
+    fontSize: 15,
+    fontWeight: '700',
+  },
+  saveButton: {
+    flex: 1,
+    paddingVertical: 16,
+    borderRadius: 12,
+    backgroundColor: '#FF6B35',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  saveButtonText: {
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: '700',
   },
 });
