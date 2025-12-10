@@ -9,8 +9,10 @@ import {
   Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { Spacing } from '@/constants/theme';
+import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 
 interface Order {
   id: string;
@@ -28,7 +30,7 @@ interface Order {
 }
 
 export default function OrderHistoryScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'delivered' | 'pending' | 'cancelled'>('all');
 
   const orders: Order[] = [
@@ -113,7 +115,7 @@ export default function OrderHistoryScreen() {
   });
 
   const handleOrderPress = (order: Order) => {
-    (navigation as any).navigate('OrderDetail', { orderId: order.id, order });
+    navigation.navigate('OrderDetail', { orderId: order.id, order });
   };
 
   return (
