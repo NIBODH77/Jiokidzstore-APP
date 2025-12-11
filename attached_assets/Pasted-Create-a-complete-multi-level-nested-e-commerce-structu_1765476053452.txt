@@ -1,0 +1,187 @@
+Create a complete multi-level nested e-commerce structure for a Kids Fashion section based on the image provided.
+The top section contains two rows:
+
+👧 FIRST ROW — GIRLS (Age-wise)
+
+Cards:
+
+0–6 Months (Girls)
+
+6–24 Months (Girls)
+
+2–4 Years (Girls)
+
+4–6 Years (Girls)
+
+6–14 Years (Girls)
+
+👦 SECOND ROW — BOYS (Age-wise)
+
+Cards:
+
+0–6 Months (Boys)
+
+6–24 Months (Boys)
+
+2–4 Years (Boys)
+
+4–6 Years (Boys)
+
+6–14 Years (Boys)
+
+✅ Requirement: Nested Page Generation
+
+Whenever the user clicks ANY card (Girls or Boys, any age), automatically generate a full nested structure with:
+
+1️⃣ Level 1 → Age + Gender Landing Page
+
+Example:
+“Girls | 2–4 Years”
+
+This page must include:
+
+Hero banner
+
+Featured categories
+
+Season-highlighted collections
+
+Recommended items
+
+2️⃣ Level 2 → Full Categories List for that Age & Gender
+
+Categories must include:
+
+Tops / T-shirts
+
+Shirts
+
+Frocks / Dresses (for girls)
+
+Jeggings / Jeans
+
+Winter Wear
+
+Bottom Wear
+
+Ethnic Wear
+
+Party Wear
+
+Footwear
+
+Accessories
+
+Each category must open a dedicated category page.
+
+3️⃣ Level 3 → Category Detail Page
+
+Example:
+“Girls → 2–4 Years → Winter Wear”
+
+This page must show:
+
+All products
+
+Filters (Price, Brand, Color, Size)
+
+Sorting (Low → High, High → Low, Newest, Best Selling)
+
+Season priority logic
+
+Subcategories
+
+Banner based on season
+
+🎯 SEASON MANAGEMENT (VERY IMPORTANT)
+
+Each product must contain season tags:
+
+Example:
+
+Product	Category	Season
+Cotton Frock	Frocks	Summer
+Woolen Jacket	Winter Wear	Winter
+Full-Sleeve Top	Tops	Winter/Summer
+Party Dress	Dresses	All Season
+Seasonal Display Logic:
+
+When the user lands on ANY category:
+
+Current season products appear on top
+
+Other season products appear below
+
+Items are NOT hidden, only priority changes
+
+Sorting logic:
+
+ORDER BY (season = currentSeason) DESC, popularity DESC
+
+⭐ 4️⃣ Level 4 → Product Detail Page
+
+For any product:
+
+Title, Description
+
+Age group
+
+Gender
+
+Season
+
+Material
+
+Images
+
+Size chart
+
+Recommendations based on season + age + gender
+
+Use dynamic recommendation like:
+
+“More Winter Wear for 2–4 Years Girls”
+
+“Best for Summer Days”
+
+“Trending Boys Outfits (6–24 Months)”
+
+📦 PRODUCT STRUCTURE MUST INCLUDE
+
+product_id
+
+product_name
+
+age_group
+
+gender
+
+category
+
+subcategory
+
+season (Summer / Winter / All Season)
+
+images
+
+sizes
+
+price
+
+discount
+
+material
+
+🎯 ADDITIONAL REQUIREMENTS
+
+Generate:
+
+SEO-ready URLs
+
+Breadcrumbs (Home / Kids / Girls / 2–4 Years / Tops)
+
+Responsive layout for mobile
+
+Clean, modern UI
+
+Consistent theme
