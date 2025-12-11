@@ -155,9 +155,9 @@ export default function ProfileScreen() {
       <View style={styles.shoppingGrid}>
         {[
           { icon: '👤', title: 'Account', action: () => setShowAccountMenu(true) },
-          { icon: '📦', title: 'Order History', action: () => {} },
-          { icon: '🚚', title: 'Track order', action: () => {} },
-          { icon: '💰', title: 'Cash Refund', action: handleCashRefundPress },
+          { icon: '📦', title: 'Order History', action: () => (navigation as any).push('OrderHistory') },
+          { icon: '🚚', title: 'Track order', action: () => (navigation as any).push('TrackOrder', { orderNumber: '' }) },
+          { icon: '💰', title: 'Cash Refund', action: () => (navigation as any).push('CashRefund') },
         ].map((item, index) => (
           <Pressable
             key={index}
