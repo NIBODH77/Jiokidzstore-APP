@@ -130,7 +130,7 @@ export function Button({
     <Animated.View style={[animatedStyle, fullWidth && styles.fullWidth]}>
       {variant === 'gradient' ? (
         <LinearGradient
-          colors={['#FF6B9D', '#FF8FB3']}
+          colors={['#FF8C00', '#FF8FB3']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={[styles.button, getButtonStyle()]}

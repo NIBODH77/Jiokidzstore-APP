@@ -122,6 +122,13 @@
   - Empty state with "Start Shopping" button
   - Added RecentlyViewed route to HomeStackNavigator
   - Successfully bundled with Metro (1270 modules)
+- [x] Changed entire app color theme from pink to orange (2024-12-11):
+  - Updated theme.ts: primary color from #FF6B9D to #FF8C00
+  - Replaced all pink gradient colors with orange equivalents
+  - Updated splash screen, login, OTP, home, wishlist, notifications screens
+  - Updated components: buttons, headers, carousels, badges
+  - Color mappings: #FF6B9D→#FF8C00, #FFB5C5→#FFD4A3, #FFE4EC→#FFF3E0, #FFF5F7→#FFFAF5
+  - App now displays with consistent orange/peach theme
 
 ## Technical Notes
 - **Web Timer Fix**: react-native-reanimated's setTimeout doesn't work reliably on web. Used polling-based timer with Date.now() for web compatibility.

@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     color: '#1F2937',
   },
   checkButton: {
-    backgroundColor: '#FF6B9D',
+    backgroundColor: '#FF8C00',
     paddingVertical: 14,
     borderRadius: 10,
     alignItems: 'center',

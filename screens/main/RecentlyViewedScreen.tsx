@@ -151,7 +151,7 @@ export default function RecentlyViewedScreen() {
   const renderEmptyState = () => (
     <View style={styles.emptyContainer}>
       <View style={styles.emptyIconContainer}>
-        <Ionicons name="eye-outline" size={80} color="#FFB5C5" />
+        <Ionicons name="eye-outline" size={80} color="#FFD4A3" />
       </View>
       <Text style={styles.emptyTitle}>No Recently Viewed Products</Text>
       <Text style={styles.emptySubtitle}>
@@ -211,7 +211,7 @@ export default function RecentlyViewedScreen() {
                   style={styles.removeButton}
                   onPress={() => removeProduct(product.id)}
                 >
-                  <Ionicons name="close-circle" size={22} color="#FF6B9D" />
+                  <Ionicons name="close-circle" size={22} color="#FF8C00" />
                 </TouchableOpacity>
 
                 <View style={styles.imageContainer}>
@@ -254,7 +254,7 @@ export default function RecentlyViewedScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF5F7',
+    backgroundColor: '#FFFAF5',
   },
   header: {
     flexDirection: 'row',
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     backgroundColor: '#fff',
     borderBottomWidth: 1,
-    borderBottomColor: '#FFE4EC',
+    borderBottomColor: '#FFF3E0',
   },
   backButton: {
     padding: 4,
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
   },
   clearButtonText: {
     fontSize: 14,
-    color: '#FF6B9D',
+    color: '#FF8C00',
     fontWeight: '600',
   },
   loadingContainer: {
@@ -340,7 +340,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 8,
     left: 8,
-    backgroundColor: '#FF6B9D',
+    backgroundColor: '#FF8C00',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 4,
@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#FF6B9D',
+    color: '#FF8C00',
     marginRight: 6,
   },
   oldPrice: {
@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FF6B9D',
+    backgroundColor: '#FF8C00',
     paddingVertical: 10,
     gap: 6,
   },
@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: '#FFF0F5',
+    backgroundColor: '#FFF8F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 24,
@@ -423,7 +423,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   shopNowButton: {
-    backgroundColor: '#FF6B9D',
+    backgroundColor: '#FF8C00',
     paddingHorizontal: 32,
     paddingVertical: 14,
     borderRadius: 25,

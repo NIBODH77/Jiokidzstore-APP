@@ -6,7 +6,7 @@ import { ThemedText } from './ThemedText';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 
 const PERSONALIZED_ITEMS = [
-  { id: '1', title: 'For Newborns', icon: '👶', color1: '#FFB6D9', color2: '#FFC9E3' },
+  { id: '1', title: 'For Newborns', icon: '👶', color1: '#FFD4A3', color2: '#FFE8D6' },
   { id: '2', title: 'For Toddlers', icon: '🧒', color1: '#A8E6CF', color2: '#C8F7DC' },
   { id: '3', title: 'For Kids', icon: '👦', color1: '#FFD3B6', color2: '#FFDDCC' },
   { id: '4', title: 'Gifts Under ₹500', icon: '🎁', color1: '#FFAAA5', color2: '#FFCCC7' },

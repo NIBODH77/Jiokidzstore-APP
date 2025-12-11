@@ -88,7 +88,7 @@ export default function OTPScreen() {
     <View style={styles.rootContainer}>
       {/* Top Pink Section */}
       <LinearGradient
-        colors={['#FFD4E5', '#FFE5EE']}
+        colors={['#FFE8D6', '#FFF3E0']}
         style={[styles.pinkSection, { paddingTop: insets.top }]}
       >
         <View style={styles.headerContent}>
@@ -97,7 +97,7 @@ export default function OTPScreen() {
             style={styles.backButton}
             hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           >
-            <Feather name="arrow-left" size={24} color="#FF6B9D" />
+            <Feather name="arrow-left" size={24} color="#FF8C00" />
           </Pressable>
           <ThemedText style={styles.headerTitle}>Verify OTP</ThemedText>
           <View style={styles.spacer} />
@@ -159,7 +159,7 @@ export default function OTPScreen() {
               </>
             ) : (
               <Pressable onPress={handleResend} style={styles.resendButton} disabled={isVerifying}>
-                <Feather name="refresh-cw" size={16} color="#FF6B9D" />
+                <Feather name="refresh-cw" size={16} color="#FF8C00" />
                 <ThemedText style={styles.resendText}>Resend Code</ThemedText>
               </Pressable>
             )}
@@ -175,7 +175,7 @@ export default function OTPScreen() {
             ]}
           >
             <LinearGradient
-              colors={(allDigitsFilled && !isVerifying) ? ['#FF6B9D', '#FF8FB3'] : ['#D0D0D0', '#B8B8B8']}
+              colors={(allDigitsFilled && !isVerifying) ? ['#FF8C00', '#FF8FB3'] : ['#D0D0D0', '#B8B8B8']}
               style={styles.verifyButtonGradient}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#FF6B9D',
+    color: '#FF8C00',
     flex: 1,
     textAlign: 'center',
   },
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   phoneNumber: {
-    color: '#FF6B9D',
+    color: '#FF8C00',
     fontWeight: '700',
   },
   otpContainer: {
@@ -271,19 +271,19 @@ const styles = StyleSheet.create({
     height: 56,
     borderRadius: 14,
     borderWidth: 2,
-    borderColor: '#FFB6D9',
+    borderColor: '#FFD4A3',
     backgroundColor: 'rgba(255, 182, 217, 0.1)',
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#FF6B9D',
+    shadowColor: '#FF8C00',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 4,
     elevation: 2,
   },
   otpBoxFilled: {
-    borderColor: '#FF6B9D',
+    borderColor: '#FF8C00',
     backgroundColor: 'rgba(255, 107, 157, 0.05)',
     shadowOpacity: 0.15,
     elevation: 3,
@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
   timerValue: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#FF6B9D',
+    color: '#FF8C00',
     marginTop: 4,
   },
   resendButton: {
@@ -326,14 +326,14 @@ const styles = StyleSheet.create({
   resendText: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#FF6B9D',
+    color: '#FF8C00',
   },
   verifyButton: {
     width: '100%',
     borderRadius: 12,
     overflow: 'hidden',
     marginBottom: 20,
-    shadowColor: '#FF6B9D',
+    shadowColor: '#FF8C00',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.12,
     shadowRadius: 6,

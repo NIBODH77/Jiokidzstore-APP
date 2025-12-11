@@ -95,7 +95,7 @@ export function EnhancedButton({
           style={[styles.button, sizeStyles[size], { overflow: 'hidden' }]}
         >
           <LinearGradient
-            colors={['#FF6B9D', '#FFA8C5']}
+            colors={['#FF8C00', '#FFA8C5']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={StyleSheet.absoluteFill}

@@ -31,7 +31,7 @@ const slides: Slide[] = [
     description:
       'Premium quality products for your little ones. Everything from toys to clothing, all in one place.',
     icon: 'gift',
-    gradient: ['#FF6B9D', '#FFB6D9'],
+    gradient: ['#FF8C00', '#FFD4A3'],
   },
   {
     id: 2,

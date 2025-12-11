@@ -108,7 +108,7 @@ export default function AgeGroupDetailScreen() {
           description: 'Special occasion dresses and outfits for baby girls',
           icon: '🎀',
           backgroundColor: '#FFB3D9',
-          gradientColors: ['#FF69B4', '#FFB6D9'],
+          gradientColors: ['#FF8C00', '#FFD4A3'],
         },
         {
           id: '5',
@@ -129,7 +129,7 @@ export default function AgeGroupDetailScreen() {
           title: 'Footwear',
           description: 'Comfortable and stylish shoes for baby girls',
           icon: '👟',
-          backgroundColor: '#FFB6D9',
+          backgroundColor: '#FFD4A3',
         },
       ]
     : [
@@ -181,7 +181,7 @@ export default function AgeGroupDetailScreen() {
           title: 'Footwear',
           description: 'Comfortable and stylish shoes for baby boys',
           icon: '👟',
-          backgroundColor: '#FFB6D9',
+          backgroundColor: '#FFD4A3',
         },
       ];
 
@@ -696,7 +696,7 @@ export default function AgeGroupDetailScreen() {
           </View>
           <ThemedText style={styles.brandsSubtitle}>Winter's finest for your little wonders</ThemedText>
           <View style={styles.brandsGrid}>
-            <Pressable style={[styles.brandCard, { backgroundColor: '#FFE4EC' }]}>
+            <Pressable style={[styles.brandCard, { backgroundColor: '#FFF3E0' }]}>
               <Image 
                 source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}

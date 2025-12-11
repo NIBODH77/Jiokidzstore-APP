@@ -26,7 +26,7 @@ export const AGE_GROUPS: AgeGroup[] = [
 
 export const GIRLS_AGE_GROUPS: AgeGroup[] = [
   { id: 'g1', name: 'Newborn', ageRange: '0-6 Months', color: '#FFE5E5', itemCount: 234 },
-  { id: 'g2', name: 'Infant', ageRange: '6-24 Months', color: '#FFD4E5', itemCount: 312 },
+  { id: 'g2', name: 'Infant', ageRange: '6-24 Months', color: '#FFE8D6', itemCount: 312 },
   { id: 'g3', name: 'Toddler', ageRange: '2-4 Years', color: '#FFC3E0', itemCount: 456 },
   { id: 'g4', name: 'Preschool', ageRange: '4-6 Years', color: '#FFB3D9', itemCount: 567 },
   { id: 'g5', name: 'Kids', ageRange: '6-14 Years', color: '#FFA3D2', itemCount: 678 },

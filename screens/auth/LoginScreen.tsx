@@ -39,7 +39,7 @@ export default function LoginScreen() {
     <View style={styles.rootContainer}>
       {/* Top Pink Section - Logo & Tabs */}
       <LinearGradient
-        colors={['#FFD4E5', '#FFE5EE']}
+        colors={['#FFE8D6', '#FFF3E0']}
         style={[styles.pinkSection, { paddingTop: insets.top + headerHeight }]}
       >
         <View style={styles.logoSection}>
@@ -96,7 +96,7 @@ export default function LoginScreen() {
               <ThemedText style={styles.inputLabel}>Mobile Number</ThemedText>
               <View style={[styles.modernInputContainer, phone.length > 0 && styles.modernInputActive]}>
                 <View style={styles.modernInputGradient}>
-                  <Feather name="phone" size={20} color="#FF6B9D" style={styles.inputIcon} />
+                  <Feather name="phone" size={20} color="#FF8C00" style={styles.inputIcon} />
                   <TextInput
                     value={phone}
                     onChangeText={setPhone}
@@ -124,7 +124,7 @@ export default function LoginScreen() {
               ]}
             >
               <LinearGradient
-                colors={isFormValid ? ['#FF6B9D', '#FF8FB3'] : ['#D0D0D0', '#B8B8B8']}
+                colors={isFormValid ? ['#FF8C00', '#FF8FB3'] : ['#D0D0D0', '#B8B8B8']}
                 style={styles.submitButtonGradient}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
@@ -173,7 +173,7 @@ export default function LoginScreen() {
               <ThemedText style={styles.inputLabel}>Full Name</ThemedText>
               <View style={[styles.modernInputContainer, name.length > 0 && styles.modernInputActive]}>
                 <View style={styles.modernInputGradient}>
-                  <Feather name="user" size={20} color="#FF6B9D" style={styles.inputIcon} />
+                  <Feather name="user" size={20} color="#FF8C00" style={styles.inputIcon} />
                   <TextInput
                     value={name}
                     onChangeText={setName}
@@ -190,7 +190,7 @@ export default function LoginScreen() {
               <ThemedText style={styles.inputLabel}>Mobile Number</ThemedText>
               <View style={[styles.modernInputContainer, phone.length > 0 && styles.modernInputActive]}>
                 <View style={styles.modernInputGradient}>
-                  <Feather name="phone" size={20} color="#FF6B9D" style={styles.inputIcon} />
+                  <Feather name="phone" size={20} color="#FF8C00" style={styles.inputIcon} />
                   <TextInput
                     value={phone}
                     onChangeText={setPhone}
@@ -218,7 +218,7 @@ export default function LoginScreen() {
               ]}
             >
               <LinearGradient
-                colors={isFormValid ? ['#FF6B9D', '#FF8FB3'] : ['#D0D0D0', '#B8B8B8']}
+                colors={isFormValid ? ['#FF8C00', '#FF8FB3'] : ['#D0D0D0', '#B8B8B8']}
                 style={styles.submitButtonGradient}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
     color: 'rgba(255, 107, 157, 0.6)',
   },
   tabTextActive: {
-    color: '#FF6B9D',
+    color: '#FF8C00',
     fontSize: 16,
     fontWeight: '700',
   },
@@ -309,7 +309,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 3,
-    backgroundColor: '#FF6B9D',
+    backgroundColor: '#FF8C00',
     borderTopLeftRadius: 2,
     borderTopRightRadius: 2,
   },
@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
   },
   helperText: {
     fontSize: 11,
-    color: '#FF6B9D',
+    color: '#FF8C00',
     fontWeight: '500',
     marginTop: 4,
   },
@@ -358,15 +358,15 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 2,
-    borderColor: '#FFB6D9',
-    shadowColor: '#FF6B9D',
+    borderColor: '#FFD4A3',
+    shadowColor: '#FF8C00',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 4,
     elevation: 2,
   },
   modernInputActive: {
-    borderColor: '#FF6B9D',
+    borderColor: '#FF8C00',
     shadowOpacity: 0.15,
     elevation: 3,
   },
@@ -394,7 +394,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 12,
     overflow: 'hidden',
-    shadowColor: '#FF6B9D',
+    shadowColor: '#FF8C00',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.12,
     shadowRadius: 6,
@@ -456,7 +456,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   termsLink: {
-    color: '#FF6B9D',
+    color: '#FF8C00',
     fontWeight: '600',
   },
 });

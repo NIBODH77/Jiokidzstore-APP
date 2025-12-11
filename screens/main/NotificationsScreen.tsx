@@ -89,7 +89,7 @@ export default function NotificationsScreen() {
 
       {/* Content Area with Gradient */}
       <LinearGradient
-        colors={['#FFF0F3', '#FFFFFF']}
+        colors={['#FFF8F0', '#FFFFFF']}
         style={styles.contentArea}
       >
         {activeTab === 'offers' ? (

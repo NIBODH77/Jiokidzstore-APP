@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
   },
   ageTabBadgeActive: {
-    borderColor: '#FF6B9D',
+    borderColor: '#FF8C00',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   ageTabTextActive: {
-    color: '#FF6B9D',
+    color: '#FF8C00',
     fontWeight: '700',
   },
   ageInfoSection: {

@@ -1,23 +1,23 @@
 import { Platform } from "react-native";
 
-const primaryPink = "#FF6B9D";
-const secondaryPink = "#FFE5EE";
-const accentPurple = "#9B59B6";
+const primaryOrange = "#FF8C00";
+const secondaryOrange = "#FFF3E0";
+const accentOrange = "#FF6B35";
 
 export const Colors = {
   light: {
-    primary: primaryPink,
-    secondary: secondaryPink,
-    accent: accentPurple,
+    primary: primaryOrange,
+    secondary: secondaryOrange,
+    accent: accentOrange,
     text: "#2C3E50",
     textGray: "#7F8C8D",
     buttonText: "#FFFFFF",
     tabIconDefault: "#7F8C8D",
-    tabIconSelected: primaryPink,
-    link: primaryPink,
+    tabIconSelected: primaryOrange,
+    link: primaryOrange,
     backgroundRoot: "#FFFFFF",
     backgroundDefault: "#F8F9FA",
-    backgroundSecondary: secondaryPink,
+    backgroundSecondary: secondaryOrange,
     backgroundTertiary: "#E8E8E8",
     border: "#E8E8E8",
     success: "#27AE60",
@@ -25,21 +25,21 @@ export const Colors = {
     error: "#E74C3C",
     info: "#3498DB",
     boyFashion: "#3498DB",
-    girlFashion: "#FF6B9D",
+    girlFashion: "#FF8C00",
     footwear: "#F39C12",
     toys: "#9B59B6",
     diapers: "#27AE60",
   },
   dark: {
-    primary: primaryPink,
-    secondary: "#4A2A3E",
-    accent: accentPurple,
+    primary: primaryOrange,
+    secondary: "#4A3A2E",
+    accent: accentOrange,
     text: "#ECEDEE",
     textGray: "#9BA1A6",
     buttonText: "#FFFFFF",
     tabIconDefault: "#9BA1A6",
-    tabIconSelected: primaryPink,
-    link: primaryPink,
+    tabIconSelected: primaryOrange,
+    link: primaryOrange,
     backgroundRoot: "#1F2123",
     backgroundDefault: "#2A2C2E",
     backgroundSecondary: "#353739",
@@ -50,7 +50,7 @@ export const Colors = {
     error: "#E74C3C",
     info: "#3498DB",
     boyFashion: "#3498DB",
-    girlFashion: "#FF6B9D",
+    girlFashion: "#FF8C00",
     footwear: "#F39C12",
     toys: "#9B59B6",
     diapers: "#27AE60",
@@ -148,7 +148,7 @@ export const Shadows = {
     elevation: 4,
   },
   large: {
-    shadowColor: primaryPink,
+    shadowColor: primaryOrange,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 8,

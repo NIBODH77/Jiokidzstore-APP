@@ -26,10 +26,10 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { icon: '👕', label: 'Shop By Category', bg: '#FFE4EC' },
+  { icon: '👕', label: 'Shop By Category', bg: '#FFF3E0' },
   { icon: '🏪', label: 'Boutiques', bg: '#1A1A1A' },
-  { icon: '👨‍👩‍👧', label: 'Parenting', bg: '#FFE4EC' },
-  { icon: '🎭', label: 'Club', bg: '#FFE4EC' },
+  { icon: '👨‍👩‍👧', label: 'Parenting', bg: '#FFF3E0' },
+  { icon: '🎭', label: 'Club', bg: '#FFF3E0' },
   { icon: '💰', label: 'Offer Zone', bg: '#FFF3CD' },
   { icon: '🎁', label: 'Gifts & Cards', bg: '#E8D5FF' },
   { icon: '📚', label: 'Intelli Education', bg: '#FFF9E6' },

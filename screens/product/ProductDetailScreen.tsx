@@ -174,15 +174,15 @@ export default function ProductDetailScreen() {
           {/* Key Highlights */}
           <View style={styles.highlightsSection}>
             <View style={styles.highlightItem}>
-              <Feather name="truck" size={18} color="#FF6B9D" />
+              <Feather name="truck" size={18} color="#FF8C00" />
               <ThemedText style={styles.highlightText}>Free Delivery</ThemedText>
             </View>
             <View style={styles.highlightItem}>
-              <Feather name="shield" size={18} color="#FF6B9D" />
+              <Feather name="shield" size={18} color="#FF8C00" />
               <ThemedText style={styles.highlightText}>Secure Checkout</ThemedText>
             </View>
             <View style={styles.highlightItem}>
-              <Feather name="rotate-ccw" size={18} color="#FF6B9D" />
+              <Feather name="rotate-ccw" size={18} color="#FF8C00" />
               <ThemedText style={styles.highlightText}>Easy Returns</ThemedText>
             </View>
           </View>
@@ -247,14 +247,14 @@ export default function ProductDetailScreen() {
                 style={styles.quantityButton}
                 onPress={() => quantity > 1 && setQuantity(quantity - 1)}
               >
-                <Feather name="minus" size={18} color="#FF6B9D" />
+                <Feather name="minus" size={18} color="#FF8C00" />
               </Pressable>
               <ThemedText style={styles.quantityValue}>{quantity}</ThemedText>
               <Pressable 
                 style={styles.quantityButton}
                 onPress={() => setQuantity(quantity + 1)}
               >
-                <Feather name="plus" size={18} color="#FF6B9D" />
+                <Feather name="plus" size={18} color="#FF8C00" />
               </Pressable>
             </View>
           </View>
@@ -278,8 +278,8 @@ export default function ProductDetailScreen() {
           <Feather 
             name="heart" 
             size={22} 
-            color={isWishlisted ? '#FF6B9D' : '#999999'}
-            fill={isWishlisted ? '#FF6B9D' : 'transparent'}
+            color={isWishlisted ? '#FF8C00' : '#999999'}
+            fill={isWishlisted ? '#FF8C00' : 'transparent'}
           />
         </Pressable>
         
@@ -288,7 +288,7 @@ export default function ProductDetailScreen() {
           onPress={handleAddToCart}
         >
           <LinearGradient
-            colors={['#FF6B9D', '#FF8FB3']}
+            colors={['#FF8C00', '#FF8FB3']}
             style={styles.buttonGradient}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
@@ -393,7 +393,7 @@ const styles = StyleSheet.create({
   salePrice: {
     fontSize: 24,
     fontWeight: '800',
-    color: '#FF6B9D',
+    color: '#FF8C00',
   },
   originalPrice: {
     fontSize: 14,
@@ -466,7 +466,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   optionSelected: {
-    borderColor: '#FF6B9D',
+    borderColor: '#FF8C00',
     backgroundColor: 'rgba(255,107,157,0.08)',
   },
   optionText: {
@@ -475,7 +475,7 @@ const styles = StyleSheet.create({
     color: '#666666',
   },
   optionTextSelected: {
-    color: '#FF6B9D',
+    color: '#FF8C00',
     fontWeight: '700',
   },
   quantityContainer: {
@@ -519,7 +519,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 24,
     paddingVertical: 12,
-    backgroundColor: '#FF6B9D',
+    backgroundColor: '#FF8C00',
     borderRadius: 8,
   },
   backButtonText: {

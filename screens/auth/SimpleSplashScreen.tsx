@@ -99,7 +99,7 @@ export default function SimpleSplashScreen({ onFinish }: { onFinish: () => void 
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#FF6B9D', '#FFB6D9', '#FFD4E5', '#FFF0F5']}
+        colors={['#FF8C00', '#FFD4A3', '#FFE8D6', '#FFF8F0']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.gradient}

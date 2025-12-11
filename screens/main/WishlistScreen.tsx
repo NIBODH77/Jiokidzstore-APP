@@ -151,7 +151,7 @@ export default function WishlistScreen() {
           <View style={styles.emptyContainer}>
             <View style={styles.emptyIconContainer}>
             <LinearGradient
-              colors={['#FFE5EE', '#FFFFFF']}
+              colors={['#FFF3E0', '#FFFFFF']}
               style={styles.emptyIconGradient}
             >
               <Feather name="heart" size={64} color={Colors.light.primary} />
@@ -167,7 +167,7 @@ export default function WishlistScreen() {
           
           <Pressable onPress={handleShopNow} style={styles.shopNowButton}>
             <LinearGradient
-              colors={['#FF6B9D', '#FF8FB3']}
+              colors={['#FF8C00', '#FF8FB3']}
               style={styles.shopNowGradient}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
@@ -187,7 +187,7 @@ export default function WishlistScreen() {
       <View style={[styles.contentWrapper, { paddingTop: Spacing.lg }]}>
         {/* Custom Header Section */}
         <LinearGradient
-          colors={['#FF6B9D', '#FFA8C5']}
+          colors={['#FF8C00', '#FFA8C5']}
           style={styles.header}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
@@ -319,7 +319,7 @@ export default function WishlistScreen() {
             {/* Summary Stats Card */}
             <View style={styles.summaryCard}>
               <LinearGradient
-                colors={['#FFE5EE', '#FFFFFF']}
+                colors={['#FFF3E0', '#FFFFFF']}
                 style={styles.summaryGradient}
               >
                 <View style={styles.summaryRow}>
@@ -350,7 +350,7 @@ export default function WishlistScreen() {
             
             <Pressable onPress={handleContinueShopping} style={styles.continueButton}>
               <LinearGradient
-                colors={['#FF6B9D', '#FF8FB3']}
+                colors={['#FF8C00', '#FF8FB3']}
                 style={styles.continueGradient}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
@@ -383,7 +383,7 @@ export default function WishlistScreen() {
             <View style={styles.shareOptions}>
               <Pressable style={styles.shareOption}>
                 <LinearGradient
-                  colors={['#FF6B9D', '#FF8FB3']}
+                  colors={['#FF8C00', '#FF8FB3']}
                   style={styles.shareOptionGradient}
                 >
                   <Feather name="message-circle" size={24} color="#FFFFFF" />

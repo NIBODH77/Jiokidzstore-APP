@@ -53,7 +53,7 @@ export function BestSellersCarousel({ onProductPress }: BestSellersCarouselProps
           product,
           quantity: 1,
           selectedSize: 'M',
-          selectedColor: '#FF6B9D'
+          selectedColor: '#FF8C00'
         };
         await cartStorage.addToCart(cartItem);
         Alert.alert('Success', `${product.name} added to cart!`);
@@ -71,7 +71,7 @@ export function BestSellersCarousel({ onProductPress }: BestSellersCarouselProps
       onPress={() => onProductPress?.(item.id)}
     >
       <LinearGradient
-        colors={['#FFE5EE', '#FFF8FA']}
+        colors={['#FFF3E0', '#FFFAF5']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.cardGradient}
@@ -104,7 +104,7 @@ export function BestSellersCarousel({ onProductPress }: BestSellersCarouselProps
 
           <Pressable style={styles.addButton} onPress={() => handleAddToCart(item.id)}>
             <LinearGradient
-              colors={['#FF6B9D', '#FFA8C5']}
+              colors={['#FF8C00', '#FFA8C5']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={styles.addButtonGradient}

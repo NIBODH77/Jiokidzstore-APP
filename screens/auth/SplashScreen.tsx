@@ -359,7 +359,7 @@ export default function SplashScreen() {
       title: 'Welcome to',
       subtitle: 'Premium Kids Store',
       logo: require('@/attached_assets/JioKidslogo_1763923777175.png'),
-      gradient: ['#FFB6D9', '#FF6B9D'],
+      gradient: ['#FFD4A3', '#FF8C00'],
       isFirstSlide: true,
       slideIndex: 0,
       currentSlide,
@@ -368,7 +368,7 @@ export default function SplashScreen() {
       title: 'Easy Shopping',
       subtitle: 'Browse, filter, and find everything you need in just a few taps',
       icon: 'shopping-bag',
-      gradient: ['#FF8FB3', '#FF6B9D'],
+      gradient: ['#FF8FB3', '#FF8C00'],
       isFirstSlide: false,
       slideIndex: 1,
       currentSlide,
@@ -377,7 +377,7 @@ export default function SplashScreen() {
       title: 'Fast Delivery',
       subtitle: 'Quick checkout and reliable delivery to your doorstep',
       icon: 'truck',
-      gradient: ['#FF6B9D', '#E5426B'],
+      gradient: ['#FF8C00', '#E5426B'],
       isFirstSlide: false,
       slideIndex: 2,
       currentSlide,
@@ -493,7 +493,7 @@ export default function SplashScreen() {
             onPress={handleGetStarted}
           >
             <LinearGradient
-              colors={['#FF6B9D', '#FF8FB3']}
+              colors={['#FF8C00', '#FF8FB3']}
               style={styles.buttonGradient}
             >
               <ThemedText style={styles.buttonText}>Get Started</ThemedText>

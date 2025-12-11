@@ -12,7 +12,7 @@ interface ModernHeaderProps {
 export function ModernHeader({ onNotificationPress, notificationCount = 0 }: ModernHeaderProps) {
   return (
     <LinearGradient
-      colors={['#FFB6D9', '#FFE5EE']}
+      colors={['#FFD4A3', '#FFF3E0']}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.container}

@@ -17,7 +17,7 @@ export function BadgeLabel({ label, type = 'new', style }: BadgeLabelProps) {
       icon: '✨',
     },
     hot: {
-      colors: ['#FF6B9D', '#FFA8C5'],
+      colors: ['#FF8C00', '#FFA8C5'],
       icon: '🔥',
     },
     limited: {

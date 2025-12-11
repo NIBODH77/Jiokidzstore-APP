@@ -103,7 +103,7 @@ export function ReviewsForm({ productId, onReviewSubmit }: ReviewsFormProps) {
         onPress={() => setShowForm(!showForm)}
       >
         <LinearGradient
-          colors={['#FF6B9D', '#FFA8C5']}
+          colors={['#FF8C00', '#FFA8C5']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.buttonGradient}
@@ -186,7 +186,7 @@ export function ReviewsForm({ productId, onReviewSubmit }: ReviewsFormProps) {
               disabled={!title.trim() || !comment.trim()}
             >
               <LinearGradient
-                colors={['#FF6B9D', '#FFA8C5']}
+                colors={['#FF8C00', '#FFA8C5']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={styles.submitGradient}

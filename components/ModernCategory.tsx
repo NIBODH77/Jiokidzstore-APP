@@ -14,13 +14,13 @@ interface ModernCategoryProps {
 export function ModernCategory({ category, onPress }: ModernCategoryProps) {
   const categoryColors: Record<string, string[]> = {
     'Boy Fashion': ['#3498DB', '#5DADE2'],
-    'Girl Fashion': ['#FF6B9D', '#FF8FB3'],
+    'Girl Fashion': ['#FF8C00', '#FF8FB3'],
     Footwear: ['#F39C12', '#F5B041'],
     Toys: ['#9B59B6', '#AF7AC5'],
     Diapers: ['#27AE60', '#52BE80'],
     Books: ['#E74C3C', '#EC7063'],
     Accessories: ['#1ABC9C', '#48C9B0'],
-    'Baby Care': ['#FF6B9D', '#FF8FB3'],
+    'Baby Care': ['#FF8C00', '#FF8FB3'],
   };
 
   const categoryIcons: Record<string, string> = {

@@ -16,7 +16,7 @@ export function TwoColumnPromo({ onLeftPress, onRightPress }: TwoColumnPromoProp
       {/* Left Column - New Arrivals */}
       <Pressable style={styles.column} onPress={onLeftPress}>
         <LinearGradient
-          colors={['#FFB6D9', '#FFC9E3']}
+          colors={['#FFD4A3', '#FFE8D6']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.card}

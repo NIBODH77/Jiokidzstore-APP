@@ -98,7 +98,7 @@ export default function JioKidsLandingScreen() {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#FF6B9D', '#FF8FB3', '#FFB8D0']}
+        colors={['#FF8C00', '#FF8FB3', '#FFB8D0']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={[styles.header, { paddingTop: insets.top + 12 }]}
@@ -258,7 +258,7 @@ export default function JioKidsLandingScreen() {
             </Pressable>
             
             <Pressable style={styles.parentingZoneCard} onPress={() => {}}>
-              <View style={[styles.parentingCardImageContainer, { backgroundColor: '#FF69B4' }]}>
+              <View style={[styles.parentingCardImageContainer, { backgroundColor: '#FF8C00' }]}>
                 <Text style={styles.parentingCardImage}>💬❓</Text>
               </View>
               <View style={styles.parentingCardLabelRow}>
@@ -759,7 +759,7 @@ const styles = StyleSheet.create({
   },
   viewAllText: {
     fontSize: 13,
-    color: '#FF6B9D',
+    color: '#FF8C00',
     fontWeight: '600',
   },
   featuredGrid: {
@@ -1098,7 +1098,7 @@ const styles = StyleSheet.create({
   },
   viewAllLink: {
     fontSize: 13,
-    color: '#FF6B9D',
+    color: '#FF8C00',
     fontWeight: '600',
   },
   allCategoriesGrid: {

@@ -10,7 +10,7 @@ interface HeaderTitleProps {
 export function HeaderTitle({ title }: HeaderTitleProps) {
   return (
     <LinearGradient
-      colors={['#FFB6D9', '#FFE5EE']}
+      colors={['#FFD4A3', '#FFF3E0']}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
       style={styles.container}
