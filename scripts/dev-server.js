@@ -12,7 +12,7 @@ const expoPath = path.join(projectRoot, 'node_modules', '.bin', 'expo');
 const expoProcess = spawn(expoPath, [
   'start',
   '--web',
-  '--port', '8080',
+  '--port', '5000',
   '--clear'
 ], {
   cwd: projectRoot,
