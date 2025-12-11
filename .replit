@@ -1,5 +1,5 @@
 run = "npm start"
-modules = ["nodejs-20"]
+modules = ["web", "nodejs-22"]
 
 [nix]
 packages = ["openssh"]
