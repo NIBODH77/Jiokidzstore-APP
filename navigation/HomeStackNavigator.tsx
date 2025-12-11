@@ -33,6 +33,7 @@ import NetBankingScreen from "@/screens/payment/NetBankingScreen";
 import MyReviewsScreen from '@/screens/product/MyReviewsScreen';
 import DiscountCouponsScreen from '@/screens/main/DiscountCouponsScreen';
 import InvitesCreditsScreen from '@/screens/product/InvitesCreditsScreen';
+import RecentlyViewedScreen from '@/screens/main/RecentlyViewedScreen';
 import { TopHeader } from "@/components/TopHeader";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
@@ -72,6 +73,7 @@ export type HomeStackParamList = {
   MyReviews: undefined;
   DiscountCoupons: undefined;
   InvitesCredits: undefined;
+  RecentlyViewed: undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -410,6 +412,15 @@ export default function HomeStackNavigator() {
       <Stack.Screen
         name="InvitesCredits"
         component={InvitesCreditsScreen}
+        options={{ 
+          headerShown: false
+        }}
+      />
+
+      {/* RECENTLY VIEWED */}
+      <Stack.Screen
+        name="RecentlyViewed"
+        component={RecentlyViewedScreen}
         options={{ 
           headerShown: false
         }}

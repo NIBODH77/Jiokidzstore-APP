@@ -67,9 +67,9 @@ const accountMenuItems = [
   { title: 'Discount Coupons', hasExpand: false, navigateTo: 'DiscountCoupons' },
   { title: 'My Reviews', hasExpand: false, navigateTo: 'MyReviews' },
   { title: 'Invites and Credits', hasExpand: false, navigateTo: 'InvitesCredits' },
-  { title: 'Notify Me', hasExpand: false },
-  { title: 'My Shortlist', hasExpand: false },
-  { title: 'My Recently Viewed', hasExpand: false },
+  { title: 'Notify Me', hasExpand: false, navigateTo: 'Notifications' },
+  { title: 'My Shortlist', hasExpand: false, navigateTo: 'Wishlist' },
+  { title: 'My Recently Viewed', hasExpand: false, navigateTo: 'RecentlyViewed' },
 ];
 
 const recentProducts = [

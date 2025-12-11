@@ -112,6 +112,16 @@
 - [x] Restarted workflow and verified successful Metro bundler build (2024-12-11)
 - [x] Verified application is running with screenshot showing JioKidz splash screen (2024-12-11)
 - [x] Final import verification completed - all systems operational (2024-12-11)
+- [x] Added navigation for Profile menu items (2024-12-11):
+  - "Notify Me" menu now opens NotificationsScreen
+  - "My Shortlist" menu now opens WishlistScreen
+  - "My Recently Viewed" menu now opens RecentlyViewedScreen
+  - Created RecentlyViewedScreen.tsx with frontend-managed recently viewed products
+  - Uses AsyncStorage to persist recently viewed products locally
+  - Features: product grid, remove individual items, clear all, time ago display
+  - Empty state with "Start Shopping" button
+  - Added RecentlyViewed route to HomeStackNavigator
+  - Successfully bundled with Metro (1270 modules)
 
 ## Technical Notes
 - **Web Timer Fix**: react-native-reanimated's setTimeout doesn't work reliably on web. Used polling-based timer with Date.now() for web compatibility.
