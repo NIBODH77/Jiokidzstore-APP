@@ -34,6 +34,9 @@ import MyReviewsScreen from '@/screens/product/MyReviewsScreen';
 import DiscountCouponsScreen from '@/screens/main/DiscountCouponsScreen';
 import InvitesCreditsScreen from '@/screens/product/InvitesCreditsScreen';
 import RecentlyViewedScreen from '@/screens/main/RecentlyViewedScreen';
+import KidsFashionLandingScreen from '@/screens/kids/KidsFashionLandingScreen';
+import AgeGenderLandingScreen from '@/screens/kids/AgeGenderLandingScreen';
+import KidsCategoryProductsScreen from '@/screens/kids/KidsCategoryProductsScreen';
 import { TopHeader } from "@/components/TopHeader";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
@@ -74,6 +77,9 @@ export type HomeStackParamList = {
   DiscountCoupons: undefined;
   InvitesCredits: undefined;
   RecentlyViewed: undefined;
+  KidsFashionLanding: undefined;
+  AgeGenderLanding: { gender: string; ageRange: string; color: string };
+  KidsCategoryProducts: { gender: string; ageRange: string; category: string };
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -423,6 +429,36 @@ export default function HomeStackNavigator() {
         component={RecentlyViewedScreen}
         options={{ 
           headerShown: false
+        }}
+      />
+
+      {/* KIDS FASHION LANDING */}
+      <Stack.Screen
+        name="KidsFashionLanding"
+        component={KidsFashionLandingScreen}
+        options={{ 
+          headerShown: true,
+          header: (props) => <TopHeader {...props} showBackButton={true} />
+        }}
+      />
+
+      {/* AGE GENDER LANDING */}
+      <Stack.Screen
+        name="AgeGenderLanding"
+        component={AgeGenderLandingScreen}
+        options={{ 
+          headerShown: true,
+          header: (props) => <TopHeader {...props} showBackButton={true} />
+        }}
+      />
+
+      {/* KIDS CATEGORY PRODUCTS */}
+      <Stack.Screen
+        name="KidsCategoryProducts"
+        component={KidsCategoryProductsScreen}
+        options={{ 
+          headerShown: true,
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
     </Stack.Navigator>

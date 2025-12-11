@@ -275,45 +275,40 @@ export default function HomeScreen() {
 
         {/* BABY & KIDS FASHION – Clean Dynamic Section */}
         {(() => {
-          // Row 1: Age Groups
-          const AGE_GROUPS = [
-            { img: girlsImages['g1'], label: "0–6\nMonths" },
-            { img: girlsImages['g2'], label: "6–24\nMonths" },
-            { img: girlsImages['g3'], label: "2–4\nYears" },
-            { img: girlsImages['g4'], label: "4–6\nYears" },
-            { img: girlsImages['g5'], label: "6–14\nYears" },
+          // Row 1: Girls Age Groups with navigation
+          const GIRLS_AGE_DATA = [
+            { id: 'g1', img: girlsImages['g1'], label: "0–6\nMonths", ageRange: '0-6 Months', gender: 'Girls', color: '#FFE5F0' },
+            { id: 'g2', img: girlsImages['g2'], label: "6–24\nMonths", ageRange: '6-24 Months', gender: 'Girls', color: '#FFE8D6' },
+            { id: 'g3', img: girlsImages['g3'], label: "2–4\nYears", ageRange: '2-4 Years', gender: 'Girls', color: '#FFC3E0' },
+            { id: 'g4', img: girlsImages['g4'], label: "4–6\nYears", ageRange: '4-6 Years', gender: 'Girls', color: '#FFB3D9' },
+            { id: 'g5', img: girlsImages['g5'], label: "6–14\nYears", ageRange: '6-14 Years', gender: 'Girls', color: '#FFA3D2' },
           ];
 
-          // Row 2: Boys Age Groups
-          const BOYS_AGE_GROUPS_ROW = [
-            { img: boysImages['b1'], label: "0–6\nMonths" },
-            { img: boysImages['b2'], label: "6–24\nMonths" },
-            { img: boysImages['b3'], label: "2–4\nYears" },
-            { img: boysImages['b4'], label: "4–6\nYears" },
-            { img: boysImages['b5'], label: "6–14\nYears" },
+          // Row 2: Boys Age Groups with navigation
+          const BOYS_AGE_DATA = [
+            { id: 'b1', img: boysImages['b1'], label: "0–6\nMonths", ageRange: '0-6 Months', gender: 'Boys', color: '#E3F2FD' },
+            { id: 'b2', img: boysImages['b2'], label: "6–24\nMonths", ageRange: '6-24 Months', gender: 'Boys', color: '#BBDEFB' },
+            { id: 'b3', img: boysImages['b3'], label: "2–4\nYears", ageRange: '2-4 Years', gender: 'Boys', color: '#90CAF9' },
+            { id: 'b4', img: boysImages['b4'], label: "4–6\nYears", ageRange: '4-6 Years', gender: 'Boys', color: '#64B5F6' },
+            { id: 'b5', img: boysImages['b5'], label: "6–14\nYears", ageRange: '6-14 Years', gender: 'Boys', color: '#42A5F5' },
           ];
 
-          // Row 3: Winter Bottom
-          const WINTER_BOTTOM = [
-            { img: winterImages['1'], label: "Hoodies" },
-            { img: winterImages['2'], label: "Full Sleeves" },
-            { img: winterImages['3'], label: "Pullovers" },
-            { img: winterImages['4'], label: "Coats" },
-            { img: winterImages['5'], label: "Knits" },
-          ];
-
-          // Reusable Card Component
-          const FashionCard = ({ item }: { item: { img: any; label: string } }) => (
+          // Reusable Card Component with Navigation
+          const FashionCard = ({ item }: { item: { id: string; img: any; label: string; ageRange: string; gender: string; color: string } }) => (
             <Pressable
               style={{
                 width: '18%',
-                backgroundColor: '#DFF2FF',
+                backgroundColor: item.color,
                 borderRadius: 18,
                 overflow: 'hidden',
                 alignItems: 'center',
                 paddingBottom: 8,
               }}
-              onPress={() => console.log('Pressed:', item.label)}
+              onPress={() => (navigation as any).push('AgeGenderLanding', {
+                gender: item.gender,
+                ageRange: item.ageRange,
+                color: item.color,
+              })}
             >
               <Image
                 source={item.img}
@@ -355,18 +350,32 @@ export default function HomeScreen() {
                 BABY & KIDS FASHION
               </Text>
 
-              {/* ROW 1: Age Groups */}
+              {/* Girls Label */}
+              <View style={{ paddingHorizontal: 12, marginBottom: 10 }}>
+                <View style={{ alignSelf: 'flex-start', backgroundColor: '#FFE5F0', paddingHorizontal: 14, paddingVertical: 6, borderRadius: 16 }}>
+                  <Text style={{ fontSize: 13, fontWeight: '700', color: '#FF69B4' }}>👧 GIRLS</Text>
+                </View>
+              </View>
+
+              {/* ROW 1: Girls Age Groups */}
               <View
                 style={{
                   flexDirection: 'row',
                   justifyContent: 'space-between',
                   paddingHorizontal: 12,
-                  marginBottom: 22,
+                  marginBottom: 18,
                 }}
               >
-                {AGE_GROUPS.map((item, i) => (
-                  <FashionCard key={i} item={item} />
+                {GIRLS_AGE_DATA.map((item) => (
+                  <FashionCard key={item.id} item={item} />
                 ))}
+              </View>
+
+              {/* Boys Label */}
+              <View style={{ paddingHorizontal: 12, marginBottom: 10 }}>
+                <View style={{ alignSelf: 'flex-start', backgroundColor: '#E3F2FD', paddingHorizontal: 14, paddingVertical: 6, borderRadius: 16 }}>
+                  <Text style={{ fontSize: 13, fontWeight: '700', color: '#4169E1' }}>👦 BOYS</Text>
+                </View>
               </View>
 
               {/* ROW 2: Boys Age Groups */}
@@ -378,8 +387,8 @@ export default function HomeScreen() {
                   marginBottom: 22,
                 }}
               >
-                {BOYS_AGE_GROUPS_ROW.map((item, i) => (
-                  <FashionCard key={i} item={item} />
+                {BOYS_AGE_DATA.map((item) => (
+                  <FashionCard key={item.id} item={item} />
                 ))}
               </View>
             </View>
