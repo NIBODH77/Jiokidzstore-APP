@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, Image, Dimensions, FlatList } from 'react-native';
+import React, { useState, useMemo } from 'react';
+import { View, Text, StyleSheet, ScrollView, Pressable, Image, Dimensions } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -8,11 +8,7 @@ import {
   Gender, 
   AgeRange, 
   getCategoriesForGender, 
-  getProductsByAgeGender,
-  sortBySeasonPriority,
-  getCurrentSeason,
-  KIDS_FASHION_CATEGORIES,
-  KidsFashionProduct
+  KIDS_FASHION_CATEGORIES
 } from '@/data/kidsFashionData';
 import { Spacing } from '@/constants/theme';
 
@@ -26,17 +22,24 @@ type RouteParams = {
   };
 };
 
+interface CategoryItem {
+  id: string;
+  name: string;
+  icon: string;
+  color: string;
+  image?: any;
+  isPromo?: boolean;
+  promoLogo?: string;
+}
+
 export default function AgeGenderLandingScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const route = useRoute<RouteProp<RouteParams, 'AgeGenderLanding'>>();
   const { gender, ageRange, color } = route.params;
   
-  const currentSeason = getCurrentSeason();
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+  
   const categories = useMemo(() => getCategoriesForGender(gender), [gender]);
-  const products = useMemo(() => {
-    const filtered = getProductsByAgeGender(ageRange, gender);
-    return sortBySeasonPriority(filtered);
-  }, [ageRange, gender]);
 
   const handleCategoryPress = (categoryName: string) => {
     navigation.navigate('KidsCategoryProducts', {
@@ -46,165 +49,260 @@ export default function AgeGenderLandingScreen() {
     });
   };
 
-  const handleProductPress = (productId: string) => {
-    navigation.navigate('ProductDetail', { productId });
+  const toggleExpand = (categoryId: string) => {
+    setExpandedCategories(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(categoryId)) {
+        newSet.delete(categoryId);
+      } else {
+        newSet.add(categoryId);
+      }
+      return newSet;
+    });
   };
 
-  const renderCategoryCard = ({ item }: { item: typeof KIDS_FASHION_CATEGORIES[0] }) => (
-    <Pressable
-      style={[styles.categoryCard, { backgroundColor: item.color }]}
-      onPress={() => handleCategoryPress(item.name)}
-    >
-      <Text style={styles.categoryIcon}>{item.icon}</Text>
-      <Text style={styles.categoryName}>{item.name}</Text>
-      <Feather name="chevron-right" size={16} color="#666" />
-    </Pressable>
-  );
+  const getCategoryImage = (categoryName: string) => {
+    const images: { [key: string]: any } = {
+      'Dresses': require('../../attached_assets/generated_images/toddler_girl_purple_floral_dress.png'),
+      'Tops & Tees': require('../../attached_assets/generated_images/infant_baby_girl_striped_pink_shirt.png'),
+      'Rompers': require('../../attached_assets/generated_images/newborn_baby_girl_pink_onesie.png'),
+      'Shirts': require('../../attached_assets/generated_images/infant_baby_boy_blue_shirt.png'),
+      'T-Shirts': require('../../attached_assets/generated_images/preschool_boy_blue_graphic_shirt.png'),
+      'Pants': require('../../attached_assets/generated_images/toddler_boy_navy_outfit.png'),
+    };
+    return images[categoryName] || null;
+  };
 
-  const renderProductCard = ({ item }: { item: KidsFashionProduct }) => (
-    <Pressable 
-      style={styles.productCard}
-      onPress={() => handleProductPress(item.product_id)}
-    >
-      <View style={styles.productImageContainer}>
-        <View style={styles.productImagePlaceholder}>
-          <Feather name="image" size={32} color="#CCC" />
-        </View>
-        {item.discount > 0 && (
-          <View style={styles.discountBadge}>
-            <Text style={styles.discountText}>{item.discount}% OFF</Text>
-          </View>
-        )}
-        {item.season === currentSeason && (
-          <View style={styles.seasonBadge}>
-            <Text style={styles.seasonText}>{currentSeason}</Text>
-          </View>
-        )}
-      </View>
-      <View style={styles.productInfo}>
-        <Text style={styles.productBrand}>{item.brand}</Text>
-        <Text style={styles.productName} numberOfLines={2}>{item.product_name}</Text>
-        <View style={styles.priceRow}>
-          <Text style={styles.currentPrice}>₹{item.price}</Text>
-          {item.original_price > item.price && (
-            <Text style={styles.originalPrice}>₹{item.original_price}</Text>
-          )}
-        </View>
-        <View style={styles.ratingRow}>
-          <Feather name="star" size={12} color="#FFB800" />
-          <Text style={styles.ratingText}>{item.rating} ({item.reviews_count})</Text>
-        </View>
-      </View>
-    </Pressable>
-  );
+  const promoCategories: CategoryItem[] = [
+    {
+      id: 'mom-of-all-sales',
+      name: 'Mom Of All Sales',
+      icon: '',
+      color: '#FFF',
+      isPromo: true,
+      promoLogo: 'MOM_SALES'
+    },
+    {
+      id: 'winter-wonderland',
+      name: 'Winter Wonderland',
+      icon: '',
+      color: '#FFF',
+      isPromo: true,
+      promoLogo: 'WINTER'
+    }
+  ];
 
-  const seasonProducts = products.filter(p => p.season === currentSeason || p.season === 'All Season').slice(0, 6);
+  const getTitle = () => {
+    const genderText = gender === 'Girls' ? 'Girl' : 'Boy';
+    return `${genderText} Fashion ${ageRange}`;
+  };
+
+  const renderPromoLogo = (type: string) => {
+    if (type === 'MOM_SALES') {
+      return (
+        <View style={styles.promoLogoContainer}>
+          <View style={styles.momSalesLogo}>
+            <Text style={styles.momSalesText}>M</Text>
+            <View style={styles.heartIcon}>
+              <Text style={styles.heartText}>♥</Text>
+            </View>
+            <Text style={styles.momSalesText}>M</Text>
+          </View>
+          <Text style={styles.momSalesSubText}>OF ALL</Text>
+          <Text style={styles.momSalesSalesText}>SALES</Text>
+        </View>
+      );
+    }
+    if (type === 'WINTER') {
+      return (
+        <View style={styles.winterLogoContainer}>
+          <Text style={styles.winterText}>Winter</Text>
+          <Text style={styles.wonderlandText}>WONDERLAND</Text>
+        </View>
+      );
+    }
+    return null;
+  };
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      {/* Hero Banner */}
-      <LinearGradient
-        colors={gender === 'Girls' ? ['#FF69B4', '#FFB6C1'] : ['#4169E1', '#87CEEB']}
-        style={styles.heroBanner}
-      >
-        <View style={styles.heroContent}>
-          <Text style={styles.heroTitle}>{gender}</Text>
-          <Text style={styles.heroSubtitle}>{ageRange}</Text>
-          <Text style={styles.heroItemCount}>{products.length}+ Products Available</Text>
-        </View>
-        <View style={styles.heroDecor}>
-          <Text style={styles.heroEmoji}>{gender === 'Girls' ? '👧' : '👦'}</Text>
-        </View>
-      </LinearGradient>
-
-      {/* Breadcrumb */}
-      <View style={styles.breadcrumb}>
-        <Pressable onPress={() => navigation.goBack()}>
-          <Text style={styles.breadcrumbLink}>Home</Text>
-        </Pressable>
-        <Feather name="chevron-right" size={14} color="#999" />
-        <Text style={styles.breadcrumbLink}>Kids Fashion</Text>
-        <Feather name="chevron-right" size={14} color="#999" />
-        <Text style={styles.breadcrumbCurrent}>{gender} | {ageRange}</Text>
-      </View>
-
-      {/* Season Highlight */}
-      <View style={styles.seasonSection}>
+      {/* Mom Of All Sales Banner */}
+      <View style={styles.bannerContainer}>
         <LinearGradient
-          colors={currentSeason === 'Winter' ? ['#2C3E50', '#4CA1AF'] : ['#FF8C00', '#FFD93D']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={styles.seasonBanner}
+          colors={['#FFEEE8', '#FFE4D9']}
+          style={styles.saleBanner}
         >
-          <View>
-            <Text style={styles.seasonBannerTitle}>
-              {currentSeason === 'Winter' ? '❄️ Winter Collection' : '☀️ Summer Collection'}
-            </Text>
-            <Text style={styles.seasonBannerSubtitle}>
-              Best picks for {currentSeason.toLowerCase()} - {ageRange} {gender}
-            </Text>
+          <View style={styles.saleBadge}>
+            <View style={styles.momLogoSmall}>
+              <Text style={styles.momLogoM}>M</Text>
+              <Text style={styles.momLogoHeart}>♥</Text>
+              <Text style={styles.momLogoM}>M</Text>
+            </View>
+            <Text style={styles.momLogoOfAll}>OF ALL</Text>
+            <Text style={styles.momLogoSales}>SALES</Text>
           </View>
-          <Pressable style={styles.seasonShopButton}>
-            <Text style={styles.seasonShopButtonText}>Shop</Text>
+          <View style={styles.bannerImageContainer}>
+            <Image 
+              source={require('../../attached_assets/generated_images/newborn_baby_girl_pink_onesie.png')}
+              style={styles.babyImage}
+              resizeMode="contain"
+            />
+            <Image 
+              source={require('../../attached_assets/generated_images/infant_baby_girl_striped_pink_shirt.png')}
+              style={[styles.babyImage, { marginLeft: -20 }]}
+              resizeMode="contain"
+            />
+          </View>
+          <View style={styles.discountContainer}>
+            <Text style={styles.uptoText}>UPTO</Text>
+            <View style={styles.percentContainer}>
+              <Text style={styles.percentNumber}>60</Text>
+              <Text style={styles.percentSign}>%</Text>
+            </View>
+            <Text style={styles.offText}>OFF</Text>
+          </View>
+          <Pressable style={styles.shopNowButton}>
+            <Text style={styles.shopNowText}>SHOP NOW</Text>
+            <Feather name="chevron-right" size={14} color="#FFF" />
           </Pressable>
+          <Text style={styles.tncText}>*T&C Apply</Text>
         </LinearGradient>
       </View>
 
-      {/* Categories Section */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Shop by Category</Text>
-        <View style={styles.categoriesGrid}>
-          {categories.map((cat) => (
-            <Pressable
-              key={cat.id}
-              style={[styles.categoryCard, { backgroundColor: cat.color }]}
-              onPress={() => handleCategoryPress(cat.name)}
+      {/* Winter Wonderland Banner */}
+      <View style={styles.winterBannerContainer}>
+        <LinearGradient
+          colors={['#E8F4FC', '#D1E9F6']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.winterBanner}
+        >
+          <View style={styles.winterLogoSmall}>
+            <Text style={styles.winterLogoText}>Winter</Text>
+            <Text style={styles.winterLogoWonderland}>WONDERLAND</Text>
+          </View>
+          <View style={styles.winterItemsRow}>
+            <View style={styles.winterItemCircle}>
+              <Text style={styles.winterEmoji}>🧢</Text>
+            </View>
+            <View style={styles.winterItemCircle}>
+              <Text style={styles.winterEmoji}>🧣</Text>
+            </View>
+            <View style={styles.winterItemCircle}>
+              <Text style={styles.winterEmoji}>🧤</Text>
+            </View>
+          </View>
+          <View style={styles.winterPriceContainer}>
+            <Text style={styles.startingAtText}>STARTING AT ₹</Text>
+            <Text style={styles.winterPrice}>99</Text>
+            <View style={styles.winterEssentials}>
+              <Text style={styles.winterEssentialsText}>Winter Essentials</Text>
+              <Feather name="chevron-right" size={14} color="#666" />
+            </View>
+          </View>
+        </LinearGradient>
+      </View>
+
+      {/* Category Title */}
+      <View style={styles.categoryTitleContainer}>
+        <Text style={styles.categoryTitle}>{getTitle()}</Text>
+        <View style={styles.divider} />
+      </View>
+
+      {/* Category List with Baby Clothes */}
+      <View style={styles.categoryListContainer}>
+        {categories.slice(0, 3).map((cat) => (
+          <Pressable 
+            key={cat.id}
+            style={styles.categoryListItem}
+            onPress={() => handleCategoryPress(cat.name)}
+          >
+            <View style={styles.categoryItemLeft}>
+              <View style={styles.categoryImageCircle}>
+                {getCategoryImage(cat.name) ? (
+                  <Image 
+                    source={getCategoryImage(cat.name)} 
+                    style={styles.categoryItemImage}
+                    resizeMode="cover"
+                  />
+                ) : (
+                  <Text style={styles.categoryItemIcon}>{cat.icon}</Text>
+                )}
+              </View>
+              <Text style={styles.categoryItemName}>{cat.name}</Text>
+            </View>
+            <Pressable 
+              onPress={() => toggleExpand(cat.id)}
+              style={styles.expandButton}
             >
-              <Text style={styles.categoryIcon}>{cat.icon}</Text>
-              <Text style={styles.categoryName}>{cat.name}</Text>
-              <Feather name="chevron-right" size={16} color="#666" />
+              <Feather 
+                name={expandedCategories.has(cat.id) ? "chevron-up" : "chevron-down"} 
+                size={24} 
+                color="#999" 
+              />
             </Pressable>
-          ))}
-        </View>
-      </View>
-
-      {/* Featured Products */}
-      <View style={styles.section}>
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>
-            {currentSeason} Picks for {ageRange}
-          </Text>
-          <Pressable onPress={() => handleCategoryPress('All')}>
-            <Text style={styles.viewAllText}>View All</Text>
           </Pressable>
-        </View>
-        <FlatList
-          data={seasonProducts}
-          renderItem={renderProductCard}
-          keyExtractor={(item) => item.product_id}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.productsRow}
-        />
-      </View>
+        ))}
 
-      {/* Recommendations */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Recommended for You</Text>
-        <View style={styles.recommendationsGrid}>
-          {[
-            { title: `More ${currentSeason} Wear`, subtitle: `for ${ageRange} ${gender}`, color: '#E8F5E9' },
-            { title: 'Best for Parties', subtitle: 'Special Occasion', color: '#FCE4EC' },
-            { title: 'Trending Now', subtitle: `${gender} Outfits`, color: '#E3F2FD' },
-            { title: 'New Arrivals', subtitle: 'Latest Collection', color: '#FFF3E0' },
-          ].map((rec, index) => (
-            <Pressable key={index} style={[styles.recommendationCard, { backgroundColor: rec.color }]}>
-              <Text style={styles.recommendationTitle}>{rec.title}</Text>
-              <Text style={styles.recommendationSubtitle}>{rec.subtitle}</Text>
-              <Feather name="arrow-right" size={18} color="#333" style={styles.recommendationArrow} />
+        {/* Promo Categories */}
+        {promoCategories.map((promo) => (
+          <Pressable 
+            key={promo.id}
+            style={styles.categoryListItem}
+            onPress={() => {}}
+          >
+            <View style={styles.categoryItemLeft}>
+              <View style={styles.promoImageCircle}>
+                {renderPromoLogo(promo.promoLogo || '')}
+              </View>
+              <Text style={styles.categoryItemName}>{promo.name}</Text>
+            </View>
+            <Pressable 
+              onPress={() => toggleExpand(promo.id)}
+              style={styles.expandButton}
+            >
+              <Feather 
+                name={expandedCategories.has(promo.id) ? "chevron-up" : "chevron-down"} 
+                size={24} 
+                color="#999" 
+              />
             </Pressable>
-          ))}
-        </View>
+          </Pressable>
+        ))}
+
+        {/* Remaining Categories */}
+        {categories.slice(3).map((cat) => (
+          <Pressable 
+            key={cat.id}
+            style={styles.categoryListItem}
+            onPress={() => handleCategoryPress(cat.name)}
+          >
+            <View style={styles.categoryItemLeft}>
+              <View style={styles.categoryImageCircle}>
+                {getCategoryImage(cat.name) ? (
+                  <Image 
+                    source={getCategoryImage(cat.name)} 
+                    style={styles.categoryItemImage}
+                    resizeMode="cover"
+                  />
+                ) : (
+                  <Text style={styles.categoryItemIcon}>{cat.icon}</Text>
+                )}
+              </View>
+              <Text style={styles.categoryItemName}>{cat.name}</Text>
+            </View>
+            <Pressable 
+              onPress={() => toggleExpand(cat.id)}
+              style={styles.expandButton}
+            >
+              <Feather 
+                name={expandedCategories.has(cat.id) ? "chevron-up" : "chevron-down"} 
+                size={24} 
+                color="#999" 
+              />
+            </Pressable>
+          </Pressable>
+        ))}
       </View>
 
       <View style={{ height: 100 }} />
@@ -217,246 +315,300 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  heroBanner: {
-    padding: 24,
+  bannerContainer: {
+    paddingHorizontal: 0,
+  },
+  saleBanner: {
+    padding: 16,
+    position: 'relative',
+    minHeight: 200,
+  },
+  saleBadge: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    backgroundColor: '#E53935',
+    borderRadius: 50,
+    width: 70,
+    height: 70,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+  },
+  momLogoSmall: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
   },
-  heroContent: {
-    flex: 1,
-  },
-  heroTitle: {
-    fontSize: 32,
+  momLogoM: {
+    fontSize: 14,
     fontWeight: '900',
     color: '#FFF',
   },
-  heroSubtitle: {
-    fontSize: 20,
+  momLogoHeart: {
+    fontSize: 10,
+    color: '#FFF',
+    marginHorizontal: 1,
+  },
+  momLogoOfAll: {
+    fontSize: 8,
     fontWeight: '600',
     color: '#FFF',
-    opacity: 0.9,
-    marginTop: 4,
   },
-  heroItemCount: {
-    fontSize: 14,
+  momLogoSales: {
+    fontSize: 12,
+    fontWeight: '900',
     color: '#FFF',
-    opacity: 0.8,
-    marginTop: 8,
   },
-  heroDecor: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+  bannerImageContainer: {
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 10,
   },
-  heroEmoji: {
-    fontSize: 40,
+  babyImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 10,
   },
-  breadcrumb: {
+  discountContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    backgroundColor: '#F8F8F8',
-    gap: 6,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    marginTop: 10,
   },
-  breadcrumbLink: {
-    fontSize: 12,
-    color: '#FF8C00',
-  },
-  breadcrumbCurrent: {
-    fontSize: 12,
-    color: '#666',
-  },
-  seasonSection: {
-    paddingHorizontal: 16,
-    marginTop: 16,
-  },
-  seasonBanner: {
-    borderRadius: 16,
-    padding: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  seasonBannerTitle: {
-    fontSize: 18,
-    fontWeight: '800',
-    color: '#FFF',
-  },
-  seasonBannerSubtitle: {
-    fontSize: 13,
-    color: '#FFF',
-    opacity: 0.9,
-    marginTop: 4,
-  },
-  seasonShopButton: {
-    backgroundColor: '#FFF',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 20,
-  },
-  seasonShopButtonText: {
+  uptoText: {
+    fontSize: 16,
     fontWeight: '700',
     color: '#333',
-  },
-  section: {
-    paddingHorizontal: 16,
-    marginTop: 24,
-  },
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#1A1A1A',
-    marginBottom: 16,
-  },
-  viewAllText: {
-    fontSize: 14,
-    color: '#FF8C00',
-    fontWeight: '600',
-  },
-  categoriesGrid: {
-    gap: 12,
-  },
-  categoryCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-    borderRadius: 12,
+    marginRight: 8,
     marginBottom: 8,
   },
-  categoryIcon: {
+  percentContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  percentNumber: {
+    fontSize: 48,
+    fontWeight: '900',
+    color: '#E53935',
+    lineHeight: 50,
+  },
+  percentSign: {
     fontSize: 24,
-    marginRight: 12,
-  },
-  categoryName: {
-    flex: 1,
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#1A1A1A',
-  },
-  productsRow: {
-    gap: 12,
-    paddingRight: 16,
-  },
-  productCard: {
-    width: 160,
-    backgroundColor: '#F8F8F8',
-    borderRadius: 12,
-    overflow: 'hidden',
-  },
-  productImageContainer: {
-    height: 160,
-    backgroundColor: '#EFEFEF',
-    position: 'relative',
-  },
-  productImagePlaceholder: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  discountBadge: {
-    position: 'absolute',
-    top: 8,
-    left: 8,
-    backgroundColor: '#FF4444',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 4,
-  },
-  discountText: {
-    fontSize: 10,
     fontWeight: '700',
-    color: '#FFF',
+    color: '#E53935',
+    marginTop: 5,
   },
-  seasonBadge: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
-    backgroundColor: '#4CAF50',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 4,
-  },
-  seasonText: {
-    fontSize: 10,
+  offText: {
+    fontSize: 20,
     fontWeight: '700',
-    color: '#FFF',
-  },
-  productInfo: {
-    padding: 12,
-  },
-  productBrand: {
-    fontSize: 11,
-    color: '#888',
-    fontWeight: '600',
-  },
-  productName: {
-    fontSize: 13,
-    fontWeight: '600',
     color: '#333',
-    marginTop: 4,
-    lineHeight: 18,
+    marginLeft: 8,
+    marginBottom: 10,
   },
-  priceRow: {
+  shopNowButton: {
+    backgroundColor: '#333',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 8,
-    gap: 8,
-  },
-  currentPrice: {
-    fontSize: 15,
-    fontWeight: '700',
-    color: '#1A1A1A',
-  },
-  originalPrice: {
-    fontSize: 12,
-    color: '#999',
-    textDecorationLine: 'line-through',
-  },
-  ratingRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 6,
+    justifyContent: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 4,
+    alignSelf: 'center',
+    marginTop: 10,
     gap: 4,
   },
-  ratingText: {
-    fontSize: 11,
-    color: '#666',
-  },
-  recommendationsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 12,
-  },
-  recommendationCard: {
-    width: (width - 44) / 2,
-    padding: 16,
-    borderRadius: 12,
-    minHeight: 100,
-  },
-  recommendationTitle: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: '#1A1A1A',
-  },
-  recommendationSubtitle: {
+  shopNowText: {
     fontSize: 12,
-    color: '#666',
-    marginTop: 4,
+    fontWeight: '700',
+    color: '#FFF',
   },
-  recommendationArrow: {
-    position: 'absolute',
-    bottom: 12,
-    right: 12,
+  tncText: {
+    fontSize: 10,
+    color: '#999',
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  winterBannerContainer: {
+    paddingHorizontal: 0,
+    marginTop: 2,
+  },
+  winterBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+    justifyContent: 'space-between',
+  },
+  winterLogoSmall: {
+    alignItems: 'flex-start',
+  },
+  winterLogoText: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#E53935',
+    fontStyle: 'italic',
+  },
+  winterLogoWonderland: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#E53935',
+    letterSpacing: 1,
+  },
+  winterItemsRow: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  winterItemCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#FFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  winterEmoji: {
+    fontSize: 20,
+  },
+  winterPriceContainer: {
+    alignItems: 'flex-end',
+  },
+  startingAtText: {
+    fontSize: 10,
+    color: '#666',
+    fontWeight: '600',
+  },
+  winterPrice: {
+    fontSize: 32,
+    fontWeight: '900',
+    color: '#333',
+    lineHeight: 34,
+  },
+  winterEssentials: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  winterEssentialsText: {
+    fontSize: 11,
+    color: '#00BCD4',
+    fontWeight: '600',
+  },
+  categoryTitleContainer: {
+    paddingHorizontal: 16,
+    paddingTop: 20,
+    paddingBottom: 12,
+  },
+  categoryTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#333',
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#EEEEEE',
+    marginTop: 12,
+  },
+  categoryListContainer: {
+    paddingHorizontal: 0,
+  },
+  categoryListItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
+  },
+  categoryItemLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  categoryImageCircle: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#F8F8F8',
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
+    marginRight: 14,
+  },
+  categoryItemImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  categoryItemIcon: {
+    fontSize: 24,
+  },
+  categoryItemName: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#333',
+    flex: 1,
+  },
+  expandButton: {
+    padding: 8,
+  },
+  promoImageCircle: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#FFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 14,
+    borderWidth: 1,
+    borderColor: '#EEE',
+  },
+  promoLogoContainer: {
+    alignItems: 'center',
+  },
+  momSalesLogo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  momSalesText: {
+    fontSize: 10,
+    fontWeight: '900',
+    color: '#E53935',
+  },
+  heartIcon: {
+    marginHorizontal: 1,
+  },
+  heartText: {
+    fontSize: 8,
+    color: '#E53935',
+  },
+  momSalesSubText: {
+    fontSize: 5,
+    fontWeight: '600',
+    color: '#E53935',
+  },
+  momSalesSalesText: {
+    fontSize: 8,
+    fontWeight: '900',
+    color: '#E53935',
+  },
+  winterLogoContainer: {
+    alignItems: 'center',
+  },
+  winterText: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#E53935',
+    fontStyle: 'italic',
+  },
+  wonderlandText: {
+    fontSize: 5,
+    fontWeight: '700',
+    color: '#E53935',
+    letterSpacing: 0.5,
   },
 });

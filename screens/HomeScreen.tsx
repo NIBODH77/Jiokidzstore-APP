@@ -351,11 +351,11 @@ export default function HomeScreen() {
               </Text>
 
               {/* Girls Label */}
-              <View style={{ paddingHorizontal: 12, marginBottom: 10 }}>
+              {/* <View style={{ paddingHorizontal: 12, marginBottom: 10 }}>
                 <View style={{ alignSelf: 'flex-start', backgroundColor: '#FFE5F0', paddingHorizontal: 14, paddingVertical: 6, borderRadius: 16 }}>
                   <Text style={{ fontSize: 13, fontWeight: '700', color: '#FF69B4' }}>👧 GIRLS</Text>
                 </View>
-              </View>
+              </View> */}
 
               {/* ROW 1: Girls Age Groups */}
               <View
@@ -372,11 +372,11 @@ export default function HomeScreen() {
               </View>
 
               {/* Boys Label */}
-              <View style={{ paddingHorizontal: 12, marginBottom: 10 }}>
+              {/* <View style={{ paddingHorizontal: 12, marginBottom: 10 }}>
                 <View style={{ alignSelf: 'flex-start', backgroundColor: '#E3F2FD', paddingHorizontal: 14, paddingVertical: 6, borderRadius: 16 }}>
                   <Text style={{ fontSize: 13, fontWeight: '700', color: '#4169E1' }}>👦 BOYS</Text>
                 </View>
-              </View>
+              </View> */}
 
               {/* ROW 2: Boys Age Groups */}
               <View
