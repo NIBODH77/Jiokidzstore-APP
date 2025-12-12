@@ -7,11 +7,31 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ThemedText } from '@/components/ThemedText';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRODUCTS } from '@/data/mockData';
+import { KIDS_FASHION_PRODUCTS } from '@/data/kidsFashionData';
 import { wishlistStorage, cartStorage } from '@/utils/storage';
 import { addToCart } from '@/store/cartSlice';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
+import { Product } from '@/data/types';
 
 const { width } = Dimensions.get('window');
+
+const convertKidsFashionToProduct = (kfp: any): Product => ({
+  id: kfp.product_id,
+  name: kfp.product_name,
+  brand: kfp.brand,
+  price: kfp.price,
+  mrp: kfp.original_price,
+  discount: kfp.discount,
+  rating: kfp.rating,
+  reviewCount: kfp.reviews_count,
+  images: kfp.images?.length > 0 ? kfp.images : [require('../../attached_assets/generated_images/toddler_boy_navy_outfit.png')],
+  description: kfp.description,
+  category: kfp.category,
+  sizes: kfp.sizes,
+  colors: [kfp.color],
+  ageGroup: kfp.age_group,
+  inStock: kfp.in_stock,
+});
 
 export default function ProductDetailScreen() {
   const navigation = useNavigation();
@@ -24,7 +44,15 @@ export default function ProductDetailScreen() {
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
-  const product = PRODUCTS.find(p => p.id === route.params?.productId);
+  const productId = route.params?.productId;
+  let product = PRODUCTS.find(p => p.id === productId);
+  
+  if (!product) {
+    const kidsProduct = KIDS_FASHION_PRODUCTS.find(p => p.product_id === productId);
+    if (kidsProduct) {
+      product = convertKidsFashionToProduct(kidsProduct);
+    }
+  }
 
   if (!product) {
     return (
