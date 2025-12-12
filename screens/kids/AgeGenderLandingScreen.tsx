@@ -45,52 +45,52 @@ interface CategoryItem {
 
 const BANNERS_DATA = [
   {
-    id: 'mom-sale',
-    type: 'MOM_SALE',
-    gradientColors: ['#FFEEE8', '#FFE4D9'],
-    title: 'Mom Of All Sales',
-    discount: '60',
-    badgeColor: '#E53935',
+    id: "mom-sale",
+    type: "MOM_SALE",
+    gradientColors: ["#FFEEE8", "#FFE4D9"],
+    title: "Mom Of All Sales",
+    discount: "60",
+    badgeColor: "#E53935",
   },
   {
-    id: 'summer-splash',
-    type: 'SUMMER_SPLASH',
-    gradientColors: ['#FFF9E6', '#FFE9B3'],
-    title: 'Summer Splash',
-    discount: '50',
-    badgeColor: '#FF9800',
+    id: "summer-splash",
+    type: "SUMMER_SPLASH",
+    gradientColors: ["#FFF9E6", "#FFE9B3"],
+    title: "Summer Splash",
+    discount: "50",
+    badgeColor: "#FF9800",
   },
   {
-    id: 'new-arrivals',
-    type: 'NEW_ARRIVALS',
-    gradientColors: ['#E8F5E9', '#C8E6C9'],
-    title: 'New Arrivals',
-    discount: '30',
-    badgeColor: '#4CAF50',
+    id: "new-arrivals",
+    type: "NEW_ARRIVALS",
+    gradientColors: ["#E8F5E9", "#C8E6C9"],
+    title: "New Arrivals",
+    discount: "30",
+    badgeColor: "#4CAF50",
   },
   {
-    id: 'festive-special',
-    type: 'FESTIVE_SPECIAL',
-    gradientColors: ['#FCE4EC', '#F8BBD9'],
-    title: 'Festive Special',
-    discount: '40',
-    badgeColor: '#E91E63',
+    id: "festive-special",
+    type: "FESTIVE_SPECIAL",
+    gradientColors: ["#FCE4EC", "#F8BBD9"],
+    title: "Festive Special",
+    discount: "40",
+    badgeColor: "#E91E63",
   },
   {
-    id: 'clearance-sale',
-    type: 'CLEARANCE_SALE',
-    gradientColors: ['#E3F2FD', '#BBDEFB'],
-    title: 'Clearance Sale',
-    discount: '70',
-    badgeColor: '#2196F3',
+    id: "clearance-sale",
+    type: "CLEARANCE_SALE",
+    gradientColors: ["#E3F2FD", "#BBDEFB"],
+    title: "Clearance Sale",
+    discount: "70",
+    badgeColor: "#2196F3",
   },
   {
-    id: 'bundle-offer',
-    type: 'BUNDLE_OFFER',
-    gradientColors: ['#F3E5F5', '#E1BEE7'],
-    title: 'Bundle Offer',
-    discount: '25',
-    badgeColor: '#9C27B0',
+    id: "bundle-offer",
+    type: "BUNDLE_OFFER",
+    gradientColors: ["#F3E5F5", "#E1BEE7"],
+    title: "Bundle Offer",
+    discount: "25",
+    badgeColor: "#9C27B0",
   },
 ];
 
@@ -122,7 +122,9 @@ export default function AgeGenderLandingScreen() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleBannerScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+  const handleBannerScroll = (
+    event: NativeSyntheticEvent<NativeScrollEvent>,
+  ) => {
     const contentOffsetX = event.nativeEvent.contentOffset.x;
     const index = Math.round(contentOffsetX / BANNER_WIDTH);
     setCurrentBannerIndex(index);
@@ -211,13 +213,15 @@ export default function AgeGenderLandingScreen() {
     return null;
   };
 
-  const renderBanner = (banner: typeof BANNERS_DATA[0]) => (
+  const renderBanner = (banner: (typeof BANNERS_DATA)[0]) => (
     <View key={banner.id} style={[styles.bannerSlide, { width: BANNER_WIDTH }]}>
       <LinearGradient
         colors={banner.gradientColors as [string, string]}
         style={styles.saleBanner}
       >
-        <View style={[styles.saleBadge, { backgroundColor: banner.badgeColor }]}>
+        <View
+          style={[styles.saleBadge, { backgroundColor: banner.badgeColor }]}
+        >
           <Text style={styles.badgeDiscount}>{banner.discount}%</Text>
           <Text style={styles.badgeOff}>OFF</Text>
         </View>
@@ -237,12 +241,18 @@ export default function AgeGenderLandingScreen() {
         <View style={styles.discountContainer}>
           <Text style={styles.uptoText}>UPTO</Text>
           <View style={styles.percentContainer}>
-            <Text style={[styles.percentNumber, { color: banner.badgeColor }]}>{banner.discount}</Text>
-            <Text style={[styles.percentSign, { color: banner.badgeColor }]}>%</Text>
+            <Text style={[styles.percentNumber, { color: banner.badgeColor }]}>
+              {banner.discount}
+            </Text>
+            <Text style={[styles.percentSign, { color: banner.badgeColor }]}>
+              %
+            </Text>
           </View>
           <Text style={styles.offText}>OFF</Text>
         </View>
-        <Pressable style={[styles.shopNowButton, { backgroundColor: banner.badgeColor }]}>
+        <Pressable
+          style={[styles.shopNowButton, { backgroundColor: banner.badgeColor }]}
+        >
           <Text style={styles.shopNowText}>SHOP NOW</Text>
           <Feather name="chevron-right" size={14} color="#FFF" />
         </Pressable>
@@ -432,18 +442,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-    marginTop: 15,
+    marginTop: 75,
   },
   carouselContainer: {
-    width: '100%',
+    width: "100%",
   },
   bannerSlide: {
     width: BANNER_WIDTH,
   },
   paginationContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     paddingVertical: 10,
     gap: 6,
   },
@@ -451,28 +461,28 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#DDD',
+    backgroundColor: "#DDD",
   },
   paginationDotActive: {
-    backgroundColor: '#FF8C00',
+    backgroundColor: "#FF8C00",
     width: 20,
   },
   bannerTitle: {
     fontSize: 18,
-    fontWeight: '800',
-    color: '#333',
-    textAlign: 'center',
+    fontWeight: "800",
+    color: "#333",
+    textAlign: "center",
     marginTop: 10,
   },
   badgeDiscount: {
     fontSize: 16,
-    fontWeight: '900',
-    color: '#FFF',
+    fontWeight: "900",
+    color: "#FFF",
   },
   badgeOff: {
     fontSize: 10,
-    fontWeight: '700',
-    color: '#FFF',
+    fontWeight: "700",
+    color: "#FFF",
   },
   bannerContainer: {
     paddingHorizontal: 0,
