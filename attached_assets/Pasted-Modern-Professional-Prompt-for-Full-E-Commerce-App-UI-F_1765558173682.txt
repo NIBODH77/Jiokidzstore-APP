@@ -1,0 +1,74 @@
+Modern & Professional Prompt for Full E-Commerce App UI + Functionality Review
+
+Task:
+Review and update the complete navigation flow starting from AgeGenderLandingScreen.tsx and all its nested screens. Improve spacing, UI consistency, and validate core e-commerce functionalities.
+
+🔧 UI & Layout Improvements
+
+Increase top margin / top padding for all screens navigated from AgeGenderLandingScreen.tsx to maintain consistent modern spacing.
+
+Ensure every nested page follows a unified layout structure, spacing scale, typography, and component hierarchy.
+
+Fix any alignment, padding, or visual inconsistencies across product-list, product-detail, category, wishlist, and cart screens.
+
+🧪 Functional Review (Core E-Commerce Features)
+
+Thoroughly check and validate the following features:
+
+Wishlist Functionality
+
+Verify wishlist action works on every product card and product detail page.
+
+Ensure wish/unwish state updates correctly in UI + local/global state.
+
+Ensure wishlist count syncs across screens.
+
+Add to Cart / Cart Management
+
+Confirm products are added correctly with all required attributes (size, color, qty).
+
+Check cart updates in real-time and survives navigation.
+
+Validate increment/decrement quantity and remove-item actions.
+
+Order Placement Flow
+
+Ensure checkout process triggers correct order creation logic.
+
+Validate payment flow integration points.
+
+Order Tracking
+
+Verify that order tracking updates UI according to order status values.
+
+Check all status stages (Placed → Packed → Shipped → Out for Delivery → Delivered).
+
+Order History
+
+Ensure the order history page displays past orders reliably.
+
+Validate product thumbnails, metadata, dates, prices, and status.
+
+Confirm API/state is correctly mapped and scroll performance is smooth.
+
+🧹 General Code Quality Review
+
+Confirm reusable components are used consistently (buttons, cards, headers).
+
+Clean unused code, console logs, and redundant styles.
+
+Verify no UI breaks occur across Android/iOS screen sizes.
+
+Ensure navigation params, types, and props are strongly typed (TypeScript best practices).
+
+🎯 Final Output Expectations
+
+Provide:
+
+A list of issues found (UI + functionality).
+
+Suggested fixes + improved UI recommendations.
+
+Updated or optimized code snippets where necessary.
+
+Confirmation after applying consistent spacing + verifying all core features.

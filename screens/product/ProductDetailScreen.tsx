@@ -89,12 +89,8 @@ export default function ProductDetailScreen() {
         selectedColor: selectedColor || undefined,
       });
       
-      const parentNav = navigation.getParent();
-      if (parentNav) {
-        (parentNav as any).navigate('HomeTab', { screen: 'Cart' });
-      } else {
-        (navigation as any).navigate('Cart');
-      }
+      // Navigate directly to Cart screen (it's in the same stack)
+      (navigation as any).navigate('Cart');
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
