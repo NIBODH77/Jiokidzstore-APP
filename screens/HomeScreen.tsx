@@ -164,7 +164,7 @@ export default function HomeScreen() {
               if (ref) {
                 let scrollIndex = 0;
                 setInterval(() => {
-                  scrollIndex = (scrollIndex + 1) % 7;
+                  scrollIndex = (scrollIndex + 1) % 3;
                   ref.scrollTo({
                     x: scrollIndex * (Dimensions.get('window').width - 32),
                     animated: true,
@@ -174,57 +174,25 @@ export default function HomeScreen() {
             }}
             contentContainerStyle={styles.bannersScrollContent}
           >
-            <Pressable style={styles.autoBanner} onPress={() => console.log('Welcome Banner')}>
+            <Pressable style={styles.autoBanner} onPress={() => console.log('Welcome Banner 1')}>
               <Image 
-                source={require('../attached_assets/generated_images/welcome_50%_off_kids_banner.png')}
+                source={require('../attached_assets/WhatsApp_Image_2025-12-12_at_4.54.28_AM_1765498104417.jpeg')}
                 style={styles.autoBannerImage}
                 resizeMode="cover"
               />
             </Pressable>
 
-            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 1')}>
+            <Pressable style={styles.autoBanner} onPress={() => console.log('Welcome Banner 2')}>
               <Image 
-                source={require('../attached_assets/generated_images/baby_girl_discount_banner.png')}
+                source={require('../attached_assets/Gemini_Generated_Image_a18sjna18sjna18s_1765498123953.png')}
                 style={styles.autoBannerImage}
                 resizeMode="cover"
               />
             </Pressable>
 
-            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 2')}>
+            <Pressable style={styles.autoBanner} onPress={() => console.log('Welcome Banner 3')}>
               <Image 
-                source={require('../attached_assets/generated_images/baby_boy_winter_sale_banner.png')}
-                style={styles.autoBannerImage}
-                resizeMode="cover"
-              />
-            </Pressable>
-
-            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 3')}>
-              <Image 
-                source={require('../attached_assets/generated_images/mega_kids_fashion_sale.png')}
-                style={styles.autoBannerImage}
-                resizeMode="cover"
-              />
-            </Pressable>
-
-            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 4')}>
-              <Image 
-                source={require('../attached_assets/WhatsApp Image 2025-11-29 at 3.25.16 PM_1764410805074.jpeg')}
-                style={styles.autoBannerImage}
-                resizeMode="cover"
-              />
-            </Pressable>
-
-            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 5')}>
-              <Image 
-                source={require('../attached_assets/generated_images/baby_clothing_collection_banner.png')}
-                style={styles.autoBannerImage}
-                resizeMode="cover"
-              />
-            </Pressable>
-
-            <Pressable style={styles.autoBanner} onPress={() => console.log('Banner 6')}>
-              <Image 
-                source={require('../attached_assets/Gemini_Generated_Image_xgkpipxgkpipxgkp_1764517163310.png')}
+                source={require('../attached_assets/Gemini_Generated_Image_voxeugvoxeugvoxe_1765498123954.png')}
                 style={styles.autoBannerImage}
                 resizeMode="cover"
               />
@@ -1332,7 +1300,7 @@ const styles = StyleSheet.create({
   },
   autoBanner: {
     width: Dimensions.get('window').width - 32,
-    height: 280,
+    height: 380,
     marginRight: 0,
     borderRadius: 12,
     overflow: 'hidden',
