@@ -314,6 +314,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+    marginTop: 15,
   },
   bannerContainer: {
     paddingHorizontal: 0,
