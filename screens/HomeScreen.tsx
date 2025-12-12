@@ -1344,20 +1344,20 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     paddingHorizontal: 12,
-    gap: 8,
+    gap: 6,
   },
   categoryItem: {
-    width: '18%', // Changed from '23%'
+    width: '23%',
     alignItems: 'center',
-    marginBottom: 18,
+    marginBottom: 12,
   },
   categoryCard: {
     width: '100%',
-    height: 100,
-    borderRadius: 12,
+    height: 80,
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 6,
+    marginBottom: 4,
     overflow: 'hidden',
   },
   categoryImageContainer: {
@@ -1371,11 +1371,12 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   categoryName: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: '600',
     color: '#1F2937',
     textAlign: 'center',
     width: '100%',
+    lineHeight: 12,
   },
   categoryCount: {
     fontSize: 10,
