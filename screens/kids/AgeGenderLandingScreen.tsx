@@ -94,6 +94,122 @@ const BANNERS_DATA = [
   },
 ];
 
+interface SeasonProduct {
+  id: string;
+  name: string;
+  originalPrice: number;
+  discountedPrice: number;
+  discount: number;
+  image: any;
+  season: "winter" | "summer" | "monsoon" | "festive";
+  isNew?: boolean;
+}
+
+const SEASONAL_PRODUCTS: SeasonProduct[] = [
+  {
+    id: "wp1",
+    name: "Cozy Winter Jacket",
+    originalPrice: 1999,
+    discountedPrice: 999,
+    discount: 50,
+    image: require("../../attached_assets/generated_images/toddler_boy_navy_outfit.png"),
+    season: "winter",
+    isNew: true,
+  },
+  {
+    id: "wp2",
+    name: "Warm Woolen Sweater",
+    originalPrice: 1499,
+    discountedPrice: 749,
+    discount: 50,
+    image: require("../../attached_assets/generated_images/infant_baby_boy_blue_shirt.png"),
+    season: "winter",
+  },
+  {
+    id: "wp3",
+    name: "Fleece Hoodie Set",
+    originalPrice: 1799,
+    discountedPrice: 899,
+    discount: 50,
+    image: require("../../attached_assets/generated_images/preschool_boy_blue_graphic_shirt.png"),
+    season: "winter",
+    isNew: true,
+  },
+  {
+    id: "wp4",
+    name: "Thermal Inner Wear",
+    originalPrice: 899,
+    discountedPrice: 449,
+    discount: 50,
+    image: require("../../attached_assets/generated_images/infant_baby_girl_striped_pink_shirt.png"),
+    season: "winter",
+  },
+  {
+    id: "sp1",
+    name: "Cotton Summer Dress",
+    originalPrice: 1299,
+    discountedPrice: 649,
+    discount: 50,
+    image: require("../../attached_assets/generated_images/toddler_girl_purple_floral_dress.png"),
+    season: "summer",
+    isNew: true,
+  },
+  {
+    id: "sp2",
+    name: "Light Linen Romper",
+    originalPrice: 999,
+    discountedPrice: 499,
+    discount: 50,
+    image: require("../../attached_assets/generated_images/newborn_baby_girl_pink_onesie.png"),
+    season: "summer",
+  },
+  {
+    id: "mp1",
+    name: "Waterproof Raincoat",
+    originalPrice: 1599,
+    discountedPrice: 799,
+    discount: 50,
+    image: require("../../attached_assets/generated_images/toddler_boy_navy_outfit.png"),
+    season: "monsoon",
+    isNew: true,
+  },
+  {
+    id: "mp2",
+    name: "Rain Boots Set",
+    originalPrice: 1199,
+    discountedPrice: 599,
+    discount: 50,
+    image: require("../../attached_assets/generated_images/infant_baby_boy_blue_shirt.png"),
+    season: "monsoon",
+  },
+  {
+    id: "fp1",
+    name: "Ethnic Kurta Set",
+    originalPrice: 2499,
+    discountedPrice: 1249,
+    discount: 50,
+    image: require("../../attached_assets/generated_images/preschool_boy_blue_graphic_shirt.png"),
+    season: "festive",
+    isNew: true,
+  },
+  {
+    id: "fp2",
+    name: "Party Lehenga Dress",
+    originalPrice: 2999,
+    discountedPrice: 1499,
+    discount: 50,
+    image: require("../../attached_assets/generated_images/toddler_girl_purple_floral_dress.png"),
+    season: "festive",
+  },
+];
+
+const SEASONS = [
+  { id: "winter", name: "Winter Collection", icon: "❄️", color: "#4FC3F7" },
+  { id: "summer", name: "Summer Collection", icon: "☀️", color: "#FFB74D" },
+  { id: "monsoon", name: "Monsoon Collection", icon: "🌧️", color: "#81C784" },
+  { id: "festive", name: "Festive Collection", icon: "🎉", color: "#F48FB1" },
+];
+
 export default function AgeGenderLandingScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const route = useRoute<RouteProp<RouteParams, "AgeGenderLanding">>();
@@ -432,6 +548,90 @@ export default function AgeGenderLandingScreen() {
           </Pressable>
         ))}
       </View>
+
+      {/* Seasonal Products Section */}
+      {SEASONS.map((season) => {
+        const seasonProducts = SEASONAL_PRODUCTS.filter(
+          (p) => p.season === season.id,
+        );
+        if (seasonProducts.length === 0) return null;
+
+        return (
+          <View key={season.id} style={styles.seasonSection}>
+            <View style={styles.seasonHeader}>
+              <View style={styles.seasonTitleRow}>
+                <Text style={styles.seasonIcon}>{season.icon}</Text>
+                <Text style={styles.seasonTitle}>{season.name}</Text>
+              </View>
+              <LinearGradient
+                colors={["#FF8C00", "#FF6B00"]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.newOfferBadge}
+              >
+                <Text style={styles.newOfferText}>NEW OFFERS!</Text>
+              </LinearGradient>
+            </View>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.productsRow}
+            >
+              {seasonProducts.map((product) => (
+                <Pressable
+                  key={product.id}
+                  style={styles.productCard}
+                  onPress={() =>
+                    navigation.navigate("ProductDetail", { productId: product.id })
+                  }
+                >
+                  <View style={styles.productImageContainer}>
+                    <Image
+                      source={product.image}
+                      style={styles.productImage}
+                      resizeMode="cover"
+                    />
+                    <View
+                      style={[
+                        styles.discountBadge,
+                        { backgroundColor: season.color },
+                      ]}
+                    >
+                      <Text style={styles.discountBadgeText}>
+                        {product.discount}% OFF
+                      </Text>
+                    </View>
+                    {product.isNew && (
+                      <View style={styles.newBadge}>
+                        <Text style={styles.newBadgeText}>NEW</Text>
+                      </View>
+                    )}
+                  </View>
+                  <View style={styles.productDetails}>
+                    <Text style={styles.productName} numberOfLines={2}>
+                      {product.name}
+                    </Text>
+                    <View style={styles.priceRow}>
+                      <Text style={styles.discountedPrice}>
+                        ₹{product.discountedPrice}
+                      </Text>
+                      <Text style={styles.originalPrice}>
+                        ₹{product.originalPrice}
+                      </Text>
+                    </View>
+                    <View style={styles.savingsRow}>
+                      <Feather name="tag" size={12} color="#4CAF50" />
+                      <Text style={styles.savingsText}>
+                        Save ₹{product.originalPrice - product.discountedPrice}
+                      </Text>
+                    </View>
+                  </View>
+                </Pressable>
+              ))}
+            </ScrollView>
+          </View>
+        );
+      })}
 
       <View style={{ height: 100 }} />
     </ScrollView>
@@ -779,5 +979,127 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: "#E53935",
     letterSpacing: 0.5,
+  },
+  seasonSection: {
+    marginTop: 20,
+    paddingBottom: 16,
+  },
+  seasonHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    marginBottom: 12,
+  },
+  seasonTitleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  seasonIcon: {
+    fontSize: 24,
+  },
+  seasonTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#333",
+  },
+  newOfferBadge: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+  },
+  newOfferText: {
+    fontSize: 11,
+    fontWeight: "800",
+    color: "#FFF",
+  },
+  productsRow: {
+    paddingHorizontal: 12,
+    gap: 12,
+  },
+  productCard: {
+    width: 160,
+    backgroundColor: "#FFF",
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    overflow: "hidden",
+  },
+  productImageContainer: {
+    width: "100%",
+    height: 140,
+    backgroundColor: "#F8F8F8",
+    position: "relative",
+  },
+  productImage: {
+    width: "100%",
+    height: "100%",
+  },
+  discountBadge: {
+    position: "absolute",
+    top: 8,
+    left: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+  },
+  discountBadgeText: {
+    fontSize: 11,
+    fontWeight: "800",
+    color: "#FFF",
+  },
+  newBadge: {
+    position: "absolute",
+    top: 8,
+    right: 8,
+    backgroundColor: "#FF8C00",
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+  },
+  newBadgeText: {
+    fontSize: 10,
+    fontWeight: "800",
+    color: "#FFF",
+  },
+  productDetails: {
+    padding: 10,
+  },
+  productName: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: "#333",
+    marginBottom: 6,
+    lineHeight: 18,
+  },
+  priceRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginBottom: 4,
+  },
+  discountedPrice: {
+    fontSize: 16,
+    fontWeight: "800",
+    color: "#FF8C00",
+  },
+  originalPrice: {
+    fontSize: 13,
+    color: "#999",
+    textDecorationLine: "line-through",
+  },
+  savingsRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  savingsText: {
+    fontSize: 11,
+    fontWeight: "600",
+    color: "#4CAF50",
   },
 });
