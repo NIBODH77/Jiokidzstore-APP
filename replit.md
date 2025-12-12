@@ -14,12 +14,17 @@ A comprehensive e-commerce mobile app built with React Native (Expo) for kids pr
 ✅ **Kids Fashion Multi-Level Navigation** - Complete nested shopping structure
 
 ## Recent Updates (December 2025)
+- **Expanded Product Catalog** - Now 190+ products across all categories
+  - mockData.ts: 70+ products (Winter, Festive, Fashion, Footwear, Toys, Baby Care)
+  - kidsFashionData.ts: 120+ products (12 per age/gender group)
+- **50% OFF Discount Offers** - All products have consistent 50% discount pricing
+- **Dual Data Source Support** - ProductDetailScreen searches both mockData and kidsFashionData
+- **Complete E-Commerce Flow** - ProfileScreen connects to Order History, Track Order, Wishlist, Cart, Refunds
 - Added complete multi-level nested navigation for Kids Fashion section
 - Created KidsFashionLandingScreen, AgeGenderLandingScreen, KidsCategoryProductsScreen
 - Added gender-specific labels (GIRLS/BOYS) with color-coded cards on HomeScreen
 - Navigation flow: HomeScreen → AgeGenderLanding → KidsCategoryProducts → ProductDetail
 - Implemented season-aware product filtering and sorting
-- Created comprehensive kids fashion data structure with 50+ products
 
 ## Previous Fixes
 - Fixed HomeScreen.tsx duplicate code bug (removed garbage lines 1893-3785)
