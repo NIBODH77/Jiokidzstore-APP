@@ -1,0 +1,235 @@
+⚠️ EXECUTION LOCK — READ LINE BY LINE ⚠️
+
+You MUST follow this prompt EXACTLY as written.
+You are NOT allowed to skip, summarize, merge,
+or partially implement ANY requirement.
+
+If ANY requirement is missing → STOP and DECLARE FAILURE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXECUTION LOCK ACCEPTANCE (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST start your response with EXACTLY this line:
+
+“EXECUTION LOCK ACCEPTED — PDP, HOME & PAYMENT UI TASK BEGIN”
+
+If this line is missing or altered → EXECUTION INVALID.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ROLE & CONTEXT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You are a Senior / Principal Mobile UI Engineer
+working on a PRODUCTION React Native e-commerce app.
+
+FACTS:
+- Home page exists with multiple sections & categories
+- Product Detail Page (PDP) exists
+- Payment page exists
+- Navigation & flows already work
+
+Your task is NOT to rebuild the app.
+Your task is to implement ONLY the features defined below.
+
+Frontend UI ONLY  
+❌ NO backend logic  
+❌ NO payment gateway logic  
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚨 ABSOLUTE RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- DO NOT touch unrelated screens
+- DO NOT change product data structure
+- DO NOT break navigation
+- DO NOT add unnecessary animations
+- Implement ONLY what is written
+- ALL listed tasks are MANDATORY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 1 — PDP IMAGE ANGLE VIEW (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+On Product Detail Page, allow users to view
+the product from different angles.
+
+UI STRUCTURE:
+- One MAIN PRODUCT IMAGE at top
+- BELOW it, show SMALL ANGLE CARDS:
+  - Front
+  - Left
+  - Right
+  - Top
+  - Bottom (if available)
+
+INTERACTION:
+- On clicking any angle card:
+  - Main image MUST immediately swap
+  - Selected angle card shows active state
+- No page reload
+- No delay or flicker
+
+RULES:
+- Angle cards clearly visible
+- Active angle clearly highlighted
+- Missing angles handled gracefully
+- Main image remains centered & stable
+
+SCREEN:
+- Product Detail Page ONLY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 2 — SIMILAR PRODUCTS ON PDP (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+Show Similar Products on Product Detail Page.
+
+MANDATORY:
+- Section placed BELOW product details
+- Horizontal scroll list
+- SAME product card style as used globally
+- Section title: “Similar Products”
+
+RULES:
+- Must NOT distract from Add to Cart
+- Purpose is discovery, not promotion
+
+SCREEN:
+- Product Detail Page ONLY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 3 — HOME PAGE CATEGORY → RELATED PRODUCTS (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+On Home page, ANY category or section item click
+MUST open its RELATED PRODUCTS page.
+
+MANDATORY BEHAVIOR:
+- Clicking a Home category/section:
+  → Opens Product Listing filtered to that category
+- User must NEVER land on an empty or unrelated page
+
+RULES:
+- Navigation must feel immediate & clear
+- Page title must reflect selected category
+- Existing Home UI must NOT be removed
+
+SCREEN:
+- Home Page ONLY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 4 — GLOBAL PRODUCT IMAGE UNIQUENESS (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+Ensure ALL product images are UNIQUE
+according to their CATEGORY across the entire project.
+
+MANDATORY RULES:
+- NO two products from different categories
+  should visually feel the same
+- Images must reflect:
+  - Category
+  - Use-case
+  - Product type
+- Avoid repeated images, angles, or placeholders
+
+APPLIES TO:
+- Home
+- Category pages
+- Product Listing
+- Product Detail Page
+- Similar Products
+
+GOAL:
+User should immediately understand
+product category just by seeing the image.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 5 — NEW MODERN PAYMENT PAGE (FULL UI REPLACEMENT)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+REMOVE existing payment page UI
+and REPLACE it with a completely NEW, MODERN UI.
+
+⚠️ UI ONLY — payment logic remains untouched.
+
+MANDATORY PAYMENT PAGE STRUCTURE:
+- Page title: “Secure Payment”
+- Step indicator:
+  Address → Payment → Review
+- Card-style payment options:
+  - UPI
+  - Debit / Credit Cards
+  - Wallets
+  - Net Banking
+- Bank / UPI logos grid
+- Security & trust indicators
+- Primary CTA:
+  “Pay Securely”
+
+RULES:
+- Clean & minimal layout
+- No ads, no banners
+- Trust-first, familiar design
+
+SCREEN:
+- Payment Page ONLY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 6 — FINAL VALIDATION (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Verify ALL:
+- Angle cards swap main image correctly
+- Similar Products visible on PDP
+- Home category clicks open related products
+- Product images are category-wise unique
+- Old payment UI fully replaced
+- Navigation not broken
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SELF-FAIL RULE (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+If ANY requirement is missing or partially implemented,
+you MUST write:
+
+“SELF-FAIL DECLARED — REASON: ______”
+
+And STOP immediately.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL VERIFICATION (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST confirm ALL:
+
+☐ PDP angle-based image cards implemented  
+☐ Main image swaps on angle click  
+☐ Similar products shown on PDP  
+☐ Home category opens related products  
+☐ Product images unique per category  
+☐ Payment page fully redesigned (UI only)  
+☐ Existing app functionality preserved  
+
+If ANY is false → STOP.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL EXECUTION OATH (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before ending, you MUST write:
+
+“I hereby confirm that:
+- I completed ALL four mandatory tasks
+- I did not skip or partially implement any task
+- I followed every instruction line by line
+- The UI changes are production-ready
+
+If this statement is false, my output is invalid.”

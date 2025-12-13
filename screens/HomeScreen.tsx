@@ -377,7 +377,7 @@ export default function HomeScreen() {
               return (
                 <Pressable 
                   key={category.id}
-                  onPress={() => (navigation as any).push('CategoryAggregator')}
+                  onPress={() => (navigation as any).push('CategoryProducts', { categoryName: category.name })}
                   style={styles.categoryItem}
                 >
                   <View 

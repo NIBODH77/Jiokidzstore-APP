@@ -37,6 +37,7 @@ import RecentlyViewedScreen from '@/screens/main/RecentlyViewedScreen';
 import KidsFashionLandingScreen from '@/screens/kids/KidsFashionLandingScreen';
 import AgeGenderLandingScreen from '@/screens/kids/AgeGenderLandingScreen';
 import KidsCategoryProductsScreen from '@/screens/kids/KidsCategoryProductsScreen';
+import CategoryProductsScreen from '@/screens/product/CategoryProductsScreen';
 import { TopHeader } from "@/components/TopHeader";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
@@ -80,6 +81,7 @@ export type HomeStackParamList = {
   KidsFashionLanding: undefined;
   AgeGenderLanding: { gender: string; ageRange: string; color: string };
   KidsCategoryProducts: { gender: string; ageRange: string; category: string };
+  CategoryProducts: { categoryName: string };
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -459,6 +461,15 @@ export default function HomeStackNavigator() {
         options={{ 
           headerShown: true,
           header: (props) => <TopHeader {...props} showBackButton={true} />
+        }}
+      />
+
+      {/* CATEGORY PRODUCTS */}
+      <Stack.Screen
+        name="CategoryProducts"
+        component={CategoryProductsScreen}
+        options={{ 
+          headerShown: false
         }}
       />
     </Stack.Navigator>

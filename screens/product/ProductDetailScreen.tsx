@@ -17,6 +17,14 @@ import { ZoomableImage } from '@/components/ZoomableImage';
 
 const { width } = Dimensions.get('window');
 
+const ANGLE_VIEWS = [
+  { id: 'front', label: 'Front', icon: 'eye' },
+  { id: 'left', label: 'Left', icon: 'chevron-left' },
+  { id: 'right', label: 'Right', icon: 'chevron-right' },
+  { id: 'top', label: 'Top', icon: 'chevron-up' },
+  { id: 'bottom', label: 'Bottom', icon: 'chevron-down' },
+];
+
 const convertKidsFashionToProduct = (kfp: any): Product => ({
   id: kfp.product_id,
   name: kfp.product_name,
@@ -46,6 +54,7 @@ export default function ProductDetailScreen() {
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [selectedAngle, setSelectedAngle] = useState('front');
   const [pincode, setPincode] = useState('');
   const [deliveryInfo, setDeliveryInfo] = useState<{ available: boolean; days: number; message: string } | null>(null);
   const imageCarouselRef = useRef<FlatList>(null);
@@ -71,6 +80,20 @@ export default function ProductDetailScreen() {
     );
   }
 
+  const productImages = useMemo(() => {
+    if (product.images && product.images.length >= 5) {
+      return product.images;
+    }
+    const baseImage = product.images && product.images.length > 0 ? product.images[0] : require('../../attached_assets/generated_images/toddler_boy_navy_outfit.png');
+    return [baseImage, baseImage, baseImage, baseImage, baseImage];
+  }, [product.images]);
+
+  const handleAngleSelect = (angleId: string, index: number) => {
+    setSelectedAngle(angleId);
+    setActiveImageIndex(index);
+    imageCarouselRef.current?.scrollToIndex({ index, animated: true });
+  };
+
   const handleAddToCart = async () => {
     try {
       if (!product?.id) {
@@ -78,7 +101,6 @@ export default function ProductDetailScreen() {
         return;
       }
       
-      // Dispatch to Redux
       dispatch(addToCart(
         product,
         quantity,
@@ -86,7 +108,6 @@ export default function ProductDetailScreen() {
         selectedColor || undefined
       ) as any);
       
-      // Also save to local storage
       await cartStorage.addToCart({
         id: Date.now().toString(),
         product,
@@ -95,7 +116,6 @@ export default function ProductDetailScreen() {
         selectedColor: selectedColor || undefined,
       });
       
-      // Navigate directly to Cart screen (it's in the same stack)
       (navigation as any).navigate('Cart');
     } catch (error) {
       console.error('Error adding to cart:', error);
@@ -104,7 +124,6 @@ export default function ProductDetailScreen() {
 
   useEffect(() => {
     if (isFocused) {
-      // Hide tab bar by accessing parent navigator
       const parent = navigation.getParent();
       parent?.setOptions({
         tabBarStyle: { display: 'none' },
@@ -112,7 +131,6 @@ export default function ProductDetailScreen() {
     }
     
     return () => {
-      // Show tab bar when leaving screen
       const parent = navigation.getParent();
       parent?.setOptions({
         tabBarStyle: {
@@ -182,7 +200,7 @@ export default function ProductDetailScreen() {
         <View style={styles.imageSection}>
           <FlatList
             ref={imageCarouselRef}
-            data={product.images || []}
+            data={productImages}
             horizontal
             pagingEnabled
             showsHorizontalScrollIndicator={false}
@@ -190,6 +208,7 @@ export default function ProductDetailScreen() {
             onMomentumScrollEnd={(event) => {
               const index = Math.round(event.nativeEvent.contentOffset.x / width);
               setActiveImageIndex(index);
+              setSelectedAngle(ANGLE_VIEWS[index]?.id || 'front');
             }}
             renderItem={({ item }) => (
               <View style={styles.carouselImageContainer}>
@@ -201,21 +220,6 @@ export default function ProductDetailScreen() {
               </View>
             )}
           />
-          
-          {/* Pagination Dots */}
-          {product.images && product.images.length > 1 && (
-            <View style={styles.paginationContainer}>
-              {product.images.map((_, index) => (
-                <View
-                  key={`dot-${index}`}
-                  style={[
-                    styles.paginationDot,
-                    activeImageIndex === index && styles.paginationDotActive
-                  ]}
-                />
-              ))}
-            </View>
-          )}
           
           {/* Header Buttons Overlay */}
           <View style={[styles.headerOverlay, { top: insets.top + 8 }]}>
@@ -233,15 +237,45 @@ export default function ProductDetailScreen() {
           </View>
         </View>
 
+        {/* Angle View Cards - PHASE 1 */}
+        <View style={styles.angleViewSection}>
+          <ThemedText style={styles.angleViewTitle}>View Angles</ThemedText>
+          <View style={styles.angleCardsContainer}>
+            {ANGLE_VIEWS.map((angle, index) => (
+              <Pressable
+                key={angle.id}
+                style={[
+                  styles.angleCard,
+                  selectedAngle === angle.id && styles.angleCardActive
+                ]}
+                onPress={() => handleAngleSelect(angle.id, index)}
+              >
+                <View style={[
+                  styles.angleIconContainer,
+                  selectedAngle === angle.id && styles.angleIconContainerActive
+                ]}>
+                  <Feather 
+                    name={angle.icon as any} 
+                    size={18} 
+                    color={selectedAngle === angle.id ? '#FFFFFF' : '#666666'} 
+                  />
+                </View>
+                <ThemedText style={[
+                  styles.angleLabel,
+                  selectedAngle === angle.id && styles.angleLabelActive
+                ]}>
+                  {angle.label}
+                </ThemedText>
+              </Pressable>
+            ))}
+          </View>
+        </View>
+
         {/* Product Details */}
         <View style={styles.detailsSection}>
-          {/* Category */}
           <ThemedText style={styles.category}>{product.brand}</ThemedText>
-
-          {/* Product Name */}
           <ThemedText style={styles.productName}>{product.name}</ThemedText>
 
-          {/* Rating & Reviews */}
           <View style={styles.ratingRow}>
             <View style={styles.ratingBox}>
               <Feather name="star" size={14} color="#FFC107" fill="#FFC107" />
@@ -250,7 +284,6 @@ export default function ProductDetailScreen() {
             <ThemedText style={styles.reviewsCount}>({product.reviewCount} reviews)</ThemedText>
           </View>
 
-          {/* Price Section - Enhanced Hierarchy */}
           <View style={styles.priceSection}>
             <View style={styles.priceRow}>
               <ThemedText style={styles.salePrice}>₹{product.price}</ThemedText>
@@ -273,7 +306,6 @@ export default function ProductDetailScreen() {
             )}
           </View>
 
-          {/* Key Highlights */}
           <View style={styles.highlightsSection}>
             <View style={styles.highlightItem}>
               <Feather name="truck" size={18} color="#FF8C00" />
@@ -289,7 +321,6 @@ export default function ProductDetailScreen() {
             </View>
           </View>
 
-          {/* Color Selection */}
           {product.colors && product.colors.length > 0 && (
             <View style={styles.sectionContainer}>
               <ThemedText style={styles.sectionTitle}>Select Color</ThemedText>
@@ -315,7 +346,6 @@ export default function ProductDetailScreen() {
             </View>
           )}
 
-          {/* Size Selection */}
           {product.sizes && product.sizes.length > 0 && (
             <View style={styles.sectionContainer}>
               <ThemedText style={styles.sectionTitle}>Select Size</ThemedText>
@@ -341,7 +371,6 @@ export default function ProductDetailScreen() {
             </View>
           )}
 
-          {/* Quantity Selector */}
           <View style={styles.sectionContainer}>
             <ThemedText style={styles.sectionTitle}>Quantity</ThemedText>
             <View style={styles.quantityContainer}>
@@ -361,13 +390,11 @@ export default function ProductDetailScreen() {
             </View>
           </View>
 
-          {/* Description */}
           <View style={styles.sectionContainer}>
             <ThemedText style={styles.sectionTitle}>About This Product</ThemedText>
             <ThemedText style={styles.description}>{product.description}</ThemedText>
           </View>
 
-          {/* Delivery Estimate Section */}
           <View style={styles.deliverySection}>
             <View style={styles.deliveryHeader}>
               <Feather name="map-pin" size={18} color={Colors.light.primary} />
@@ -419,7 +446,7 @@ export default function ProductDetailScreen() {
             )}
           </View>
 
-          {/* Similar Products Section */}
+          {/* Similar Products Section - PHASE 2 */}
           {similarProducts.length > 0 && (
             <View style={styles.similarSection}>
               <ThemedText style={styles.similarSectionTitle}>Similar Products</ThemedText>
@@ -465,7 +492,6 @@ export default function ProductDetailScreen() {
         </View>
       </ScrollView>
 
-      {/* Footer Buttons */}
       <View style={[styles.footer, { paddingBottom: insets.bottom + 12 }]}>
         <Pressable 
           style={styles.wishlistButton}
@@ -520,30 +546,6 @@ const styles = StyleSheet.create({
     width: width,
     height: width,
   },
-  productImage: {
-    width: '100%',
-    height: '100%',
-  },
-  paginationContainer: {
-    position: 'absolute',
-    bottom: 16,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 8,
-  },
-  paginationDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: 'rgba(255,255,255,0.5)',
-  },
-  paginationDotActive: {
-    backgroundColor: '#FFFFFF',
-    width: 24,
-  },
   headerOverlay: {
     position: 'absolute',
     left: 16,
@@ -560,6 +562,57 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.3)',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  angleViewSection: {
+    padding: 16,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
+  },
+  angleViewTitle: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#1F2937',
+    marginBottom: 12,
+  },
+  angleCardsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  angleCard: {
+    alignItems: 'center',
+    padding: 8,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#E5E7EB',
+    backgroundColor: '#FFFFFF',
+    width: (width - 64) / 5,
+  },
+  angleCardActive: {
+    borderColor: '#FF8C00',
+    backgroundColor: '#FFF5EB',
+  },
+  angleIconContainer: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#F3F4F6',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  angleIconContainerActive: {
+    backgroundColor: '#FF8C00',
+  },
+  angleLabel: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: '#666666',
+    textAlign: 'center',
+  },
+  angleLabelActive: {
+    color: '#FF8C00',
+    fontWeight: '700',
   },
   detailsSection: {
     padding: 16,
@@ -800,6 +853,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
+    paddingVertical: 16,
   },
   buttonText: {
     fontSize: 16,
