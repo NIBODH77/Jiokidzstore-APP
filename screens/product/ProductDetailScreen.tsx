@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, ScrollView, Pressable, Dimensions, Image, Platform, Alert } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, StyleSheet, ScrollView, Pressable, Dimensions, Platform, FlatList } from 'react-native';
 import { useNavigation, useRoute, RouteProp, useIsFocused } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
@@ -13,6 +13,7 @@ import { addToCart } from '@/store/cartSlice';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 import { Product } from '@/data/types';
 import { Colors, Spacing, BorderRadius, Typography } from '@/constants/theme';
+import { ZoomableImage } from '@/components/ZoomableImage';
 
 const { width } = Dimensions.get('window');
 
@@ -44,6 +45,8 @@ export default function ProductDetailScreen() {
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const imageCarouselRef = useRef<FlatList>(null);
 
   const productId = route.params?.productId;
   let product = PRODUCTS.find(p => p.id === productId);
@@ -141,13 +144,44 @@ export default function ProductDetailScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={[styles.scrollViewContent, { paddingTop: insets.top }]}
       >
-        {/* Product Image */}
+        {/* Product Image Carousel */}
         <View style={styles.imageSection}>
-          <Image 
-            source={typeof product.images?.[0] === 'string' ? { uri: product.images[0] } : product.images?.[0]} 
-            style={styles.productImage}
-            resizeMode="cover"
+          <FlatList
+            ref={imageCarouselRef}
+            data={product.images || []}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(_, index) => `image-${index}`}
+            onMomentumScrollEnd={(event) => {
+              const index = Math.round(event.nativeEvent.contentOffset.x / width);
+              setActiveImageIndex(index);
+            }}
+            renderItem={({ item }) => (
+              <View style={styles.carouselImageContainer}>
+                <ZoomableImage 
+                  source={typeof item === 'string' ? { uri: item } : item} 
+                  width={width}
+                  height={width}
+                />
+              </View>
+            )}
           />
+          
+          {/* Pagination Dots */}
+          {product.images && product.images.length > 1 && (
+            <View style={styles.paginationContainer}>
+              {product.images.map((_, index) => (
+                <View
+                  key={`dot-${index}`}
+                  style={[
+                    styles.paginationDot,
+                    activeImageIndex === index && styles.paginationDotActive
+                  ]}
+                />
+              ))}
+            </View>
+          )}
           
           {/* Header Buttons Overlay */}
           <View style={[styles.headerOverlay, { top: insets.top + 8 }]}>
@@ -322,13 +356,14 @@ export default function ProductDetailScreen() {
           onPress={handleAddToCart}
         >
           <LinearGradient
-            colors={['#FF8C00', '#FF8FB3']}
+            colors={['#FF8C00', '#FF6B9D']}
             style={styles.buttonGradient}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
           >
             <Feather name="shopping-cart" size={20} color="#FFFFFF" />
             <ThemedText style={styles.buttonText}>Add to Cart</ThemedText>
+            <Feather name="arrow-right" size={18} color="#FFFFFF" />
           </LinearGradient>
         </Pressable>
       </View>
@@ -353,9 +388,33 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: '#F5F5F5',
   },
+  carouselImageContainer: {
+    width: width,
+    height: width,
+  },
   productImage: {
     width: '100%',
     height: '100%',
+  },
+  paginationContainer: {
+    position: 'absolute',
+    bottom: 16,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8,
+  },
+  paginationDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255,255,255,0.5)',
+  },
+  paginationDotActive: {
+    backgroundColor: '#FFFFFF',
+    width: 24,
   },
   headerOverlay: {
     position: 'absolute',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, ViewStyle, DimensionValue } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, {
   useSharedValue,
@@ -12,10 +12,10 @@ import { BorderRadius, Spacing, Colors } from '@/constants/theme';
 const { width } = Dimensions.get('window');
 
 interface ShimmerLoaderProps {
-  width?: number;
+  width?: DimensionValue;
   height?: number;
   borderRadius?: number;
-  style?: any;
+  style?: ViewStyle;
 }
 
 export function ShimmerLoader({
@@ -65,35 +65,95 @@ export function ShimmerLoader({
 export function ProductCardSkeleton() {
   return (
     <View style={styles.skeletonCard}>
-      <ShimmerLoader width="100%" height={150} borderRadius={BorderRadius.md} />
+      <ShimmerLoader width="100%" height={180} borderRadius={0} />
+      <View style={styles.skeletonContent}>
+        <ShimmerLoader
+          width="50%"
+          height={10}
+          borderRadius={4}
+          style={{ marginTop: Spacing.sm }}
+        />
+        <ShimmerLoader
+          width="90%"
+          height={14}
+          borderRadius={4}
+          style={{ marginTop: Spacing.xs }}
+        />
+        <ShimmerLoader
+          width="60%"
+          height={16}
+          borderRadius={4}
+          style={{ marginTop: Spacing.sm }}
+        />
+        <ShimmerLoader
+          width="40%"
+          height={12}
+          borderRadius={4}
+          style={{ marginTop: Spacing.xs }}
+        />
+      </View>
+    </View>
+  );
+}
+
+export function BannerSkeleton() {
+  return (
+    <View style={styles.bannerSkeleton}>
+      <ShimmerLoader width="100%" height={180} borderRadius={12} />
+    </View>
+  );
+}
+
+export function CategorySkeleton() {
+  return (
+    <View style={styles.categorySkeleton}>
+      <ShimmerLoader width={80} height={80} borderRadius={12} />
       <ShimmerLoader
-        width="80%"
+        width={70}
         height={12}
         borderRadius={4}
-        style={{ marginTop: Spacing.md }}
+        style={{ marginTop: Spacing.xs }}
       />
-      <ShimmerLoader
-        width="100%"
-        height={12}
-        borderRadius={4}
-        style={{ marginTop: Spacing.sm }}
-      />
-      <ShimmerLoader
-        width="60%"
-        height={14}
-        borderRadius={4}
-        style={{ marginTop: Spacing.md }}
-      />
+    </View>
+  );
+}
+
+export function ProductGridSkeleton() {
+  return (
+    <View style={styles.gridContainer}>
+      <ProductCardSkeleton />
+      <ProductCardSkeleton />
+      <ProductCardSkeleton />
+      <ProductCardSkeleton />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.light.backgroundSecondary,
+    backgroundColor: Colors.light.skeleton,
     overflow: 'hidden',
   },
   skeletonCard: {
-    padding: Spacing.md,
+    width: '48%',
+    marginBottom: Spacing.sm,
+    backgroundColor: '#FFFFFF',
+  },
+  skeletonContent: {
+    padding: Spacing.sm,
+  },
+  bannerSkeleton: {
+    marginHorizontal: Spacing.lg,
+    marginBottom: Spacing.lg,
+  },
+  categorySkeleton: {
+    alignItems: 'center',
+    marginRight: Spacing.md,
+  },
+  gridContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: Spacing.lg,
   },
 });

@@ -6,10 +6,9 @@ import Animated, {
   useSharedValue,
   withSpring,
   withTiming,
-  interpolate,
 } from "react-native-reanimated";
 import { ThemedText } from "@/components/ThemedText";
-import { Colors, Spacing, Typography } from "@/constants/theme";
+import { Spacing } from "@/constants/theme";
 
 interface CleanProductCardProps {
   product: {
@@ -83,13 +82,12 @@ function CleanProductCardComponent({
   const originalPrice = product.mrp || product.originalPrice;
   const discount = product.discount || 
     (originalPrice && product.price ? Math.round(((originalPrice - product.price) / originalPrice) * 100) : 0);
-  const savings = originalPrice ? originalPrice - product.price : 0;
   const reviewCount = product.reviewCount || product.reviews || 0;
 
   const firstImage = product.images && product.images.length > 0 ? product.images[0] : null;
   const imageSource = typeof firstImage === "string" ? { uri: firstImage } : firstImage;
 
-  const imageHeight = width * 1.2;
+  const imageHeight = width * 1.25;
 
   return (
     <Animated.View style={[styles.cardWrapper, animatedCardStyle, { width }]}>
@@ -112,25 +110,46 @@ function CleanProductCardComponent({
               <Feather name="image" size={32} color="#E0E0E0" />
             </View>
           )}
-          {!product.inStock && product.inStock !== undefined && (
-            <View style={styles.outOfStockOverlay}>
-              <ThemedText style={styles.outOfStockText}>Out of Stock</ThemedText>
-            </View>
-          )}
         </View>
 
         <View style={styles.infoContainer}>
-          <View style={styles.topRow}>
-            <View style={styles.textContent}>
-              {product.brand && (
-                <ThemedText style={styles.brandText} numberOfLines={1}>
-                  {product.brand}
-                </ThemedText>
-              )}
-              <ThemedText style={styles.nameText} numberOfLines={2}>
-                {product.name}
-              </ThemedText>
-            </View>
+          {product.brand && (
+            <ThemedText style={styles.brandText} numberOfLines={1}>
+              {product.brand}
+            </ThemedText>
+          )}
+          
+          <View style={styles.nameRow}>
+            <ThemedText style={styles.nameText} numberOfLines={2}>
+              {product.name}
+            </ThemedText>
+          </View>
+
+          <View style={styles.priceRow}>
+            <ThemedText style={styles.priceText}>₹{product.price.toLocaleString()}</ThemedText>
+            {originalPrice && originalPrice > product.price && (
+              <ThemedText style={styles.originalPrice}>₹{originalPrice.toLocaleString()}</ThemedText>
+            )}
+          </View>
+
+          {discount > 0 && (
+            <ThemedText style={styles.discountText}>{discount}% OFF</ThemedText>
+          )}
+
+          <View style={styles.bottomRow}>
+            {showRating && product.rating && (
+              <View style={styles.ratingContainer}>
+                <View style={styles.ratingBadge}>
+                  <ThemedText style={styles.ratingValue}>{product.rating}</ThemedText>
+                  <Feather name="star" size={10} color="#FFFFFF" />
+                </View>
+                {reviewCount > 0 && (
+                  <ThemedText style={styles.reviewCount}>
+                    ({reviewCount.toLocaleString()})
+                  </ThemedText>
+                )}
+              </View>
+            )}
             
             {onWishlistPress && (
               <Pressable
@@ -140,50 +159,18 @@ function CleanProductCardComponent({
               >
                 <Animated.View style={animatedHeartStyle}>
                   <Feather
-                    name={isWishlisted ? "heart" : "heart"}
-                    size={20}
+                    name="heart"
+                    size={18}
                     color={isWishlisted ? "#E53935" : "#BDBDBD"}
-                    style={isWishlisted ? { opacity: 1 } : { opacity: 0.8 }}
                   />
-                  {isWishlisted && (
-                    <View style={styles.heartFill}>
-                      <Feather name="heart" size={20} color="#E53935" />
-                    </View>
-                  )}
                 </Animated.View>
               </Pressable>
             )}
           </View>
 
-          <View style={styles.priceContainer}>
-            <ThemedText style={styles.priceText}>₹{product.price.toLocaleString()}</ThemedText>
-            {originalPrice && originalPrice > product.price && (
-              <>
-                <ThemedText style={styles.originalPrice}>₹{originalPrice.toLocaleString()}</ThemedText>
-                <View style={styles.discountBadge}>
-                  <ThemedText style={styles.discountText}>{discount}% OFF</ThemedText>
-                </View>
-              </>
-            )}
-          </View>
-
-          {savings > 0 && (
-            <ThemedText style={styles.savingsText}>
-              You save ₹{savings.toLocaleString()}
-            </ThemedText>
-          )}
-
-          {showRating && product.rating && (
-            <View style={styles.ratingContainer}>
-              <View style={styles.ratingBadge}>
-                <ThemedText style={styles.ratingValue}>{product.rating}</ThemedText>
-                <Feather name="star" size={10} color="#FFFFFF" />
-              </View>
-              {reviewCount > 0 && (
-                <ThemedText style={styles.reviewCount}>
-                  ({reviewCount.toLocaleString()})
-                </ThemedText>
-              )}
+          {!product.inStock && product.inStock !== undefined && (
+            <View style={styles.outOfStockBadge}>
+              <ThemedText style={styles.outOfStockText}>Out of Stock</ThemedText>
             </View>
           )}
         </View>
@@ -215,31 +202,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  outOfStockOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  outOfStockText: {
-    color: "#FFFFFF",
-    fontSize: 14,
-    fontWeight: "600",
-  },
   infoContainer: {
-    padding: Spacing.md,
-    paddingTop: Spacing.sm,
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: Spacing.sm,
     backgroundColor: "#FFFFFF",
-  },
-  topRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    marginBottom: Spacing.xs,
-  },
-  textContent: {
-    flex: 1,
-    marginRight: Spacing.sm,
   },
   brandText: {
     fontSize: 10,
@@ -249,29 +215,22 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     marginBottom: 2,
   },
+  nameRow: {
+    marginBottom: 4,
+  },
   nameText: {
     fontSize: 13,
     fontWeight: "500",
     color: "#212121",
     lineHeight: 18,
   },
-  wishlistButton: {
-    padding: 4,
-  },
-  heartFill: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-  },
-  priceContainer: {
+  priceRow: {
     flexDirection: "row",
     alignItems: "center",
-    flexWrap: "wrap",
     gap: 6,
-    marginTop: Spacing.xs,
   },
   priceText: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "700",
     color: "#212121",
   },
@@ -281,35 +240,29 @@ const styles = StyleSheet.create({
     color: "#9E9E9E",
     textDecorationLine: "line-through",
   },
-  discountBadge: {
-    backgroundColor: "#FFEBEE",
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 4,
-  },
   discountText: {
-    fontSize: 10,
-    fontWeight: "700",
-    color: "#E53935",
-  },
-  savingsText: {
     fontSize: 11,
-    fontWeight: "500",
-    color: "#4CAF50",
-    marginTop: 4,
+    fontWeight: "600",
+    color: "#E53935",
+    marginTop: 2,
+  },
+  bottomRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: Spacing.xs,
   },
   ratingContainer: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 6,
-    marginTop: Spacing.xs,
+    gap: 4,
   },
   ratingBadge: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 3,
+    gap: 2,
     backgroundColor: "#4CAF50",
-    paddingHorizontal: 6,
+    paddingHorizontal: 5,
     paddingVertical: 2,
     borderRadius: 4,
   },
@@ -321,6 +274,22 @@ const styles = StyleSheet.create({
   reviewCount: {
     fontSize: 11,
     color: "#9E9E9E",
+  },
+  wishlistButton: {
+    padding: 4,
+  },
+  outOfStockBadge: {
+    backgroundColor: "#FFEBEE",
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+    marginTop: Spacing.xs,
+    alignSelf: "flex-start",
+  },
+  outOfStockText: {
+    color: "#E53935",
+    fontSize: 11,
+    fontWeight: "600",
   },
 });
 
