@@ -147,8 +147,9 @@ export default function ProductDetailScreen() {
     const deliveryDays = Math.floor(Math.random() * 5) + 2;
     const deliveryDate = new Date();
     deliveryDate.setDate(deliveryDate.getDate() + deliveryDays);
-    const options: Intl.DateTimeFormatOptions = { weekday: 'short', month: 'short', day: 'numeric' };
-    const dateString = deliveryDate.toLocaleDateString('en-IN', options);
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const dateString = `${weekdays[deliveryDate.getDay()]}, ${months[deliveryDate.getMonth()]} ${deliveryDate.getDate()}`;
     setDeliveryInfo({
       available: true,
       days: deliveryDays,
