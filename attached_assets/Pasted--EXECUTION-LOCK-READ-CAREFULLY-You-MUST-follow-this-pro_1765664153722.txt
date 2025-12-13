@@ -1,0 +1,183 @@
+⚠️ EXECUTION LOCK — READ CAREFULLY ⚠️
+
+You MUST follow this prompt LINE BY LINE.
+You are NOT allowed to skip, summarize, merge,
+or partially implement any requirement.
+
+If ANY requirement is missing → STOP and DECLARE FAILURE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXECUTION LOCK ACCEPTANCE (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST start your response with EXACTLY this line:
+
+“EXECUTION LOCK ACCEPTED — PDP ANGLE VIEW & PAYMENT UI BEGIN”
+
+If this line is missing or altered → EXECUTION INVALID.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ROLE & CONTEXT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You are a Senior / Principal Mobile UI Engineer
+working on a PRODUCTION React Native e-commerce app.
+
+IMPORTANT:
+- Product Detail Page (PDP) already exists
+- Payment page already exists
+- Navigation & flows already work
+
+Your task is NOT to rebuild the app.
+Your task is to implement ONLY the features below.
+
+Frontend UI ONLY  
+❌ NO backend logic  
+❌ NO payment gateway logic  
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚨 ABSOLUTE RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- DO NOT touch unrelated screens
+- DO NOT change product data structure
+- DO NOT break navigation
+- DO NOT add unnecessary animations
+- Implement EXACTLY what is mentioned below
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 1 — PDP IMAGE ANGLE VIEW (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+On Product Detail Page, allow users to view
+the product from different angles.
+
+MANDATORY UI STRUCTURE:
+- One MAIN PRODUCT IMAGE at top
+- BELOW main image, show SMALL ANGLE CARDS:
+  - Front
+  - Left
+  - Right
+  - Top
+  - Bottom (if available)
+
+MANDATORY INTERACTION:
+- When user clicks any angle card:
+  - Main image MUST immediately swap
+  - Selected angle card shows active state
+- No page reload
+- No delay or confusion
+
+RULES:
+- Angle cards must be clearly visible
+- Active angle must be obvious
+- If some angles are missing → handle gracefully
+- Main image must always stay centered & stable
+
+SCREEN:
+- Product Detail Page ONLY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 2 — SIMILAR PRODUCTS ON PDP (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+Show Similar Products on Product Detail Page.
+
+MANDATORY:
+- Section placed BELOW product details
+- Horizontal scroll list
+- Same product card style as rest of app
+- Clear section title: “Similar Products”
+
+RULES:
+- Must NOT distract from Add to Cart
+- Purpose is discovery, not promotion
+
+SCREEN:
+- Product Detail Page ONLY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 3 — NEW MODERN PAYMENT PAGE (FULL UI REPLACEMENT)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+REMOVE the existing payment page UI
+and REPLACE it with a completely NEW, MODERN UI.
+
+⚠️ UI ONLY — payment logic must remain untouched.
+
+MANDATORY PAYMENT PAGE STRUCTURE:
+- Page title: “Secure Payment”
+- Step indicator:
+  Address → Payment → Review
+- Card-style payment options:
+  - UPI
+  - Debit / Credit Cards
+  - Wallets
+  - Net Banking
+- Bank / UPI logos grid
+- Security & trust indicators
+- Strong primary CTA:
+  “Pay Securely”
+
+RULES:
+- Clean layout
+- No clutter
+- No ads or banners
+- Trust-first design
+- Familiar & easy to understand
+
+SCREEN:
+- Payment Page ONLY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 4 — FINAL VALIDATION (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Verify ALL:
+- Angle cards swap main image correctly
+- Similar Products visible on PDP
+- Old payment UI fully replaced
+- New payment page looks modern & clean
+- No existing navigation broken
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SELF-FAIL RULE (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+If ANY requirement is missing or partially implemented,
+you MUST write:
+
+“SELF-FAIL DECLARED — REASON: ______”
+
+And STOP immediately.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL VERIFICATION (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST confirm ALL:
+
+☐ PDP angle-based image cards implemented  
+☐ Main image swaps on angle click  
+☐ Similar products shown on PDP  
+☐ Payment page fully redesigned (UI only)  
+☐ Existing app functionality preserved  
+
+If ANY is false → STOP.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL EXECUTION OATH (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before ending, you MUST write:
+
+“I hereby confirm that:
+- I implemented ONLY the requested features
+- I did not skip or partially complete any task
+- I followed every instruction line by line
+- The UI changes are production-ready
+
+If this statement is false, my output is invalid.”
