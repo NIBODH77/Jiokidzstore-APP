@@ -1412,8 +1412,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   cozyCuteSection: {
-    marginTop: 0,
-    marginBottom: 24,
+    marginTop: Spacing.xl,
+    marginBottom: Spacing.xl,
     backgroundColor: '#F5E6D3',
   },
   cozyCuteBanner: {
@@ -1527,7 +1527,8 @@ const styles = StyleSheet.create({
   },
   parentingZoneSection: {
     marginHorizontal: 0,
-    marginBottom: 0,
+    marginTop: Spacing.xl,
+    marginBottom: Spacing.xl,
   },
   parentingZoneBanner: {
     width: '100%',
@@ -1540,8 +1541,8 @@ const styles = StyleSheet.create({
     height: 280,
   },
   trendingStoreSection: {
-    marginTop: 0,
-    marginBottom: 24,
+    marginTop: Spacing.xl,
+    marginBottom: Spacing.xl,
     paddingVertical: 20,
     backgroundColor: '#FFFFFF',
   },
@@ -1608,10 +1609,10 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   seasonsSpecialSection: {
-    marginTop: 24,
-    paddingHorizontal: 16,
+    marginTop: Spacing.xl,
+    paddingHorizontal: Spacing.lg,
     backgroundColor: '#FFFFFF',
-    marginBottom: 16,
+    marginBottom: Spacing.xl,
   },
   seasonsSpecialHeader: {
     flexDirection: 'row',
@@ -1703,8 +1704,8 @@ const styles = StyleSheet.create({
     color: '#1A1A1A',
   },
   onesiesSection: {
-    marginTop: 0,
-    marginBottom: 24,
+    marginTop: Spacing.xl,
+    marginBottom: Spacing.xl,
     backgroundColor: '#FFFFFF',
   },
   onesiesSectionTitle: {
@@ -1823,8 +1824,8 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   coldWeatherSection: {
-    marginTop: 0,
-    marginBottom: 24,
+    marginTop: Spacing.xl,
+    marginBottom: Spacing.xl,
     backgroundColor: '#F5E6D3',
   },
   coldWeatherHeader: {

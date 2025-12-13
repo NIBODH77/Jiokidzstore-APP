@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, ScrollView, Pressable, Dimensions, Platform, FlatList } from 'react-native';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { View, StyleSheet, ScrollView, Pressable, Dimensions, Platform, FlatList, TextInput, Image } from 'react-native';
 import { useNavigation, useRoute, RouteProp, useIsFocused } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
@@ -46,6 +46,8 @@ export default function ProductDetailScreen() {
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [pincode, setPincode] = useState('');
+  const [deliveryInfo, setDeliveryInfo] = useState<{ available: boolean; days: number; message: string } | null>(null);
   const imageCarouselRef = useRef<FlatList>(null);
 
   const productId = route.params?.productId;
@@ -136,6 +138,37 @@ export default function ProductDetailScreen() {
   };
 
   const discountPercentage = product.mrp ? Math.round(((product.mrp - product.price) / product.mrp) * 100) : 0;
+
+  const handleCheckDelivery = () => {
+    if (pincode.length !== 6) {
+      setDeliveryInfo({ available: false, days: 0, message: 'Please enter a valid 6-digit pincode' });
+      return;
+    }
+    const deliveryDays = Math.floor(Math.random() * 5) + 2;
+    const deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + deliveryDays);
+    const options: Intl.DateTimeFormatOptions = { weekday: 'short', month: 'short', day: 'numeric' };
+    const dateString = deliveryDate.toLocaleDateString('en-IN', options);
+    setDeliveryInfo({
+      available: true,
+      days: deliveryDays,
+      message: `Delivery by ${dateString}`,
+    });
+  };
+
+  const similarProducts = useMemo(() => {
+    const allProducts = [
+      ...PRODUCTS,
+      ...KIDS_FASHION_PRODUCTS.map(convertKidsFashionToProduct),
+    ];
+    return allProducts
+      .filter(p => p.id !== product.id && p.category === product.category)
+      .slice(0, 6);
+  }, [product.id, product.category]);
+
+  const handleSimilarProductPress = (productId: string) => {
+    (navigation as any).push('ProductDetail', { productId });
+  };
 
   return (
     <View style={styles.container}>
@@ -333,6 +366,100 @@ export default function ProductDetailScreen() {
             <ThemedText style={styles.description}>{product.description}</ThemedText>
           </View>
 
+          {/* Delivery Estimate Section */}
+          <View style={styles.deliverySection}>
+            <View style={styles.deliveryHeader}>
+              <Feather name="map-pin" size={18} color={Colors.light.primary} />
+              <ThemedText style={styles.deliverySectionTitle}>Check Delivery</ThemedText>
+            </View>
+            <View style={styles.pincodeRow}>
+              <TextInput
+                style={styles.pincodeInput}
+                placeholder="Enter Pincode"
+                placeholderTextColor={Colors.light.textTertiary}
+                value={pincode}
+                onChangeText={setPincode}
+                keyboardType="number-pad"
+                maxLength={6}
+              />
+              <Pressable style={styles.checkButton} onPress={handleCheckDelivery}>
+                <ThemedText style={styles.checkButtonText}>CHECK</ThemedText>
+              </Pressable>
+            </View>
+            {deliveryInfo && (
+              <View style={[
+                styles.deliveryResult,
+                deliveryInfo.available ? styles.deliveryAvailable : styles.deliveryUnavailable
+              ]}>
+                <Feather 
+                  name={deliveryInfo.available ? "check-circle" : "alert-circle"} 
+                  size={16} 
+                  color={deliveryInfo.available ? Colors.light.success : Colors.light.error} 
+                />
+                <ThemedText style={[
+                  styles.deliveryResultText,
+                  deliveryInfo.available ? styles.deliveryTextSuccess : styles.deliveryTextError
+                ]}>
+                  {deliveryInfo.message}
+                </ThemedText>
+              </View>
+            )}
+            {deliveryInfo?.available && (
+              <View style={styles.deliveryFeatures}>
+                <View style={styles.deliveryFeature}>
+                  <Feather name="package" size={14} color={Colors.light.textTertiary} />
+                  <ThemedText style={styles.deliveryFeatureText}>Cash on Delivery Available</ThemedText>
+                </View>
+                <View style={styles.deliveryFeature}>
+                  <Feather name="repeat" size={14} color={Colors.light.textTertiary} />
+                  <ThemedText style={styles.deliveryFeatureText}>7 Days Easy Returns</ThemedText>
+                </View>
+              </View>
+            )}
+          </View>
+
+          {/* Similar Products Section */}
+          {similarProducts.length > 0 && (
+            <View style={styles.similarSection}>
+              <ThemedText style={styles.similarSectionTitle}>Similar Products</ThemedText>
+              <FlatList
+                data={similarProducts}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(item) => item.id}
+                contentContainerStyle={styles.similarList}
+                renderItem={({ item }) => (
+                  <Pressable 
+                    style={styles.similarCard}
+                    onPress={() => handleSimilarProductPress(item.id)}
+                  >
+                    <Image
+                      source={
+                        item.images && item.images.length > 0
+                          ? typeof item.images[0] === 'string'
+                            ? { uri: item.images[0] }
+                            : item.images[0]
+                          : require('../../attached_assets/generated_images/toddler_boy_navy_outfit.png')
+                      }
+                      style={styles.similarImage}
+                      resizeMode="cover"
+                    />
+                    <View style={styles.similarInfo}>
+                      <ThemedText style={styles.similarBrand} numberOfLines={1}>{item.brand}</ThemedText>
+                      <ThemedText style={styles.similarName} numberOfLines={2}>{item.name}</ThemedText>
+                      <View style={styles.similarPriceRow}>
+                        <ThemedText style={styles.similarPrice}>₹{item.price}</ThemedText>
+                        {item.mrp && item.mrp > item.price && (
+                          <ThemedText style={styles.similarMrp}>₹{item.mrp}</ThemedText>
+                        )}
+                      </View>
+                    </View>
+                  </Pressable>
+                )}
+              />
+            </View>
+          )}
+
           <View style={{ height: 20 }} />
         </View>
       </ScrollView>
@@ -380,7 +507,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollViewContent: {
-    paddingBottom: 16,
+    paddingBottom: 100,
   },
   imageSection: {
     width: '100%',
@@ -677,5 +804,145 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '800',
     color: '#FFFFFF',
+  },
+  deliverySection: {
+    marginBottom: Spacing.xl,
+    padding: Spacing.lg,
+    backgroundColor: Colors.light.backgroundSecondary,
+    borderRadius: BorderRadius.sm,
+  },
+  deliveryHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    marginBottom: Spacing.md,
+  },
+  deliverySectionTitle: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: Colors.light.text,
+  },
+  pincodeRow: {
+    flexDirection: 'row',
+    gap: Spacing.sm,
+  },
+  pincodeInput: {
+    flex: 1,
+    height: 44,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: Colors.light.border,
+    borderRadius: BorderRadius.xs,
+    paddingHorizontal: Spacing.md,
+    fontSize: 14,
+    color: Colors.light.text,
+  },
+  checkButton: {
+    paddingHorizontal: Spacing.lg,
+    height: 44,
+    backgroundColor: Colors.light.primary,
+    borderRadius: BorderRadius.xs,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  checkButtonText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  deliveryResult: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    marginTop: Spacing.md,
+    padding: Spacing.md,
+    borderRadius: BorderRadius.xs,
+  },
+  deliveryAvailable: {
+    backgroundColor: '#E8F5E9',
+  },
+  deliveryUnavailable: {
+    backgroundColor: '#FFEBEE',
+  },
+  deliveryResultText: {
+    fontSize: 13,
+    fontWeight: '600',
+  },
+  deliveryTextSuccess: {
+    color: Colors.light.success,
+  },
+  deliveryTextError: {
+    color: Colors.light.error,
+  },
+  deliveryFeatures: {
+    marginTop: Spacing.md,
+    gap: Spacing.sm,
+  },
+  deliveryFeature: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+  },
+  deliveryFeatureText: {
+    fontSize: 12,
+    color: Colors.light.textTertiary,
+  },
+  similarSection: {
+    marginBottom: Spacing.xl,
+  },
+  similarSectionTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: Colors.light.text,
+    marginBottom: Spacing.md,
+  },
+  similarList: {
+    paddingRight: Spacing.lg,
+  },
+  similarCard: {
+    width: 140,
+    marginRight: Spacing.md,
+    backgroundColor: '#FFFFFF',
+    borderRadius: BorderRadius.sm,
+    borderWidth: 1,
+    borderColor: Colors.light.border,
+    overflow: 'hidden',
+  },
+  similarImage: {
+    width: '100%',
+    height: 140,
+    backgroundColor: Colors.light.backgroundSecondary,
+  },
+  similarInfo: {
+    padding: Spacing.sm,
+  },
+  similarBrand: {
+    fontSize: 10,
+    fontWeight: '500',
+    color: Colors.light.textTertiary,
+    textTransform: 'uppercase',
+    marginBottom: 2,
+  },
+  similarName: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: Colors.light.text,
+    lineHeight: 16,
+    marginBottom: Spacing.xs,
+  },
+  similarPriceRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.xs,
+  },
+  similarPrice: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: Colors.light.text,
+  },
+  similarMrp: {
+    fontSize: 11,
+    color: Colors.light.textTertiary,
+    textDecorationLine: 'line-through',
   },
 });

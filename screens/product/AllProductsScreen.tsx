@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import { ScreenFlatList } from '@/components/ScreenFlatList';
 import { CleanProductCard } from '@/components/CleanProductCard';
 import { ThemedText } from '@/components/ThemedText';
-import { Colors, Spacing } from '@/constants/theme';
+import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 import { PRODUCTS } from '@/data/mockData';
 import { wishlistStorage } from '@/utils/storage';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
@@ -196,15 +196,57 @@ export default function AllProductsScreen() {
   );
 
   return (
-    <ScreenFlatList
-      data={filteredProducts}
-      numColumns={2}
-      keyExtractor={(item) => item.id}
-      contentContainerStyle={styles.grid}
-      columnWrapperStyle={styles.columnWrapper}
-      ListHeaderComponent={renderHeader}
-      ListEmptyComponent={renderEmpty}
-      renderItem={({ item }) => (
+    <View style={styles.container}>
+      {/* Sticky Filter/Sort Bar */}
+      <View style={styles.stickyFilterBar}>
+        <View style={styles.stickyFilterLeft}>
+          <ThemedText style={styles.productCountText}>
+            {filteredProducts.length} Products
+          </ThemedText>
+        </View>
+        <View style={styles.stickyFilterRight}>
+          <Pressable
+            style={[styles.stickyFilterButton, sortBy !== 'popularity' && styles.stickyFilterButtonActive]}
+            onPress={() => {
+              const sortOptions = ['popularity', 'price-low', 'price-high', 'rating'] as const;
+              const currentIndex = sortOptions.indexOf(sortBy);
+              const nextIndex = (currentIndex + 1) % sortOptions.length;
+              setSortBy(sortOptions[nextIndex]);
+            }}
+          >
+            <Feather name="bar-chart-2" size={16} color={sortBy !== 'popularity' ? Colors.light.primary : '#666666'} />
+            <ThemedText style={[styles.stickyFilterButtonText, sortBy !== 'popularity' && styles.stickyFilterButtonTextActive]}>
+              Sort
+            </ThemedText>
+          </Pressable>
+          <Pressable
+            style={[styles.stickyFilterButton, hasActiveFilters && styles.stickyFilterButtonActive]}
+            onPress={() => setShowFilters(!showFilters)}
+          >
+            <Feather name="sliders" size={16} color={hasActiveFilters ? Colors.light.primary : '#666666'} />
+            <ThemedText style={[styles.stickyFilterButtonText, hasActiveFilters && styles.stickyFilterButtonTextActive]}>
+              Filter
+            </ThemedText>
+            {hasActiveFilters && (
+              <View style={styles.filterBadge}>
+                <ThemedText style={styles.filterBadgeText}>
+                  {(selectedPriceRange ? 1 : 0) + (selectedRating ? 1 : 0)}
+                </ThemedText>
+              </View>
+            )}
+          </Pressable>
+        </View>
+      </View>
+
+      <ScreenFlatList
+        data={filteredProducts}
+        numColumns={2}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={styles.grid}
+        columnWrapperStyle={styles.columnWrapper}
+        ListHeaderComponent={renderHeader}
+        ListEmptyComponent={renderEmpty}
+        renderItem={({ item }) => (
         <View style={styles.productItem}>
           <CleanProductCard
             product={{
@@ -228,10 +270,81 @@ export default function AllProductsScreen() {
       )}
       scrollEventThrottle={16}
     />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  stickyFilterBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#EEEEEE',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+  },
+  stickyFilterLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  productCountText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#1F2937',
+  },
+  stickyFilterRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  stickyFilterButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: BorderRadius.sm,
+    borderWidth: 1,
+    borderColor: '#EEEEEE',
+    backgroundColor: '#FAFAFA',
+  },
+  stickyFilterButtonActive: {
+    borderColor: Colors.light.primary,
+    backgroundColor: 'rgba(255, 107, 157, 0.08)',
+  },
+  stickyFilterButtonText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#666666',
+  },
+  stickyFilterButtonTextActive: {
+    color: Colors.light.primary,
+  },
+  filterBadge: {
+    backgroundColor: Colors.light.primary,
+    borderRadius: 10,
+    minWidth: 18,
+    height: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 4,
+  },
+  filterBadgeText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
