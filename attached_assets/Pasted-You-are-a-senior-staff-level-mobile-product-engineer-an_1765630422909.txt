@@ -1,0 +1,152 @@
+You are a senior staff-level mobile product engineer and UI/UX architect
+with deep experience building large-scale e-commerce apps used by millions of users.
+
+TASK:
+Analyze my existing Android-based e-commerce mobile app UI (React Native).
+I have already developed a significant part of the UI.
+DO NOT rewrite or discard existing components unless absolutely necessary.
+
+Your job is to:
+1. Fully understand my current UI structure, navigation, components, and flows
+2. Identify gaps compared to industry-standard large-scale e-commerce apps
+3. Upgrade and complete the UI into a WORLD-CLASS, PRODUCTION-READY E-COMMERCE APP
+
+IMPORTANT RULES:
+- Preserve my existing screens and logic
+- Refactor only where UX, scalability, or consistency demands it
+- Follow modern e-commerce design systems
+- Focus ONLY on frontend UI/UX and frontend architecture (no backend logic)
+
+---
+
+## 🔹 ANALYSIS PHASE (MANDATORY)
+
+First, analyze my current app and clearly document:
+
+1. Existing Screens
+   - Home
+   - Category & Nested Category Screens
+   - Product Listing (PLP)
+   - Product Detail Page (PDP)
+   - Cart
+   - Wishlist
+   - Address Management
+   - Orders / Order Tracking
+   - Profile / Account Screens
+
+2. Current Strengths
+   - What UI patterns are already good
+   - What components are reusable
+   - What navigation structure exists
+
+3. Current Gaps
+   - Missing screens
+   - Missing micro-interactions
+   - Incomplete flows
+   - Non-scalable UI decisions
+
+DO NOT implement yet.
+ONLY ANALYZE AND WRITE FINDINGS.
+
+---
+
+## 🔹 PRO E-COMMERCE UI STRATEGY (INDUSTRY STANDARD)
+
+Then design a FINAL UI STRATEGY following:
+
+### 1️⃣ App Architecture
+- Modular folder structure
+- Feature-based screen grouping
+- Reusable atomic components
+- Scalable navigation (Stack + Tabs + Modals)
+
+### 2️⃣ Home Screen (High Conversion)
+- Personalized banners
+- Age-based & season-based sections
+- Horizontal carousels
+- Smart category shortcuts
+- Sticky search + cart icon
+- Skeleton loaders
+
+### 3️⃣ Category & Discovery
+- Multi-level nested categories
+- Filters (price, size, color, brand)
+- Sorting bottom sheet
+- Grid/List toggle
+- Infinite scroll
+
+### 4️⃣ Product Detail Page (PDP)
+- Image carousel with zoom
+- Size selector with validation
+- Wishlist toggle
+- Delivery ETA by pincode
+- Offers & coupons UI
+- Sticky “Add to Cart / Buy Now”
+
+### 5️⃣ Cart & Checkout UX
+- Cart item edit (qty, size)
+- Saved for later
+- Coupon apply UI
+- Price breakup
+- Address selection flow
+- Payment method UI (UI only)
+
+### 6️⃣ Orders & Post-Purchase
+- Order timeline (placed → shipped → delivered)
+- Invoice download UI
+- Return / refund UI
+- Order history filters
+
+### 7️⃣ Profile & Personalization
+- Profile summary card
+- Saved addresses
+- Wishlist
+- Recently viewed
+- Help & support UI
+- Settings
+
+---
+
+## 🔹 DESIGN SYSTEM (MANDATORY)
+
+Define and apply:
+- Color tokens
+- Typography scale
+- Spacing system
+- Border radius & elevation
+- Button hierarchy
+- Icon usage rules
+
+Use:
+- Clean, premium, minimal e-commerce aesthetics
+- Modern card-based layout
+- Smooth transitions & micro-interactions
+- Consistent margins & paddings
+
+---
+
+## 🔹 FINAL IMPLEMENTATION PHASE
+
+After analysis and strategy:
+1. Upgrade each screen ONE BY ONE
+2. Clearly mention:
+   - What is reused
+   - What is improved
+   - What is newly added
+3. Ensure:
+   - Mobile-first
+   - Performance-friendly
+   - Production-ready UI
+
+---
+
+## 🔹 OUTPUT EXPECTATION
+
+- Clear explanation before code
+- Clean, readable React Native components
+- Reusable components
+- No unnecessary complexity
+- No backend logic
+
+This app should feel like a top-tier modern e-commerce application
+ready for real users and future scaling.
