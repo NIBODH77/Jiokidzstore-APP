@@ -63,7 +63,12 @@ export default function CategoryAggregatorScreen() {
   return (
     <View style={{ flex: 1 }}>
       <TopHeader showBackButton={true} />
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+      <ScrollView 
+        style={styles.container} 
+        contentContainerStyle={styles.contentContainer}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
         {/* Ad Section Placeholder */}
         <View style={styles.adBannerContainer}>
           <Image source={{ uri: AD_IMAGES[0] }} style={styles.adBannerImage} />
