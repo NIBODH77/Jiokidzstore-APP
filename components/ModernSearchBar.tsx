@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { StyleSheet, View, Pressable, FlatList, Image, Dimensions } from 'react-native';
+import { StyleSheet, View, Pressable, FlatList, Image, Dimensions, Platform } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { Colors, Spacing } from '@/constants/theme';
+import { Colors, Spacing, ZIndex } from '@/constants/theme';
 import { useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
 
 const { width: screenWidth } = Dimensions.get('window');
@@ -43,6 +44,7 @@ export function ModernSearchBar({
   cartCount = 0
 }: ModernSearchBarProps) {
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
   const bannerScrollRef = useRef<FlatList>(null);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
 
@@ -67,7 +69,7 @@ export function ModernSearchBar({
   );
 
   return (
-    <View style={styles.headerContainer}>
+    <View style={[styles.headerContainer, { paddingTop: insets.top + Spacing.sm }]}>
       {/* Top Row: Logo and Icons */}
       <View style={styles.topRow}>
         <View style={styles.logoSection}>
@@ -126,14 +128,10 @@ const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: '#FFFFFF',
     paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.md,
     paddingBottom: Spacing.sm,
-    marginTop: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 5,
+    zIndex: ZIndex.header,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
   },
   topRow: {
     flexDirection: 'row',

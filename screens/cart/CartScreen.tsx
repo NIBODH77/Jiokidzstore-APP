@@ -6,7 +6,7 @@ import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ThemedText } from '@/components/ThemedText';
 import { Button } from '@/components/Button';
-import { Colors, Spacing, BorderRadius, Shadows } from '@/constants/theme';
+import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 import { CartItem } from '@/data/types';
 import { cartStorage } from '@/utils/storage';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
@@ -304,6 +304,21 @@ export default function CartScreen() {
           )}
         </View>
 
+        <View style={styles.trustIndicators}>
+          <View style={styles.trustItem}>
+            <Feather name="shield" size={18} color={Colors.light.primary} />
+            <ThemedText style={styles.trustText}>100% Secure Payments</ThemedText>
+          </View>
+          <View style={styles.trustItem}>
+            <Feather name="refresh-cw" size={18} color={Colors.light.primary} />
+            <ThemedText style={styles.trustText}>Easy Returns</ThemedText>
+          </View>
+          <View style={styles.trustItem}>
+            <Feather name="check-circle" size={18} color={Colors.light.primary} />
+            <ThemedText style={styles.trustText}>Genuine Products</ThemedText>
+          </View>
+        </View>
+
         <View style={styles.bottomSpacer} />
       </ScrollView>
 
@@ -367,11 +382,11 @@ const styles = StyleSheet.create({
   deliveryTitle: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#27AE60',
+    color: Colors.light.success,
   },
   deliverySubtitle: {
     fontSize: 11,
-    color: '#2E7D32',
+    color: Colors.light.success,
     marginTop: 2,
   },
   cartItem: {
@@ -381,7 +396,8 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.md,
     padding: Spacing.md,
     borderRadius: BorderRadius.sm,
-    ...Shadows.small,
+    borderWidth: 1,
+    borderColor: Colors.light.border,
   },
   itemImageContainer: {
     position: 'relative',
@@ -506,7 +522,8 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.lg,
     padding: Spacing.lg,
     borderRadius: BorderRadius.sm,
-    ...Shadows.small,
+    borderWidth: 1,
+    borderColor: Colors.light.border,
   },
   couponHeader: {
     flexDirection: 'row',
@@ -565,14 +582,14 @@ const styles = StyleSheet.create({
   },
   appliedCouponText: {
     fontWeight: '600',
-    color: '#27AE60',
+    color: Colors.light.success,
   },
   couponSavings: {
     fontWeight: '700',
-    color: '#27AE60',
+    color: Colors.light.success,
   },
   removeCouponText: {
-    color: '#E74C3C',
+    color: Colors.light.error,
     fontWeight: '600',
     fontSize: 13,
   },
@@ -605,7 +622,8 @@ const styles = StyleSheet.create({
     marginHorizontal: Spacing.lg,
     padding: Spacing.lg,
     borderRadius: BorderRadius.sm,
-    ...Shadows.small,
+    borderWidth: 1,
+    borderColor: Colors.light.border,
   },
   priceBreakdownTitle: {
     fontSize: 15,
@@ -628,12 +646,12 @@ const styles = StyleSheet.create({
   },
   discountValue: {
     fontSize: 14,
-    color: '#27AE60',
+    color: Colors.light.success,
     fontWeight: '500',
   },
   freeDelivery: {
     fontSize: 14,
-    color: '#27AE60',
+    color: Colors.light.success,
     fontWeight: '600',
   },
   totalDivider: {
@@ -662,8 +680,30 @@ const styles = StyleSheet.create({
   },
   savingsText: {
     fontSize: 12,
-    color: '#27AE60',
+    color: Colors.light.success,
     fontWeight: '500',
+  },
+  trustIndicators: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginHorizontal: Spacing.lg,
+    marginTop: Spacing.lg,
+    paddingVertical: Spacing.md,
+    backgroundColor: Colors.light.backgroundRoot,
+    borderRadius: BorderRadius.sm,
+    borderWidth: 1,
+    borderColor: Colors.light.border,
+  },
+  trustItem: {
+    alignItems: 'center',
+    gap: Spacing.xs,
+  },
+  trustText: {
+    fontSize: 10,
+    fontWeight: '500',
+    color: Colors.light.textGray,
+    textAlign: 'center',
   },
   bottomSpacer: {
     height: 20,
@@ -720,7 +760,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light.backgroundRoot,
     borderTopWidth: 1,
     borderTopColor: Colors.light.border,
-    ...Shadows.medium,
   },
   footerPriceContainer: {
     flex: 1,

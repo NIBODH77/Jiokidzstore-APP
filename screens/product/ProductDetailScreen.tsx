@@ -12,6 +12,7 @@ import { wishlistStorage, cartStorage } from '@/utils/storage';
 import { addToCart } from '@/store/cartSlice';
 import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 import { Product } from '@/data/types';
+import { Colors, Spacing, BorderRadius, Typography } from '@/constants/theme';
 
 const { width } = Dimensions.get('window');
 
@@ -181,18 +182,27 @@ export default function ProductDetailScreen() {
             <ThemedText style={styles.reviewsCount}>({product.reviewCount} reviews)</ThemedText>
           </View>
 
-          {/* Price Section */}
+          {/* Price Section - Enhanced Hierarchy */}
           <View style={styles.priceSection}>
-            <ThemedText style={styles.salePrice}>₹{product.price}</ThemedText>
-            {product.mrp && <ThemedText style={styles.originalPrice}>₹{product.mrp}</ThemedText>}
-            <LinearGradient
-              colors={['#28A745', '#20C997']}
-              style={styles.discountBadge}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-            >
-              <ThemedText style={styles.discountText}>{discountPercentage}% OFF</ThemedText>
-            </LinearGradient>
+            <View style={styles.priceRow}>
+              <ThemedText style={styles.salePrice}>₹{product.price}</ThemedText>
+              {product.mrp && (
+                <View style={styles.mrpContainer}>
+                  <ThemedText style={styles.mrpLabel}>MRP</ThemedText>
+                  <ThemedText style={styles.originalPrice}>₹{product.mrp}</ThemedText>
+                </View>
+              )}
+            </View>
+            {discountPercentage > 0 && (
+              <View style={styles.savingsRow}>
+                <View style={styles.discountBadge}>
+                  <ThemedText style={styles.discountText}>{discountPercentage}% OFF</ThemedText>
+                </View>
+                <ThemedText style={styles.savingsText}>
+                  You save ₹{product.mrp ? product.mrp - product.price : 0}
+                </ThemedText>
+              </View>
+            )}
           </View>
 
           {/* Key Highlights */}
@@ -384,90 +394,113 @@ const styles = StyleSheet.create({
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-    marginBottom: 16,
+    gap: Spacing.sm,
+    marginBottom: Spacing.lg,
   },
   ratingBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
-    backgroundColor: '#28A745',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 4,
+    gap: Spacing.xs,
+    backgroundColor: Colors.light.success,
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: Spacing.xs,
+    borderRadius: BorderRadius.xs,
   },
   ratingValue: {
     fontSize: 12,
     fontWeight: '700',
-    color: '#FFFFFF',
+    color: Colors.light.buttonText,
   },
   reviewsCount: {
     fontSize: 12,
-    color: '#999999',
+    color: Colors.light.textTertiary,
   },
   priceSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    marginBottom: 20,
-    paddingBottom: 16,
+    marginBottom: Spacing.xl,
+    paddingBottom: Spacing.lg,
     borderBottomWidth: 1,
-    borderBottomColor: '#EEEEEE',
+    borderBottomColor: Colors.light.divider,
+  },
+  priceRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    gap: Spacing.md,
+    marginBottom: Spacing.sm,
   },
   salePrice: {
-    fontSize: 24,
+    ...Typography.priceLarge,
+    fontSize: 28,
     fontWeight: '800',
-    color: '#FF8C00',
+    color: Colors.light.text,
+  },
+  mrpContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.xs,
+  },
+  mrpLabel: {
+    fontSize: 12,
+    color: Colors.light.textTertiary,
+    fontWeight: '500',
   },
   originalPrice: {
     fontSize: 14,
-    color: '#999999',
+    color: Colors.light.textTertiary,
     textDecorationLine: 'line-through',
     fontWeight: '500',
   },
-  discountBadge: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 4,
-    justifyContent: 'center',
+  savingsRow: {
+    flexDirection: 'row',
     alignItems: 'center',
+    gap: Spacing.sm,
+  },
+  discountBadge: {
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: Spacing.xs,
+    borderRadius: BorderRadius.xs,
+    backgroundColor: Colors.light.success,
   },
   discountText: {
     fontSize: 12,
     fontWeight: '700',
     color: '#FFFFFF',
   },
+  savingsText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: Colors.light.success,
+  },
   highlightsSection: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 24,
-    paddingVertical: 16,
-    backgroundColor: '#F8F8F8',
-    borderRadius: 8,
+    marginBottom: Spacing.xxl,
+    paddingVertical: Spacing.lg,
+    backgroundColor: Colors.light.backgroundSecondary,
+    borderRadius: BorderRadius.sm,
   },
   highlightItem: {
     alignItems: 'center',
-    gap: 8,
+    gap: Spacing.sm,
   },
   highlightText: {
     fontSize: 11,
     fontWeight: '600',
-    color: '#1F2937',
+    color: Colors.light.text,
     textAlign: 'center',
   },
   sectionContainer: {
-    marginBottom: 20,
+    marginBottom: Spacing.xl,
   },
   sectionTitle: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#1F2937',
-    marginBottom: 12,
+    color: Colors.light.text,
+    marginBottom: Spacing.md,
   },
   optionsRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 10,
+    gap: Spacing.sm,
   },
   colorOption: {
     paddingHorizontal: 14,

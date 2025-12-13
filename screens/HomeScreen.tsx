@@ -13,7 +13,7 @@ import { ModernHeroSection } from '@/components/ModernHeroSection';
 import { ChooseLocationModal } from '@/components/ChooseLocationModal';
 import { EnterPincodeModal } from '@/components/EnterPincodeModal';
 import { LocationPermissionModal } from '@/components/LocationPermissionModal';
-import { Colors, Spacing, BorderRadius } from '@/constants/theme';
+import { Colors, Spacing, BorderRadius, Shadows } from '@/constants/theme';
 import { PRODUCTS, CATEGORIES } from '@/data/mockData';
 import { GIRLS_AGE_GROUPS, BOYS_AGE_GROUPS, AGE_WISE_CATEGORIES } from '@/data/ageGroupData';
 import { wishlistStorage } from '@/utils/storage';
@@ -1291,44 +1291,40 @@ const styles = StyleSheet.create({
   },
   autoScrollBannersContainer: {
     height: 280,
-    marginBottom: 16,
-    backgroundColor: '#F5F5F5',
+    marginBottom: Spacing.lg,
+    backgroundColor: Colors.light.backgroundDefault,
   },
   bannersScrollContent: {
-    paddingHorizontal: 16,
+    paddingHorizontal: Spacing.lg,
     gap: 0,
   },
   autoBanner: {
     width: Dimensions.get('window').width - 32,
     height: 380,
     marginRight: 0,
-    borderRadius: 12,
+    borderRadius: 0,
     overflow: 'hidden',
-    backgroundColor: '#FFFFFF',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 6,
+    backgroundColor: Colors.light.backgroundCard,
   },
   autoBannerImage: {
     width: '100%',
     height: '100%',
   },
   section: {
-    marginBottom: 24,
+    marginBottom: Spacing.sectionSpacing,
+    paddingTop: Spacing.md,
   },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    marginBottom: 16,
+    paddingHorizontal: Spacing.lg,
+    marginBottom: Spacing.lg,
   },
   sectionTitle: {
-    fontSize: 28,
+    fontSize: 22,
     fontWeight: '700',
-    color: '#1F2937',
+    color: Colors.light.text,
   },
   seeAllText: {
     fontSize: 14,
@@ -1337,27 +1333,27 @@ const styles = StyleSheet.create({
   },
 
   categoriesList: {
-    paddingHorizontal: 16,
+    paddingHorizontal: Spacing.lg,
   },
   categoriesGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    paddingHorizontal: 12,
-    gap: 6,
+    paddingHorizontal: Spacing.md,
+    gap: Spacing.sm,
   },
   categoryItem: {
     width: '23%',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: Spacing.md,
   },
   categoryCard: {
     width: '100%',
     height: 80,
-    borderRadius: 10,
+    borderRadius: BorderRadius.sm,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 4,
+    marginBottom: Spacing.xs,
     overflow: 'hidden',
   },
   categoryImageContainer: {
@@ -1491,14 +1487,11 @@ const styles = StyleSheet.create({
   },
   cozyCuteCard: {
     width: 140,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
+    backgroundColor: Colors.light.backgroundCard,
+    borderRadius: BorderRadius.sm,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
+    borderWidth: 1,
+    borderColor: Colors.light.borderLight,
   },
   cozyCuteCardImageContainer: {
     width: 140,
@@ -1523,15 +1516,10 @@ const styles = StyleSheet.create({
   },
   littleExplorersBannerContainer: {
     marginHorizontal: 0,
-    marginTop: 4,
+    marginTop: Spacing.xs,
     marginBottom: 0,
-    borderRadius: 12,
+    borderRadius: 0,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 6,
   },
   littleExplorersBannerImage: {
     width: '100%',
@@ -1545,12 +1533,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 0,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 6,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.light.backgroundCard,
   },
   parentingZoneImage: {
     width: '100%',
@@ -1618,12 +1601,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width * 1.35,
     borderRadius: 0,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 6,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.light.backgroundCard,
   },
   trendingStoreCardImage: {
     width: '100%',
