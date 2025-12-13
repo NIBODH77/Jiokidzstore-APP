@@ -77,7 +77,7 @@ export default function CategoryDetailsScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: theme.backgroundRoot }}>
       <TopHeader showBackButton={true} />
-      <ScrollView style={[styles.container, { backgroundColor: theme.backgroundRoot }]}>
+      <ScrollView style={[styles.container, { backgroundColor: theme.backgroundRoot }]} showsVerticalScrollIndicator={false}>
         {/* Category Header */}
         <View style={styles.headerContainer}>
           <ThemedText type="h1" style={styles.categoryTitle}>{categoryName}</ThemedText>

@@ -289,7 +289,7 @@ export default function KidsCategoryProductsScreen() {
               </Pressable>
             </View>
             
-            <ScrollView style={styles.filterContent}>
+            <ScrollView style={styles.filterContent} showsVerticalScrollIndicator={false}>
               {/* Price Range */}
               <View style={styles.filterSection}>
                 <Text style={styles.filterSectionTitle}>Price Range</Text>
