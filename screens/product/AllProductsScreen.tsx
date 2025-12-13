@@ -4,7 +4,7 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { ScreenFlatList } from '@/components/ScreenFlatList';
-import { ProductCard } from '@/components/ProductCard';
+import { CleanProductCard } from '@/components/CleanProductCard';
 import { ThemedText } from '@/components/ThemedText';
 import { Colors, Spacing } from '@/constants/theme';
 import { PRODUCTS } from '@/data/mockData';
@@ -206,11 +206,23 @@ export default function AllProductsScreen() {
       ListEmptyComponent={renderEmpty}
       renderItem={({ item }) => (
         <View style={styles.productItem}>
-          <ProductCard
-            product={item}
+          <CleanProductCard
+            product={{
+              id: item.id,
+              name: item.name,
+              brand: item.brand,
+              price: item.price,
+              mrp: item.originalPrice,
+              discount: item.originalPrice && item.price ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0,
+              rating: item.rating,
+              reviewCount: item.reviews,
+              images: item.images,
+              inStock: item.stock !== 0,
+            }}
             onPress={() => handleProductPress(item.id)}
             onWishlistPress={() => handleWishlistToggle(item.id)}
             isWishlisted={item.isWishlisted}
+            showRating={true}
           />
         </View>
       )}

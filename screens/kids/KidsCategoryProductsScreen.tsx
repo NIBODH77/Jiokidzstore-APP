@@ -22,6 +22,7 @@ import {
   KidsFashionProduct
 } from '@/data/kidsFashionData';
 import { Spacing } from '@/constants/theme';
+import { CleanProductCard } from '@/components/CleanProductCard';
 
 const { width } = Dimensions.get('window');
 
@@ -132,57 +133,24 @@ export default function KidsCategoryProductsScreen() {
   }, [selectedPriceRange, selectedBrands, selectedSeason]);
 
   const renderProductCard = ({ item }: { item: KidsFashionProduct }) => (
-    <Pressable 
-      style={styles.productCard}
-      onPress={() => handleProductPress(item.product_id)}
-    >
-      <View style={styles.productImageContainer}>
-        <View style={styles.productImagePlaceholder}>
-          <Feather name="image" size={40} color="#CCC" />
-        </View>
-        {item.discount > 0 && (
-          <View style={styles.discountBadge}>
-            <Text style={styles.discountText}>{item.discount}% OFF</Text>
-          </View>
-        )}
-        {(item.season === currentSeason || item.season === 'All Season') && (
-          <View style={[styles.seasonBadge, { backgroundColor: item.season === 'Winter' ? '#2196F3' : '#FF9800' }]}>
-            <Text style={styles.seasonText}>{item.season === 'All Season' ? '✓ All Season' : `✓ ${currentSeason}`}</Text>
-          </View>
-        )}
-        <Pressable style={styles.wishlistButton}>
-          <Feather name="heart" size={18} color="#999" />
-        </Pressable>
-      </View>
-      <View style={styles.productInfo}>
-        <Text style={styles.productBrand}>{item.brand}</Text>
-        <Text style={styles.productName} numberOfLines={2}>{item.product_name}</Text>
-        <View style={styles.priceRow}>
-          <Text style={styles.currentPrice}>₹{item.price}</Text>
-          {item.original_price > item.price && (
-            <>
-              <Text style={styles.originalPrice}>₹{item.original_price}</Text>
-              <Text style={styles.discountLabel}>{item.discount}% off</Text>
-            </>
-          )}
-        </View>
-        <View style={styles.ratingRow}>
-          <View style={styles.ratingBadge}>
-            <Text style={styles.ratingNumber}>{item.rating}</Text>
-            <Feather name="star" size={10} color="#FFF" />
-          </View>
-          <Text style={styles.reviewsText}>({item.reviews_count})</Text>
-        </View>
-        <View style={styles.sizesRow}>
-          {item.sizes.slice(0, 3).map((size, index) => (
-            <Text key={index} style={styles.sizeChip}>{size}</Text>
-          ))}
-          {item.sizes.length > 3 && (
-            <Text style={styles.moreSizes}>+{item.sizes.length - 3}</Text>
-          )}
-        </View>
-      </View>
-    </Pressable>
+    <View style={styles.productCardWrapper}>
+      <CleanProductCard
+        product={{
+          id: item.product_id,
+          name: item.product_name,
+          brand: item.brand,
+          price: item.price,
+          mrp: item.original_price,
+          discount: item.discount,
+          rating: item.rating,
+          reviewCount: item.reviews_count,
+          images: item.images || [],
+          inStock: item.in_stock,
+        }}
+        onPress={() => handleProductPress(item.product_id)}
+        showRating={true}
+      />
+    </View>
   );
 
   return (
@@ -515,6 +483,10 @@ const styles = StyleSheet.create({
   },
   productsRow: {
     justifyContent: 'space-between',
+  },
+  productCardWrapper: {
+    width: (width - 24) / 2,
+    marginBottom: 8,
   },
   productCard: {
     width: (width - 24) / 2,

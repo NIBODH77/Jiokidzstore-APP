@@ -3,7 +3,7 @@ import { View, StyleSheet, ScrollView, Image } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { ThemedText } from '@/components/ThemedText';
 import { TopHeader } from '@/components/TopHeader';
-import { ProductCard } from '@/components/ProductCard';
+import { CleanProductCard } from '@/components/CleanProductCard';
 import { Colors, Spacing, BorderRadius } from '@/constants/theme';
 import { PRODUCTS, CATEGORIES } from '@/data/mockData';
 import { wishlistStorage } from '@/utils/storage';
@@ -86,11 +86,23 @@ export default function CategoryAggregatorScreen() {
               <View style={styles.productGrid}>
                 {categoryProducts.map((product) => (
                   <View key={product.id} style={styles.productItem}>
-                    <ProductCard
-                      product={product}
+                    <CleanProductCard
+                      product={{
+                        id: product.id,
+                        name: product.name,
+                        brand: product.brand,
+                        price: product.price,
+                        mrp: product.originalPrice,
+                        discount: product.originalPrice && product.price ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0,
+                        rating: product.rating,
+                        reviewCount: product.reviews,
+                        images: product.images,
+                        inStock: product.stock !== 0,
+                      }}
                       onPress={() => handleProductPress(product.id)}
                       onWishlistPress={() => handleWishlistToggle(product.id)}
                       isWishlisted={product.isWishlisted}
+                      showRating={true}
                     />
                   </View>
                 ))}
