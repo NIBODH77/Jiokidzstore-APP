@@ -1,4 +1,3 @@
-
 import React from "react";
 import { StyleSheet, Pressable, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
@@ -8,13 +7,12 @@ import Animated, {
   withSpring,
   withTiming,
 } from "react-native-reanimated";
-import { LinearGradient } from 'expo-linear-gradient';
 
 import { ThemedText } from "@/components/ThemedText";
 import { useTheme } from "@/hooks/useTheme";
 import { useResponsive } from "@/hooks/useResponsive";
 import { Product } from "@/data/types";
-import { BorderRadius, Colors } from "@/constants/theme";
+import { Colors, Spacing, Typography } from "@/constants/theme";
 
 interface ProductCardProps {
   product: Product;
@@ -43,7 +41,7 @@ export function ProductCard({
   }));
 
   const handlePressIn = () => {
-    scale.value = withSpring(0.97);
+    scale.value = withSpring(0.98);
   };
 
   const handlePressOut = () => {
@@ -51,11 +49,11 @@ export function ProductCard({
   };
   
   const handleImageLoad = () => {
-    imageOpacity.value = withTiming(1, { duration: 300 });
+    imageOpacity.value = withTiming(1, { duration: 250 });
   };
 
   const cardWidth = width / 2;
-  const imageHeight = cardWidth;
+  const imageHeight = cardWidth * 1.15;
 
   const discount = (product?.originalPrice && product?.price) ? Math.round(
     ((product.originalPrice - product.price) / product.originalPrice) * 100
@@ -63,7 +61,6 @@ export function ProductCard({
   
   const firstImage = product.images && product.images.length > 0 ? product.images[0] : null;
   const imageSource = typeof firstImage === 'string' ? { uri: firstImage } : firstImage;
-
 
   return (
     <Animated.View style={[animatedStyle, { width: cardWidth }]}>
@@ -73,6 +70,7 @@ export function ProductCard({
         onPressOut={handlePressOut}
         style={styles.container}
       >
+        {/* IMAGE ONLY - No badges, no icons inside */}
         <View style={[styles.imageContainer, { height: imageHeight }]}>
           {imageSource ? (
             <Animated.Image 
@@ -81,70 +79,80 @@ export function ProductCard({
               onLoad={handleImageLoad}
             />
           ) : (
-            <View style={styles.imagePlaceholder} />
-          )}
-          <LinearGradient
-            colors={['transparent', 'rgba(0,0,0,0.15)']}
-            style={styles.imageGradient}
-          />
-          {discount > 0 && (
-            <View style={styles.discountBadge}>
-              <ThemedText style={styles.discountText}>{discount}% OFF</ThemedText>
+            <View style={styles.imagePlaceholder}>
+              <Feather name="image" size={32} color="#D1D5DB" />
             </View>
           )}
-          {product.isNew && (
-            <View style={styles.newBadge}>
-              <ThemedText style={styles.newText}>NEW</ThemedText>
-            </View>
-          )}
+          
+          {/* Out of stock overlay - keep this for UX */}
           {product.stock === 0 && (
             <View style={styles.stockOverlay}>
               <ThemedText style={styles.stockText}>Out of Stock</ThemedText>
             </View>
           )}
-          {onWishlistPress && (
-            <Pressable onPress={onWishlistPress} style={styles.wishlistButton}>
-              <Feather
-                name="heart"
-                size={18}
-                color={isWishlisted ? "#EF4444" : "#6B7280"}
-                fill={isWishlisted ? "#EF4444" : "transparent"}
-              />
-            </Pressable>
-          )}
         </View>
 
+        {/* PRODUCT INFO - All info appears BELOW the image */}
         <View style={styles.infoContainer}>
+          {/* Brand */}
           <ThemedText style={styles.brandText} numberOfLines={1}>
             {product.brand}
           </ThemedText>
+          
+          {/* Product Name */}
           <ThemedText style={styles.nameText} numberOfLines={2}>
             {product.name}
           </ThemedText>
 
+          {/* Price Row */}
           <View style={styles.priceRow}>
             <ThemedText style={styles.priceText}>₹{product.price}</ThemedText>
             {product.originalPrice && product.originalPrice > product.price && (
-              <ThemedText style={styles.originalPriceText}>
-                ₹{product.originalPrice}
-              </ThemedText>
+              <>
+                <ThemedText style={styles.originalPriceText}>
+                  ₹{product.originalPrice}
+                </ThemedText>
+                <ThemedText style={styles.discountText}>
+                  {discount}% OFF
+                </ThemedText>
+              </>
             )}
           </View>
-          {product.originalPrice && product.originalPrice > product.price && (
-            <ThemedText style={styles.savingsText}>
-              Save ₹{product.originalPrice - product.price}
-            </ThemedText>
-          )}
 
+          {/* Rating Row */}
           <View style={styles.ratingRow}>
-            <Feather name="star" size={12} color="#F59E0B" fill="#F59E0B" />
-            <ThemedText style={styles.ratingText}>
-              {product.rating}
-            </ThemedText>
+            <View style={styles.ratingBadge}>
+              <ThemedText style={styles.ratingText}>{product.rating}</ThemedText>
+              <Feather name="star" size={10} color="#FFFFFF" />
+            </View>
             <ThemedText style={styles.reviewsText}>
               ({product.reviews})
             </ThemedText>
+            
+            {/* Wishlist button moved outside image */}
+            {onWishlistPress && (
+              <Pressable 
+                onPress={onWishlistPress} 
+                style={styles.wishlistButton}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              >
+                <Feather
+                  name="heart"
+                  size={18}
+                  color={isWishlisted ? "#EF4444" : "#9CA3AF"}
+                />
+              </Pressable>
+            )}
           </View>
+
+          {/* Savings Tag */}
+          {product.originalPrice && product.originalPrice > product.price && (
+            <View style={styles.savingsContainer}>
+              <ThemedText style={styles.savingsText}>
+                Save ₹{product.originalPrice - product.price}
+              </ThemedText>
+            </View>
+          )}
         </View>
       </Pressable>
     </Animated.View>
@@ -154,12 +162,12 @@ export function ProductCard({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
-    padding: 8,
+    borderWidth: 0.5,
+    borderColor: '#F0F0F0',
   },
   imageContainer: {
     width: '100%',
-    backgroundColor: '#F9FAFB',
-    borderRadius: 12,
+    backgroundColor: '#FAFAFA',
     overflow: 'hidden',
     position: 'relative',
   },
@@ -171,42 +179,9 @@ const styles = StyleSheet.create({
   imagePlaceholder: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#F0F0F0',
-  },
-  imageGradient: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: '40%',
-  },
-  discountBadge: {
-    position: 'absolute',
-    top: 8,
-    left: 8,
-    backgroundColor: '#10B981',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-  },
-  discountText: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: '#FFFFFF',
-  },
-  newBadge: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
-    backgroundColor: Colors.light.primary,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-  },
-  newText: {
-    fontSize: 10,
-    fontWeight: '800',
-    color: '#FFFFFF',
+    backgroundColor: '#F5F5F5',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   stockOverlay: {
     position: 'absolute',
@@ -214,86 +189,92 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: 'rgba(0,0,0,0.55)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   stockText: {
-    fontSize: 14,
-    fontWeight: '700',
+    fontSize: 13,
+    fontWeight: '600',
     color: '#FFFFFF',
     textAlign: 'center',
   },
-  wishlistButton: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
-  },
   infoContainer: {
-    paddingTop: 8,
-    paddingHorizontal: 4,
+    paddingTop: Spacing.sm,
+    paddingHorizontal: Spacing.sm,
+    paddingBottom: Spacing.md,
   },
   brandText: {
     fontSize: 11,
-    fontWeight: '600',
+    fontWeight: '500',
     color: '#6B7280',
     textTransform: 'uppercase',
-    letterSpacing: 0.5,
-    marginBottom: 4,
+    letterSpacing: 0.3,
+    marginBottom: 2,
   },
   nameText: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#374151',
     lineHeight: 18,
-    marginBottom: 6,
+    marginBottom: Spacing.xs,
   },
   priceRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    flexWrap: 'wrap',
     gap: 6,
-    marginBottom: 4,
+    marginBottom: Spacing.xs,
   },
   priceText: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
   },
   originalPriceText: {
-    fontSize: 13,
-    fontWeight: '500',
+    fontSize: 12,
+    fontWeight: '400',
     color: '#9CA3AF',
     textDecorationLine: 'line-through',
+  },
+  discountText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#10B981',
   },
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 6,
+  },
+  ratingBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#10B981',
+    paddingHorizontal: 5,
+    paddingVertical: 2,
+    borderRadius: 4,
+    gap: 2,
   },
   ratingText: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#FFFFFF',
   },
   reviewsText: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#6B7280',
+    flex: 1,
+  },
+  wishlistButton: {
+    padding: 4,
+  },
+  savingsContainer: {
+    marginTop: Spacing.xs,
   },
   savingsText: {
     fontSize: 11,
     fontWeight: '600',
-    color: '#10B981',
-    marginTop: 2,
+    color: Colors.light.primary,
   },
 });
