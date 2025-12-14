@@ -17,13 +17,7 @@ import { ZoomableImage } from '@/components/ZoomableImage';
 
 const { width } = Dimensions.get('window');
 
-const ANGLE_VIEWS = [
-  { id: 'front', label: 'Front', icon: 'eye' },
-  { id: 'left', label: 'Left', icon: 'chevron-left' },
-  { id: 'right', label: 'Right', icon: 'chevron-right' },
-  { id: 'top', label: 'Top', icon: 'chevron-up' },
-  { id: 'bottom', label: 'Bottom', icon: 'chevron-down' },
-];
+const ANGLE_LABELS = ['Front', 'Left', 'Right', 'Top', 'Bottom'];
 
 const convertKidsFashionToProduct = (kfp: any): Product => ({
   id: kfp.product_id,
@@ -54,7 +48,6 @@ export default function ProductDetailScreen() {
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [selectedAngle, setSelectedAngle] = useState('front');
   const [pincode, setPincode] = useState('');
   const [deliveryInfo, setDeliveryInfo] = useState<{ available: boolean; days: number; message: string } | null>(null);
   const imageCarouselRef = useRef<FlatList>(null);
@@ -88,8 +81,7 @@ export default function ProductDetailScreen() {
     return [baseImage, baseImage, baseImage, baseImage, baseImage];
   }, [product.images]);
 
-  const handleAngleSelect = (angleId: string, index: number) => {
-    setSelectedAngle(angleId);
+  const handleAngleSelect = (index: number) => {
     setActiveImageIndex(index);
     imageCarouselRef.current?.scrollToIndex({ index, animated: true });
   };
@@ -208,7 +200,6 @@ export default function ProductDetailScreen() {
             onMomentumScrollEnd={(event) => {
               const index = Math.round(event.nativeEvent.contentOffset.x / width);
               setActiveImageIndex(index);
-              setSelectedAngle(ANGLE_VIEWS[index]?.id || 'front');
             }}
             renderItem={({ item }) => (
               <View style={styles.carouselImageContainer}>
@@ -237,39 +228,39 @@ export default function ProductDetailScreen() {
           </View>
         </View>
 
-        {/* Angle View Cards - PHASE 1 */}
-        <View style={styles.angleViewSection}>
-          <ThemedText style={styles.angleViewTitle}>View Angles</ThemedText>
-          <View style={styles.angleCardsContainer}>
-            {ANGLE_VIEWS.map((angle, index) => (
-              <Pressable
-                key={angle.id}
-                style={[
-                  styles.angleCard,
-                  selectedAngle === angle.id && styles.angleCardActive
-                ]}
-                onPress={() => handleAngleSelect(angle.id, index)}
-              >
-                <View style={[
-                  styles.angleIconContainer,
-                  selectedAngle === angle.id && styles.angleIconContainerActive
-                ]}>
-                  <Feather 
-                    name={angle.icon as any} 
-                    size={18} 
-                    color={selectedAngle === angle.id ? '#FFFFFF' : '#666666'} 
+        {/* Angle View Cards - IMAGE-BASED PHASE 1 */}
+        {productImages.length > 1 && (
+          <View style={styles.angleViewSection}>
+            <ThemedText style={styles.angleViewTitle}>Product Views</ThemedText>
+            <View style={styles.angleCardsContainer}>
+              {productImages.map((image, index) => (
+                <Pressable
+                  key={`angle-${index}`}
+                  style={[
+                    styles.angleImageCard,
+                    activeImageIndex === index && styles.angleImageCardActive
+                  ]}
+                  onPress={() => handleAngleSelect(index)}
+                >
+                  <Image
+                    source={typeof image === 'string' ? { uri: image } : image}
+                    style={styles.angleImageThumbnail}
+                    resizeMode="cover"
                   />
-                </View>
-                <ThemedText style={[
-                  styles.angleLabel,
-                  selectedAngle === angle.id && styles.angleLabelActive
-                ]}>
-                  {angle.label}
-                </ThemedText>
-              </Pressable>
-            ))}
+                  {activeImageIndex === index && (
+                    <View style={styles.angleImageActiveIndicator} />
+                  )}
+                  <ThemedText style={[
+                    styles.angleLabel,
+                    activeImageIndex === index && styles.angleLabelActive
+                  ]}>
+                    {ANGLE_LABELS[index] || `View ${index + 1}`}
+                  </ThemedText>
+                </Pressable>
+              ))}
+            </View>
           </View>
-        </View>
+        )}
 
         {/* Product Details */}
         <View style={styles.detailsSection}>
@@ -577,32 +568,38 @@ const styles = StyleSheet.create({
   },
   angleCardsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
+    gap: 10,
+    flexWrap: 'wrap',
   },
-  angleCard: {
+  angleImageCard: {
     alignItems: 'center',
-    padding: 8,
-    borderRadius: 12,
+    padding: 4,
+    borderRadius: 8,
     borderWidth: 2,
     borderColor: '#E5E7EB',
     backgroundColor: '#FFFFFF',
-    width: (width - 64) / 5,
+    width: 60,
+    position: 'relative',
   },
-  angleCardActive: {
+  angleImageCardActive: {
     borderColor: '#FF8C00',
     backgroundColor: '#FFF5EB',
   },
-  angleIconContainer: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: '#F3F4F6',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 4,
+  angleImageThumbnail: {
+    width: 48,
+    height: 48,
+    borderRadius: 4,
+    backgroundColor: '#F5F5F5',
   },
-  angleIconContainerActive: {
+  angleImageActiveIndicator: {
+    position: 'absolute',
+    bottom: 20,
+    left: 4,
+    right: 4,
+    height: 3,
     backgroundColor: '#FF8C00',
+    borderRadius: 2,
   },
   angleLabel: {
     fontSize: 10,

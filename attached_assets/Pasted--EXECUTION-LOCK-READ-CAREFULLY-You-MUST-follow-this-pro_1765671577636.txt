@@ -1,0 +1,137 @@
+⚠️ EXECUTION LOCK — READ CAREFULLY ⚠️
+
+You MUST follow this prompt LINE BY LINE.
+You are NOT allowed to skip, summarize, merge,
+or partially implement ANY requirement.
+
+If ANY requirement is missing → STOP and DECLARE FAILURE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXECUTION LOCK ACCEPTANCE (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST start your response with EXACTLY this line:
+
+“EXECUTION LOCK ACCEPTED — PDP IMAGE ANGLE CARD IMPLEMENTATION BEGIN”
+
+If this line is missing or altered → EXECUTION INVALID.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ROLE & CONTEXT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You are a Senior / Principal Mobile UI Engineer
+working on a PRODUCTION React Native e-commerce app.
+
+FACTS:
+- Product Detail Page (PDP) already exists
+- Product images already come from backend
+- Navigation & data flow already work
+
+Your task is NOT to rebuild the app.
+Your task is to implement ONLY the UI feature below.
+
+Frontend UI ONLY  
+❌ NO backend logic  
+❌ NO API changes  
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚨 ABSOLUTE RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- DO NOT touch unrelated screens
+- DO NOT change product data structure
+- DO NOT break navigation
+- DO NOT add extra features
+- Implement EXACTLY what is written
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 1 — PDP IMAGE ANGLE CARDS (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+On Product Detail Page, allow users to view
+the SAME product from different angles
+using IMAGE-BASED angle cards (NOT buttons).
+
+MANDATORY UI STRUCTURE:
+- ONE MAIN PRODUCT IMAGE at the top
+- BELOW the main image, show SMALL IMAGE CARDS
+  representing different angles of the SAME product:
+
+  - Front image
+  - Left view image
+  - Right view image
+  - Top view image
+  - Bottom view image (if available)
+
+MANDATORY INTERACTION:
+- When user clicks ANY small angle image card:
+  - The MAIN PRODUCT IMAGE MUST immediately swap
+    to show the clicked card’s image
+  - The selected angle card must show ACTIVE state
+- NO page reload
+- NO API call on click
+- NO delay or flicker
+
+RULES:
+- Angle cards must be real product images
+- Angle cards must be clearly visible
+- Only AVAILABLE images should be shown
+- Missing angles must be hidden gracefully
+- Main image must stay centered & stable
+- Active card highlight must be obvious
+
+SCREEN:
+- Product Detail Page ONLY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 2 — UX VALIDATION (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Verify:
+- Default main image = front image
+- Clicking any angle image swaps main image
+- Active angle card updates correctly
+- UI does not break if only 1–2 images exist
+- No other PDP functionality is affected
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SELF-FAIL RULE (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+If ANY requirement is missing or partially implemented,
+you MUST write:
+
+“SELF-FAIL DECLARED — REASON: ______”
+
+And STOP immediately.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL VERIFICATION (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST confirm ALL:
+
+☐ Main product image displayed at top  
+☐ Angle images shown as small cards  
+☐ Main image swaps on card click  
+☐ Active angle clearly highlighted  
+☐ Missing angles handled gracefully  
+☐ Existing PDP preserved  
+
+If ANY is false → STOP.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL EXECUTION OATH (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before ending, you MUST write:
+
+“I hereby confirm that:
+- I implemented ONLY the requested feature
+- I did not skip or partially complete any task
+- I followed every instruction line by line
+- The UI change is production-ready
+
+If this statement is false, my output is invalid.”
