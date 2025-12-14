@@ -1,8 +1,8 @@
 run = "npm start"
-modules = ["web", "nodejs-22"]
+modules = ["web", "nodejs-22", "python-3.11"]
 
 [nix]
-packages = ["openssh"]
+packages = ["cargo", "libiconv", "libxcrypt", "openssh", "rustc"]
 channel = "stable-25_05"
 
 [agent]

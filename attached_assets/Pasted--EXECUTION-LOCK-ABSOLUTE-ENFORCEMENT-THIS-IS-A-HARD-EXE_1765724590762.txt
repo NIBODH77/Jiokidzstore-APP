@@ -1,0 +1,286 @@
+🚨🚨🚨 EXECUTION LOCK — ABSOLUTE ENFORCEMENT 🚨🚨🚨
+
+THIS IS A HARD EXECUTION CONTRACT.
+
+You MUST follow this prompt LINE BY LINE.
+You are NOT allowed to:
+- Skip
+- Summarize
+- Merge
+- Stub
+- Partially implement
+- Replace with pseudo-code
+- Defer work to “later”
+
+If ANY instruction is violated → YOU MUST STOP
+and PRINT ONLY THIS LINE:
+
+"EXECUTION FAILED — REQUIREMENTS NOT FULLY MET"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ROLE & AUTHORITY (LOCKED)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You are a Principal / Staff-level Backend Engineer
+with production experience on
+FirstCry / Amazon / Flipkart-scale systems.
+
+You are building a **REAL production backend**.
+This is NOT a demo.
+This is NOT a tutorial.
+
+Frontend (React Native) ALREADY EXISTS.
+Your backend MUST align exactly with it.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TECH STACK (IMMUTABLE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- Backend: FastAPI (Python)
+- Database: PostgreSQL
+- ORM: SQLAlchemy
+- Migrations: Alembic
+
+❌ NO frontend code  
+❌ NO UI logic  
+❌ NO payment gateway SDK  
+❌ NO mock / fake logic  
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ABSOLUTE SYSTEM RULES (NO EXCEPTIONS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. You MUST analyze frontend flows BEFORE writing code
+2. You MUST NOT use procedures for read-only queries
+3. Database is FINAL authority for:
+   - inventory
+   - pricing
+   - coupons
+   - order state
+   - payments
+4. EVERY database procedure MUST:
+   - Be written as FULL PostgreSQL SQL
+   - Be stored ONLY as `.sql` files
+   - Live ONLY inside `/procedures/`
+5. NO procedure may be auto-executed
+6. NO procedure may be incomplete
+7. NO procedure may lack transaction control
+8. NO procedure may lack error handling
+9. NO procedure may lack proper locking where applicable
+
+Violation of ANY rule = FAILURE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CRITICAL SQL BODY REQUIREMENT (HARD)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FOR **EVERY SINGLE PROCEDURE** you MUST include:
+
+✔ CREATE OR REPLACE PROCEDURE  
+✔ Explicit INPUT PARAMETERS  
+✔ LANGUAGE plpgsql  
+✔ BEGIN … COMMIT … ROLLBACK  
+✔ SELECT … FOR UPDATE (where inventory / coupon / payment / order involved)  
+✔ EXCEPTION WHEN OTHERS THEN  
+✔ ROLLBACK + RAISE  
+
+❌ Functions are NOT allowed  
+❌ Partial SQL is NOT allowed  
+❌ TODO comments are NOT allowed  
+
+If even ONE procedure violates this → FAILURE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 1 — FRONTEND FLOW ANALYSIS (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST first DOCUMENT (text only):
+
+Home → PLP → PDP → Cart → Checkout → Payment → Orders
+
+For EACH step, explicitly list:
+- Read-only operations
+- Write-critical operations
+- Inventory touchpoints
+- Coupon touchpoints
+- Payment touchpoints
+
+If this analysis is missing → STOP.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 2 — FASTAPI BOILERPLATE (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST generate the COMPLETE backend structure:
+
+backend/
+├── app/
+│   ├── main.py
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   └── security.py
+│   ├── models/
+│   ├── schemas/
+│   ├── repositories/
+│   ├── services/
+│   ├── routes/
+│   └── utils/
+│
+├── procedures/     ← SQL FILES ONLY
+├── migrations/
+├── docs/
+└── README.md
+
+The app MUST boot with:
+uvicorn app.main:app
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 3 — ER DIAGRAM (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST fully define schema for:
+
+users  
+otp_verifications  
+categories  
+products  
+product_images  
+inventory  
+carts  
+cart_items  
+wishlists  
+orders  
+order_items  
+payments  
+refunds  
+coupons  
+coupon_usage  
+addresses  
+
+For EACH table:
+- PK
+- FK
+- Indexes
+- Relationships
+
+Missing ANY table → FAILURE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 4 — DATABASE PROCEDURES (NO EXCEPTIONS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST create **INDIVIDUAL .sql FILES**
+for EACH procedure listed below.
+
+EVERY FILE MUST CONTAIN A FULL SQL BODY.
+
+━━━━━━━━━━ AUTH
+send_otp.sql  
+verify_otp.sql  
+
+━━━━━━━━━━ CART
+add_to_cart.sql  
+update_cart_quantity.sql  
+validate_cart_before_checkout.sql  
+
+━━━━━━━━━━ INVENTORY (CRITICAL)
+lock_inventory.sql  
+release_inventory.sql  
+decrease_inventory.sql  
+increase_inventory.sql  
+
+━━━━━━━━━━ COUPONS
+apply_coupon.sql  
+rollback_coupon.sql  
+validate_coupon_usage_limit.sql  
+
+━━━━━━━━━━ ORDER
+create_order.sql  
+cancel_order.sql  
+update_order_status.sql  
+
+━━━━━━━━━━ ORDER PRICING
+freeze_order_pricing.sql  
+
+━━━━━━━━━━ PAYMENT
+register_payment_attempt.sql  
+verify_payment.sql  
+payment_webhook.sql  
+
+━━━━━━━━━━ REFUND
+initiate_refund.sql  
+restore_inventory.sql  
+
+❌ DO NOT CREATE procedures for:
+Home / PLP / PDP / Search / Wishlist / Address CRUD / Profile
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 5 — API CONTRACT (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For EVERY API:
+- Endpoint
+- Method
+- Request schema
+- Response schema
+- Error cases
+
+APIs MUST map exactly to frontend needs.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 6 — SERVICE & REPOSITORY ENFORCEMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Service layer:
+- Orchestrates workflows
+- Calls procedures
+- Handles failures
+
+Repository layer:
+- READ-ONLY queries ONLY
+- ZERO business logic
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 7 — SCALABILITY ROADMAP (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Explain evolution:
+
+1L users → indexing  
+10L users → Redis + replicas  
+1Cr users → sharding + queues + observability  
+
+Explain WHY for each stage.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL VALIDATION (NO MERCY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST explicitly CONFIRM ALL:
+
+☐ Frontend flow analysis done  
+☐ FastAPI boots successfully  
+☐ ER diagram complete  
+☐ EVERY procedure has FULL SQL body  
+☐ BEGIN / COMMIT / ROLLBACK everywhere  
+☐ SELECT FOR UPDATE used correctly  
+☐ EXCEPTION handling everywhere  
+☐ All procedures stored ONLY as `.sql`  
+☐ NOTHING auto-executed  
+
+If ANY checkbox is false → FAILURE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL EXECUTION OATH (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before ending, you MUST print:
+
+"I CONFIRM:
+- No instruction was skipped
+- No procedure was partial
+- No SQL was stubbed
+- This backend is production-ready at FirstCry scale
+
+If this is untrue, this output is INVALID."
