@@ -18,6 +18,13 @@ import { ZoomableImage } from '@/components/ZoomableImage';
 const { width } = Dimensions.get('window');
 
 const ANGLE_LABELS = ['Front', 'Left', 'Right', 'Top', 'Bottom'];
+const CROP_POSITIONS = [
+  { name: 'Front', translateX: 0, translateY: 0 },
+  { name: 'Left', translateX: 20, translateY: 0 },
+  { name: 'Right', translateX: -20, translateY: 0 },
+  { name: 'Top', translateX: 0, translateY: 15 },
+  { name: 'Bottom', translateX: 0, translateY: -15 },
+];
 
 const convertKidsFashionToProduct = (kfp: any): Product => ({
   id: kfp.product_id,
@@ -273,36 +280,50 @@ export default function ProductDetailScreen() {
           </View>
         </View>
 
-        {/* Angle View Cards - IMAGE-BASED PHASE 1 */}
-        {productImages.length > 1 && (
+        {/* Angle View Cards - DYNAMIC CROPPED PORTIONS */}
+        {productImages.length >= 1 && (
           <View style={styles.angleViewSection}>
             <ThemedText style={styles.angleViewTitle}>Product Views</ThemedText>
             <View style={styles.angleCardsContainer}>
-              {productImages.map((image, index) => (
-                <Pressable
-                  key={`angle-${index}`}
-                  style={[
-                    styles.angleImageCard,
-                    activeImageIndex === index && styles.angleImageCardActive
-                  ]}
-                  onPress={() => handleAngleSelect(index)}
-                >
-                  <Image
-                    source={typeof image === 'string' ? { uri: image } : image}
-                    style={styles.angleImageThumbnail}
-                    resizeMode="cover"
-                  />
-                  {activeImageIndex === index && (
-                    <View style={styles.angleImageActiveIndicator} />
-                  )}
-                  <ThemedText style={[
-                    styles.angleLabel,
-                    activeImageIndex === index && styles.angleLabelActive
-                  ]}>
-                    {ANGLE_LABELS[index] || `View ${index + 1}`}
-                  </ThemedText>
-                </Pressable>
-              ))}
+              {CROP_POSITIONS.map((cropPos, index) => {
+                const mainImage = productImages[0];
+                return (
+                  <Pressable
+                    key={`angle-${index}`}
+                    style={[
+                      styles.angleImageCard,
+                      activeImageIndex === index && styles.angleImageCardActive
+                    ]}
+                    onPress={() => handleAngleSelect(index)}
+                  >
+                    <View style={styles.croppedImageContainer}>
+                      <Image
+                        source={typeof mainImage === 'string' ? { uri: mainImage } : mainImage}
+                        style={[
+                          styles.croppedImage,
+                          {
+                            transform: [
+                              { translateX: cropPos.translateX },
+                              { translateY: cropPos.translateY },
+                              { scale: 1.3 }
+                            ]
+                          }
+                        ]}
+                        resizeMode="cover"
+                      />
+                    </View>
+                    {activeImageIndex === index && (
+                      <View style={styles.angleImageActiveIndicator} />
+                    )}
+                    <ThemedText style={[
+                      styles.angleLabel,
+                      activeImageIndex === index && styles.angleLabelActive
+                    ]}>
+                      {cropPos.name}
+                    </ThemedText>
+                  </Pressable>
+                );
+              })}
             </View>
           </View>
         )}
@@ -636,6 +657,17 @@ const styles = StyleSheet.create({
     height: 48,
     borderRadius: 4,
     backgroundColor: '#F5F5F5',
+  },
+  croppedImageContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 4,
+    backgroundColor: '#F5F5F5',
+    overflow: 'hidden',
+  },
+  croppedImage: {
+    width: 48,
+    height: 48,
   },
   angleImageActiveIndicator: {
     position: 'absolute',

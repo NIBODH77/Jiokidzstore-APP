@@ -12,15 +12,6 @@ import type { HomeStackParamList } from '@/navigation/HomeStackNavigator';
 
 const MOCK_ADDRESSES = [
   {
-    id: '1',
-    type: 'Home',
-    name: 'Rahul Sharma',
-    address: '123 Main Street, Apartment 4B',
-    city: 'Mumbai, Maharashtra 400001',
-    phone: '+91 9876543210',
-    isDefault: true,
-  },
-  {
     id: '2',
     type: 'Office',
     name: 'Rahul Sharma',
@@ -75,7 +66,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
 export default function CheckoutAddressScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const insets = useSafeAreaInsets();
-  const [selectedAddress, setSelectedAddress] = useState('1');
+  const [selectedAddress, setSelectedAddress] = useState('2');
 
   const handleDeliverHere = () => {
     navigation.navigate('CheckoutPayment');

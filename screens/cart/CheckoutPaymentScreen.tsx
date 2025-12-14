@@ -104,7 +104,28 @@ export default function CheckoutPaymentScreen() {
   const [expandedMethod, setExpandedMethod] = useState<string | null>('upi');
 
   const handleContinue = () => {
-    navigation.navigate('OrderSummary');
+    switch (selectedMethod) {
+      case 'upi':
+        navigation.navigate('UPIPayment');
+        break;
+      case 'card':
+        navigation.navigate('CardPayment');
+        break;
+      case 'wallet':
+        navigation.navigate('WalletPayment');
+        break;
+      case 'netbanking':
+        navigation.navigate('NetBankingPayment');
+        break;
+      case 'cod':
+        navigation.navigate('PaymentReview', { 
+          paymentMethod: 'COD', 
+          paymentDetails: 'Pay when you receive your order' 
+        });
+        break;
+      default:
+        navigation.navigate('OrderSummary');
+    }
   };
 
   const handleMethodPress = (methodId: string) => {

@@ -38,6 +38,11 @@ import KidsFashionLandingScreen from '@/screens/kids/KidsFashionLandingScreen';
 import AgeGenderLandingScreen from '@/screens/kids/AgeGenderLandingScreen';
 import KidsCategoryProductsScreen from '@/screens/kids/KidsCategoryProductsScreen';
 import CategoryProductsScreen from '@/screens/product/CategoryProductsScreen';
+import UPIPaymentScreen from '@/screens/cart/UPIPaymentScreen';
+import CardPaymentScreen from '@/screens/cart/CardPaymentScreen';
+import WalletPaymentScreen from '@/screens/cart/WalletPaymentScreen';
+import NetBankingPaymentScreen from '@/screens/cart/NetBankingPaymentScreen';
+import PaymentReviewScreen from '@/screens/cart/PaymentReviewScreen';
 import { TopHeader } from "@/components/TopHeader";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
@@ -82,6 +87,11 @@ export type HomeStackParamList = {
   AgeGenderLanding: { gender: string; ageRange: string; color: string };
   KidsCategoryProducts: { gender: string; ageRange: string; category: string };
   CategoryProducts: { categoryName: string };
+  UPIPayment: undefined;
+  CardPayment: undefined;
+  WalletPayment: undefined;
+  NetBankingPayment: undefined;
+  PaymentReview: { paymentMethod?: string; paymentDetails?: string };
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -470,6 +480,52 @@ export default function HomeStackNavigator() {
         component={CategoryProductsScreen}
         options={{ 
           headerShown: false
+        }}
+      />
+
+      {/* UPI PAYMENT */}
+      <Stack.Screen
+        name="UPIPayment"
+        component={UPIPaymentScreen}
+        options={{ 
+          headerShown: false
+        }}
+      />
+
+      {/* CARD PAYMENT */}
+      <Stack.Screen
+        name="CardPayment"
+        component={CardPaymentScreen}
+        options={{ 
+          headerShown: false
+        }}
+      />
+
+      {/* WALLET PAYMENT */}
+      <Stack.Screen
+        name="WalletPayment"
+        component={WalletPaymentScreen}
+        options={{ 
+          headerShown: false
+        }}
+      />
+
+      {/* NET BANKING PAYMENT */}
+      <Stack.Screen
+        name="NetBankingPayment"
+        component={NetBankingPaymentScreen}
+        options={{ 
+          headerShown: false
+        }}
+      />
+
+      {/* PAYMENT REVIEW */}
+      <Stack.Screen
+        name="PaymentReview"
+        component={PaymentReviewScreen}
+        options={{ 
+          headerShown: true,
+          header: (props) => <TopHeader {...props} showBackButton={true} />
         }}
       />
     </Stack.Navigator>

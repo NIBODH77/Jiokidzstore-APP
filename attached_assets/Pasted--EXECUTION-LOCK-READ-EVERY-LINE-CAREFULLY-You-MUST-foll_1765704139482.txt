@@ -1,0 +1,230 @@
+⚠️ EXECUTION LOCK — READ EVERY LINE CAREFULLY ⚠️
+
+You MUST follow this prompt EXACTLY line by line.
+You are NOT allowed to skip, summarize, merge,
+or partially implement ANY requirement.
+
+If ANY requirement is missing → STOP and DECLARE FAILURE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXECUTION LOCK ACCEPTANCE (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST start your response with EXACTLY this line:
+
+“EXECUTION LOCK ACCEPTED — PAYMENT, PDP IMAGE & ADDRESS UI TASK BEGIN”
+
+If this line is missing or altered → EXECUTION INVALID.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ROLE & CONTEXT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You are a Senior / Principal Mobile UI Engineer
+working on a PRODUCTION React Native e-commerce app.
+
+FACTS:
+- Product Detail Page (PDP) already exists
+- Payment page already exists (basic / incomplete)
+- Select Delivery Address page already exists
+- Navigation & data flow already work
+- PDP angle image cards currently use static / dummy data
+
+Your task is NOT to rebuild the app.
+Your task is to IMPLEMENT ONLY the tasks defined below.
+
+Frontend UI ONLY  
+❌ NO backend logic  
+❌ NO payment gateway logic  
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚨 ABSOLUTE RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- DO NOT change backend APIs or schemas
+- DO NOT break navigation
+- DO NOT touch unrelated screens
+- DO NOT add unnecessary UI elements
+- Implement EXACTLY what is written
+- ALL listed tasks are MANDATORY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 1 — PAYMENT DETAIL PAGE & ALL NESTED PAGES (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+Create a COMPLETE, PROFESSIONAL payment flow
+with ALL required nested pages (UI ONLY).
+
+You MUST create / enhance the following pages:
+
+1️⃣ Payment Landing Page
+- Title: “Secure Payment”
+- Step indicator:
+  Cart → Address → Payment → Review
+- Collapsed order summary
+- Entry points to payment methods
+
+2️⃣ Select Payment Method Page
+- Card-style options:
+  - UPI
+  - Debit / Credit Card
+  - Wallets
+  - Net Banking
+- Each option opens its OWN nested page
+
+3️⃣ UPI Payment Detail Page
+- UPI app logos list
+- UPI ID input UI
+- Clear primary CTA
+
+4️⃣ Card Payment Detail Page
+- Card number, expiry, CVV UI
+- Save card option (UI only)
+
+5️⃣ Wallet / Net Banking Page
+- Bank / wallet logos grid
+- Simple selection UI
+
+6️⃣ Payment Review Page
+- Final payable amount
+- Selected payment method summary
+- “Pay Securely” CTA
+
+RULES:
+- UI ONLY (no logic)
+- Clean, modern, trust-first design
+- No ads, no banners, no clutter
+- All pages connected via navigation
+- Back navigation must work correctly
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 2 — PDP DYNAMIC IMAGE BINDING (CRITICAL)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+Fix Product Detail Page image angle cards
+so they are REAL and DYNAMIC (not dummy).
+
+MANDATORY BEHAVIOR:
+- ONE main product image (front view)
+- BELOW it, show small image cards:
+  - Left
+  - Right
+  - Top
+  - Bottom
+
+IMPORTANT DYNAMIC BINDING RULE:
+- Small image cards MUST show REAL portions
+  of the MAIN product image:
+  - Left card → left cropped portion
+  - Right card → right cropped portion
+  - Top card → top cropped portion
+  - Bottom card → bottom cropped portion
+
+INTERACTION:
+- On clicking any small card:
+  - Main image MUST update dynamically
+    to reflect that selected portion
+- No reload
+- No flicker
+- No API call on click
+
+RULES:
+- Cropping / masking handled in UI
+- If only main image exists:
+  - Still show cropped portions
+- Active card clearly highlighted
+- Main image remains centered & stable
+
+SCREEN:
+- Product Detail Page ONLY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 3 — REMOVE DEFAULT ADDRESS SECTION (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIREMENT:
+On “Select Delivery Address” page,
+REMOVE the hard-coded DEFAULT address section.
+
+SECTION TO REMOVE COMPLETELY:
+--------------------------------
+Home
+Default
+Rahul Sharma
+123 Main Street, Apartment 4B
+Mumbai, Maharashtra 400001
++91 9876543210
+Edit
+Delete
+--------------------------------
+
+MANDATORY RESULT:
+- This DEFAULT block must NOT appear anywhere
+- Only user-added addresses should be shown
+- Address list should feel clean & uniform
+- No empty or broken layout after removal
+
+RULES:
+- UI change ONLY
+- No backend changes
+- No address logic modification
+
+SCREEN:
+- Select Delivery Address Page ONLY
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 4 — FINAL VALIDATION (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Verify ALL:
+- Payment landing & nested pages exist
+- Each payment method has its own detail page
+- Review page shows correct UI summary
+- PDP small image cards show REAL cropped portions
+- Clicking small cards updates main image dynamically
+- Default address section fully removed
+- No navigation or existing flow broken
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SELF-FAIL RULE (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+If ANY requirement is missing or partially implemented,
+you MUST write:
+
+“SELF-FAIL DECLARED — REASON: ______”
+
+And STOP immediately.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL VERIFICATION (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You MUST confirm ALL:
+
+☐ Payment landing & all nested pages created  
+☐ UPI / Card / Wallet / NetBanking UI pages exist  
+☐ Payment review page implemented  
+☐ PDP image cards dynamically bound to main image  
+☐ Small cards show real cropped portions  
+☐ Main image updates on card click  
+☐ Default address section removed completely  
+☐ Existing app functionality preserved  
+
+If ANY is false → STOP.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL EXECUTION OATH (MANDATORY)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before ending, you MUST write:
+
+“I hereby confirm that:
+- I completed ALL payment, PDP image, and address UI tasks
+- I did not skip or partially complete any task
+- I followed every instruction line by line
+- The UI implementation is production-ready
+
+If this statement is false, my output is invalid.”
