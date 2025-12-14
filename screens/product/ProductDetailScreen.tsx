@@ -75,11 +75,56 @@ export default function ProductDetailScreen() {
 
   const productImages = useMemo(() => {
     if (product.images && product.images.length >= 5) {
-      return product.images;
+      return product.images.slice(0, 5);
     }
-    const baseImage = product.images && product.images.length > 0 ? product.images[0] : require('../../attached_assets/generated_images/toddler_boy_navy_outfit.png');
-    return [baseImage, baseImage, baseImage, baseImage, baseImage];
-  }, [product.images]);
+    
+    const dummyAngleImages = [
+      require('../../attached_assets/generated_images/toddler_boy_navy_outfit.png'),
+      require('../../attached_assets/generated_images/infant_baby_boy_blue_shirt.png'),
+      require('../../attached_assets/generated_images/preschool_boy_blue_graphic_shirt.png'),
+      require('../../attached_assets/generated_images/school_boy_blue_hoodie.png'),
+      require('../../attached_assets/generated_images/newborn_baby_boy_blue_onesie.png'),
+    ];
+    
+    const girlDummyImages = [
+      require('../../attached_assets/generated_images/toddler_girl_purple_floral_dress.png'),
+      require('../../attached_assets/generated_images/infant_baby_girl_striped_pink_shirt.png'),
+      require('../../attached_assets/generated_images/preschool_girl_pink_casual_outfit.png'),
+      require('../../attached_assets/generated_images/school_girl_colorblock_dress.png'),
+      require('../../attached_assets/generated_images/newborn_baby_girl_pink_onesie.png'),
+    ];
+    
+    const winterDummyImages = [
+      require('../../attached_assets/generated_images/winter_jacket_kids.png'),
+      require('../../attached_assets/generated_images/winter_sweater_kids.png'),
+      require('../../attached_assets/generated_images/winter_sweatshirt_kids.png'),
+      require('../../attached_assets/generated_images/pink_comfortable_kids_hoodie.png'),
+      require('../../attached_assets/generated_images/navy_winter_pullover.png'),
+    ];
+    
+    const baseImage = product.images && product.images.length > 0 ? product.images[0] : dummyAngleImages[0];
+    
+    const categoryLower = (product.category || '').toLowerCase();
+    const nameLower = (product.name || '').toLowerCase();
+    
+    let angleImages = dummyAngleImages;
+    if (categoryLower.includes('girl') || nameLower.includes('girl') || nameLower.includes('dress') || nameLower.includes('frock') || nameLower.includes('lehenga')) {
+      angleImages = girlDummyImages;
+    } else if (categoryLower.includes('winter') || nameLower.includes('winter') || nameLower.includes('jacket') || nameLower.includes('sweater')) {
+      angleImages = winterDummyImages;
+    }
+    
+    const result = [baseImage];
+    for (let i = 1; i < 5; i++) {
+      if (product.images && product.images[i]) {
+        result.push(product.images[i]);
+      } else {
+        result.push(angleImages[i]);
+      }
+    }
+    
+    return result;
+  }, [product.images, product.category, product.name]);
 
   const handleAngleSelect = (index: number) => {
     setActiveImageIndex(index);

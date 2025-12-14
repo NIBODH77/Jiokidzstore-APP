@@ -275,6 +275,14 @@
   - No API calls on click, instant image swap
   - Existing PDP functionality preserved
   - Successfully bundled with Metro (1280 modules)
+- [x] Added dummy angle images for ALL products (2024-12-14):
+  - Updated productImages useMemo to intelligently generate 5 angle images
+  - Category-aware image selection (Girls, Winter, Boys)
+  - Girls products: floral dress, pink shirt, casual outfit, colorblock dress, pink onesie
+  - Winter products: jacket, sweater, sweatshirt, hoodie, pullover
+  - Boys products: navy outfit, blue shirt, graphic shirt, hoodie, onesie
+  - Each product now displays 5 different angle images
+  - Clicking any angle card shows that specific image in main view
 
 ## Technical Notes
 - **Web Timer Fix**: react-native-reanimated's setTimeout doesn't work reliably on web. Used polling-based timer with Date.now() for web compatibility.
