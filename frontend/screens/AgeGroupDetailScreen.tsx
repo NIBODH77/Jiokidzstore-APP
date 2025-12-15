@@ -79,7 +79,7 @@ export default function AgeGroupDetailScreen() {
   const seasonScrollRef = useRef<ScrollView>(null);
   const [seasonScrollIndex, setSeasonScrollIndex] = useState(0);
 
-  const sections: Section[] = gender === 'girls' 
+  const sections: Section[] = gender === 'girls'
     ? [
         {
           id: '1',
@@ -225,7 +225,7 @@ export default function AgeGroupDetailScreen() {
   const renderAdBanner = ({ item }: { item: AdBanner }) => (
     <Pressable style={styles.adBannerContainer}>
       {item.image ? (
-        <Image 
+        <Image
           source={item.image}
           style={styles.bannerImage}
           resizeMode="cover"
@@ -261,7 +261,7 @@ export default function AgeGroupDetailScreen() {
     <View style={styles.container}>
       {/* Top Header with Back Button */}
       <TopHeader showBackButton={true} />
-      
+
       {/* Ad Carousel */}
       <View style={styles.carouselContainer}>
         <FlatList
@@ -340,11 +340,11 @@ export default function AgeGroupDetailScreen() {
           ))}
         </View>
 
-        {/* JioKidz Boutiques - Winter Wonderland Section */}
+        {/* CloudKidd Boutiques - Winter Wonderland Section */}
         <View style={styles.boutiquesSection}>
           {/* Header Banner with Baby Image */}
           <View style={styles.boutiquesHeader}>
-            <Image 
+            <Image
               source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=200&h=150&fit=crop' }}
               style={styles.boutiquesHeaderBabyImage}
               resizeMode="cover"
@@ -366,7 +366,7 @@ export default function AgeGroupDetailScreen() {
           <View style={styles.boutiqueCardsRow}>
             {/* Left Card - Fashion Sale */}
             <View style={styles.boutiqueCardSmall}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=200&h=300&fit=crop' }}
                 style={styles.boutiqueCardImage}
                 resizeMode="cover"
@@ -381,7 +381,7 @@ export default function AgeGroupDetailScreen() {
 
             {/* Right Card - Pantaloons */}
             <View style={styles.boutiqueCardLarge}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=300&h=300&fit=crop' }}
                 style={styles.boutiqueCardImageLarge}
                 resizeMode="cover"
@@ -432,15 +432,15 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.percentOff}>%Off</ThemedText>
             </View>
           </View>
-          <ScrollView 
+          <ScrollView
             ref={seasonScrollRef}
-            horizontal 
+            horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.seasonScrollContent}
             scrollEventThrottle={16}
           >
             <Pressable style={styles.seasonCardSlide}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
                 resizeMode="cover"
@@ -450,7 +450,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={styles.seasonCardSlide}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
                 resizeMode="cover"
@@ -460,7 +460,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={styles.seasonCardSlide}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
                 resizeMode="cover"
@@ -470,7 +470,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={styles.seasonCardSlide}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
                 resizeMode="cover"
@@ -480,7 +480,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={styles.seasonCardSlide}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
                 resizeMode="cover"
@@ -490,7 +490,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={styles.seasonCardSlide}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
                 resizeMode="cover"
@@ -500,7 +500,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={styles.seasonCardSlide}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
                 resizeMode="cover"
@@ -510,7 +510,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={styles.seasonCardSlide}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
                 resizeMode="cover"
@@ -520,7 +520,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={styles.seasonCardSlide}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=200&h=250&fit=crop' }}
                 style={styles.seasonCardImage}
                 resizeMode="cover"
@@ -538,7 +538,7 @@ export default function AgeGroupDetailScreen() {
           <ThemedText style={styles.coldWeatherSubtitle}>From Head to Toe: Winter Must-Haves</ThemedText>
           <View style={styles.coldWeatherGrid}>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -546,7 +546,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Onesies & Rompers{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -554,7 +554,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>sweaters{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -562,7 +562,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Sets & suits{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -570,7 +570,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Winterwear{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -578,7 +578,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Thermals{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -586,7 +586,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Caps & Gloves{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -594,7 +594,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Jackets{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1554062407-98eeb64c6a62?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -602,7 +602,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Mittens{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -610,7 +610,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Booties{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -618,7 +618,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Scarves{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -626,7 +626,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Sweatshirts{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1539533057440-7db8326263b1?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -634,7 +634,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Coats{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -642,7 +642,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Socks Set{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -650,7 +650,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Leggings{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -658,7 +658,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Track Suits{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -666,7 +666,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Cardigans{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -674,7 +674,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.coldWeatherCardText}>Winter Gloves{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.coldWeatherCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=150&h=180&fit=crop' }}
                 style={styles.coldWeatherCardImage}
                 resizeMode="cover"
@@ -697,7 +697,7 @@ export default function AgeGroupDetailScreen() {
           <ThemedText style={styles.brandsSubtitle}>Winter's finest for your little wonders</ThemedText>
           <View style={styles.brandsGrid}>
             <Pressable style={[styles.brandCard, { backgroundColor: '#FFF3E0' }]}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
@@ -707,7 +707,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#E8F5E9' }]}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
@@ -717,7 +717,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#E3F2FD' }]}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
@@ -727,7 +727,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#FFF3E0' }]}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
@@ -737,7 +737,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#FCE4EC' }]}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
@@ -747,7 +747,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#E8F5E9' }]}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
@@ -757,7 +757,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#FFF8E1' }]}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
@@ -767,7 +767,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#E3F2FD' }]}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
@@ -777,7 +777,7 @@ export default function AgeGroupDetailScreen() {
               </View>
             </Pressable>
             <Pressable style={[styles.brandCard, { backgroundColor: '#FFEBEE' }]}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=150&fit=crop' }}
                 style={styles.brandCardImage}
                 resizeMode="cover"
@@ -794,7 +794,7 @@ export default function AgeGroupDetailScreen() {
           <ThemedText style={styles.innerwearTitle}>Everday Innerwear</ThemedText>
           <View style={styles.innerwearGrid}>
             <Pressable style={styles.innerwearCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=180&fit=crop' }}
                 style={styles.innerwearCardImage}
                 resizeMode="cover"
@@ -802,7 +802,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.innerwearCardText}>Thermal{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.innerwearCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=150&h=180&fit=crop' }}
                 style={styles.innerwearCardImage}
                 resizeMode="cover"
@@ -810,7 +810,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.innerwearCardText}>Jhablas{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.innerwearCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=150&h=180&fit=crop' }}
                 style={styles.innerwearCardImage}
                 resizeMode="cover"
@@ -818,7 +818,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.innerwearCardText}>Slips & Camisoles{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.innerwearCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150&h=180&fit=crop' }}
                 style={styles.innerwearCardImage}
                 resizeMode="cover"
@@ -826,7 +826,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.innerwearCardText}>Innerwear sets{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.innerwearCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=150&h=180&fit=crop' }}
                 style={styles.innerwearCardImage}
                 resizeMode="cover"
@@ -834,7 +834,7 @@ export default function AgeGroupDetailScreen() {
               <ThemedText style={styles.innerwearCardText}>Bloomers{'>'}</ThemedText>
             </Pressable>
             <Pressable style={styles.innerwearCard}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=180&fit=crop' }}
                 style={styles.innerwearCardImage}
                 resizeMode="cover"

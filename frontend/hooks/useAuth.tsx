@@ -20,8 +20,8 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const USER_KEY = '@jiokidz_user';
-const ONBOARDING_KEY = '@jiokidz_onboarding';
+const USER_KEY = '@CloudKidd_user';
+const ONBOARDING_KEY = '@CloudKidd_onboarding';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -41,11 +41,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         AsyncStorage.getItem(USER_KEY),
         AsyncStorage.getItem(ONBOARDING_KEY),
       ]);
-      
+
       if (userData) {
         setUser(JSON.parse(userData));
       }
-      
+
       if (onboardingData) {
         setHasSeenOnboarding(true);
       }

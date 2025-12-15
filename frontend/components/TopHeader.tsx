@@ -8,7 +8,7 @@ import type { RootState } from '@/store/store';
 import { selectCartTotalItems } from '@/store/cartSlice';
 import type { NativeStackHeaderProps } from '@react-navigation/native-stack';
 
-const jiokidzLogo = require('../attached_assets/generated_images/jiokidz_logo_final.png');
+const CloudKiddLogo = require('../attached_assets/generated_images/CloudKidd_logo_final.png');
 
 interface TopHeaderProps extends Partial<NativeStackHeaderProps> {
   showBackButton?: boolean;
@@ -20,8 +20,8 @@ interface TopHeaderProps extends Partial<NativeStackHeaderProps> {
   hideCartIcon?: boolean;
 }
 
-export function TopHeader({ 
-  showBackButton = false, 
+export function TopHeader({
+  showBackButton = false,
   hideRightIcons = false,
   hideSearchIcon = false,
   hideWishlistIcon = false,
@@ -34,7 +34,7 @@ export function TopHeader({
   const insets = useSafeAreaInsets();
   const cartCount = useSelector((state: RootState) => selectCartTotalItems(state.cart));
 
-  const headerStyle = Platform.OS === 'web' 
+  const headerStyle = Platform.OS === 'web'
     ? [styles.container, { paddingTop: insets.top }]
     : [styles.container, { paddingTop: insets.top }, nativeProps.options?.headerStyle];
 
@@ -51,7 +51,7 @@ export function TopHeader({
         {/* Left - Back Button & Logo */}
         <View style={styles.leftSection}>
           {showBackButton && (
-            <Pressable 
+            <Pressable
               onPress={handleBack}
               style={styles.backButton}
               hitSlop={10}
@@ -60,7 +60,7 @@ export function TopHeader({
             </Pressable>
           )}
           <Image
-            source={jiokidzLogo}
+            source={CloudKiddLogo}
             style={styles.logo}
             resizeMode="contain"
           />
@@ -73,8 +73,8 @@ export function TopHeader({
         {!hideRightIcons && (
           <View style={styles.rightSection}>
             {!hideSearchIcon && (
-              <Pressable 
-                style={styles.iconButton} 
+              <Pressable
+                style={styles.iconButton}
                 hitSlop={8}
                 onPress={() => navigation.navigate('Search' as never)}
               >
@@ -83,8 +83,8 @@ export function TopHeader({
             )}
 
             {!hideWishlistIcon && (
-              <Pressable 
-                style={styles.iconButton} 
+              <Pressable
+                style={styles.iconButton}
                 hitSlop={8}
                 onPress={() => navigation.navigate('Wishlist' as never)}
               >
@@ -93,8 +93,8 @@ export function TopHeader({
             )}
 
             {!hideNotificationIcon && (
-              <Pressable 
-                style={styles.iconButton} 
+              <Pressable
+                style={styles.iconButton}
                 hitSlop={8}
                 onPress={() => navigation.navigate('Notifications' as never)}
               >
@@ -106,8 +106,8 @@ export function TopHeader({
             )}
 
             {!hideProfileIcon && (
-              <Pressable 
-                style={styles.iconButton} 
+              <Pressable
+                style={styles.iconButton}
                 hitSlop={8}
                 onPress={() => navigation.navigate('Profile' as never)}
               >
@@ -116,8 +116,8 @@ export function TopHeader({
             )}
 
             {!hideCartIcon && (
-              <Pressable 
-                style={styles.cartButton} 
+              <Pressable
+                style={styles.cartButton}
                 hitSlop={8}
                 onPress={() => navigation.navigate('Cart' as never)}
               >

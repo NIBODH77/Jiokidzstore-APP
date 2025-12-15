@@ -1,8 +1,8 @@
-# JioKidz E-Commerce Application
+# CloudKidd E-Commerce Application
 
 ## Overview
 
-JioKidz is a full-stack e-commerce mobile application for kids' fashion and baby products. The project consists of a React Native/Expo frontend targeting Android, iOS, and web platforms, paired with a FastAPI Python backend using PostgreSQL for data persistence. The application follows a modern e-commerce architecture with features including product browsing, cart management, order processing, payment integration, and user authentication via OTP.
+CloudKidd is a full-stack e-commerce mobile application for kids' fashion and baby products. The project consists of a React Native/Expo frontend targeting Android, iOS, and web platforms, paired with a FastAPI Python backend using PostgreSQL for data persistence. The application follows a modern e-commerce architecture with features including product browsing, cart management, order processing, payment integration, and user authentication via OTP.
 
 ## User Preferences
 

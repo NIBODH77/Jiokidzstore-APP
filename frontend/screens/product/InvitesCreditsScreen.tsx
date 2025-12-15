@@ -20,7 +20,7 @@ export default function InvitesCreditsScreen() {
   const [copied, setCopied] = useState(false);
 
   const referralCode = 'INVITE2025';
-  const referralLink = 'https://jiokidz.com/ref/INVITE2025';
+  const referralLink = 'https://CloudKidd.com/ref/INVITE2025';
 
   const handleCopy = () => {
     Clipboard.setString(referralLink);
@@ -33,7 +33,7 @@ export default function InvitesCreditsScreen() {
     try {
       await Share.share({
         message: `Use my referral code ${referralCode} and get exciting rewards! ${referralLink}`,
-        title: 'Join me on JioKidz!',
+        title: 'Join me on CloudKidd!',
       });
     } catch (error) {
       console.log('Share cancelled');

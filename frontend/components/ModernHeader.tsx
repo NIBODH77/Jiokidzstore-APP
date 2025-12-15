@@ -24,8 +24,8 @@ export function ModernHeader({ onNotificationPress, notificationCount = 0 }: Mod
           <Pressable style={styles.iconButton}>
             <Feather name="map-pin" size={20} color={Colors.light.text} />
           </Pressable>
-          {/* JioKidz Logo */}
-          <Text style={styles.logo}>JioKidz</Text>
+          {/* CloudKidd Logo */}
+          <Text style={styles.logo}>CloudKidd</Text>
         </View>
 
         {/* Right Icons */}

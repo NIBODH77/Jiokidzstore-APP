@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 from typing import Tuple, Optional
 from decimal import Decimal
@@ -6,19 +6,19 @@ from app.repositories.payment_repository import RefundRepository
 from app.schemas.refund import RefundResponse
 
 class RefundService:
-    def __init__(self, db: Session):
+    def __init__(self, db: AsyncSession):
         self.db = db
         self.refund_repo = RefundRepository(db)
-    
-    def initiate_refund(
-        self, 
-        order_id: int, 
-        user_id: int, 
+
+    async def initiate_refund(
+        self,
+        order_id: int,
+        user_id: int,
         refund_type: str,
         amount: Optional[Decimal],
         reason: str
     ) -> Tuple[bool, str, Optional[dict]]:
-        result = self.db.execute(
+        result = await self.db.execute(
             text("""
                 SELECT * FROM initiate_refund(
                     :order_id, :user_id, :refund_type, :amount, :reason,
@@ -26,29 +26,30 @@ class RefundService:
                 )
             """),
             {
-                "order_id": order_id, 
-                "user_id": user_id, 
+                "order_id": order_id,
+                "user_id": user_id,
                 "refund_type": refund_type,
                 "amount": amount,
                 "reason": reason
             }
-        ).fetchone()
-        
-        if result and result[2]:
-            self.db.commit()
+        )
+        row = result.fetchone()
+
+        if row and row[2]:
+            await self.db.commit()
             return True, "Refund initiated successfully", {
-                "refund_id": result[0],
-                "refund_number": result[1]
+                "refund_id": row[0],
+                "refund_number": row[1]
             }
-        
-        error_msg = result[3] if result else "Failed to initiate refund"
+
+        error_msg = row[3] if row else "Failed to initiate refund"
         return False, error_msg, None
-    
-    def get_refund(self, order_id: int) -> Optional[RefundResponse]:
-        refund = self.refund_repo.get_by_order_id(order_id)
+
+    async def get_refund(self, order_id: int) -> Optional[RefundResponse]:
+        refund = await self.refund_repo.get_by_order_id(order_id)
         if not refund:
             return None
-        
+
         return RefundResponse(
             id=refund.id,
             refund_number=refund.refund_number,

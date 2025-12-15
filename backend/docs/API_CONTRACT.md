@@ -1,4 +1,4 @@
-# JioKidz API Contract
+# CloudKidd API Contract
 
 ## Base URL
 `/api/v1`

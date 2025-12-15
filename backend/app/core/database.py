@@ -1,38 +1,43 @@
-from sqlalchemy import create_engine, text
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy import text
 from .config import settings
 
-engine = create_engine(
-    settings.DATABASE_URL,
+DATABASE_URL = settings.DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://")
+
+engine = create_async_engine(
+    DATABASE_URL,
     pool_pre_ping=True,
     pool_size=10,
     max_overflow=20,
     pool_recycle=3600,
 )
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+AsyncSessionLocal = sessionmaker(
+    bind=engine,
+    class_=AsyncSession,
+    expire_on_commit=False,
+    autocommit=False,
+    autoflush=False,
+)
 
 Base = declarative_base()
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+async def get_db() -> AsyncSession:
+    async with AsyncSessionLocal() as session:
+        yield session
 
-def call_procedure(db, procedure_name: str, params: dict = None):
+async def call_procedure(db: AsyncSession, procedure_name: str, params: dict = None):
     if params is None:
         params = {}
     
     param_list = ", ".join([f":{key}" for key in params.keys()])
-    sql = f"CALL {procedure_name}({param_list})"
+    sql = text(f"CALL {procedure_name}({param_list})")
     
-    db.execute(text(sql), params)
-    db.commit()
+    await db.execute(sql, params)
+    await db.commit()
 
-def call_procedure_with_result(db, procedure_name: str, params: dict = None):
+async def call_procedure_with_result(db: AsyncSession, procedure_name: str, params: dict = None):
     if params is None:
         params = {}
     
@@ -41,7 +46,7 @@ def call_procedure_with_result(db, procedure_name: str, params: dict = None):
         param_placeholders.append(f"{key} := :{key}")
     
     param_str = ", ".join(param_placeholders)
-    sql = f"SELECT * FROM {procedure_name}({param_str})"
+    sql = text(f"SELECT * FROM {procedure_name}({param_str})")
     
-    result = db.execute(text(sql), params)
+    result = await db.execute(sql, params)
     return result.fetchall()

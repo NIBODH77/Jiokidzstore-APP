@@ -1,4 +1,4 @@
-# JioKidz Backend API
+# CloudKidd Backend API
 
 Production-ready e-commerce backend built with FastAPI, PostgreSQL, and SQLAlchemy.
 

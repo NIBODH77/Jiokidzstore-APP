@@ -1,4 +1,4 @@
-# JioKidz FirstCry-Style UI Enhancement Plan
+# CloudKidd FirstCry-Style UI Enhancement Plan
 
 ## EXECUTION LOCK ACCEPTED — BEGINNING PHASE 0
 
@@ -117,7 +117,7 @@ Comprehensive review of all 40+ screens across auth, home, product, cart, profil
 
 | Level | Example | Title Behavior | Parent Context | Spacing |
 |-------|---------|----------------|----------------|---------|
-| L0 | Home | "JioKidz" branding | None | Full padding |
+| L0 | Home | "CloudKidd" branding | None | Full padding |
 | L1 | Category | Category name as title | Back arrow to Home | Standard padding |
 | L2 | Subcategory/PLP | Subcategory name | Breadcrumb + back | Tighter padding |
 | L3 | PDP | Product name (truncated) | Back to PLP | Minimal chrome |

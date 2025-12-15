@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CartItem, Address, Product } from '@/data/types';
 
-const CART_KEY = '@jiokidz_cart';
-const WISHLIST_KEY = '@jiokidz_wishlist';
-const ADDRESSES_KEY = '@jiokidz_addresses';
+const CART_KEY = '@CloudKidd_cart';
+const WISHLIST_KEY = '@CloudKidd_wishlist';
+const ADDRESSES_KEY = '@CloudKidd_addresses';
 
 export const cartStorage = {
   async getCart(): Promise<CartItem[]> {
@@ -42,7 +42,7 @@ export const cartStorage = {
     try {
       const cart = await this.getCart();
       const index = cart.findIndex(i => i.id === itemId);
-      
+
       if (index >= 0) {
         if (quantity <= 0) {
           cart.splice(index, 1);
@@ -139,7 +139,7 @@ export const addressStorage = {
     try {
       const addresses = await this.getAddresses();
       const index = addresses.findIndex(a => a.id === address.id);
-      
+
       if (index >= 0) {
         addresses[index] = address;
       } else {

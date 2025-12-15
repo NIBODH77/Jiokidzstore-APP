@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 from typing import Tuple, Optional, List
 from decimal import Decimal
@@ -7,25 +7,25 @@ from app.repositories.coupon_repository import CouponRepository
 from app.schemas.order import OrderResponse, OrderItemResponse, OrderListResponse
 
 class OrderService:
-    def __init__(self, db: Session):
+    def __init__(self, db: AsyncSession):
         self.db = db
         self.order_repo = OrderRepository(db)
         self.coupon_repo = CouponRepository(db)
-    
-    def create_order(
-        self, 
-        user_id: int, 
-        address_id: int, 
+
+    async def create_order(
+        self,
+        user_id: int,
+        address_id: int,
         coupon_code: Optional[str] = None,
         notes: Optional[str] = None
     ) -> Tuple[bool, str, Optional[dict]]:
         coupon_id = None
         if coupon_code:
-            coupon = self.coupon_repo.get_by_code(coupon_code)
+            coupon = await self.coupon_repo.get_by_code(coupon_code)
             if coupon:
                 coupon_id = coupon.id
-        
-        result = self.db.execute(
+
+        result = await self.db.execute(
             text("""
                 SELECT * FROM create_order(
                     :user_id, :address_id, :coupon_id, :notes,
@@ -33,45 +33,47 @@ class OrderService:
                 )
             """),
             {
-                "user_id": user_id, 
-                "address_id": address_id, 
+                "user_id": user_id,
+                "address_id": address_id,
                 "coupon_id": coupon_id,
                 "notes": notes
             }
-        ).fetchone()
-        
-        if result and result[3]:
-            self.db.commit()
+        )
+        row = result.fetchone()
+
+        if row and row[3]:
+            await self.db.commit()
             return True, "Order created successfully", {
-                "order_id": result[0],
-                "order_number": result[1],
-                "total_amount": float(result[2])
+                "order_id": row[0],
+                "order_number": row[1],
+                "total_amount": float(row[2])
             }
-        
-        error_msg = result[4] if result else "Failed to create order"
+
+        error_msg = row[4] if row else "Failed to create order"
         return False, error_msg, None
-    
-    def cancel_order(self, order_id: int, user_id: int, reason: str) -> Tuple[bool, str]:
-        result = self.db.execute(
+
+    async def cancel_order(self, order_id: int, user_id: int, reason: str) -> Tuple[bool, str]:
+        result = await self.db.execute(
             text("SELECT * FROM cancel_order(:order_id, :user_id, :reason, NULL::BOOLEAN, NULL::TEXT)"),
             {"order_id": order_id, "user_id": user_id, "reason": reason}
-        ).fetchone()
-        
-        if result and result[0]:
-            self.db.commit()
+        )
+        row = result.fetchone()
+
+        if row and row[0]:
+            await self.db.commit()
             return True, "Order cancelled successfully"
-        
-        error_msg = result[1] if result else "Failed to cancel order"
+
+        error_msg = row[1] if row else "Failed to cancel order"
         return False, error_msg
-    
-    def get_order(self, order_id: int, user_id: int) -> Optional[OrderResponse]:
-        order = self.order_repo.get_by_id(order_id)
+
+    async def get_order(self, order_id: int, user_id: int) -> Optional[OrderResponse]:
+        order = await self.order_repo.get_by_id(order_id)
         if not order or order.user_id != user_id:
             return None
         return self._to_response(order)
-    
-    def get_user_orders(self, user_id: int, status: Optional[str], page: int, page_size: int) -> OrderListResponse:
-        orders, total = self.order_repo.get_user_orders(
+
+    async def get_user_orders(self, user_id: int, status: Optional[str], page: int, page_size: int) -> OrderListResponse:
+        orders, total = await self.order_repo.get_user_orders(
             user_id, status, skip=(page - 1) * page_size, limit=page_size
         )
         return OrderListResponse(
@@ -80,7 +82,7 @@ class OrderService:
             page=page,
             page_size=page_size
         )
-    
+
     def _to_response(self, order) -> OrderResponse:
         items = [
             OrderItemResponse(
@@ -95,7 +97,7 @@ class OrderService:
                 total_price=item.total_price
             ) for item in order.items
         ]
-        
+
         return OrderResponse(
             id=order.id,
             order_number=order.order_number,

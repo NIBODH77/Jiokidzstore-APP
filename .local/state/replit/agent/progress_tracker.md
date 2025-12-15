@@ -1,4 +1,4 @@
-# JioKidz Project - Restructured
+# CloudKidd Project - Restructured
 
 ## Project Structure (2024-12-14)
 The project has been successfully restructured with exactly two folders at root:
@@ -15,7 +15,7 @@ The project has been successfully restructured with exactly two folders at root:
 - [x] Created backend/requirements.txt with all Python dependencies
 - [x] Cleaned root directory - only frontend/ and backend/ remain
 - [x] Both frontend and backend workflows running successfully
-- [x] Verified application displays JioKidz splash screen
+- [x] Verified application displays CloudKidd splash screen
 
 ## Technical Configuration
 - Frontend: React Native/Expo on port 5000 (webview)

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
 from decimal import Decimal
 from app.core.database import get_db
@@ -9,8 +9,9 @@ import math
 
 router = APIRouter(prefix="/products", tags=["Products"])
 
+
 @router.get("", response_model=ProductListResponse)
-def get_products(
+async def get_products(
     category_id: Optional[int] = None,
     brand: Optional[str] = None,
     min_price: Optional[Decimal] = None,
@@ -22,20 +23,20 @@ def get_products(
     sort_order: str = "desc",
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
-    db: Session = Depends(get_db)
+    db: AsyncSession = Depends(get_db)
 ):
     repo = ProductRepository(db)
-    products, total = repo.get_all(
+    products, total = await repo.get_all(
         category_id=category_id, brand=brand, min_price=min_price,
         max_price=max_price, gender=gender, age_months=age_months,
         search=search, sort_by=sort_by, sort_order=sort_order,
         skip=(page - 1) * page_size, limit=page_size
     )
-    
+
     product_responses = []
     for p in products:
         primary_img = next((img for img in p.images if img.is_primary), None)
-        stock = repo.get_stock(p.id)
+        stock = await repo.get_stock(p.id)
         product_responses.append(ProductResponse(
             id=p.id, sku=p.sku, name=p.name, description=p.description,
             category_id=p.category_id, brand=p.brand, mrp=p.mrp,
@@ -47,20 +48,21 @@ def get_products(
             created_at=p.created_at, images=[],
             stock_available=stock
         ))
-    
+
     return ProductListResponse(
         products=product_responses, total=total, page=page,
         page_size=page_size, total_pages=math.ceil(total / page_size)
     )
 
+
 @router.get("/{product_id}", response_model=ProductResponse)
-def get_product(product_id: int, db: Session = Depends(get_db)):
+async def get_product(product_id: int, db: AsyncSession = Depends(get_db)):
     repo = ProductRepository(db)
-    product = repo.get_by_id(product_id)
+    product = await repo.get_by_id(product_id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
-    
-    stock = repo.get_stock(product_id)
+
+    stock = await repo.get_stock(product_id)
     return ProductResponse(
         id=product.id, sku=product.sku, name=product.name,
         description=product.description, category_id=product.category_id,
@@ -73,7 +75,8 @@ def get_product(product_id: int, db: Session = Depends(get_db)):
         created_at=product.created_at, images=[], stock_available=stock
     )
 
+
 @router.get("/categories/", response_model=list[CategoryResponse])
-def get_categories(parent_id: Optional[int] = None, db: Session = Depends(get_db)):
+async def get_categories(parent_id: Optional[int] = None, db: AsyncSession = Depends(get_db)):
     repo = CategoryRepository(db)
-    return repo.get_all(parent_id)
+    return await repo.get_all(parent_id)

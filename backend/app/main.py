@@ -1,17 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.core.database import engine, Base
-from app.routes import auth, products, cart, orders, payments, coupons, refunds, users
-
-Base.metadata.create_all(bind=engine)
+from app.routes import auth, products, cart, orders, payments, coupons, refunds, users, ai
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
-    docs_url=f"{settings.API_V1_STR}/docs",
-    redoc_url=f"{settings.API_V1_STR}/redoc"
+    docs_url="/docs",
+    redoc_url="/redoc"
 )
 
 app.add_middleware(
@@ -30,10 +27,11 @@ app.include_router(payments.router, prefix=settings.API_V1_STR)
 app.include_router(coupons.router, prefix=settings.API_V1_STR)
 app.include_router(refunds.router, prefix=settings.API_V1_STR)
 app.include_router(users.router, prefix=settings.API_V1_STR)
+app.include_router(ai.router, prefix=settings.API_V1_STR)
 
 @app.get("/")
 def root():
-    return {"message": "JioKidz API", "version": settings.VERSION, "docs": f"{settings.API_V1_STR}/docs"}
+    return {"message": "CloudKidd API", "version": settings.VERSION, "docs": "/docs"}
 
 @app.get("/health")
 def health():

@@ -52,7 +52,7 @@ Created .local/state/replit/agent/progress_tracker.md
 
 Summarized completed session work
 ✅ Summary
-I've successfully started your JioKidz shopping app on port 8080! Here's what was done:
+I've successfully started your CloudKidd shopping app on port 8080! Here's what was done:
 
 Installed all dependencies - Got all 944 npm packages installed (the app needs these to run)
 Restarted the application - The workflow is now running with the "npm run dev" command, which launches your Expo app on port 8080

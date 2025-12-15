@@ -64,7 +64,7 @@ export default function ContactDetailsScreen() {
           <Text style={styles.infoTitle}>Why should I verify my mobile number</Text>
           <View style={styles.infoBox}>
             <Text style={styles.infoText}>
-              By verifying your mobile number with us you can now Shop'n'Earn Club Cash at our JioKidz.com stores too! To earn Club Cash on store purchases, simply provide your verified mobile number at the time of billing.{' '}
+              By verifying your mobile number with us you can now Shop'n'Earn Club Cash at our CloudKidd.com stores too! To earn Club Cash on store purchases, simply provide your verified mobile number at the time of billing.{' '}
               <Text style={styles.linkText}>T&C Apply</Text>
             </Text>
           </View>

@@ -1,23 +1,30 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 from typing import Optional, List
 from app.models.address import Address
 
 class AddressRepository:
-    def __init__(self, db: Session):
+    def __init__(self, db: AsyncSession):
         self.db = db
-    
-    def get_by_id(self, address_id: int) -> Optional[Address]:
-        return self.db.query(Address).filter(Address.id == address_id).first()
-    
-    def get_user_addresses(self, user_id: int) -> List[Address]:
-        return self.db.query(Address).filter(
+
+    async def get_by_id(self, address_id: int) -> Optional[Address]:
+        stmt = select(Address).where(Address.id == address_id)
+        result = await self.db.execute(stmt)
+        return result.scalars().first()
+
+    async def get_user_addresses(self, user_id: int) -> List[Address]:
+        stmt = select(Address).where(
             Address.user_id == user_id,
             Address.is_active == True
-        ).order_by(Address.is_default.desc(), Address.created_at.desc()).all()
-    
-    def get_default_address(self, user_id: int) -> Optional[Address]:
-        return self.db.query(Address).filter(
+        ).order_by(Address.is_default.desc(), Address.created_at.desc())
+        result = await self.db.execute(stmt)
+        return result.scalars().all()
+
+    async def get_default_address(self, user_id: int) -> Optional[Address]:
+        stmt = select(Address).where(
             Address.user_id == user_id,
             Address.is_default == True,
             Address.is_active == True
-        ).first()
+        )
+        result = await self.db.execute(stmt)
+        return result.scalars().first()
