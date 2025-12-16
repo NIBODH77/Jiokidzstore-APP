@@ -9,7 +9,6 @@ from app.routes import (
     payments,
     coupons,
     refunds,
-    ai,
     users
 )
 
@@ -37,7 +36,6 @@ app.include_router(payments.router, prefix=settings.API_V1_STR)
 app.include_router(coupons.router, prefix=settings.API_V1_STR)
 app.include_router(refunds.router, prefix=settings.API_V1_STR)
 app.include_router(users.router, prefix=settings.API_V1_STR)
-app.include_router(ai.router, prefix=settings.API_V1_STR)
 
 @app.get("/")
 def root():
