@@ -10,7 +10,7 @@ from alembic import context
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app.core.database import Base
-from app.models import user, address, product, cart, wishlist, order
+from app.models import user, address, product, cart, wishlist, order, otp_verification, refresh_token
 
 config = context.config
 

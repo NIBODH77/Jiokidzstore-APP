@@ -5,14 +5,9 @@ from app.core.database import Base
 import enum
 
 class UserRole(str, enum.Enum):
-    MOM = "MOM"
-    DAD = "DAD"
-    GUARDIAN = "GUARDIAN"
-    EXPECTING = "EXPECTING"
-    TRYING_TO_CONCEIVE = "TRYING_TO_CONCEIVE"
-    ADMIN = "admin"
-    SELLER = "seller"
-    CUSTOMER = "customer"
+    CUSTOMER = "CUSTOMER"
+    SELLER = "SELLER"
+    ADMIN = "ADMIN"
 
 class User(Base):
     __tablename__ = "users"

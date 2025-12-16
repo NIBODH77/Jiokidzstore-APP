@@ -1,7 +1,17 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.routes import auth, products, cart, orders, payments, coupons, refunds, users, ai
+from app.routes import (
+    auth,
+    products,
+    cart,
+    orders,
+    payments,
+    coupons,
+    refunds,
+    ai,
+    users
+)
 
 app = FastAPI(
     title=settings.PROJECT_NAME,

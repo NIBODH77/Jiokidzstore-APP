@@ -1,157 +1,270 @@
-from fastapi import APIRouter, Depends, HTTPException
+"""
+USERS API
+Base path: /api/v1/users
+
+Unified endpoints for all user roles (Customer, Seller, Admin).
+Access control is handled at the service layer where necessary.
+"""
+from fastapi import APIRouter, Depends, Query, Path
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import update
+from typing import List
+
 from app.core.database import get_db
 from app.core.security import get_current_active_user
-from app.repositories.user_repository import UserRepository
-from app.repositories.address_repository import AddressRepository
-from app.repositories.wishlist_repository import WishlistRepository
-from app.schemas.user import UserResponse, UserUpdate, ChildCreate, ChildResponse
-from app.schemas.address import AddressCreate, AddressUpdate, AddressResponse, AddressListResponse
-from app.schemas.common import SuccessResponse
-from app.models.user import Child
-from app.models.address import Address
-from app.models.wishlist import Wishlist
+from app.services.user_service import UserService
+from app.schemas.users import (
+    UserProfileResponse,
+    UserProfileUpdate,
+    AddressListResponse,
+    AddressCreate,
+    AddressUpdate,
+    AddressResponse,
+    ChildResponse,
+    ChildCreate,
+    WishlistResponse,
+    SuccessResponse,
+    AdminUserListResponse,
+    AdminUserDetailResponse,
+    AdminUserStatusUpdate
+)
+from app.models.user import User
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
+# ============================================================================
+# USER PROFILE (Unified)
+# ============================================================================
 
-@router.get("/me", response_model=UserResponse)
-async def get_current_user_profile(current_user = Depends(get_current_active_user)):
-    return current_user
-
-
-@router.put("/me", response_model=UserResponse)
-async def update_profile(
-    request: UserUpdate,
-    current_user = Depends(get_current_active_user),
+@router.get(
+    "/me",
+    response_model=UserProfileResponse,
+    summary="Get my profile",
+    description="Get authenticated user's profile. Structure adapts to role."
+)
+async def get_my_profile(
+    current_user: User = Depends(get_current_active_user),
     db: AsyncSession = Depends(get_db)
 ):
-    repo = UserRepository(db)
-    user = await repo.get_by_id(current_user.id)
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    updated = await repo.update_user(user, request.model_dump(exclude_unset=True))
-    return updated
+    """Get current user profile"""
+    service = UserService(db)
+    return await service.get_user_profile(current_user)
 
 
-@router.get("/me/addresses", response_model=AddressListResponse)
-async def get_addresses(current_user = Depends(get_current_active_user), db: AsyncSession = Depends(get_db)):
-    repo = AddressRepository(db)
-    addresses = await repo.get_user_addresses(current_user.id)
-    default = await repo.get_default_address(current_user.id)
-    return AddressListResponse(
-        addresses=[AddressResponse.model_validate(a) for a in addresses],
-        default_address_id=default.id if default else None
-    )
+@router.put(
+    "/me",
+    response_model=UserProfileResponse,
+    summary="Update my profile",
+    description="Update authenticated user's profile fields."
+)
+async def update_my_profile(
+    data: UserProfileUpdate,
+    current_user: User = Depends(get_current_active_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Update current user profile"""
+    service = UserService(db)
+    return await service.update_user_profile(current_user, data)
+
+# ============================================================================
+# USER ADDRESSES (Unified)
+# ============================================================================
+
+@router.get(
+    "/me/addresses",
+    response_model=AddressListResponse,
+    summary="Get my addresses",
+    description="Get all addresses for authenticated user."
+)
+async def get_my_addresses(
+    current_user: User = Depends(get_current_active_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get all user addresses"""
+    service = UserService(db)
+    return await service.get_user_addresses(current_user)
 
 
-@router.post("/me/addresses", response_model=AddressResponse)
+@router.post(
+    "/me/addresses",
+    response_model=AddressResponse,
+    summary="Create address",
+    description="Create new address for authenticated user."
+)
 async def create_address(
-    request: AddressCreate,
-    current_user = Depends(get_current_active_user),
+    data: AddressCreate,
+    current_user: User = Depends(get_current_active_user),
     db: AsyncSession = Depends(get_db)
 ):
-    if request.is_default:
-        await db.execute(update(Address).where(Address.user_id == current_user.id).values(is_default=False))
-
-    address = Address(**request.model_dump(), user_id=current_user.id)
-    db.add(address)
-    await db.commit()
-    await db.refresh(address)
-    return address
+    """Create new address"""
+    service = UserService(db)
+    return await service.create_user_address(current_user, data)
 
 
-@router.put("/me/addresses/{address_id}", response_model=AddressResponse)
+@router.put(
+    "/me/addresses/{address_id}",
+    response_model=AddressResponse,
+    summary="Update address",
+    description="Update existing address. Ownership validated."
+)
 async def update_address(
     address_id: int,
-    request: AddressUpdate,
-    current_user = Depends(get_current_active_user),
+    data: AddressUpdate,
+    current_user: User = Depends(get_current_active_user),
     db: AsyncSession = Depends(get_db)
 ):
-    repo = AddressRepository(db)
-    address = await repo.get_by_id(address_id)
-    if not address or address.user_id != current_user.id:
-        raise HTTPException(status_code=404, detail="Address not found")
-
-    if request.is_default:
-        await db.execute(update(Address).where(Address.user_id == current_user.id).values(is_default=False))
-
-    for field, value in request.model_dump(exclude_unset=True).items():
-        setattr(address, field, value)
-    await db.commit()
-    await db.refresh(address)
-    return address
+    """Update address with ownership validation"""
+    service = UserService(db)
+    return await service.update_user_address(current_user, address_id, data)
 
 
-@router.delete("/me/addresses/{address_id}", response_model=SuccessResponse)
+@router.delete(
+    "/me/addresses/{address_id}",
+    response_model=SuccessResponse,
+    summary="Delete address",
+    description="Soft delete address. Ownership validated."
+)
 async def delete_address(
     address_id: int,
-    current_user = Depends(get_current_active_user),
+    current_user: User = Depends(get_current_active_user),
     db: AsyncSession = Depends(get_db)
 ):
-    repo = AddressRepository(db)
-    address = await repo.get_by_id(address_id)
-    if not address or address.user_id != current_user.id:
-        raise HTTPException(status_code=404, detail="Address not found")
+    """Delete address (soft delete)"""
+    service = UserService(db)
+    return await service.delete_user_address(current_user, address_id)
 
-    address.is_active = False
-    await db.commit()
-    return SuccessResponse(message="Address deleted")
+# ============================================================================
+# USER CHILDREN (Unified)
+# ============================================================================
+
+@router.get(
+    "/me/children",
+    response_model=List[ChildResponse],
+    summary="Get my children",
+    description="Get all children for authenticated user."
+)
+async def get_my_children(
+    current_user: User = Depends(get_current_active_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get all children"""
+    service = UserService(db)
+    return await service.get_user_children(current_user)
 
 
-@router.get("/me/children", response_model=list[ChildResponse])
-async def get_children(current_user = Depends(get_current_active_user), db: AsyncSession = Depends(get_db)):
-    repo = UserRepository(db)
-    return await repo.get_children(current_user.id)
-
-
-@router.post("/me/children", response_model=ChildResponse)
+@router.post(
+    "/me/children",
+    response_model=ChildResponse,
+    summary="Add child",
+    description="Add child for authenticated user."
+)
 async def add_child(
-    request: ChildCreate,
-    current_user = Depends(get_current_active_user),
+    data: ChildCreate,
+    current_user: User = Depends(get_current_active_user),
     db: AsyncSession = Depends(get_db)
 ):
-    child = Child(**request.model_dump(), user_id=current_user.id)
-    db.add(child)
-    await db.commit()
-    await db.refresh(child)
-    return child
+    """Add child"""
+    service = UserService(db)
+    return await service.add_user_child(current_user, data)
+
+# ============================================================================
+# USER WISHLIST (Unified)
+# ============================================================================
+
+@router.get(
+    "/me/wishlist",
+    response_model=WishlistResponse,
+    summary="Get my wishlist",
+    description="Get complete wishlist with product details."
+)
+async def get_my_wishlist(
+    current_user: User = Depends(get_current_active_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get wishlist"""
+    service = UserService(db)
+    return await service.get_user_wishlist(current_user)
 
 
-@router.get("/me/wishlist")
-async def get_wishlist(current_user = Depends(get_current_active_user), db: AsyncSession = Depends(get_db)):
-    repo = WishlistRepository(db)
-    return await repo.get_user_wishlist(current_user.id)
-
-
-@router.post("/me/wishlist/{product_id}", response_model=SuccessResponse)
+@router.post(
+    "/me/wishlist/{product_id}",
+    response_model=SuccessResponse,
+    summary="Add to wishlist",
+    description="Add product to wishlist. Product existence validated. Duplicates prevented."
+)
 async def add_to_wishlist(
     product_id: int,
-    current_user = Depends(get_current_active_user),
+    current_user: User = Depends(get_current_active_user),
     db: AsyncSession = Depends(get_db)
 ):
-    repo = WishlistRepository(db)
-    if await repo.is_in_wishlist(current_user.id, product_id):
-        raise HTTPException(status_code=400, detail="Product already in wishlist")
-
-    wishlist_item = Wishlist(user_id=current_user.id, product_id=product_id)
-    db.add(wishlist_item)
-    await db.commit()
-    return SuccessResponse(message="Added to wishlist")
+    """Add product to wishlist"""
+    service = UserService(db)
+    return await service.add_to_user_wishlist(current_user, product_id)
 
 
-@router.delete("/me/wishlist/{product_id}", response_model=SuccessResponse)
+@router.delete(
+    "/me/wishlist/{product_id}",
+    response_model=SuccessResponse,
+    summary="Remove from wishlist",
+    description="Remove product from wishlist."
+)
 async def remove_from_wishlist(
     product_id: int,
-    current_user = Depends(get_current_active_user),
+    current_user: User = Depends(get_current_active_user),
     db: AsyncSession = Depends(get_db)
 ):
-    repo = WishlistRepository(db)
-    item = await repo.get_wishlist_item(current_user.id, product_id)
-    if not item:
-        raise HTTPException(status_code=404, detail="Item not in wishlist")
+    """Remove product from wishlist"""
+    service = UserService(db)
+    return await service.remove_from_user_wishlist(current_user, product_id)
 
-    await db.delete(item)
-    await db.commit()
-    return SuccessResponse(message="Removed from wishlist")
+# ============================================================================
+# ADMIN: USER MANAGEMENT
+# ============================================================================
+
+@router.get(
+    "/",
+    response_model=AdminUserListResponse,
+    summary="List all users",
+    description="Get paginated list of all users. ADMIN only."
+)
+async def get_all_users(
+    page: int = Query(1, ge=1),
+    per_page: int = Query(20, ge=1, le=100),
+    current_user: User = Depends(get_current_active_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """List all users (Admin)"""
+    service = UserService(db)
+    return await service.get_all_users_admin(current_user, page, per_page)
+
+
+@router.get(
+    "/{user_id}",
+    response_model=AdminUserDetailResponse,
+    summary="Get user details",
+    description="Get detailed user info by ID. ADMIN only."
+)
+async def get_user_details(
+    user_id: int = Path(..., title="The ID of the user to get"),
+    current_user: User = Depends(get_current_active_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Get user by ID (Admin)"""
+    service = UserService(db)
+    return await service.get_user_by_id_admin(current_user, user_id)
+
+
+@router.put(
+    "/{user_id}/status",
+    response_model=AdminUserDetailResponse,
+    summary="Update user status",
+    description="Update user active status. ADMIN only."
+)
+async def update_user_status(
+    data: AdminUserStatusUpdate,
+    user_id: int = Path(..., title="The ID of the user to update"),
+    current_user: User = Depends(get_current_active_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Update user status (Admin)"""
+    service = UserService(db)
+    return await service.update_user_status_admin(current_user, user_id, data)

@@ -1,5 +1,6 @@
 from app.models.user import User, Child, UserRole
-from app.models.otp import OTPVerification
+from app.models.otp_verification import OTPVerification
+from app.models.refresh_token import RefreshToken
 from app.models.product import Category, Product, ProductImage
 from app.models.inventory import Inventory, InventoryLock
 from app.models.cart import Cart, CartItem
@@ -12,7 +13,7 @@ from app.models.address import Address, AddressType
 
 __all__ = [
     "User", "Child", "UserRole",
-    "OTPVerification",
+    "OTPVerification", "RefreshToken",
     "Category", "Product", "ProductImage",
     "Inventory", "InventoryLock",
     "Cart", "CartItem",
